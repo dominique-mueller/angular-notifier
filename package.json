@@ -10,7 +10,7 @@
     "license": "MIT",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/dominique-mueller/angular-notifier.git"
+        "url": "https://github.com/dominique-mueller/angular-notifier.git"
     },
     "homepage": "https://github.com/dominique-mueller/angular-notifier",
     "bugs": {
@@ -31,7 +31,54 @@
         "module",
         "js"
     ],
+    "main": "./index.js",
+    "typings": "./index.d.ts",
     "scripts": {
-        "test": "echo 'No tests defined yet.' && exit 0"
+        "gulp": "gulp",
+        "typings": "typings"
+    },
+    "peerDependencies": {
+        "@angular/core": "2.0.x",
+        "@angular/common": "2.0.x"
+    },
+    "devDependencies": {
+        "@angular/core": "2.0.x",
+        "@angular/common": "2.0.x",
+        "@angular/compiler": "2.0.x",
+        "@angular/platform-browser": "2.0.x",
+        "@angular/platform-browser-dynamic": "2.0.x",
+        "browser-sync": "2.17.x",
+        "codelyzer": "1.0.0-beta.0",
+        "conventional-github-releaser": "1.1.x",
+        "conventional-recommended-bump": "0.3.x",
+        "core-js": "2.4.x",
+        "del": "2.2.x",
+        "gulp": "github:gulpjs/gulp#4.0",
+        "gulp-autoprefixer": "3.1.x",
+        "gulp-bump": "2.4.x",
+        "gulp-conventional-changelog": "1.1.x",
+        "gulp-git": "1.11.x",
+        "gulp-insert": "0.5.x",
+        "gulp-sourcemaps": "1.6.x",
+        "gulp-sass": "2.3.x",
+        "gulp-sass-lint": "1.2.x",
+        "gulp-tslint": "6.1.x",
+        "gulp-typescript": "3.0.x",
+        "gulp-util": "3.0.x",
+        "jasmine-core": "2.5.x",
+        "karma": "1.3.x",
+        "karma-chrome-launcher": "2.0.x",
+        "karma-cli": "1.0.x",
+        "karma-jasmine": "1.0.x",
+        "karma-mocha-reporter": "2.2.x",
+        "merge2": "1.0.x",
+        "reflect-metadata": "0.1.x",
+        "require-dir": "0.3.x",
+        "rxjs": "5.0.0-beta.12",
+        "systemjs": "0.19.x",
+        "tslint": "3.15.x",
+        "typescript": "2.0.x",
+        "typings": "1.4.x",
+        "zone.js": "0.6.x"
     }
 }

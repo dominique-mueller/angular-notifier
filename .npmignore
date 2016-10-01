@@ -1,0 +1,37 @@
+# Dependencies
+/node_modules
+/typings
+
+# Source code
+/index.ts
+/src/**/*.ts
+!/src/**/*.d.ts
+
+# Demo code
+/demo
+
+# Build process
+/gulp-tasks
+/.nvmrc
+/.sass-lint.yml
+/.travis.yml
+/browserlist
+/gulpfile.js
+/gulpfile.config.json
+/karma.config.js
+/karma-test-shim.js
+/tsconfig.json
+/tslint.json
+/typings.json
+
+# GitHub templates
+/.github
+
+# Logs
+*.log
+
+# Development
+*.todo
+*.old
+*.temp
+*.tmp
