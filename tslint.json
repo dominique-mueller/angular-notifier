@@ -31,7 +31,7 @@
 		"linebreak-style": false,
 		"max-line-length": [
 			true,
-			120
+			140
 		],
 		"member-access": [
 			true,
@@ -192,7 +192,7 @@
 		],
 		"use-input-property-decorator": true,
 		"use-output-property-decorator": true,
-		"use-host-property-decorator": true,
+		"use-host-property-decorator": false,
 		"no-attribute-parameter-decorator": true,
 		"no-input-rename": true,
 		"no-output-rename": true,

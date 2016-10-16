@@ -38,17 +38,18 @@
         "typings": "typings"
     },
     "peerDependencies": {
-        "@angular/core": "2.0.x",
-        "@angular/common": "2.0.x"
+        "@angular/core": "2.x",
+        "@angular/common": "2.x",
+        "rxjs": "5.0.0-beta.12"
     },
     "devDependencies": {
-        "@angular/core": "2.0.x",
-        "@angular/common": "2.0.x",
-        "@angular/compiler": "2.0.x",
-        "@angular/platform-browser": "2.0.x",
-        "@angular/platform-browser-dynamic": "2.0.x",
+        "@angular/core": "2.x",
+        "@angular/common": "2.x",
+        "@angular/compiler": "2.x",
+        "@angular/platform-browser": "2.x",
+        "@angular/platform-browser-dynamic": "2.x",
         "browser-sync": "2.17.x",
-        "codelyzer": "1.0.0-beta.0",
+        "codelyzer": "1.0.0-beta.2",
         "conventional-github-releaser": "1.1.x",
         "conventional-recommended-bump": "0.3.x",
         "core-js": "2.4.x",
@@ -59,7 +60,7 @@
         "gulp-conventional-changelog": "1.1.x",
         "gulp-git": "1.11.x",
         "gulp-insert": "0.5.x",
-        "gulp-sourcemaps": "1.6.x",
+        "gulp-sourcemaps": "2.1.x",
         "gulp-sass": "2.3.x",
         "gulp-sass-lint": "1.2.x",
         "gulp-tslint": "6.1.x",

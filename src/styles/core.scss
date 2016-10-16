@@ -1,0 +1,32 @@
+// CORE
+
+// Container
+
+.x-notifier__container {
+
+    * {
+        box-sizing: border-box;
+    }
+
+}
+
+.x-notifier__container-list {
+    margin: {
+        top: 0;
+        bottom: 0;
+    }
+    padding: {
+        left: 0;
+    }
+    list-style-type: none;
+}
+
+// Notification
+
+.x-notifier__notification {
+    display: block;
+    position: fixed;
+    visibility: hidden;
+    z-index: 10000; // Pretty much random ...
+    will-change: transform; // Fixed position performance boost (#perfmatters)
+}

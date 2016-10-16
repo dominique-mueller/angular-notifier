@@ -20,6 +20,7 @@
 *.log
 
 # Development
+/.vscode
 *.todo
 *.old
 *.temp
