@@ -1,8 +1,5 @@
 'use strict';
 
-/**
- * Imports
- */
 const gulp = require( 'gulp' );
 const gutil = require( 'gulp-util' );
 const karma = require( 'karma' );

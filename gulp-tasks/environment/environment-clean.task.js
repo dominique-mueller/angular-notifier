@@ -1,31 +1,28 @@
 'use strict';
 
-/**
- * Imports
- */
 const del = require( 'del' );
 const gulp = require( 'gulp' );
 
 /**
- * Gulp task: Clean build files
+ * Gulp task: Clean project build files
  */
 gulp.task( 'environment:clean', () => {
     return del( [
-        './index.js',
+        './index.js', // Generated JavaScript, sourcemaps, and TypeScript definition files ...
         './index.js.map',
         './index.d.ts',
         './src/**/*.js',
         './src/**/*.js.map',
         './src/**/*.d.ts',
-        './style.css',
+        './style.css', // ... and CSS files
         './src/styles/**/*.css'
     ] );
 } );
 
 /**
- * Gulp task: Clean build files (demo)
+ * Gulp task: Clean demo build files
  */
-gulp.task( 'environment:clean:demo', () => {
+gulp.task( 'environment:clean--demo', () => {
     return del( [
         './demo/*.js',
         '!./demo/systemjs.config.js'

@@ -1,8 +1,5 @@
 'use strict';
 
-/**
- * Imports
- */
 const bump = require( 'gulp-bump' );
 const conventionalRecommendedBump = require( 'conventional-recommended-bump' );
 const gulp = require( 'gulp' );

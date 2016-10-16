@@ -1,8 +1,5 @@
 'use strict';
 
-/**
- * Imports
- */
 const fs = require( 'fs' );
 const git = require( 'gulp-git' );
 const gulp = require( 'gulp' );

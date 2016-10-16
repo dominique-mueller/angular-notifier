@@ -1,8 +1,5 @@
 'use strict';
 
-/**
- * Imports
- */
 const conventionalChangelog = require( 'gulp-conventional-changelog' );
 const fs = require( 'fs' );
 const gulp = require( 'gulp' );

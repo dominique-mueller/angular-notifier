@@ -24,7 +24,10 @@
 			true,
 			"tabs"
 		],
-		"interface-name": false,
+		"interface-name": [
+			false,
+			"never-prefix"
+		],
 		"jsdoc-format": true,
 		"label-position": true,
 		"label-undefined": true,
@@ -118,7 +121,10 @@
 			"avoid-escape"
 		],
 		"radix": true,
-		"semicolon": true,
+		"semicolon": [
+			true,
+			"always"
+		],
 		"switch-default": false,
 		"trailing-comma": [
 			true,
@@ -148,7 +154,6 @@
 			}
 		],
 		"use-isnan": true,
-		"use-strict": true,
 		"variable-name": [
 			true,
 			"check-format",

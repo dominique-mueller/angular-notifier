@@ -1,8 +1,5 @@
 'use strict';
 
-/**
- * Imports
- */
 const conventionalGithubReleaser = require( 'conventional-github-releaser' );
 const fs = require( 'fs' );
 const gulp = require( 'gulp' );

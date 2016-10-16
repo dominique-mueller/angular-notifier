@@ -1,13 +1,10 @@
 'use strict';
 
-/**
- * Imports
- */
 const gulp = require( 'gulp' );
 const sassLint = require( 'gulp-sass-lint' );
 
 /**
- * Gulp task: Lint SASS
+ * Gulp task: Lint project SASS
  */
 gulp.task( 'sass:lint', () => {
     return gulp
