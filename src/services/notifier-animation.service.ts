@@ -37,14 +37,14 @@ export class NotifierAnimationService {
 		let easing: string;
 		switch ( direction ) { // TODO: Error handling, and maybe return within the switch?
 			case 'in':
-				keyframes = this.animationPresets[ notification.component.config.animations.show.preset ].in( notification );
-				duration = notification.component.config.animations.show.speed;
-				easing = notification.component.config.animations.show.easing;
+				keyframes = this.animationPresets[ notification.component.getConfig().animations.show.preset ].in( notification );
+				duration = notification.component.getConfig().animations.show.speed;
+				easing = notification.component.getConfig().animations.show.easing;
 				break;
 			case 'out':
-				keyframes = this.animationPresets[ notification.component.config.animations.clear.preset ].out( notification );
-				duration = notification.component.config.animations.clear.speed;
-				easing = notification.component.config.animations.clear.easing;
+				keyframes = this.animationPresets[ notification.component.getConfig().animations.hide.preset ].out( notification );
+				duration = notification.component.getConfig().animations.hide.speed;
+				easing = notification.component.getConfig().animations.hide.easing;
 				break;
 		}
 

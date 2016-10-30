@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { NotifierAnimationService } from './services/notifier-animation.service';
 import { NotifierService } from './services/notifier.service';
 import { NotifierQueueService } from './services/notifier-queue.service';
-import { NotifierConfigGlobal, NotifierOptionsGlobal } from './models/notifier-config-global.model';
+import { NotifierConfig, NotifierOptions } from './models/notifier-config.model';
 import { NotifierContainerComponent } from './components/notifier-container.component';
 import { NotifierNotificationComponent } from './components/notifier-notification.component';
 
@@ -33,13 +33,13 @@ export class NotifierModule {
 	/**
 	 * Setup custom module (service) configuration
 	 */
-	public static forRoot( customOptions: NotifierOptionsGlobal ): ModuleWithProviders {
+	public static forRoot( options: NotifierOptions ): ModuleWithProviders {
 		return {
 			ngModule: NotifierModule,
 			providers: [
 				{
-					provide: NotifierConfigGlobal,
-					useValue: new NotifierConfigGlobal( customOptions )
+					provide: NotifierConfig,
+					useValue: new NotifierConfig( options )
 				}
 			]
 		};

@@ -14,15 +14,13 @@ gulp.task( 'typescript:build--dev', () => {
     let tsSourceProject = ts.createProject( './tsconfig.json' );
     let tsSourceResult = gulp
         .src( [
-            './src/**/*.ts', // Source files (except index file)
-            './typings/index.d.ts' // Include typings
+            './src/**/*.ts'
         ] )
         .pipe( tsSourceProject( ts.reporter.defaultReporter() ) );
     let tsIndexProject = ts.createProject( './tsconfig.json' );
     let tsIndexResult = gulp
         .src( [
-            './index.ts', // Index file only
-            './typings/index.d.ts' // Include typings
+            './index.ts'
         ] )
         .pipe( tsIndexProject( ts.reporter.defaultReporter() ) );
 
@@ -47,9 +45,7 @@ gulp.task( 'typescript:build--prod', () => {
         .src( [
             './**/*.ts', // Select everything to keep the folder structure alive
             '!./node_modules/**', // Ignore dependencies
-            '!./demo/**', // Ignore demo
-            '!./tyings/**', // Ignore typings ...
-            './typings/index.d.ts' // but include the typings entry (only)
+            '!./demo/**' // Ignore demo
         ] )
         .pipe( sourcemaps.init() )
         .pipe( tsProject( ts.reporter.defaultReporter() ) );
@@ -74,8 +70,7 @@ gulp.task( 'typescript:build--demo', () => {
     let tsProject = ts.createProject( './tsconfig.json' );
     let tsResults = gulp
         .src( [
-            './demo/*.ts',
-            './typings/index.d.ts'
+            './demo/*.ts'
         ] )
         .pipe( tsProject() );
 

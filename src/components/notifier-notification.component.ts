@@ -1,14 +1,17 @@
-import { AfterViewInit, Component, ElementRef, EventEmitter, Input, Optional, Output, Renderer } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, Output, Renderer }
+	from '@angular/core';
 
+import { NotifierConfig } from './../models/notifier-config.model';
+import { NotifierService } from './../services/notifier.service';
 import { NotifierAnimationService } from './../services/notifier-animation.service';
 import { NoifierAnimationData } from './../models/notifier-animation.model';
-import { NotifierConfigGlobal } from './../models/notifier-config-global.model';
 import { NotifierNotification } from './../models/notifier-notification.model';
 
 /**
  * Notifier notification component
  */
 @Component( {
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class: 'x-notifier__notification'
 	},
@@ -23,70 +26,68 @@ import { NotifierNotification } from './../models/notifier-notification.model';
 export class NotifierNotificationComponent implements AfterViewInit {
 
 	/**
-	 * Input: Notification object
+	 * Input: Notification object, contains all details needed to construct the notification and its content
 	 */
 	@Input()
 	public notification: NotifierNotification;
 
 	/**
-	 * Output: Initialize event, emits a reference to this component
+	 * Output: Initialize event, emits a reference to this notification component
 	 */
 	@Output()
-	public init: EventEmitter<NotifierNotificationComponent>;
+	public ready: EventEmitter<NotifierNotificationComponent>;
 
 	/**
-	 * Output: Handle click on dismiss button
+	 * Output: Dismiss event, handles the click on the dismiss button
 	 */
 	@Output()
-	public dismiss: EventEmitter<NotifierNotification>;
-
-	/**
-	 * Global configuration
-	 */
-	public config: NotifierConfigGlobal;
-
-	/**
-	 * Current notification height, calculated and cached here (#perfmatters)
-	 */
-	public elementHeight: number;
-
-	/**
-	 * Current notification width, calculated and cached here (#perfmatters)
-	 */
-	public elementWidth: number;
-
-	/**
-	 * Current notification shift, calculated and cached here (#perfmatters)
-	 */
-	public elementShift: number;
+	public dismiss: EventEmitter<string>;
 
 	/**
 	 * Notifier animation service
 	 */
-	private animationService: NotifierAnimationService;
-
-	/**
-	 * Native element reference, used for manipulating DOM properties
-	 */
-	private element: any; // Similar to an HTMLElement
+	private readonly animationService: NotifierAnimationService;
 
 	/**
 	 * Angular renderer, used to preserve the overall DOM abstraction (DOM independence)
 	 */
-	private renderer: Renderer;
+	private readonly renderer: Renderer;
+
+	/**
+	 * Global configuration
+	 */
+	private readonly config: NotifierConfig;
+
+	/**
+	 * Native element reference, used for manipulating DOM properties
+	 */
+	private readonly element: any; // Similar to an HTMLElement, but misses web animations
+
+	/**
+	 * Current notification height, calculated and cached here (#perfmatters)
+	 */
+	private elementHeight: number;
+
+	/**
+	 * Current notification width, calculated and cached here (#perfmatters)
+	 */
+	private elementWidth: number;
+
+	/**
+	 * Current notification shift, calculated and cached here (#perfmatters)
+	 */
+	private elementShift: number;
 
 	/**
 	 * Constructor
-	 * @param {ElementRef} elementRef Component element reference
-	 * @param {Renderer}   renderer   Angular rendering service
 	 */
-	public constructor( animationService: NotifierAnimationService,
-						elementRef: ElementRef,
+	public constructor( elementRef: ElementRef,
 						renderer: Renderer,
-						@Optional() config: NotifierConfigGlobal ) {
-		this.config = config === null ? new NotifierConfigGlobal() : config;
-		this.init = new EventEmitter<NotifierNotificationComponent>();
-		this.dismiss = new EventEmitter<NotifierNotification>();
+						notifierService: NotifierService,
+						animationService: NotifierAnimationService, ) {
+		this.config = notifierService.getConfig();
+		this.ready = new EventEmitter<NotifierNotificationComponent>();
+		this.dismiss = new EventEmitter<string>();
 		this.element = elementRef.nativeElement;
 		this.animationService = animationService;
 		this.renderer = renderer;
@@ -101,12 +102,39 @@ export class NotifierNotificationComponent implements AfterViewInit {
 		this.setup();
 		this.elementHeight = this.element.offsetHeight;
 		this.elementWidth = this.element.offsetWidth;
-		this.init.emit( this );
+		this.ready.emit( this );
+	}
+
+	/**
+	 * Get the notifier config
+	 */
+	public getConfig(): NotifierConfig {
+		return this.config;
+	}
+
+	/**
+	 * Get notification height
+	 */
+	public getHeight(): number {
+		return this.elementHeight;
+	}
+
+	/**
+	 * Get notification width
+	 */
+	public getWidth(): number {
+		return this.elementWidth;
+	}
+
+	/**
+	 * Get notification shift
+	 */
+	public getShift(): number {
+		return this.elementShift;
 	}
 
 	/**
 	 * Show (aniamte in) this notification
-	 * @returns {Promise<null>} Empty promise, resolved when finished
 	 */
 	public show(): Promise<null> {
 
@@ -129,7 +157,6 @@ export class NotifierNotificationComponent implements AfterViewInit {
 
 	/**
 	 * Hide (animate out) notification
-	 * @returns {Promise<null>} Empty promise, resolved when finished
 	 */
 	public hide(): Promise<null> {
 
@@ -149,33 +176,55 @@ export class NotifierNotificationComponent implements AfterViewInit {
 	 * Shift (animate move) notification
 	 */
 	public shift( distance: number, shiftToMakePlace: boolean ): Promise<null> {
-		return new Promise<null>( ( resolve: ( value?: null ) => {}, reject: ( value?: null ) => {} ) => {
 
-			// Calculate new position (position after the shift)
-			let newElementShift: number;
-			switch ( this.config.position.verticalPosition ) { // TODO: Maybe if-else ??
-				case 'top':
-					if ( shiftToMakePlace ) {
-						newElementShift = this.elementShift + distance + this.config.position.verticalGap;
-					} else {
-						newElementShift = this.elementShift - distance - this.config.position.verticalGap;
-					}
-					break;
-				case 'bottom':
-					if ( shiftToMakePlace ) {
-						newElementShift = this.elementShift - distance - this.config.position.verticalGap;
-					} else {
-						newElementShift = this.elementShift + distance + this.config.position.verticalGap;
-					}
-			}
-			let horizontalPosition: string = this.config.position.horizontalPosition === 'middle' ? '-50%' : '0';
+		// Calculate new position (position after the shift)
+		let newElementShift: number;
+		switch ( this.config.position.verticalPosition ) {
+			case 'top':
+				if ( shiftToMakePlace ) {
+					newElementShift = this.elementShift + distance + this.config.position.verticalGap;
+				} else {
+					newElementShift = this.elementShift - distance - this.config.position.verticalGap;
+				}
+				break;
+			case 'bottom':
+				if ( shiftToMakePlace ) {
+					newElementShift = this.elementShift - distance - this.config.position.verticalGap;
+				} else {
+					newElementShift = this.elementShift + distance + this.config.position.verticalGap;
+				}
+				break;
+		}
+		const horizontalPosition: string = this.config.position.horizontalPosition === 'middle' ? '-50%' : '0';
 
-			// Shift
-			this.renderer.setElementStyle( this.element, 'transform', `translate3d( ${ horizontalPosition }, ${ newElementShift }px, 0 )` );
+		// Decision: Are animations enabled?
+		if ( this.config.animations.enabled ) {
+			const animationData: NoifierAnimationData = { // TODO: Extract into animation service
+				keyframes: [
+					{
+						transform: `translate3d( ${ horizontalPosition }, ${ this.elementShift }px, 0 )`
+					},
+					{
+						transform: `translate3d( ${ horizontalPosition }, ${ newElementShift }px, 0 )`
+					}
+				],
+				options: {
+					delay: 10,
+					duration: this.config.animations.shift.speed,
+					easing: this.config.animations.shift.easing,
+					fill: 'forwards'
+				}
+			};
 			this.elementShift = newElementShift;
-			resolve(); // DONE
+			return this.element.animate( animationData.keyframes, animationData.options ).finished; // Returns a promise
+		} else {
+			return new Promise<null>( ( resolve: ( value?: null ) => {}, reject: ( value?: null ) => {} ) => {
+				this.renderer.setElementStyle( this.element, 'transform', `translate3d( ${ horizontalPosition }, ${ newElementShift }px, 0 )` );
+				this.elementShift = newElementShift;
+				resolve(); // Done
+			} );
+		}
 
-		} );
 	}
 
 	/**
@@ -183,7 +232,7 @@ export class NotifierNotificationComponent implements AfterViewInit {
 	 * Only emits event to parent component
 	 */
 	public onClickDismiss(): void {
-		this.dismiss.emit( this.notification );
+		this.dismiss.emit( this.notification.id );
 	}
 
 	/**

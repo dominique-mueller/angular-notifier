@@ -10,7 +10,16 @@ import { NotifierService } from './../index';
  */
 @Component( {
 	selector: 'app',
-	template: '<h1>Hello World</h1><button (click)="test()">Hit me</button><x-notifier-container></x-notifier-container>'
+	template: `
+		<h1>Hello World</h1>
+		<button (click)="test()">Hit me</button>
+		<button (click)="showSpecific()">Show specific</button>
+		<button (click)="hideSpecific()">Hide specific</button>
+		<button (click)="hideOldest()">Hide oldest</button>
+		<button (click)="hideNewest()">Hide newest</button>
+		<button (click)="hideAll()">Hide all</button>
+		<x-notifier-container></x-notifier-container>
+	`
 } )
 export class AppComponent {
 
@@ -26,6 +35,30 @@ export class AppComponent {
 	public test(): void {
 		this.notifier.notify( 'test', `Notification #${ this.counter }` );
 		this.counter++;
+	}
+
+	public showSpecific(): void {
+		this.notifier.show( {
+			id: 'ID_SPECIFIC',
+			message: 'Specific notification here',
+			type: 'test'
+		} );
+	}
+
+	public hideSpecific(): void {
+		this.notifier.hide( 'ID_SPECIFIC' );
+	}
+
+	public hideAll(): void {
+		this.notifier.hideAll();
+	}
+
+	public hideOldest(): void {
+		this.notifier.hideOldest();
+	}
+
+	public hideNewest(): void {
+		this.notifier.hideNewest();
 	}
 
 }

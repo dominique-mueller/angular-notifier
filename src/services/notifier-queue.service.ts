@@ -12,7 +12,7 @@ export class NotifierQueueService {
 	/**
 	 * Stream of actions, can be subscribed from outside
 	 */
-	public actionStream: Subject<NotifierAction>;
+	public readonly actionStream: Subject<NotifierAction>;
 
 	/**
 	 * Queue of actions
@@ -35,7 +35,6 @@ export class NotifierQueueService {
 
 	/**
 	 * Push a new action to the queue, and try to run it
-	 * @param {NotifierAction} action
 	 */
 	public push( action: NotifierAction ): void {
 		this.actionQueue.push( action );
