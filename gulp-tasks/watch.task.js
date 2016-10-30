@@ -10,7 +10,7 @@ const buildTask = require( './build.task' );
 /**
  * Gulp task: Browser-sync reload (helper only)
  */
-gulp.task( 'watch--reload', ( done ) => {
+gulp.task( 'watch:reload', ( done ) => {
     browserSync.reload();
     done();
 } );
@@ -18,7 +18,7 @@ gulp.task( 'watch--reload', ( done ) => {
 /**
  * Gulp task: Start watcher for build tasks (note: paths muts be written without dots in the beginning!!)
  */
-gulp.task( 'watch--build',
+gulp.task( 'watch:build',
     gulp.series( [
         gulp.parallel( [
             'build--dev',
@@ -100,7 +100,7 @@ gulp.task( 'watch--build',
 /**
  * Gulp task: Start test watcher (best in combination with the build watcher)
  */
-gulp.task( 'watch--test', ( done ) => {
+gulp.task( 'watch:test', ( done ) => {
 	new karma.Server( {
 		configFile: `${__dirname }/../karma.config.js`
 	}, done ).start();

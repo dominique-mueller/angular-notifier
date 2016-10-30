@@ -40,7 +40,8 @@
     "peerDependencies": {
         "@angular/core": "2.x",
         "@angular/common": "2.x",
-        "rxjs": "5.0.0-beta.12"
+        "rxjs": "5.0.0-beta.12",
+        "web-animations-js": "2.2.x"
     },
     "devDependencies": {
         "@angular/core": "2.x",
@@ -80,6 +81,7 @@
         "tslint": "3.15.x",
         "typescript": "2.0.x",
         "typings": "1.4.x",
+        "web-animations-js": "2.2.x",
         "zone.js": "0.6.x"
     }
 }

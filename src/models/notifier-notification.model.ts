@@ -9,12 +9,12 @@ export class NotifierNotification {
 
 	public message: string;
 
-	public componentRef: NotifierNotificationComponent;
+	public component: NotifierNotificationComponent;
 
 	public constructor( options: any ) {
 		this.type = options.type;
 		this.message = options.message;
-		this.componentRef = null;
+		this.component = null;
 	}
 
 }

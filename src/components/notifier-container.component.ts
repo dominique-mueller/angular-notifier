@@ -98,7 +98,7 @@ export class NotifierContainerComponent implements OnInit, OnDestroy {
 	 */
 	public onComponentInit( componentRef: NotifierNotificationComponent ): void {
 		let currentNotification: NotifierNotification = this.notifications[ this.notifications.length - 1 ];
-		currentNotification.componentRef = componentRef; // Save component Ref
+		currentNotification.component = componentRef; // Save component Ref
 		this.showNotification( currentNotification );
 	};
 
@@ -139,10 +139,10 @@ export class NotifierContainerComponent implements OnInit, OnDestroy {
 			} else {
 				this.hideNotification( action.payload );
 				const notificationIndex: number = this.notifications.findIndex( ( notification: NotifierNotification ) => {
-					return notification.componentRef === action.payload.componentRef;
+					return notification.component === action.payload.component;
 				} );
 				const otherNotifications: Array<NotifierNotification> = this.notifications.slice( 0, notificationIndex );
-				this.shiftNotifications( otherNotifications, action.payload.componentRef.currentElementHeight, false ).then( resolve );
+				this.shiftNotifications( otherNotifications, action.payload.component.elementHeight, false ).then( resolve );
 			}
 
 		} );
@@ -155,13 +155,13 @@ export class NotifierContainerComponent implements OnInit, OnDestroy {
 
 		// 1. Decision: First notification in the list?
 		if ( this.notifications.length === 1 ) {
-			notification.componentRef.show().then( this.tempPromiseResolver );
+			notification.component.show().then( this.tempPromiseResolver );
 		} else {
 
 			// 2. Decision: Stacking enabled? (same as stacking value below 2)
 			if ( this.config.behaviour.stacking === false || this.config.behaviour.stacking < 2 ) {
 				this.hideNotification( this.notifications[ 0 ] ).then( () => {
-					notification.componentRef.show().then( this.tempPromiseResolver );
+					notification.component.show().then( this.tempPromiseResolver );
 				} );
 			} else {
 
@@ -170,14 +170,14 @@ export class NotifierContainerComponent implements OnInit, OnDestroy {
 
 					this.hideNotification( this.notifications[ 0 ] ); // Hide oldest notification
 					const otherNotifications: Array<NotifierNotification> = this.notifications.slice( 1, this.notifications.length - 1 );
-					this.shiftNotifications( otherNotifications, notification.componentRef.currentElementHeight, true );
-					notification.componentRef.show().then( this.tempPromiseResolver ); // DONE
+					this.shiftNotifications( otherNotifications, notification.component.elementHeight, true );
+					notification.component.show().then( this.tempPromiseResolver ); // DONE
 
 				} else {
 
 					const otherNotifications: Array<NotifierNotification> = this.notifications.slice( 0, this.notifications.length - 1 );
-					this.shiftNotifications( otherNotifications, notification.componentRef.currentElementHeight, true );
-					notification.componentRef.show().then( this.tempPromiseResolver ); // DONE
+					this.shiftNotifications( otherNotifications, notification.component.elementHeight, true );
+					notification.component.show().then( this.tempPromiseResolver ); // DONE
 
 				}
 
@@ -192,9 +192,9 @@ export class NotifierContainerComponent implements OnInit, OnDestroy {
 	 */
 	private hideNotification( notification: NotifierNotification ): Promise<null> {
 		return new Promise<null>( ( resolve: ( value?: null ) => {}, reject: ( value?: null ) => {} ) => {
-			notification.componentRef.hide().then( () => {
+			notification.component.hide().then( () => {
 				this.notifications = this.notifications.filter( ( currentNotification: NotifierNotification ) => {
-					return currentNotification.componentRef !== notification.componentRef;
+					return currentNotification.component !== notification.component;
 				} );
 				resolve(); // DONE
 			} );
@@ -207,7 +207,7 @@ export class NotifierContainerComponent implements OnInit, OnDestroy {
 	private shiftNotifications( notifications: Array<NotifierNotification>, distance: number, shiftToMakePlace: boolean ): Promise<null> {
 		let shiftPromises: Array<Promise<null>> = [];
 		for ( let notification of notifications ) {
-			shiftPromises.push( notification.componentRef.shift( distance, shiftToMakePlace ) );
+			shiftPromises.push( notification.component.shift( distance, shiftToMakePlace ) );
 		}
 		return Promise.all( shiftPromises ); // DONE
 	}

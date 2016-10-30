@@ -1,6 +1,7 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { NotifierAnimationService } from './services/notifier-animation.service';
 import { NotifierService } from './services/notifier.service';
 import { NotifierQueueService } from './services/notifier-queue.service';
 import { NotifierConfigGlobal, NotifierOptionsGlobal } from './models/notifier-config-global.model';
@@ -22,6 +23,7 @@ import { NotifierNotificationComponent } from './components/notifier-notificatio
 		CommonModule
 	],
 	providers: [
+		NotifierAnimationService,
 		NotifierService,
 		NotifierQueueService
 	]
