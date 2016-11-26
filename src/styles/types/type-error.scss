@@ -1,0 +1,15 @@
+// NOTIFIER: ERROR TYPE STYLES
+
+$notifier-error-background-color: #BF4654;
+$notifier-error-font-color: #FFF;
+$notifier-error-icon-color: #FFF;
+
+.x-notifier__notification--error {
+	background-color: $notifier-error-background-color;
+	color: $notifier-error-font-color;
+
+	.x-notifier__notification-button-icon { // 16x16 fixed size
+		fill: $notifier-error-icon-color;
+	}
+
+}

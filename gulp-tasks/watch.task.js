@@ -18,7 +18,7 @@ gulp.task( 'watch:reload', ( done ) => {
 /**
  * Gulp task: Start watcher for build tasks (note: paths muts be written without dots in the beginning!!)
  */
-gulp.task( 'watch:build',
+gulp.task( 'watch',
     gulp.series( [
         gulp.parallel( [
             'build--dev',
@@ -51,7 +51,7 @@ gulp.task( 'watch:build',
                 'index.ts',
                 'src/**/*.ts'
             ], gulp.series( [
-                'typescript:build--dev',
+                'ts:build--dev',
                 'watch:reload'
             ] ) );
             tsWatcher.on( 'change', ( path ) => {
@@ -74,7 +74,7 @@ gulp.task( 'watch:build',
             let demoTsWatcher = gulp.watch( [
                 'demo/*.ts'
             ], gulp.series( [
-                'typescript:build--demo',
+                'ts:build--demo',
                 'watch:reload'
             ] ) );
             demoTsWatcher.on( 'change', ( path ) => {

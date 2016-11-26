@@ -1,10 +1,60 @@
-// THEME: MATERIAL
+// NOTIFIER: MATERIAL THEME
+//
+// This material theme tries its best to look as material-design'ish as possible - round edges, shadows, and small animations.
+// And, of course, thanks to #Google for creating and sharing such an awesome design language!
+// I highly encourage everyone to read into the Material Design specs: <https://material.google.com/>
+
+$notifier-shadow-color: rgba(0, 0, 0, .2);
 
 .x-notifier__notification--material {
-    padding: 11px 26px 10px;
-    border-radius: 3px;
-    background-color: #444; // TEMP
-    color: #FFF; // TEMP
-    box-shadow: 0 1px 3px rgba(0, 0, 0, .2);
-    cursor: default;
+	border-radius: 3px;
+	box-shadow: 0 1px 3px $notifier-shadow-color;
+	cursor: default; // Default cursor, even when hovering over text
+	padding: {
+		top: 11px;
+		right: 26px;
+		bottom: 10px;
+		left: 26px;
+	};
+
+	.x-notifier__notification-message {
+		display: inline-block;
+		margin: { // Reset paragraph default styles
+			top: 0;
+			bottom: 0;
+		}
+		vertical-align: top;
+		line-height: 32px;
+		font-size: 15px;
+	}
+
+	.x-notifier__notification-button {
+		display: inline-block;
+		transition: opacity .2s ease;
+		opacity: .5;
+		margin: {
+			right: -10px;
+			left: 10px;
+		};
+		outline: none;
+		border: none;
+		background: none;
+		cursor: pointer; // Make it obvious that the "button" (or, more honestly, icon) is clickable (#UX)
+		padding: 6px;
+		width: 32px;
+		height: 32px;
+		vertical-align: top;
+
+		&:hover,
+		&:focus {
+			opacity: 1; // Make me "feel" the clickability with a transparency change (#UX)
+		}
+
+		&:active {
+			transform: scale(.82); // Make me "feel" the click by a push back (#UX)
+			opacity: 1;
+		}
+
+	}
+
 }

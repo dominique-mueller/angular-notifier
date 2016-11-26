@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 
-import { NotifierNotification } from './../models/notifier-notification.model';
-import { NoifierAnimationData, NotifierAnimationKeyframes, NotifierAnimationPreset } from './../models/notifier-animation.model';
 import { fade } from './../animation-presets/fade.animation-preset';
+import { slide } from './../animation-presets/slide.animation-preset';
+import { NotifierAnimationData, NotifierAnimationPreset, NotifierAnimationPresetKeyframes } from './../models/notifier-animation.model';
+import { NotifierNotification } from './../models/notifier-notification.model';
 
 /**
  * Notifier animation service
@@ -11,10 +12,10 @@ import { fade } from './../animation-presets/fade.animation-preset';
 export class NotifierAnimationService {
 
 	/**
-	 * List of animation presets
+	 * List of animation presets (currently static)
 	 */
-	private animationPresets: {
-		[ animationPreset: string ]: NotifierAnimationPreset
+	private readonly animationPresets: {
+		[ animationPresetName: string ]: NotifierAnimationPreset
 	};
 
 	/**
@@ -22,30 +23,40 @@ export class NotifierAnimationService {
 	 */
 	public constructor() {
 		this.animationPresets = {
-			fade: fade
+			fade,
+			slide
 		};
 	}
 
 	/**
 	 * Get animation data
+	 *
+	 * This method generates all data the Web Animations API needs to animate our notification. The result depends on both the animation
+	 * direction (either in or out) as well as the notifications (and its attributes) itself.
+	 *
+	 * @param   {'show' | 'hide'}       direction    Animation direction, either in or out
+	 * @param   {NotifierNotification}  notification Notification the animation data should be generated for
+	 * @returns {NotifierAnimationData}              Animation information
 	 */
-	public getAnimationData( direction: string, notification: NotifierNotification ): NoifierAnimationData {
+	public getAnimationData( direction: 'show' | 'hide', notification: NotifierNotification ): NotifierAnimationData {
 
 		// Get all necessary animation data
-		let keyframes: NotifierAnimationKeyframes;
+		let keyframes: NotifierAnimationPresetKeyframes;
 		let duration: number;
 		let easing: string;
-		switch ( direction ) { // TODO: Error handling, and maybe return within the switch?
-			case 'in':
-				keyframes = this.animationPresets[ notification.component.getConfig().animations.show.preset ].in( notification );
+		switch ( direction ) {
+			case 'show':
+				keyframes = this.animationPresets[ notification.component.getConfig().animations.show.preset ].show( notification );
 				duration = notification.component.getConfig().animations.show.speed;
 				easing = notification.component.getConfig().animations.show.easing;
 				break;
-			case 'out':
-				keyframes = this.animationPresets[ notification.component.getConfig().animations.hide.preset ].out( notification );
+			case 'hide':
+				keyframes = this.animationPresets[ notification.component.getConfig().animations.show.preset ].hide( notification );
 				duration = notification.component.getConfig().animations.hide.speed;
 				easing = notification.component.getConfig().animations.hide.easing;
 				break;
+			default:
+				throw new Error( `Notifier Error: "${ direction }" is not a supported animation direction.` );
 		}
 
 		// Build and return animation data
@@ -55,10 +66,9 @@ export class NotifierAnimationService {
 				keyframes.to
 			],
 			options: {
-				delay: 10, // Quick coffee break for the browser - TODO: Still necessary?
-				duration: duration,
-				easing: easing,
-				fill: 'forwards' // Keep the new paint state after the animation is finished
+				duration,
+				easing,
+				fill: 'forwards' // Keep the newly painted state after the animation finished
 			}
 		};
 

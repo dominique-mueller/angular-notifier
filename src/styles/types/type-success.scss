@@ -1,0 +1,15 @@
+// NOTIFIER: SUCCESS TYPE STYLES
+
+$notifier-success-background-color: #A08E5D;
+$notifier-success-font-color: #FFF;
+$notifier-success-icon-color: #FFF;
+
+.x-notifier__notification--success {
+	background-color: $notifier-success-background-color;
+	color: $notifier-success-font-color;
+
+	.x-notifier__notification-button-icon { // 16x16 fixed size
+		fill: $notifier-success-icon-color;
+	}
+
+}

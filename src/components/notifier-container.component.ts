@@ -1,18 +1,29 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, OnDestroy } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+
 import { Subscription } from 'rxjs/Subscription';
 
-import { NotifierService } from './../services/notifier.service';
-import { NotifierQueueService } from './../services/notifier-queue.service';
-import { NotifierNotificationComponent } from './notifier-notification.component';
+import { NotifierAction, NotifierActionType } from './../models/notifier-action.model';
 import { NotifierConfig } from './../models/notifier-config.model';
 import { NotifierNotification } from './../models/notifier-notification.model';
-import { NotifierAction, NotifierActionType } from './../models/notifier-action.model';
+import { NotifierQueueService } from './../services/notifier-queue.service';
+import { NotifierService } from './../services/notifier.service';
+import { NotifierNotificationComponent } from './notifier-notification.component';
 
 /**
  * Notifier container component
+ * ----------------------------
+ * This component acts as a wrapper for all notification components; consequently, it is responsible for creating a new notification
+ * component and removing an existing notification component. Being more precicely, it also handles side effects of those actions, such as
+ * shifting or even completely removing other notifications as well. Overall, this components handles actions coming from the queue service
+ * by subscribing to its action stream.
+ *
+ * Technical sidenote:
+ * This component has to be used somewhere in an application to work; it will not inject and create itself automatically, primarily in order
+ * to not break the Angular AoT compilation. Moreover, this component (and also the notification components) set their change detection
+ * strategy onPush, which means that we handle change detection manually in order to get the best performance. (#perfmatters)
  */
 @Component( {
-	changeDetection: ChangeDetectionStrategy.OnPush,
+	changeDetection: ChangeDetectionStrategy.OnPush, // (#perfmatters)
 	host: {
 		class: 'x-notifier__container'
 	},
@@ -26,9 +37,10 @@ import { NotifierAction, NotifierActionType } from './../models/notifier-action.
 					(dismiss)="onNotificationDismiss( $event )">
 				</x-notifier-notification>
 			</li>
-		</ul>`
+		</ul>
+	`
 } )
-export class NotifierContainerComponent implements OnInit, OnDestroy {
+export class NotifierContainerComponent implements OnDestroy, OnInit {
 
 	/**
 	 * Change detector
@@ -41,40 +53,41 @@ export class NotifierContainerComponent implements OnInit, OnDestroy {
 	private readonly queueService: NotifierQueueService;
 
 	/**
-	 * Global configuration
+	 * Notifier configuration
 	 */
 	private readonly config: NotifierConfig;
 
 	/**
-	 * List of current notifications
+	 * List of currently somewhat active notifications
 	 */
 	private notifications: Array<NotifierNotification>;
 
 	/**
-	 * Queue service observable subscription (used for cleanup later on)
+	 * Queue service observable subscription (saved for cleanup)
 	 */
 	private queueServiceSubscription: Subscription;
 
 	/**
 	 * Promise resolve function reference, temporarily used while the notification child component gets created
 	 */
-	private tempPromiseResolver: ( value?: null ) => {};
+	private tempPromiseResolver: () => void;
 
 	/**
 	 * Constructor
+	 *
+	 * @param {ChangeDetectorRef}    changeDetector       Change detector, used for manually triggering change detection runs
+	 * @param {NotifierQueueService} notifierQueueService Notifier queue service
+	 * @param {NotifierService}      notifierService      Notifier service
 	 */
-	public constructor( changeDetector: ChangeDetectorRef,
-						notifierService: NotifierService,
-						notifierQueueService: NotifierQueueService ) {
+	public constructor( changeDetector: ChangeDetectorRef, notifierQueueService: NotifierQueueService, notifierService: NotifierService ) {
 		this.changeDetector = changeDetector;
-		this.changeDetector.detach(); // Allows us to use our own custom change detection tree (#perfmatters)
 		this.queueService = notifierQueueService;
 		this.config = notifierService.getConfig();
 		this.notifications = [];
 	}
 
 	/**
-	 * Component initialization lifecycle hook, handles the incoming stream of actions
+	 * Component initialization lifecycle hook, connects this component to the action queue, and then handles incoming actions
 	 */
 	public ngOnInit(): void {
 		this.queueServiceSubscription = this.queueService.actionStream.subscribe( ( action: NotifierAction ) => {
@@ -85,14 +98,16 @@ export class NotifierContainerComponent implements OnInit, OnDestroy {
 	}
 
 	/**
-	 * Component destroy lifecycle hook, cleans up the observable subsciption
+	 * Component destroyment lifecycle hook, cleans up the observable subsciption
 	 */
 	public ngOnDestroy(): void {
 		this.queueServiceSubscription.unsubscribe();
 	}
 
 	/**
-	 * Handle click on a notification dismiss button
+	 * Event handler, handles clicks on notification dismiss buttons
+	 *
+	 * @param {string} notificationId ID of the notification to dismiss
 	 */
 	public onNotificationDismiss( notificationId: string ): void {
 		this.queueService.push( {
@@ -102,19 +117,24 @@ export class NotifierContainerComponent implements OnInit, OnDestroy {
 	}
 
 	/**
-	 * Handle the notification ready event
+	 * Event handler, handles notification ready events
+	 *
+	 * @param {NotifierNotificationComponent} notificationComponent Notification component reference
 	 */
-	public onNotificationReady( componentRef: NotifierNotificationComponent ): void {
-		let currentNotification: NotifierNotification = this.notifications[ this.notifications.length - 1 ];
-		currentNotification.component = componentRef; // Save component reference
-		this.showNotification( currentNotification );
+	public onNotificationReady( notificationComponent: NotifierNotificationComponent ): void {
+		let currentNotification: NotifierNotification = this.notifications[ this.notifications.length - 1 ]; // Get the latest notification
+		currentNotification.component = notificationComponent; // Save the new omponent reference
+		this.continueHandleShowAction( currentNotification ); // Continue with handling the show action
 	}
 
 	/**
-	 * Maps action types to component methods, and then runs the correct one
+	 * Handle incoming actions by mapping action types to methods, and then running them
+	 *
+	 * @param   {NotifierAction}     action Action object
+	 * @returns {Promise<undefined>}        Promise, resolved when done
 	 */
-	private handleAction( action: NotifierAction ): Promise<null> {
-		switch ( action.type ) {
+	private handleAction( action: NotifierAction ): Promise<undefined> {
+		switch ( action.type ) { // TODO: Maybe a map (actionType -> class method) is a cleaner solution here?
 			case NotifierActionType.SHOW:
 				return this.handleShowAction( action );
 			case NotifierActionType.HIDE:
@@ -125,117 +145,268 @@ export class NotifierContainerComponent implements OnInit, OnDestroy {
 				return this.handleHideNewestAction( action );
 			case NotifierActionType.HIDE_ALL:
 				return this.handleHideAllAction( action );
+			default:
+				return new Promise<undefined>( ( resolve: () => void, reject: () => void ) => resolve ); // Ignore unknown action types
 		}
 	}
 
 	/**
-	 * Add a new notification to the list of notifications
+	 * Show a new notification
+	 *
+	 * We simply add the notification to the list, and then wait until its properly initialized / created / rendered.
+	 *
+	 * @param   {NotifierAction}     action Action object
+	 * @returns {Promise<undefined>}        Promise, resolved when done
 	 */
-	private handleShowAction( action: NotifierAction ): Promise<null> {
-		return new Promise<null>( ( resolve: ( value?: null ) => {}, reject: ( value?: null ) => {} ) => {
-			this.tempPromiseResolver = resolve; // Save the promise resolve function so that it can be executed later by another function
-			const newNotification: NotifierNotification = new NotifierNotification( action.payload );
-			this.notifications = [ ...this.notifications, newNotification ]; // Immutable
-			this.changeDetector.detectChanges(); // Run change detection because the notification list changed
+	private handleShowAction( action: NotifierAction ): Promise<undefined> {
+		return new Promise<undefined>( ( resolve: () => void, reject: () => void ) => {
+			this.tempPromiseResolver = resolve; // Save the promise resolve function so that it can be called later on by another method
+			this.addNotificationToList( new NotifierNotification( action.payload ) );
 		} );
 	}
 
 	/**
-	 * Remove an existing notification from the list of notifications
+	 * Continue to show a new notification (after the notification components is initialized / created / rendered).
+	 *
+	 * If this is the first (and thus only) notification, we can simply show it. Otherwhise, if stacking is disabled (or a low value), we
+	 * switch out notifications, in particular we hide the existing one, and then show our new one. Yet, if stacking is enabled, we first
+	 * shift all older notifications, and then show our new notification. In addition, if there are too many notification on the screen,
+	 * we hide the oldest one first. Furthermore, if configured, animation overlapping is applied.
+	 *
+	 * @param {NotifierNotification} notification New notification to show
 	 */
-	private handleHideAction( action: NotifierAction ): Promise<null> {
-		return new Promise<null>( ( resolve: ( value?: null ) => {}, reject: ( value?: null ) => {} ) => {
+	private continueHandleShowAction( notification: NotifierNotification ): void {
 
-			// Are there any notifications?
-			const numberOfNotifications: number = this.notifications.length;
-			if ( numberOfNotifications === 0 ) {
-				resolve(); // Done
-			}
+		// First (which means only one) notification in the list?
+		const numberOfNotifications: number = this.notifications.length;
+		if ( numberOfNotifications === 1 ) {
+			notification.component.show().then( this.tempPromiseResolver ); // Done
+		} else {
 
-			// Does the 'requested' notification really exist?
-			const notification: NotifierNotification | undefined = this.findNotificationById( action.payload );
-			if ( typeof notification === 'undefined' ) {
-				resolve(); // Done
-			}
-
-			// Is there only one notification in the list?
-			if ( numberOfNotifications === 1 ) {
-				this.hideNotification( notification ).then( resolve ); // Done
+			// Stacking enabled? (stacking value below 2 means stacking is disabled)
+			if ( this.config.behaviour.stacking === false || this.config.behaviour.stacking < 2 ) {
+				this.notifications[ 0 ].component.hide().then( () => {
+					this.removeNotificationFromList( this.notifications[ 0 ] );
+					notification.component.show().then( this.tempPromiseResolver ); // Done
+				} );
 			} else {
-				this.hideNotification( notification );
-				const notificationIndex: number = this.findNotificationIndexById( action.payload );
-				const otherNotifications: Array<NotifierNotification> = this.notifications.slice( 0, notificationIndex );
-				this.shiftNotifications( otherNotifications, notification.component.getHeight(), false ).then( resolve ); // Done
+
+				const stepPromises: Array<Promise<undefined>> = [];
+
+				// Are there now too many notifications?
+				if ( numberOfNotifications > this.config.behaviour.stacking ) {
+
+					const oldNotifications: Array<NotifierNotification> = this.notifications.slice( 1, numberOfNotifications - 1 );
+
+					// Are animations enabled?
+					if ( this.config.animations.enabled ) {
+
+						// Is animation overlap enabled?
+						if ( this.config.animations.overlap !== false && this.config.animations.overlap > 0 ) {
+							stepPromises.push( this.notifications[ 0 ].component.hide() );
+							setTimeout( () => {
+								stepPromises.push( this.shiftNotifications( oldNotifications, notification.component.getHeight(), true ) );
+							}, this.config.animations.hide.speed - this.config.animations.overlap );
+							setTimeout( () => {
+								stepPromises.push( notification.component.show() );
+							}, this.config.animations.hide.speed + this.config.animations.shift.speed - this.config.animations.overlap );
+						} else {
+							stepPromises.push( new Promise<undefined>( ( resolve: () => void, reject: () => void ) => {
+								this.notifications[ 0 ].component.hide().then( () => {
+									this.shiftNotifications( oldNotifications, notification.component.getHeight(), true ).then( () => {
+										notification.component.show().then( resolve );
+									} );
+								} );
+							} ) );
+						}
+
+					} else {
+						stepPromises.push( this.shiftNotifications( oldNotifications, notification.component.getHeight(), true ) );
+						stepPromises.push( notification.component.show() );
+					}
+
+				} else {
+
+					const oldNotifications: Array<NotifierNotification> = this.notifications.slice( 0, numberOfNotifications - 1 );
+
+					// Are animations enabled?
+					if ( this.config.animations.enabled ) {
+
+						// Is animation overlap enabled?
+						if ( this.config.animations.overlap !== false && this.config.animations.overlap > 0 ) {
+							stepPromises.push( this.shiftNotifications( oldNotifications, notification.component.getHeight(), true ) );
+							setTimeout( () => {
+								stepPromises.push( notification.component.show() );
+							}, this.config.animations.shift.speed - this.config.animations.overlap );
+						} else {
+							stepPromises.push( new Promise<undefined>( ( resolve: () => void, reject: () => void ) => {
+								this.shiftNotifications( oldNotifications, notification.component.getHeight(), true ).then( () => {
+									notification.component.show().then( resolve );
+								} );
+							} ) );
+						}
+
+					} else {
+						stepPromises.push( this.shiftNotifications( oldNotifications, notification.component.getHeight(), true ) );
+						stepPromises.push( notification.component.show() );
+					}
+
+				}
+
+				Promise.all( stepPromises ).then( () => {
+					if ( numberOfNotifications > this.config.behaviour.stacking ) {
+						this.removeNotificationFromList( this.notifications[ 0 ] );
+					}
+					this.tempPromiseResolver();
+				} ); // Done
+
 			}
 
-		} );
+		}
+
 	}
 
 	/**
-	 * Hide the oldest notification
+	 * Hide an existing notification
+	 *
+	 * Fist, we skip everything if there are no notifications at all, or the given notification does not exist. Then, we hide the given
+	 * notification. If there exist older notifications, we then shift them around to fill the gap. Once both hiding the given notification
+	 * and shifting the older notificaitons is done, the given notification gets finally removed (from the DOM).
+	 *
+	 * @param   {NotifierAction}     action Action object, payload contains the notification ID
+	 * @returns {Promise<undefined>}        Promise, resolved when done
 	 */
-	private handleHideOldestAction( action: NotifierAction ): Promise<null> {
+	private handleHideAction( action: NotifierAction ): Promise<undefined> {
+		return new Promise<undefined>( ( resolve: () => void, reject: () => void ) => {
+
+			// Does the notification exist / are there even any notifications? (let's prevent accidential errors)
+			const notification: NotifierNotification | undefined = this.findNotificationById( action.payload );
+			if ( notification === undefined ) {
+				resolve();
+				return;
+			}
+
+			// Hide this notification
+			const stepPromises: Array<Promise<undefined>> = [];
+			stepPromises.push( notification.component.hide() );
+
+			// Are there more notifications than the one we want to hide?
+			if ( this.notifications.length > 1 ) {
+
+				// Get older notifications
+				const notificationIndex: number | undefined = this.findNotificationIndexById( action.payload );
+				if ( notificationIndex === undefined ) {
+					resolve();
+					return;
+				}
+				const oldNotifications: Array<NotifierNotification> = this.notifications.slice( 0, notificationIndex );
+
+				// Do older notifications exist, and thus do we need to shift other notifications as a consequence?
+				if ( oldNotifications.length > 0 ) {
+
+					// Are animations enabled?
+					if ( this.config.animations.enabled && this.config.animations.hide.speed > 0 ) {
+						setTimeout( () => {
+							stepPromises.push( this.shiftNotifications( oldNotifications, notification.component.getHeight(), false ) );
+						}, this.config.animations.hide.speed / 2.5 ); // Delay animation to prevent overlapping notifications
+					} else {
+						stepPromises.push( this.shiftNotifications( oldNotifications, notification.component.getHeight(), false ) );
+					}
+
+				}
+
+			}
+
+			// Wait until both hiding and shifting is done, then remove the notification from the list
+			Promise.all( stepPromises ).then( () => {
+				this.removeNotificationFromList( notification );
+				resolve(); // Done
+			} );
+
+		} );
+
+	}
+
+	/**
+	 * Hide the oldest notification (bridge to handleHideAction)
+	 *
+	 * @param   {NotifierAction}     action Action object
+	 * @returns {Promise<undefined>}        Promise, resolved when done
+	 */
+	private handleHideOldestAction( action: NotifierAction ): Promise<undefined> {
+
+		// Are there any notifications? (prevent accidential errors)
 		if ( this.notifications.length === 0 ) {
-			return new Promise<null>( ( resolve: ( value?: null ) => {}, reject: ( value?: null ) => {} ) => resolve ); // Done
+			return new Promise<undefined>( ( resolve: () => void, reject: () => void ) => resolve ); // Done
 		} else {
 			action.payload = this.notifications[ 0 ].id;
 			return this.handleHideAction( action );
 		}
+
 	}
 
 	/**
-	 * Hide the newest notification
+	 * Hide the newest notification (bridge to handleHideAction)
+	 *
+	 * @param   {NotifierAction}     action Action object
+	 * @returns {Promise<undefined>}        Promise, resolved when done
 	 */
-	private handleHideNewestAction( action: NotifierAction ): Promise<null> {
+	private handleHideNewestAction( action: NotifierAction ): Promise<undefined> {
+
+		// Are there any notifications? (prevent accidential errors)
 		if ( this.notifications.length === 0 ) {
-			return new Promise<null>( ( resolve: ( value?: null ) => {}, reject: ( value?: null ) => {} ) => resolve ); // Done
+			return new Promise<undefined>( ( resolve: () => void, reject: () => void ) => resolve ); // Done
 		} else {
 			action.payload = this.notifications[ this.notifications.length - 1 ].id;
 			return this.handleHideAction( action );
 		}
+
 	}
 
 	/**
-	 * Hide all notifications
+	 * Hide all notifications at once
+	 *
+	 * @param   {NotifierAction}     action Action object
+	 * @returns {Promise<undefined>}        Promise, resolved when done
 	 */
-	private handleHideAllAction( action: NotifierAction ): Promise<null> {
-		return new Promise<null>( ( resolve: ( value?: null ) => {}, reject: ( value?: null ) => {} ) => {
+	private handleHideAllAction( action: NotifierAction ): Promise<undefined> {
+		return new Promise<undefined>( ( resolve: () => void, reject: () => void ) => {
 
+			// Are there any notifications? (prevent accidential errors)
 			const numberOfNotifications: number = this.notifications.length;
 			if ( numberOfNotifications === 0 ) {
 				resolve(); // Done
+				return;
 			}
 
 			// Are animations enabled?
-			if ( this.config.animations.hide.offset > 0 ) {
+			if ( this.config.animations.enabled && this.config.animations.hide.speed > 0 && this.config.animations.hide.offset !== false &&
+				this.config.animations.hide.offset > 0 ) {
 
 				for ( let i: number = numberOfNotifications - 1; i >= 0; i-- ) {
-					const animOffsetMultiplier: number = this.config.position.verticalPosition === 'top' ? numberOfNotifications - 1 : i;
+					const animationOffset: number = this.config.position.vertical.position === 'top' ? numberOfNotifications - 1 : i;
 					setTimeout( () => {
-
-						// Remove them directly (instead of using the hideNotification function)
-						// This prevents the notification list of being changed before all notifications are fully animated out
 						this.notifications[ i ].component.hide().then( () => {
-							if ( ( this.config.position.verticalPosition === 'top' && i === 0 ) ||
-								( this.config.position.verticalPosition === 'bottom' && i === numberOfNotifications - 1 ) ) {
-								this.notifications = []; // Immutable
-								this.changeDetector.detectChanges(); // Run change detection because the notification list changed
+
+							// Are we done here, was this the last notification to be hidden?
+							if ( ( this.config.position.vertical.position === 'top' && i === 0 ) ||
+								( this.config.position.vertical.position === 'bottom' && i === numberOfNotifications - 1 ) ) {
+								this.removeAllNotificationsFromList();
 								resolve(); // Done
 							}
-						} );
 
-					}, this.config.animations.hide.offset * animOffsetMultiplier );
+						} );
+					}, this.config.animations.hide.offset * animationOffset );
 				}
 
 			} else {
 
-				let notificationPromises: Array<Promise<null>> = [];
+				let stepPromises: Array<Promise<undefined>> = [];
 				for ( let i: number = numberOfNotifications - 1; i >= 0; i-- ) {
-					notificationPromises.push( this.notifications[ i ].component.hide() );
+					stepPromises.push( this.notifications[ i ].component.hide() );
 				}
-				Promise.all( notificationPromises ).then( () => {
-					this.notifications = []; // Immutable
-					this.changeDetector.detectChanges(); // Run change detection because the notification list changed
+				Promise.all( stepPromises ).then( () => {
+					this.removeAllNotificationsFromList();
 					resolve(); // Done
 				} );
 
@@ -245,82 +416,80 @@ export class NotifierContainerComponent implements OnInit, OnDestroy {
 	}
 
 	/**
-	 * Show notification
+	 * Shift multiple notifications at once
+	 *
+	 * @param   {Array<NotifierNotification>} notifications List containing the notifications to be shifted
+	 * @param   {number}                      distance      Distance to shift (in px)
+	 * @param   {boolean}                     toMakePlace   Flag, defining in which direciton to shift
+	 * @returns {Promise<undefined>}                        Promise, resolved when done
 	 */
-	private showNotification( notification: NotifierNotification ): void {
+	private shiftNotifications( notifications: Array<NotifierNotification>, distance: number, toMakePlace: boolean ): Promise<undefined> {
+		return new Promise<undefined>( ( resolve: () => void, reject: () => void ) => {
 
-		// First notification in the list?
-		if ( this.notifications.length === 1 ) {
-			notification.component.show().then( this.tempPromiseResolver ); // Done
-		} else {
-
-			// Stacking enabled? (same as stacking value below 2)
-			if ( this.config.behaviour.stacking === false || this.config.behaviour.stacking < 2 ) {
-				this.hideNotification( this.notifications[ 0 ] ).then( () => {
-					notification.component.show().then( this.tempPromiseResolver ); // Done
-				} );
-			} else {
-
-				//  Are there now too many notifications?
-				if ( this.notifications.length > this.config.behaviour.stacking ) {
-
-					this.hideNotification( this.notifications[ 0 ] ); // Hide oldest notification
-					const otherNotifications: Array<NotifierNotification> = this.notifications.slice( 1, this.notifications.length - 1 );
-					this.shiftNotifications( otherNotifications, notification.component.getHeight(), true );
-					notification.component.show().then( this.tempPromiseResolver ); // Done
-
-				} else {
-
-					const otherNotifications: Array<NotifierNotification> = this.notifications.slice( 0, this.notifications.length - 1 );
-					this.shiftNotifications( otherNotifications, notification.component.getHeight(), true );
-					notification.component.show().then( this.tempPromiseResolver ); // Done
-
-				}
-
+			// Are there any notifications to shift?
+			if ( notifications.length === 0 ) {
+				resolve();
+				return;
 			}
 
-		}
+			let notificationPromises: Array<Promise<undefined>> = [];
+			for ( let i: number = notifications.length - 1; i >= 0; i-- ) {
+				notificationPromises.push( notifications[ i ].component.shift( distance, toMakePlace ) );
+			}
+			Promise.all( notificationPromises ).then( resolve ); // Done
 
-	}
-
-	/**
-	 * Hide notification
-	 */
-	private hideNotification( notification: NotifierNotification ): Promise<null> {
-		return new Promise<null>( ( resolve: ( value?: null ) => {}, reject: ( value?: null ) => {} ) => {
-			notification.component.hide().then( () => {
-				this.notifications = this.notifications.filter( ( currentNotification: NotifierNotification ) => { // Immutable
-					return currentNotification.component !== notification.component;
-				} );
-				this.changeDetector.detectChanges(); // Run change detection because the notification list changed
-				resolve(); // Done
-			} );
 		} );
 	}
 
 	/**
-	 * Shift notifications
+	 * Add a new notification to the list of notifications (triggers change detection)
+	 *
+	 * @param {NotifierNotification} notification Notification to add to the list of notifications
 	 */
-	private shiftNotifications( notifications: Array<NotifierNotification>, distance: number, shiftToMakePlace: boolean ): Promise<null> {
-		let notificationPromises: Array<Promise<null>> = [];
-		for ( let notification of notifications ) {
-			notificationPromises.push( notification.component.shift( distance, shiftToMakePlace ) );
-		}
-		return Promise.all( notificationPromises ); // Done
+	private addNotificationToList( notification: NotifierNotification ): void {
+		this.notifications.push( notification );
+		this.changeDetector.markForCheck(); // Run change detection because the notification list changed
 	}
 
 	/**
-	 * Helper: Find a notification by its ID
+	 * Remove an existing notification from the list of notifications (triggers change detection)
+	 *
+	 * @param {NotifierNotification} notification Notification to be removed from the list of notifications
+	 */
+	private removeNotificationFromList( notification: NotifierNotification ): void {
+		this.notifications =
+			this.notifications.filter( ( item: NotifierNotification ) => item.component !== notification.component );
+		this.changeDetector.markForCheck(); // Run change detection because the notification list changed
+	}
+
+	/**
+	 * Remove all notifications from the list (triggers change detection)
+	 */
+	private removeAllNotificationsFromList(): void {
+		this.notifications = [];
+		this.changeDetector.markForCheck(); // Run change detection because the notification list changed
+	}
+
+	/**
+	 * Helper: Find a notification in the notification list by a given notification ID
+	 *
+	 * @param   {string}                           notificationId Notification ID, used for finding notification
+	 * @returns {NotifierNotification | undefined}                Notification, undefined if not found
 	 */
 	private findNotificationById( notificationId: string ): NotifierNotification | undefined {
 		return this.notifications.find( ( currentNotification: NotifierNotification ) => currentNotification.id === notificationId );
 	}
 
 	/**
-	 * Helper: Find a notification index by its ID
+	 * Helper: Find a notification's index by a given notification ID
+	 *
+	 * @param   {string}             notificationId Notification ID, used for finding a notification's index
+	 * @returns {number | undefined}                Notification index, undefined if not found
 	 */
 	private findNotificationIndexById( notificationId: string ): number | undefined {
-		return this.notifications.findIndex( ( currentNotification: NotifierNotification ) => currentNotification.id === notificationId );
+		const notificationIndex: number =
+			this.notifications.findIndex( ( currentNotification: NotifierNotification ) => currentNotification.id === notificationId );
+		return ( notificationIndex !== -1 ? notificationIndex : undefined );
 	}
 
 }

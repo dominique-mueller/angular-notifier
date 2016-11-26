@@ -1,26 +1,45 @@
 import { NotifierNotificationComponent } from './../components/notifier-notification.component';
 
 /**
- * Notification model
+ * Notification
+ *
+ * This class describes the structure of a notifiction, including all information it needs to live, and everyone else needs to work with it.
  */
 export class NotifierNotification {
+
+	/**
+	 * Unique notification ID, can be set manually to control the notification from outside later on
+	 */
 	public id: string;
+
+	/**
+	 * Notification type, will be used for constructing an appropriate class name
+	 */
 	public type: string;
+
+	/**
+	 * Notification message
+	 */
 	public message: string;
+
+	/**
+	 * Component reference of this notification, created and set during creation time
+	 */
 	public component: NotifierNotificationComponent;
 
 	/**
 	 * Constructor
+	 *
+	 * @param {NotifierNotificationOptions} options Notifier options
 	 */
 	public constructor( options: NotifierNotificationOptions ) {
 
-		// Set custom options
 		Object.assign( this, options );
 
-		// If not defined, create a unique notification ID.
-		// - The ID generation relies on the current datetime, in praticular the moment this notification gets constructed, in ms.
-		// - Concurrency, and thus two IDs which are the same, is not an issue due to the action queue concept
-		if ( typeof options.id === 'undefined' ) {
+		// If not set manually, we have to create a unique notification ID by ourselves. The ID generation relies on the current browser
+		// datetime in ms, in praticular the moment this notification gets constructed. Concurrency, and thus two IDs being the exact same,
+		// is not possible due to the action queue concept.
+		if ( options.id === undefined ) {
 			this.id = `ID_${ new Date().getTime() }`;
 		}
 
@@ -29,10 +48,26 @@ export class NotifierNotification {
 }
 
 /**
- * Notifiction options model
+ * Notifiction options
+ *
+ * This interface describes which information are needed to create a new notification, or in other words, which information the external API
+ * call must provide.
  */
 export interface NotifierNotificationOptions {
+
+	/**
+	 * Notification ID, optional
+	 */
 	id?: string;
+
+	/**
+	 * Notification type
+	 */
 	type: string;
+
+	/**
+	 * Notificatin message
+	 */
 	message: string;
+
 }

@@ -22,7 +22,6 @@ before_install:
   - npm install -g npm # Update npm to its latest version
 install:
   - npm install
-  - npm run typings install # Install typings
 
 before_script:
   - npm prune

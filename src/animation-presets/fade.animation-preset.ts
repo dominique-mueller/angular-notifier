@@ -1,27 +1,27 @@
+import { NotifierAnimationPreset, NotifierAnimationPresetKeyframes } from './../models/notifier-animation.model';
 import { NotifierNotification } from './../models/notifier-notification.model';
-import { NotifierAnimationKeyframes, NotifierAnimationPreset } from './../models/notifier-animation.model';
 
 /**
  * Fade animation preset
  */
 export const fade: NotifierAnimationPreset = {
-	in: ( notification: NotifierNotification ): NotifierAnimationKeyframes => {
+	hide: ( notification: NotifierNotification ): NotifierAnimationPresetKeyframes => {
 		return {
 			from: {
-				opacity: 0
+				opacity: '1'
 			},
 			to: {
-				opacity: 1
+				opacity: '0'
 			}
 		};
 	},
-	out: ( notification: NotifierNotification ): NotifierAnimationKeyframes => {
+	show: ( notification: NotifierNotification ): NotifierAnimationPresetKeyframes => {
 		return {
 			from: {
-				opacity: 1
+				opacity: '0'
 			},
 			to: {
-				opacity: 0
+				opacity: '1'
 			}
 		};
 	}

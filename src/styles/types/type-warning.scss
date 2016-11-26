@@ -1,0 +1,15 @@
+// NOTIFIER: WARNING TYPE STYLES
+
+$notifier-warning-background-color: #CCA757;
+$notifier-warning-font-color: #FFF;
+$notifier-warning-icon-color: #FFF;
+
+.x-notifier__notification--warning {
+	background-color: $notifier-warning-background-color;
+	color: $notifier-warning-font-color;
+
+	.x-notifier__notification-button-icon { // 16x16 fixed size
+		fill: $notifier-warning-icon-color;
+	}
+
+}

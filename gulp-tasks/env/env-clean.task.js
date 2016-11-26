@@ -6,7 +6,7 @@ const gulp = require( 'gulp' );
 /**
  * Gulp task: Clean project build files
  */
-gulp.task( 'environment:clean', () => {
+gulp.task( 'env:clean', () => {
     return del( [
         './index.js', // Generated JavaScript, sourcemaps, and TypeScript definition files ...
         './index.js.map',
@@ -22,7 +22,7 @@ gulp.task( 'environment:clean', () => {
 /**
  * Gulp task: Clean demo build files
  */
-gulp.task( 'environment:clean--demo', () => {
+gulp.task( 'env:clean--demo', () => {
     return del( [
         './demo/*.js',
         '!./demo/systemjs.config.js'

@@ -1,17 +1,18 @@
 import { Injectable } from '@angular/core';
 
 /**
- * Notifier global options
+ * Notifier options
  */
 export interface NotifierOptions {
 	animations?: {
 		enabled?: boolean;
 		hide?: {
 			easing?: string;
-			offset?: number;
+			offset?: number | false;
 			preset?: string;
 			speed?: number;
 		};
+		overlap?: number | false;
 		shift?: {
 			easing?: string;
 			speed?: number;
@@ -23,20 +24,32 @@ export interface NotifierOptions {
 		};
 	};
 	behaviour?: {
-		stacking?: number | boolean;
+		autoHide?: number | false;
+		onClick?: 'hide' | false;
+		onMouseover?: 'pauseAutoHide' | 'resetAutoHide' | false;
+		showDismissButton?: boolean;
+		stacking?: number | false;
 	};
 	position?: {
-		horizontalDistance?: number;
-		horizontalPosition?: 'left' | 'middle' | 'right';
-		verticalGap?: number;
-		verticalDistance?: number;
-		verticalPosition?: 'top' | 'bottom';
+		horizontal?: {
+			distance?: number;
+			position?: 'left' | 'middle' | 'right';
+		};
+		vertical?: {
+			distance?: number;
+			gap?: number;
+			position?: 'top' | 'bottom';
+		};
 	};
 	theme?: string;
 }
 
 /**
- * Notifier global configuration
+ * Notifier configuration
+ *
+ * The notifier configuration defines what notifications look like, how they behave, and how they get animated. It is a global
+ * configuration, which means that it only can be set once (at the beginning), and cannot be changed afterwards. Aligning to the world of
+ * Angular, this configuration can be provided in the root app module - alternatively, a meaningful default configuration will be used.
  */
 @Injectable()
 export class NotifierConfig implements NotifierOptions {
@@ -44,10 +57,11 @@ export class NotifierConfig implements NotifierOptions {
 		enabled: boolean;
 		hide: {
 			easing: string;
-			offset: number;
+			offset: number | false;
 			preset: string;
 			speed: number;
 		};
+		overlap: number | false;
 		shift: {
 			easing: string;
 			speed: number;
@@ -59,19 +73,29 @@ export class NotifierConfig implements NotifierOptions {
 		};
 	};
 	public behaviour: {
-		stacking: number | boolean;
+		autoHide: number | false;
+		onClick: 'hide' | false;
+		onMouseover: 'pauseAutoHide' | 'resetAutoHide' | false;
+		showDismissButton: boolean;
+		stacking: number | false;
 	};
 	public position: {
-		horizontalDistance: number;
-		horizontalPosition: 'left' | 'middle' | 'right';
-		verticalGap: number;
-		verticalDistance: number;
-		verticalPosition: 'top' | 'bottom';
+		horizontal: {
+			distance: number;
+			position: 'left' | 'middle' | 'right';
+		};
+		vertical: {
+			distance: number;
+			gap: number;
+			position: 'top' | 'bottom';
+		};
 	};
 	public theme: string;
 
 	/**
 	 * Constructor
+	 *
+	 * @param {NotifierOptions} [customOptions={}] Custom notifier options, optional
 	 */
 	public constructor( customOptions: NotifierOptions = {} ) {
 		const defaultOptions: any = {
@@ -79,33 +103,42 @@ export class NotifierConfig implements NotifierOptions {
 				enabled: true,
 				hide: {
 					easing: 'ease',
-					offset: 200,
-					preset: 'fade',
+					offset: 50,
+					preset: 'slide',
 					speed: 300
 				},
+				overlap: 60,
 				shift: {
 					easing: 'ease',
 					speed: 300
 				},
 				show: {
 					easing: 'ease',
-					preset: 'fade',
+					preset: 'slide',
 					speed: 300
 				}
 			},
 			behaviour: {
+				autoHide: 7000,
+				onClick:  false,
+				onMouseover: 'pause',
+				showDismissButton: true,
 				stacking: 4
 			},
 			position: {
-				horizontalDistance: 12,
-				horizontalPosition: 'left',
-				verticalDistance: 12,
-				verticalGap: 10,
-				verticalPosition: 'bottom'
+				horizontal: {
+					distance: 12,
+					position: 'left'
+				},
+				vertical: {
+					distance: 12,
+					gap: 10,
+					position: 'bottom'
+				}
 			},
 			theme: 'material'
 		};
-		Object.assign( this, defaultOptions, customOptions ); // Merge
+		Object.assign( this, defaultOptions, customOptions ); // Merge all options
 	}
 
 }

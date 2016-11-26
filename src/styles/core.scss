@@ -1,32 +1,39 @@
-// CORE
+// NOTIFIER: CORE STYLES
 
 // Container
 
 .x-notifier__container {
 
-    * {
-        box-sizing: border-box;
-    }
+	* {
+		box-sizing: border-box;
+	}
 
 }
 
 .x-notifier__container-list {
-    margin: {
-        top: 0;
-        bottom: 0;
-    }
-    padding: {
-        left: 0;
-    }
-    list-style-type: none;
+	margin: {
+		top: 0;
+		bottom: 0;
+	}
+	padding: {
+		left: 0;
+	}
+	list-style-type: none;
 }
 
 // Notification
 
 .x-notifier__notification {
-    display: block;
-    position: fixed;
-    visibility: hidden;
-    z-index: 10000; // Pretty much random ...
-    will-change: transform; // Fixed position performance boost (#perfmatters)
+	display: block;
+	position: fixed; // Overlay
+	visibility: hidden; // Notifications are hidden by default, and get shown (or animated in) dynamically by the Angular component
+	z-index: 10000; // Pretty much random ...
+
+	// This attribute forces this element to be rendered on a new layer, by the GPU, in order to improve its performance (#perfmatters)
+	will-change: transform;
+
+	// This attribute improves the overall scrolling performance for fixed position elements, such as this one (#perfmatters)
+	// See <https://benfrain.com/improving-css-performance-fixed-position-elements/>
+	backface-visibility: hidden;
+
 }

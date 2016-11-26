@@ -33,7 +33,7 @@ export class AppComponent {
 	}
 
 	public test(): void {
-		this.notifier.notify( 'test', `Notification #${ this.counter }` );
+		this.notifier.notify( 'default', `Notification #${ this.counter }` );
 		this.counter++;
 	}
 
@@ -41,7 +41,7 @@ export class AppComponent {
 		this.notifier.show( {
 			id: 'ID_SPECIFIC',
 			message: 'Specific notification here',
-			type: 'test'
+			type: 'default'
 		} );
 	}
 

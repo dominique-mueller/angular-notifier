@@ -1,4 +1,7 @@
 rules:
+  attribute-quotes:
+    - 1
+    - include: true
   bem-depth:
     - 1
     - max-depth: 1
@@ -17,6 +20,7 @@ rules:
     - 1
     - filename-extension: true
       leading-underscore: false
+  declarations-before-nesting: 1
   empty-args:
     - 1
     - include: true
@@ -45,10 +49,18 @@ rules:
     - 1
     - allow-leading-underscore: false
       convention: hyphenatedbem
-  indentation: 0
+  indentation:
+    - 1
+    - size: tab
   leading-zero:
     - 1
     - include: false
+  max-file-line-count:
+    - 1
+    - length: 500
+  max-line-length:
+    - 1
+    - length: 140
   mixin-name-format:
     - 1
     - allow-leading-underscore: false
@@ -57,9 +69,18 @@ rules:
   nesting-depth:
     - 1
     - max-depth: 3
-  no-color-literals: 0
+  no-attribute-selectors: 1
+  no-color-hex: 0
+  no-color-keywords: 1
+  no-color-literals:
+    - 1
+    - allow-map-identifiers: 1
+      allow-rgba: 1
+      allow-variable-identifiers: 1
+  no-combinators: 0
   no-css-comments: 1
   no-debug: 1
+  no-disallowed-properties: 0
   no-duplicate-properties: 1
   no-empty-rulesets: 1
   no-extends: 1
@@ -73,8 +94,10 @@ rules:
     - allow-element-with-attribute: true
       allow-element-with-class: true
       allow-element-with-id: false
+  no-trailing-whitespace: 1
   no-trailing-zero: 1
   no-transition-all: 1
+  no-url-domains: 1
   no-url-protocols: 1
   no-vendor-prefixes: 1
   no-warn: 1
@@ -86,15 +109,15 @@ rules:
       convention: hyphenatedbem
   property-sort-order:
     - 1
-    - order: smacss
+    - order: concentric
       ignore-custom-properties: true
   property-units:
     - 1
     - global:
       - "px"
-      - "rem"
       - "%"
       - "s"
+  pseudo-element: 1
   quotes:
     - 1
     - style: double
@@ -102,8 +125,8 @@ rules:
     - 1
     - allowed-shorthands:
       - 1
-      - 2
-      - 3
+        2
+        3
   single-line-per-selector: 1
   space-after-bang:
     - 1
@@ -133,6 +156,9 @@ rules:
   url-quotes: 1
   variable-for-property:
     - 1
+    - properties:
+      - color
+      - background-color
   variable-name-format:
     - 1
     - allow-leading-underscore: false

@@ -8,7 +8,7 @@ const ts = require( 'gulp-typescript' );
 /**
  * Gulp task: Build project TypeScript for development
  */
-gulp.task( 'typescript:build--dev', () => {
+gulp.task( 'ts:build--dev', () => {
 
     // Compile TypeScript (without sourcemaps), using two sources for better performance (#perfmatters)
     let tsSourceProject = ts.createProject( './tsconfig.json' );
@@ -37,7 +37,7 @@ gulp.task( 'typescript:build--dev', () => {
 /**
  * Gulp task: Build project TypeScript for production
  */
-gulp.task( 'typescript:build--prod', () => {
+gulp.task( 'ts:build--prod', () => {
 
     // Compile TypeScript (including sourcemaps)
     let tsProject = ts.createProject( './tsconfig.json' );
@@ -64,7 +64,7 @@ gulp.task( 'typescript:build--prod', () => {
 /**
  * Gulp task: Build demo TypeScript
  */
-gulp.task( 'typescript:build--demo', () => {
+gulp.task( 'ts:build--demo', () => {
 
     // Compile TypeScript (including sourcemaps)
     let tsProject = ts.createProject( './tsconfig.json' );

@@ -1,12 +1,12 @@
-import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 
-import { NotifierAnimationService } from './services/notifier-animation.service';
-import { NotifierService } from './services/notifier.service';
-import { NotifierQueueService } from './services/notifier-queue.service';
-import { NotifierConfig, NotifierOptions } from './models/notifier-config.model';
 import { NotifierContainerComponent } from './components/notifier-container.component';
 import { NotifierNotificationComponent } from './components/notifier-notification.component';
+import { NotifierConfig, NotifierOptions } from './models/notifier-config.model';
+import { NotifierAnimationService } from './services/notifier-animation.service';
+import { NotifierQueueService } from './services/notifier-queue.service';
+import { NotifierService } from './services/notifier.service';
 
 /**
  * Notifier module

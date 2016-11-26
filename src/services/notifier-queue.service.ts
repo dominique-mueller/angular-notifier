@@ -1,16 +1,25 @@
 import { Injectable } from '@angular/core';
+
 import { Subject } from 'rxjs/Subject';
 
 import { NotifierAction } from './../models/notifier-action.model';
 
 /**
  * Notifier queue service
+ *
+ * In general, API calls don't get processed right away. Instead, we have to queue them up in order to prevent simultanious API calls
+ * interfering with each other. This, at least in theory, is possible at any time. In particular, animations - which potentially overlap -
+ * can cause changes in JS classes as well as affect the DOM. Therefore, the queue service takes all actions, puts them in a queue, and
+ * processes them at the right time (which is when the previous action has been processed successfully).
+ *
+ * Technical sidenote:
+ * An action looks pretty similar to the ones within the Flux / Redux pattern.
  */
 @Injectable()
 export class NotifierQueueService {
 
 	/**
-	 * Stream of actions, can be subscribed from outside
+	 * Stream of actions, subscribable from outside
 	 */
 	public readonly actionStream: Subject<NotifierAction>;
 
@@ -22,7 +31,7 @@ export class NotifierQueueService {
 	/**
 	 * Flag, true if some action is currently in progress
 	 */
-	private isActionInProgress: Boolean;
+	private isActionInProgress: boolean;
 
 	/**
 	 * Constructor
@@ -35,30 +44,31 @@ export class NotifierQueueService {
 
 	/**
 	 * Push a new action to the queue, and try to run it
+	 *
+	 * @param {NotifierAction} action Action object
 	 */
 	public push( action: NotifierAction ): void {
 		this.actionQueue.push( action );
-		this.tryRunningNextAction();
+		this.tryToRunNextAction();
 	}
 
 	/**
-	 * Continue with the next action (if the current action is finished)
+	 * Continue with the next action (called when the current action is finished)
 	 */
 	public continue(): void {
 		this.isActionInProgress = false;
-		this.tryRunningNextAction();
+		this.tryToRunNextAction();
 	}
 
 	/**
-	 * Try to run the next action in the queue
-	 * We skip if there is already some action in progress, or if there is no action left
+	 * Try to run the next action in the queue; we skip if there already is some action in progress, or if there is no action left
 	 */
-	private tryRunningNextAction(): void {
+	private tryToRunNextAction(): void {
 		if ( this.isActionInProgress || this.actionQueue.length === 0 ) {
-			return; // Skip
+			return; // Skip (the queue can now go drink a coffee as it has nothing to do anymore)
 		}
 		this.isActionInProgress = true;
-		this.actionStream.next( this.actionQueue.shift() ); // Push next item to stream
+		this.actionStream.next( this.actionQueue.shift() ); // Push next action to the stream, and remove the current action from the queue
 	}
 
 }

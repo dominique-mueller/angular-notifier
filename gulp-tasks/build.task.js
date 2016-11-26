@@ -2,20 +2,20 @@
 
 const gulp = require( 'gulp' );
 
-const environmentClean = require( './environment/environment-clean.task' );
+const envClean = require( './env/env-clean.task' );
 const sassBuild = require( './sass/sass-build.task' );
 const sassLint = require( './sass/sass-lint.task' );
-const typescriptBuild = require( './typescript/typescript-build.task' );
-const typescriptLint = require( './typescript/typescript-lint.task' );
+const tsBuild = require( './ts/ts-build.task' );
+const tsLint = require( './ts/ts-lint.task' );
 
 /**
  * Gulp task: Complete build for development
  */
 gulp.task( 'build--dev',
     gulp.series( [
-        'environment:clean',
+        'env:clean',
         gulp.parallel( [
-            'typescript:build--dev',
+            'ts:build--dev',
             'sass:build--dev'
         ] )
     ] )
@@ -26,11 +26,11 @@ gulp.task( 'build--dev',
  */
 gulp.task( 'build--prod',
     gulp.series( [
-        'environment:clean',
+        'env:clean',
         gulp.parallel( [
-            'typescript:lint',
+            'ts:lint',
             'sass:lint',
-            'typescript:build--prod',
+            'ts:build--prod',
             'sass:build--prod'
         ] )
     ] )
@@ -41,7 +41,7 @@ gulp.task( 'build--prod',
  */
 gulp.task( 'build--demo',
     gulp.series( [
-        'environment:clean--demo',
-        'typescript:build--demo'
+        'env:clean--demo',
+        'ts:build--demo'
     ] )
 );
