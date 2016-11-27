@@ -7,7 +7,7 @@ module.exports = function( config ) {
 	let options = {
 
 		// Base path for resolving patterns
-		basePath: './',
+		basePath: '',
 
 		// List of used frameworks (see https://npmjs.org/browse/keyword/karma-adapter)
 		frameworks: [
@@ -152,11 +152,6 @@ module.exports = function( config ) {
 				pattern: './src/**/*.js',
 				included: false,
 				watched: true // auto watch
-			},
-			{
-				pattern: './src/**/*.ts',
-				included: false,
-				watched: false
 			},
 			{
 				pattern: './src/**/*.js.map',

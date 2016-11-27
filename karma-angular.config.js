@@ -10,7 +10,7 @@ System.config( {
 
 	// Path shortcuts
 	paths: {
-		'npm:': './node_modules/'
+		'npm:': 'node_modules/'
 	},
 
 	// Package location details
@@ -32,31 +32,42 @@ System.config( {
 
 } );
 
-// Get the spec files only
-const specFiles = Object
-	.keys( __karma__.files )
-	.filter( ( path ) => /\.spec\.(.*\.)?js$/.test( path ) );
+Promise
 
-// Import SystemJS configuration from demo
-System.import( './base/demo/systemjs.config.js' )
-	.then( () => {
+	// Import Angular testing moduels and library specs
+	.all( [
+		System.import( '@angular/core/testing' ),
+		System.import( '@angular/platform-browser-dynamic/testing' )
+	].concat(
+		Object
+			.keys( __karma__.files )
+			.filter( ( path ) => /\.spec\.(.*\.)?js$/.test( path ) ) // Only use spec files
+			.filter( ( path ) => !path.includes( 'node_modules' ) ) // Ignore spec files of dependencies
+			.map( ( path ) => System
+				.import( path )
+				.then( ( specModule ) => {
+					if ( specModule.hasOwnProperty( 'main' ) ) {
+						specModule.main();
+					} else {
+						throw new Error( `[KARMA] Spec module "${ path }" does not implement a main() method.` );
+					}
+				} )
+			)
+	) )
 
-		// Import modules and spec files, initialize testing, run Karma
-		Promise
-			.all( [
-				System.import( '@angular/core/testing' ),
-				System.import( '@angular/platform-browser-dynamic/testing' ),
-				specFiles.map( ( moduleName ) => System.import( moduleName ) )
-			] )
-			.then( function( providers ) {
-				const coreTesting = providers[ 0 ];
-				const browserTesting = providers[ 1 ];
-				coreTesting.TestBed.initTestEnvironment(
-					browserTesting.BrowserDynamicTestingModule,
-					browserTesting.platformBrowserDynamicTesting()
-				);
-				__karma__.start();
-			} );
-
+	// Prepare Angular testing environment, then run Karma
+	.then( ( providers ) => {
+		const coreTesting = providers[ 0 ];
+		const browserTesting = providers[ 1 ];
+		coreTesting.TestBed.initTestEnvironment(
+			browserTesting.BrowserDynamicTestingModule,
+			browserTesting.platformBrowserDynamicTesting()
+		);
+		__karma__.start();
 	} )
-	.catch( __karma__.error );
+
+	// Catch errors
+	.catch( ( error ) => {
+		console.error( error.stack || error );
+		__karma__.error();
+	} );

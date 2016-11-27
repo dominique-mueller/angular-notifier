@@ -28,17 +28,7 @@ import { NotifierNotificationComponent } from './notifier-notification.component
 		class: 'x-notifier__container'
 	},
 	selector: 'x-notifier-container',
-	template: `
-		<ul>
-			<li class="x-notifier__container-list" *ngFor="let notification of notifications; trackBy: notification?.id">
-				<x-notifier-notification
-					[notification]="notification"
-					(ready)="onNotificationReady( $event )"
-					(dismiss)="onNotificationDismiss( $event )">
-				</x-notifier-notification>
-			</li>
-		</ul>
-	`
+	templateUrl: './notifier-container.component.html'
 } )
 export class NotifierContainerComponent implements OnDestroy, OnInit {
 

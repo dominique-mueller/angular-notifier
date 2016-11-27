@@ -2,17 +2,19 @@
 
 const gulp = require( 'gulp' );
 const gulpTslint = require( 'gulp-tslint' );
+const path = require( 'path' );
 const tslint = require( 'tslint' );
 
 /**
  * Gulp task: Lint project TypeScript (and checks styleguide conventions)
  */
 gulp.task( 'ts:lint', () => {
-    const program = tslint.createProgram( './tsconfig.json' ); // Enable type-checked rules
+    const program = tslint.createProgram( path.resolve( 'tsconfig.json' ) ); // Enable type-checked rules
     return gulp
         .src( [
-            './index.ts',
-            './src/**/*.ts'
+            path.resolve( 'index.ts' ),
+            path.resolve( 'src', '**', '*.ts' ),
+            `!${ path.resolve( 'src', '**', '*.d.ts' ) }`
         ], {
             base: '.' // Fixes program issues, see <https://github.com/panuhorsmalahti/gulp-tslint/issues/71>
         } )
@@ -20,5 +22,7 @@ gulp.task( 'ts:lint', () => {
             formatter: 'prose',
             program
         } ) )
-        .pipe( gulpTslint.report() );
+        .pipe( gulpTslint.report( {
+            summarizeFailureOutput: true // Count tslint errors
+        } ) );
 } );

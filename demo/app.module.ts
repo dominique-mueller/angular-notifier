@@ -1,13 +1,8 @@
-/**
- * External imports
- */
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { NotifierModule } from '../index';
 
-/**
- * Internal imports
- */
+import { NotifierModule } from './../index';
+
 import { AppComponent } from './app.component';
 
 /**

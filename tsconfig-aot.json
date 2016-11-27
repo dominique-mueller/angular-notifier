@@ -4,7 +4,7 @@
 		"emitDecoratorMetadata": true,
 		"newLine": "CRLF",
 		"experimentalDecorators": true,
-		"module": "commonjs",
+		"module": "es2015",
 		"moduleResolution": "node",
 		"noImplicitAny": true,
 		"noImplicitThis": true,
@@ -12,13 +12,16 @@
 		"skipLibCheck": true,
 		"sourceMap": true,
 		"strictNullChecks": true,
-		"target": "ES5",
+		"target": "es5",
 		"typeRoots": [
 			"./node_modules/@types/"
 		]
 	},
-	"exclude": [
-		"node_modules",
-		"bundles"
-	]
+	"files": [
+		"./temp/index.ts"
+	],
+	"angularCompilerOptions": {
+		"skipMetadataEmit": false,
+		"skipTemplateCodegen": true
+	}
 }

@@ -1,6 +1,3 @@
-/**
- * External imports
- */
 import { Component } from '@angular/core';
 
 import { NotifierService } from './../index';
