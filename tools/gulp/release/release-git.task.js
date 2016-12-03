@@ -3,7 +3,6 @@
 const fs = require( 'fs' );
 const git = require( 'gulp-git' );
 const gulp = require( 'gulp' );
-const path = require( 'path' );
 
 const newVersion = require( './../../../package.json' ).version;
 
@@ -13,8 +12,8 @@ const newVersion = require( './../../../package.json' ).version;
 gulp.task( 'release:git:commit', ( done ) => {
     gulp
         .src( [ // Only package and changelog
-            path.resolve( 'package.json' ),
-            path.resolve( 'CHANGELOG.md' )
+            'package.json',
+            'CHANGELOG.md'
         ] )
         .pipe( git.add( { quiet: true } ) )
         .pipe( git.commit( [

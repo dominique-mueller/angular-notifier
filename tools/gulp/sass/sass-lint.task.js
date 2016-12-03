@@ -1,7 +1,6 @@
 'use strict';
 
 const gulp = require( 'gulp' );
-const path = require( 'path' );
 const sassLint = require( 'gulp-sass-lint' );
 
 /**
@@ -10,8 +9,8 @@ const sassLint = require( 'gulp-sass-lint' );
 gulp.task( 'sass:lint', () => {
     return gulp
         .src( [
-            path.resolve( 'style.scss' ),
-            path.resolve( 'src', 'styles', '**', '*.scss' )
+            'style.scss',
+            'src/styles/**/*.scss'
         ] )
         .pipe( sassLint() )
         .pipe( sassLint.format() ) // Print results

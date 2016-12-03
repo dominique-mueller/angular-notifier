@@ -10,10 +10,10 @@
 			true,
 			"statements"
 		],
-		// "array-type": [
-		// 	true,
-		// 	"generic"
-		// ],
+		"array-type": [
+			true,
+			"generic"
+		],
 		"arrow-parens": true,
 		"ban": false,
 		"class-name": true,
@@ -21,13 +21,13 @@
 			true,
 			"check-space"
 		],
-		// "completed-docs": [
-		// 	false
-		// ],
+		"completed-docs": [
+			true
+		],
 		"curly": true,
-		// "cyclomatic-complexity": [
-		// 	false
-		// ],
+		"cyclomatic-complexity": [
+			false
+		],
 		"eofline": true,
 		"file-header": [
 			false
@@ -44,13 +44,12 @@
 		"jsdoc-format": true,
 		"label-position": true,
 		"linebreak-style": [
-			true,
-			"CRLF"
+			false
 		],
-		// "max-classes-per-file": [
-		// 	true,
-		// 	1
-		// ],
+		"max-classes-per-file": [
+			true,
+			1
+		],
 		"max-file-line-count": [
 			true,
 			1000
@@ -109,7 +108,7 @@
 		"no-duplicate-variable": true,
 		"no-empty": true,
 		"no-eval": true,
-		// "no-for-in-array": true,
+		"no-for-in-array": true,
 		"no-inferrable-types": [
 			false
 		],
@@ -118,7 +117,7 @@
 		"no-mergeable-namespace": true,
 		"no-namespace": true,
 		"no-null-keyword": false,
-		// "no-parameter-properties": true,
+		"no-parameter-properties": true,
 		"no-reference": true,
 		"no-require-imports": true,
 		"no-shadowed-variable": true,
@@ -153,19 +152,15 @@
 			"allow-declarations"
 		],
 		"ordered-imports": [
-			true,
-			{
-				"import-sources-order": "case-insensitive",
-				"named-imports-order": "case-insensitive"
-			}
+			false
 		],
-		// "prefer-for-of": false,
+		"prefer-for-of": false,
 		"quotemark": [
 			true,
 			"single"
 		],
 		"radix": true,
-		// "restrict-plus-operands": true,
+		"restrict-plus-operands": true,
 		"semicolon": [
 			true,
 			"always"
@@ -215,29 +210,19 @@
 			"check-typecast"
 		],
 
-		"directive-selector-name": [
+
+
+		"directive-selector": [
 			true,
+			"attribute",
+			"x",
 			"camelCase"
 		],
-		"component-selector-name": [
+    	"component-selector": [
 			true,
+			"element",
+			"x",
 			"kebab-case"
-		],
-		"directive-selector-type": [
-			true,
-			"attribute"
-		],
-		"component-selector-type": [
-			true,
-			"element"
-		],
-		"directive-selector-prefix": [
-			true,
-			"x"
-		],
-		"component-selector-prefix": [
-			true,
-			"x"
 		],
 		"use-input-property-decorator": true,
 		"use-output-property-decorator": true,

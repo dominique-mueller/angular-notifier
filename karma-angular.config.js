@@ -32,6 +32,9 @@ System.config( {
 
 } );
 
+// Log how many files Karma is serving (for debugging and monitoring reasons)
+console.log( `[KARMA] Serving ${ Object.keys( __karma__.files ).length } files.` );
+
 Promise
 
 	// Import Angular testing moduels and library specs
@@ -49,7 +52,7 @@ Promise
 					if ( specModule.hasOwnProperty( 'main' ) ) {
 						specModule.main();
 					} else {
-						throw new Error( `[KARMA] Spec module "${ path }" does not implement a main() method.` );
+						throw new Error( `[KARMA] Spec file "${ path }" does not implement a main() method.` );
 					}
 				} )
 			)

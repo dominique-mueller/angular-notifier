@@ -5,31 +5,31 @@ const gulp = require( 'gulp' );
 /**
  * Gulp tasks: Environment
  */
-const envCleanTasks = require( './tools/gulp-tasks/env/env-clean.task' );
-const envWatchTasks = require( './tools/gulp-tasks/env/env-watch.task' );
+const envCleanTasks = require( './tools/gulp/env/env-clean.task' );
+const envWatchTasks = require( './tools/gulp/env/env-watch.task' );
 
 /**
  * Gulp tasks: Release
  */
-const releaseChangelogTasks = require( './tools/gulp-tasks/release/release-changelog.task' );
-const releaseGitTasks = require( './tools/gulp-tasks/release/release-git.task' );
-const releaseGithubTasks = require( './tools/gulp-tasks/release/release-github.task' );
-const releaseVersionTasks = require( './tools/gulp-tasks/release/release-version.task' );
+const releaseChangelogTasks = require( './tools/gulp/release/release-changelog.task' );
+const releaseGitTasks = require( './tools/gulp/release/release-git.task' );
+const releaseGithubTasks = require( './tools/gulp/release/release-github.task' );
+const releaseVersionTasks = require( './tools/gulp/release/release-version.task' );
 
 /**
  * Gulp tasks: SASS
  */
-const sassBuildTasks = require( './tools/gulp-tasks/sass/sass-build.task' );
-const sassBundleTasks = require( './tools/gulp-tasks/sass/sass-bundle.task' );
-const sassLintTasks = require( './tools/gulp-tasks/sass/sass-lint.task' );
+const sassBuildTasks = require( './tools/gulp/sass/sass-build.task' );
+const sassBundleTasks = require( './tools/gulp/sass/sass-bundle.task' );
+const sassLintTasks = require( './tools/gulp/sass/sass-lint.task' );
 
 /**
  * Gulp tasks: TypeScript
  */
-const tsBuildTasks = require( './tools/gulp-tasks/ts/ts-build.task' );
-const tsBundleTasks = require( './tools/gulp-tasks/ts/ts-bundle.task' );
-const tsLintTasks = require( './tools/gulp-tasks/ts/ts-lint.task' );
-const tsTestTasks = require( './tools/gulp-tasks/ts/ts-test.task' );
+const tsBuildTasks = require( './tools/gulp/ts/ts-build.task' );
+const tsBundleTasks = require( './tools/gulp/ts/ts-bundle.task' );
+const tsLintTasks = require( './tools/gulp/ts/ts-lint.task' );
+const tsTestTasks = require( './tools/gulp/ts/ts-test.task' );
 
 
 
@@ -132,8 +132,10 @@ gulp.task( 'watch',
 			'env:clean--lib',
 			'env:clean--demo',
 		] ),
-		'build--dev',
-		'build--demo',
+		gulp.parallel( [
+			'build--dev',
+			'build--demo'
+		] ),
 		gulp.parallel( [
 			'env:serve',
 			'env:watch'

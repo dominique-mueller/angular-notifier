@@ -53,6 +53,10 @@ export interface NotifierOptions {
  */
 @Injectable()
 export class NotifierConfig implements NotifierOptions {
+
+	/**
+	 * Customize animations
+	 */
 	public animations: {
 		enabled: boolean;
 		hide: {
@@ -72,6 +76,10 @@ export class NotifierConfig implements NotifierOptions {
 			speed: number;
 		};
 	};
+
+	/**
+	 * Customize behaviour
+	 */
 	public behaviour: {
 		autoHide: number | false;
 		onClick: 'hide' | false;
@@ -79,6 +87,10 @@ export class NotifierConfig implements NotifierOptions {
 		showDismissButton: boolean;
 		stacking: number | false;
 	};
+
+	/**
+	 * Customize positioning
+	 */
 	public position: {
 		horizontal: {
 			distance: number;
@@ -90,6 +102,10 @@ export class NotifierConfig implements NotifierOptions {
 			position: 'top' | 'bottom';
 		};
 	};
+
+	/**
+	 * Customize theming
+	 */
 	public theme: string;
 
 	/**

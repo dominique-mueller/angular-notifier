@@ -16,6 +16,7 @@ branches:
   only:
     - master # Testing, Building, Releasing
     - develop # Testing, Building
+    - feature/travis # Branch for testing Travis CI
 
 before_install:
   - export CHROME_BIN=/usr/bin/google-chrome # Chrome path

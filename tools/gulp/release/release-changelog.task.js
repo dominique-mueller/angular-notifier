@@ -4,7 +4,6 @@ const conventionalChangelog = require( 'gulp-conventional-changelog' );
 const fs = require( 'fs' );
 const gulp = require( 'gulp' );
 const insert = require( 'gulp-insert' );
-const path = require( 'path' );
 
 const customChangelogTransform = require( './custom-changelog-transform' );
 const packageFile = require( './../../../package.json' );
@@ -16,7 +15,7 @@ gulp.task( 'release:changelog', ( done ) => {
     let releaseUrl = `${ packageFile.repository.url.slice( 0, -4 ) }/releases`;
     gulp
         .src( [
-            path.resolve( 'CHANGELOG.md' )
+            'CHANGELOG.md'
         ], { buffer: false } )
         .pipe( conventionalChangelog( {
             preset: 'angular',
@@ -25,11 +24,11 @@ gulp.task( 'release:changelog', ( done ) => {
             linkCompare: false // We use a custom link
         }, {}, {}, {
             transform: customChangelogTransform.transform, // Show all commit types in the changelog
-            mainTemplate: fs.readFileSync( path.resolve( 'tools', 'gulp-tasks', 'release', 'custom-changelog-main.hbs' ), 'utf-8' ),
-            headerPartial: fs.readFileSync( path.resolve( 'tools', 'gulp-tasks', 'release', 'custom-changelog-header.hbs' ), 'utf-8' )
+            mainTemplate: fs.readFileSync( 'tools/gulp/release/custom-changelog-main.hbs', 'utf-8' ),
+            headerPartial: fs.readFileSync( 'tools/gulp/release/custom-changelog-header.hbs', 'utf-8' )
         } ) )
         .pipe( insert.prepend( `# Changelog\nAlso see [releases](${ releaseUrl }).\n\n` ) ) // Custom header
         .pipe( insert.append( `---\n\n*Changelog generated automatically.*\n` ) ) // Custom footer
-        .pipe( gulp.dest( path.resolve( '.' ) ) )
+        .pipe( gulp.dest( '.' ) )
         .on( 'end', done );
 } );

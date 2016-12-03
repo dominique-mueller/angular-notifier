@@ -7,7 +7,7 @@ module.exports = function( config ) {
 	let options = {
 
 		// Base path for resolving patterns
-		basePath: '',
+		basePath: './',
 
 		// List of used frameworks (see https://npmjs.org/browse/keyword/karma-adapter)
 		frameworks: [
@@ -33,7 +33,7 @@ module.exports = function( config ) {
 		colors: true,
 
 		// Level of logging (e.g. LOG_DISABLE, LOG_ERROR, LOG_WARN, LOG_INFO, LOG_DEBUG )
-		logLevel: config.DEBUG,
+		logLevel: config.INFO,
 
 		// Watcher
 		autoWatch: true,
@@ -61,100 +61,137 @@ module.exports = function( config ) {
 
 			// Polyfills (always first)
 			{
-				pattern: './node_modules/core-js/client/shim.js',
+				pattern: 'node_modules/core-js/client/shim.js',
 				included: true,
 				watched: false
 			},
 			{
-				pattern: './node_modules/reflect-metadata/Reflect.js',
+				pattern: 'node_modules/reflect-metadata/Reflect.js',
 				included: true,
 				watched: false
 			},
 			{
-				pattern: './node_modules/zone.js/dist/zone.js',
+				pattern: 'node_modules/zone.js/dist/zone.js',
 				included: true,
 				watched: false
 			},
 			{
-				pattern: './node_modules/zone.js/dist/long-stack-trace-zone.js',
+				pattern: 'node_modules/zone.js/dist/long-stack-trace-zone.js',
 				included: true,
 				watched: false
 			},
 			{
-				pattern: './node_modules/zone.js/dist/proxy.js',
+				pattern: 'node_modules/zone.js/dist/proxy.js',
 				included: true,
 				watched: false
 			},
 			{
-				pattern: './node_modules/zone.js/dist/sync-test.js',
+				pattern: 'node_modules/zone.js/dist/sync-test.js',
 				included: true,
 				watched: false
 			},
 			{
-				pattern: './node_modules/zone.js/dist/jasmine-patch.js',
+				pattern: 'node_modules/zone.js/dist/jasmine-patch.js',
 				included: true,
 				watched: false
 			},
 			{
-				pattern: './node_modules/zone.js/dist/async-test.js',
+				pattern: 'node_modules/zone.js/dist/async-test.js',
 				included: true,
 				watched: false
 			},
 			{
-				pattern: './node_modules/zone.js/dist/fake-async-test.js',
+				pattern: 'node_modules/zone.js/dist/fake-async-test.js',
 				included: true,
 				watched: false
 			},
 
 			// SystemJS module loader
 			{
-				pattern: './node_modules/systemjs/dist/system.src.js',
+				pattern: 'node_modules/systemjs/dist/system.src.js',
 				included: true,
 				watched: false
 			},
 
-			// Framework & libraries
+			// Angular modules
 			{
-				pattern: './node_modules/@angular/**/*.js',
+				pattern: 'node_modules/@angular/common/bundles/common.umd.js',
 				included: false,
 				watched: false
 			},
 			{
-				pattern: './node_modules/@angular/**/*.js.map',
+				pattern: 'node_modules/@angular/common/bundles/common-testing.umd.js',
 				included: false,
 				watched: false
 			},
 			{
-				pattern: './node_modules/rxjs/**/*.js',
+				pattern: 'node_modules/@angular/compiler/bundles/compiler.umd.js',
 				included: false,
 				watched: false
 			},
 			{
-				pattern: './node_modules/rxjs/**/*.js.map',
+				pattern: 'node_modules/@angular/compiler/bundles/compiler-testing.umd.js',
+				included: false,
+				watched: false
+			},
+			{
+				pattern: 'node_modules/@angular/core/bundles/core.umd.js',
+				included: false,
+				watched: false
+			},
+			{
+				pattern: 'node_modules/@angular/core/bundles/core-testing.umd.js',
+				included: false,
+				watched: false
+			},
+			{
+				pattern: 'node_modules/@angular/platform-browser/bundles/platform-browser.umd.js',
+				included: false,
+				watched: false
+			},
+			{
+				pattern: 'node_modules/@angular/platform-browser/bundles/platform-browser-testing.umd.js',
+				included: false,
+				watched: false
+			},
+			{
+				pattern: 'node_modules/@angular/platform-browser-dynamic/bundles/platform-browser-dynamic.umd.js',
+				included: false,
+				watched: false
+			},
+			{
+				pattern: 'node_modules/@angular/platform-browser-dynamic/bundles/platform-browser-dynamic-testing.umd.js',
+				included: false,
+				watched: false
+			},
+
+			// Other libraries
+			{
+				pattern: 'node_modules/rxjs/**/*.js',
 				included: false,
 				watched: false
 			},
 
 			// Configuration files
 			{
-				pattern: './demo/systemjs.config.js',
+				pattern: 'demo/systemjs.config.js',
 				included: true,
 				watched: false
 			},
 			{
-				pattern: './karma-angular.config.js',
+				pattern: 'karma-angular.config.js',
 				included: true,
 				watched: false
 			},
 
 			// Transpiled and original files as well as sourcemaps (source & tests)
 			{
-				pattern: './src/**/*.js',
+				pattern: 'src/**/*.js',
 				included: false,
 				watched: true // auto watch
 			},
 			{
-				pattern: './src/**/*.js.map',
+				pattern: 'src/**/*.js.map',
 				included: false,
 				watched: false
 			}

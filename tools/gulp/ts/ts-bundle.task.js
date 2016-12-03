@@ -1,7 +1,6 @@
 'use strict';
 
 const gulp = require( 'gulp' );
-const path = require( 'path' );
 const gutil = require( 'gulp-util' );
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const webpack = require( 'webpack' );
@@ -13,9 +12,9 @@ gulp.task( 'ts:bundle:umd', ( done ) => {
 
     webpack( {
 		devtool: 'source-map',
-		entry: path.resolve( 'index.js' ),
+		entry: './index.js', // Explicitely needs the './' at the beginning of the path!
 		output: {
-			path: path.resolve( 'bundles' ),
+			path: 'bundles',
 			filename: 'angular-notifier.umd.js',
 			library: 'angular-notifier',
 			libraryTarget: 'umd',
@@ -23,7 +22,7 @@ gulp.task( 'ts:bundle:umd', ( done ) => {
 		},
 		resolve: {
 			modules: [
-				path.resolve( 'node_modules' )
+				'node_modules'
 			],
 			extensions: [
 				'.js'
@@ -72,9 +71,9 @@ gulp.task( 'ts:bundle:umd:min', ( done ) => {
 
     webpack( {
 		devtool: 'source-map',
-		entry: path.resolve( 'index.js' ),
+		entry: './index.js', // Explicitely needs the './' at the beginning of the path!
 		output: {
-			path: path.resolve( 'bundles' ),
+			path: 'bundles',
 			filename: 'angular-notifier.umd.min.js',
 			library: 'angular-notifier',
 			libraryTarget: 'umd',
@@ -82,7 +81,7 @@ gulp.task( 'ts:bundle:umd:min', ( done ) => {
 		},
 		resolve: {
 			modules: [
-				path.resolve( 'node_modules' )
+				'node_modules'
 			],
 			extensions: [
 				'.js'

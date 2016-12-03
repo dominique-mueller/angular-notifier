@@ -2,7 +2,6 @@
 
 const cleanCss = require( 'gulp-clean-css' );
 const gulp = require( 'gulp' );
-const path = require( 'path' );
 const rename = require( 'gulp-rename' );
 const sourcemaps = require( 'gulp-sourcemaps' );
 
@@ -23,10 +22,10 @@ const cleanCssOptions = {
 gulp.task( 'sass:bundle', () => {
 	return gulp
         .src( [
-            path.resolve( 'style.css' ), // Only style file
-            path.resolve( 'style.css.map' ) // Only style file
+            'style.css', // Only root style file
+            'style.css.map' // Only root style file
         ] )
-        .pipe( gulp.dest( path.resolve( 'bundles' ) ) );
+        .pipe( gulp.dest( 'bundles' ) );
 } );
 
 /**
@@ -35,13 +34,13 @@ gulp.task( 'sass:bundle', () => {
 gulp.task( 'sass:bundle:min', () => {
     return gulp
         .src( [
-            path.resolve( 'style.css' ), // Only style file
+            'style.css', // Only style file
         ] )
 		.pipe( sourcemaps.init( {
 			loadMaps: true // Re-use existing sourcemap
 		} ) )
         .pipe( cleanCss( cleanCssOptions ) )
 		.pipe( rename( 'style.min.css' ) )
-		.pipe( sourcemaps.write( path.resolve( 'bundles' ) ) )
-        .pipe( gulp.dest( path.resolve( 'bundles' ) ) );
+		.pipe( sourcemaps.write( '.' ) ) // Relative path
+        .pipe( gulp.dest( 'bundles' ) );
 } );

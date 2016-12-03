@@ -3,7 +3,6 @@
 const bump = require( 'gulp-bump' );
 const conventionalRecommendedBump = require( 'conventional-recommended-bump' );
 const gulp = require( 'gulp' );
-const path = require( 'path' );
 
 /**
  * Gulp task: Update the version number within the packag file automatically
@@ -14,12 +13,12 @@ gulp.task( 'release:version', ( done ) => {
     }, ( error, result ) => {
         gulp
             .src( [
-                path.resolve( 'package.json' )
+                'package.json'
             ] )
             .pipe( bump( {
                 type: result.releaseType // Either 'major', 'minor', or 'patch'
             } ) )
-            .pipe( gulp.dest( path.resolve( '.' ) ) )
+            .pipe( gulp.dest( '.' ) )
             .on( 'end', done );
 
     } );

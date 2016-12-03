@@ -9,7 +9,7 @@ const path = require( 'path' );
  */
 gulp.task( 'ts:spec', ( done ) => {
 	new karma.Server( {
-		configFile: path.resolve( 'karma.config.js' ),
+		configFile: path.resolve( 'karma.config.js' ), // Absolute path necessary
 		singleRun: true, // Overwrite
 		autoWatch: false // Overwrite
 	}, done ).start();

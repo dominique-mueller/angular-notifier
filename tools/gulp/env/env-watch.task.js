@@ -12,9 +12,9 @@ gulp.task( 'env:serve', () => {
     // Configure browser-sync
     browserSync.init( {
         server: {
-            baseDir: path.resolve( '.' ) // We need access to the node_modules folder
+            baseDir: '.' // We need access to the node_modules folder
         },
-        startPath: path.resolve( 'demo' ),
+        startPath: './demo',
         logConnections: true,
         logPrefix: '[BROWSER-SYNC]',
         notify: {
@@ -46,10 +46,10 @@ gulp.task( 'env:watch', () => {
 
     // TypeScript project watcher
     let tsWatcher = gulp.watch( [
-        path.resolve( 'index.ts' ),
-        path.resolve( 'src', '**', '*.ts' ),
-        `!${ path.resolve( 'src', '**', '*.d.ts' ) }`,
-        `!${ path.resolve( 'src', '**', '*.spec.ts' ) }`,
+        'index.ts',
+        'src/**/*.ts',
+        '!src/**/*.d.ts',
+        '!src/**/*.spec.ts'
     ], gulp.series( [
         'ts:build--dev',
         'env:watch:reload'
@@ -60,8 +60,8 @@ gulp.task( 'env:watch', () => {
 
     // SASS project watcher
     let sassWatcher = gulp.watch( [
-        path.resolve( 'style.scss' ),
-        path.resolve( 'src', 'styles', '**', '*.scss' )
+        'style.scss',
+        'src/styles/**/*.scss'
     ], gulp.series( [
         'sass:build--dev',
         'env:watch:reload'
@@ -72,7 +72,7 @@ gulp.task( 'env:watch', () => {
 
     // TypeScript demo watcher
     let demoTsWatcher = gulp.watch( [
-        path.resolve( 'demo', '*.ts' )
+        'demo/*.ts'
     ], gulp.series( [
         'ts:build--demo',
         'env:watch:reload'

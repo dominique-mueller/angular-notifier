@@ -17,7 +17,7 @@ gulp.task( 'release:github', ( done ) => {
         preset: 'angular'
     }, {}, {}, {}, {
         transform: customChangelogTransform.transform, // Custom transform (shows all commit types)
-        mainTemplate: fs.readFileSync( path.resolve( 'tools', 'gulp-tasks', 'release', 'custom-changelog-main.hbs' ), 'utf-8' ),
-        headerPartial: fs.readFileSync( path.resolve( 'tools', 'gulp-tasks', 'release', 'custom-changelog-header.hbs' ), 'utf-8' )
+        mainTemplate: fs.readFileSync( 'tools/gulp/release/custom-changelog-main.hbs', 'utf-8' ),
+        headerPartial: fs.readFileSync( 'tools/gulp/release/custom-changelog-header.hbs', 'utf-8' )
     }, done );
 } );

@@ -1,7 +1,7 @@
 # Dependencies
 /node_modules
 
-# Build: JavaScript plus sourcemaps
+# Build: TypeScript output
 /index.d.ts
 /index.js
 /index.js.map
@@ -19,6 +19,9 @@
 
 # Build: Bundles
 /bundles
+
+# Build: Temp folder
+/temp
 
 # Build: Demo
 /demo/*.js

@@ -6,11 +6,18 @@
 /src/**/*.ts
 !/src/**/*.d.ts
 
+# Build: Tests
+/src/**/*.spec.js
+
 # Demo
 /demo
 
-# Build process
+# Build: Temp folder
+/temp
+
+# Not needed files
 /tools
+/.gitignore
 /.nvmrc
 /.sass-lint.yml
 /.travis.yml

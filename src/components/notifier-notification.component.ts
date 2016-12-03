@@ -1,11 +1,11 @@
 import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, Output, Renderer } from '@angular/core';
 
 import { NotifierAnimationData } from './../models/notifier-animation.model';
+import { NotifierAnimationService } from './../services/notifier-animation.service';
 import { NotifierConfig } from './../models/notifier-config.model';
 import { NotifierNotification } from './../models/notifier-notification.model';
-import { NotifierAnimationService } from './../services/notifier-animation.service';
-import { NotifierTimerService } from './../services/notifier-timer.service';
 import { NotifierService } from './../services/notifier.service';
+import { NotifierTimerService } from './../services/notifier-timer.service';
 
 /**
  * Notifier notification component
@@ -18,10 +18,10 @@ import { NotifierService } from './../services/notifier.service';
 @Component( {
 	changeDetection: ChangeDetectionStrategy.OnPush, // (#perfmatters)
 	host: {
-		class: 'x-notifier__notification',
 		'(click)': 'onNotificationClick()',
+		'(mouseout)': 'onNotificationMouseout()',
 		'(mouseover)': 'onNotificationMouseover()',
-		'(mouseout)': 'onNotificationMouseout()'
+		class: 'x-notifier__notification'
 	},
 	providers: [
 		// We provide the timer to the component's local injector, so that every notification components gets its own

@@ -8,12 +8,11 @@ const htmlMinifier = require( 'html-minifier' );
 const inlineTemplate = require( 'gulp-inline-ng2-template' );
 const merge = require( 'merge2' );
 const path = require( 'path' );
-const rename = require( 'gulp-rename' );
 const sourcemaps = require( 'gulp-sourcemaps' );
 const ts = require( 'gulp-typescript' );
 
 const inlineTemplateOptions = {
-    base: path.resolve( '.' ),
+    base: '.',
     indent: 0,
     removeLineBreaks: true,
     supportNonExistentFiles: false,
@@ -71,8 +70,9 @@ gulp.task( 'ts:build--dev', () => {
     const tsSourceProject = ts.createProject( path.resolve( 'tsconfig.json' ) );
     const tsSourceResult = gulp
         .src( [
-            path.resolve( 'src', '**', '*.ts' ),
-            `${ path.resolve( 'src', '**', '*.spec.ts' ) }`,
+            'src/**/*.ts',
+            '!src/**/*.spec.ts',
+            '!src/**/*.d.ts',
         ] )
         .pipe( sourcemaps.init() )
         .pipe( inlineTemplate( inlineTemplateOptions ) )
@@ -81,7 +81,8 @@ gulp.task( 'ts:build--dev', () => {
     const tsIndexProject = ts.createProject( path.resolve( 'tsconfig.json' ) );
     const tsIndexResult = gulp
         .src( [
-            path.resolve( 'index.ts' )
+            'index.ts',
+            '!index.d.ts'
         ] )
         .pipe( sourcemaps.init() )
         .pipe( tsIndexProject( ts.reporter.defaultReporter() ) );
@@ -89,11 +90,11 @@ gulp.task( 'ts:build--dev', () => {
     // Save results
     return merge( [
         tsSourceResult.js // Compiled JavaScript files
-            .pipe( sourcemaps.write( path.resolve( '.' ) ) )
-            .pipe( gulp.dest( path.resolve( '.' ) ) ),
+            .pipe( sourcemaps.write( '.' ) ) // Relative to file path
+            .pipe( gulp.dest( 'src' ) ),
         tsIndexResult.js // Compiled JavaScript files
-            .pipe( sourcemaps.write( path.resolve( '.' ) ) )
-            .pipe( gulp.dest( path.resolve( '.' ) ) )
+            .pipe( sourcemaps.write( '.' ) ) // Relative to file path
+            .pipe( gulp.dest( '.' ) )
     ] );
 
 } );
@@ -105,18 +106,22 @@ gulp.task( 'ts:build--publish', ( done ) => {
 
     // First, inline Angular HTML templates
     gulp
-        .src( [
-            path.resolve( 'src', '**', '*.ts' ),
-            `!${ path.resolve( 'src', '**', '*.spec.ts' ) }`,
-            path.resolve( 'index.ts' )
+        .src( [ // Keep folder structure
+            '**/*.ts',
+            '!**/*.spec.ts',
+            '!**/*.d.ts',
+            '!bundles/**',
+            '!temp/**',
+            '!demo/**',
+            '!node_modules/**'
         ] )
         .pipe( inlineTemplate( inlineTemplateOptions ) )
-        .pipe( gulp.dest( path.resolve( 'temp' ) ) )
+        .pipe( gulp.dest( 'temp' ) )
         .on( 'end', () => {
 
             // Then, compile TypeScript using the Angular Compiler CLI (ngc)
-            const angularCompiler = path.resolve( 'node_modules', '.bin', 'ngc' );
-            const tsconfigForAot = path.resolve( 'tsconfig-aot.json' );
+            const angularCompiler = path.resolve( 'node_modules/.bin/ngc' ); // Absolute path necessary
+            const tsconfigForAot = path.resolve( 'tsconfig-aot.json' ); // Absolute path necessary
             exec( `${ angularCompiler } -p ${ tsconfigForAot }`, ( err, stdout, stderr ) => {
                 if ( err ) {
                     new gutil.PluginError( {
@@ -129,21 +134,17 @@ gulp.task( 'ts:build--publish', ( done ) => {
                     // Now, copy the results back into the source folder
                     gulp
                         .src( [
-                            path.resolve( 'temp', '**', '*.d.ts' ),
-                            path.resolve( 'temp', '**', '*.js' ),
-                            path.resolve( 'temp', '**', '*.js.map' ),
-                            path.resolve( 'temp', '**', '*.metadata.json' ),
+                            'temp/**/*.d.ts',
+                            'temp/**/*.js',
+                            'temp/**/*.js.map',
+                            'temp/**/*.metadata.json'
                         ] )
-                        .pipe( rename( ( path ) => {
-                            path.dirname = path.dirname.replace( 'temp', '' );
-                            return path;
-                        } ) )
-                        .pipe( gulp.dest( path.resolve( '.' ) ) )
+                        .pipe( gulp.dest( '.' ) )
                         .on( 'end', () => {
 
                             // Finally, delete our temporary folder
                             del( [
-                                path.resolve( 'temp' )
+                                './temp'
                             ] ).then( () => {
                                 done(); // Done
                             } )
@@ -166,13 +167,13 @@ gulp.task( 'ts:build--tests', () => {
     let tsTestsProject = ts.createProject( path.resolve( 'tsconfig.json' ) );
     let tsTestResults = gulp
         .src( [
-            path.resolve( 'src', '*.spec.ts' )
+            'src/**/*.spec.ts'
         ] )
         .pipe( tsTestsProject( ts.reporter.defaultReporter() ) );
 
     // Save results
     return tsTestResults.js // Compiled JavaScript files
-        .pipe( gulp.dest( path.resolve( '.' ) ) );
+        .pipe( gulp.dest( 'src' ) );
 
 } );
 
@@ -185,12 +186,12 @@ gulp.task( 'ts:build--demo', () => {
     let tsDemoProject = ts.createProject( path.resolve( 'tsconfig.json' ) );
     let tsDemoResults = gulp
         .src( [
-            path.resolve( 'demo', '*.ts' )
+            'demo/*.ts'
         ] )
         .pipe( tsDemoProject( ts.reporter.defaultReporter() ) );
 
     // Save results
     return tsDemoResults.js // Compiled JavaScript files
-        .pipe( gulp.dest( path.resolve( '.' ) ) );
+        .pipe( gulp.dest( 'demo' ) );
 
 } );

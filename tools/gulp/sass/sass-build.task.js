@@ -2,7 +2,6 @@
 
 const autoprefixer = require( 'gulp-autoprefixer' );
 const gulp = require( 'gulp' );
-const path = require( 'path' );
 const sass = require( 'gulp-sass' );
 const sourcemaps = require( 'gulp-sourcemaps' );
 
@@ -12,7 +11,7 @@ const sourcemaps = require( 'gulp-sourcemaps' );
 gulp.task( 'sass:build--dev', () => {
     return gulp
         .src( [
-            path.resolve( 'style.scss' ), // Only style file
+            'style.scss', // Only root style file
         ] )
         .pipe( sourcemaps.init() )
         .pipe( sass( {
@@ -20,8 +19,8 @@ gulp.task( 'sass:build--dev', () => {
             'outputStyle': 'expanded' // No minifying
         } ).on( 'error', sass.logError ) )
         .pipe( autoprefixer() )
-        .pipe( sourcemaps.write( path.resolve( '.' ) ) )
-        .pipe( gulp.dest( path.resolve( '.' ) ) );
+        .pipe( sourcemaps.write( '.' ) ) // Relative path
+        .pipe( gulp.dest( '.' ) );
 } );
 
 /**
@@ -30,9 +29,9 @@ gulp.task( 'sass:build--dev', () => {
 gulp.task( 'sass:build--publish', () => {
     return gulp
         .src( [
-            path.resolve( '**', '*.scss' ), // Keep the whole file structure
-            `!${ path.resolve( 'node_modules', '**' ) }`, // Ignore dependencies
-            `!${ path.resolve( 'demo', '**' ) }` // Ignore demo
+            '**/*.scss', // Keep the file structure
+            '!node_modules/**', // Ignore dependencies
+            '!demo/**' // Ignore demo
         ] )
         .pipe( sourcemaps.init() )
         .pipe( sass( {
@@ -40,6 +39,6 @@ gulp.task( 'sass:build--publish', () => {
             'outputStyle': 'expanded' // No minifying
         } ).on( 'error', sass.logError ) )
         .pipe( autoprefixer() )
-        .pipe( sourcemaps.write( path.resolve( '.' ) ) )
-        .pipe( gulp.dest( path.resolve( '.' ) ) );
+        .pipe( sourcemaps.write( '.' ) ) // Relative path
+        .pipe( gulp.dest( '.' ) );
 } );
