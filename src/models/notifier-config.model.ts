@@ -120,10 +120,10 @@ export class NotifierConfig implements NotifierOptions {
 				hide: {
 					easing: 'ease',
 					offset: 50,
-					preset: 'slide',
+					preset: 'fade',
 					speed: 300
 				},
-				overlap: 60,
+				overlap: 150,
 				shift: {
 					easing: 'ease',
 					speed: 300
@@ -136,8 +136,8 @@ export class NotifierConfig implements NotifierOptions {
 			},
 			behaviour: {
 				autoHide: 7000,
-				onClick:  false,
-				onMouseover: 'pause',
+				onClick: false,
+				onMouseover: 'pauseAutoHide',
 				showDismissButton: true,
 				stacking: 4
 			},

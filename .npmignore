@@ -1,19 +1,20 @@
 # Dependencies
 /node_modules
 
-# TypeScript source code
+# Source code
 /index.ts
 /src/**/*.ts
+/src/**/*.html
 !/src/**/*.d.ts
 
-# Build: Tests
+# Build: Test output
 /src/**/*.spec.js
-
-# Demo
-/demo
 
 # Build: Temp folder
 /temp
+
+# Demo
+/demo
 
 # Not needed files
 /tools

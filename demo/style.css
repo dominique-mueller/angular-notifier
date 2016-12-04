@@ -1,6 +1,4 @@
-/**
- * General
- */
+/* BASIC */
 
 html {
 	width: 100%;
@@ -20,5 +18,58 @@ body {
 	box-sizing: inherit;
 }
 
+/* APP */
 
+.app {
+	display: block;
+	padding: 30px;
+}
 
+/* HEADINGS */
+
+h1 {
+	font-size: 30px;
+	padding-bottom: 10px;
+}
+
+h2 {
+	margin-top: 40px;
+	font-size: 18px;
+}
+
+/* BUTTONS */
+
+.button {
+	display: inline-block;
+	padding: 11px 16px 10px;
+	margin-right: 4px;
+	background: none;
+	border: none;
+	border-radius: 2px;
+	cursor: pointer;
+	opacity: 1;
+	-webkit-transition: background-color .2s ease;
+	transition: background-color .2s ease;
+}
+
+.button--primary {
+	background-color: #2B90D9;
+	color: #FFF;
+}
+
+.button--primary:hover,
+.button--primary:focus,
+.button--primary:active {
+	background-color: #2273AD;
+}
+
+.button--secondary {
+	background-color: #DDD;
+	color: #333;
+}
+
+.button--secondary:hover,
+.button--secondary:focus,
+.button--secondary:active {
+	background-color: #CACACA;
+}

@@ -14,7 +14,7 @@ gulp.task( 'env:serve', () => {
         server: {
             baseDir: '.' // We need access to the node_modules folder
         },
-        startPath: './demo',
+        startPath: '/demo',
         logConnections: true,
         logPrefix: '[BROWSER-SYNC]',
         notify: {
@@ -34,7 +34,7 @@ gulp.task( 'env:serve', () => {
 /**
  * Gulp task: Browser-sync reload (helper only)
  */
-gulp.task( 'env:serve-reload', ( done ) => {
+gulp.task( 'env:serve:reload', ( done ) => {
     browserSync.reload();
     done();
 } );
@@ -52,7 +52,7 @@ gulp.task( 'env:watch', () => {
         '!src/**/*.spec.ts'
     ], gulp.series( [
         'ts:build--dev',
-        'env:watch:reload'
+        'env:serve:reload'
     ] ) );
     tsWatcher.on( 'change', ( path ) => {
         gutil.log( gutil.colors.blue( `# File "${ path }" changed.` ) );
@@ -64,7 +64,7 @@ gulp.task( 'env:watch', () => {
         'src/styles/**/*.scss'
     ], gulp.series( [
         'sass:build--dev',
-        'env:watch:reload'
+        'env:serve:reload'
     ] ) );
     sassWatcher.on( 'change', ( path ) => {
         gutil.log( gutil.colors.blue( `# File "${ path }" changed.` ) );
@@ -75,7 +75,7 @@ gulp.task( 'env:watch', () => {
         'demo/*.ts'
     ], gulp.series( [
         'ts:build--demo',
-        'env:watch:reload'
+        'env:serve:reload'
     ] ) );
     demoTsWatcher.on( 'change', ( path ) => {
         gutil.log( gutil.colors.blue( `# File "${ path }" changed.` ) );

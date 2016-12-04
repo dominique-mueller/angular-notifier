@@ -11,7 +11,7 @@
 /src/**/*.js.map
 /src/**/*.metadata.json
 
-# Build: CSS plus sourcemaps
+# Build: SASS output
 /style.css
 /style.css.map
 /src/styles/**/*.css
@@ -27,11 +27,11 @@
 /demo/*.js
 !/demo/systemjs.config.js
 
-# Logs
-*.log
-
 # Development
 /.vscode
+
+# Logs
+*.log
 
 # Other
 *.todo

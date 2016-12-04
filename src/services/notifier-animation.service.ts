@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
+import { NotifierAnimationData, NotifierAnimationPreset, NotifierAnimationPresetKeyframes } from './../models/notifier-animation.model';
 
+import { Injectable } from '@angular/core';
+import { NotifierNotification } from './../models/notifier-notification.model';
 import { fade } from './../animation-presets/fade.animation-preset';
 import { slide } from './../animation-presets/slide.animation-preset';
-import { NotifierAnimationData, NotifierAnimationPreset, NotifierAnimationPresetKeyframes } from './../models/notifier-animation.model';
-import { NotifierNotification } from './../models/notifier-notification.model';
 
 /**
  * Notifier animation service
@@ -51,7 +51,7 @@ export class NotifierAnimationService {
 				easing = notification.component.getConfig().animations.show.easing;
 				break;
 			case 'hide':
-				keyframes = this.animationPresets[ notification.component.getConfig().animations.show.preset ].hide( notification );
+				keyframes = this.animationPresets[ notification.component.getConfig().animations.hide.preset ].hide( notification );
 				duration = notification.component.getConfig().animations.hide.speed;
 				easing = notification.component.getConfig().animations.hide.easing;
 				break;
