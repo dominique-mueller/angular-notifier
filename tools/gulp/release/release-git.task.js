@@ -4,12 +4,11 @@ const fs = require( 'fs' );
 const git = require( 'gulp-git' );
 const gulp = require( 'gulp' );
 
-const newVersion = require( './../../../package.json' ).version;
-
 /**
  * Gulp task: Commit all changes (the package and changelog files)
  */
 gulp.task( 'release:git:commit', ( done ) => {
+    const newVersion = getPackageJsonVersion();
     gulp
         .src( [ // Only package and changelog
             'package.json',
@@ -27,6 +26,7 @@ gulp.task( 'release:git:commit', ( done ) => {
  * Gulp task: Tag the current commit with the new version
  */
 gulp.task( 'release:git:tag', ( done ) => {
+    const newVersion = getPackageJsonVersion();
     git.tag( `${ newVersion }`, `Release of version ${ newVersion }.`, { quiet: true }, done );
 } );
 
@@ -45,3 +45,10 @@ gulp.task( 'release:git', gulp.series( [
     'release:git:tag',
     'release:git:push'
 ] ) );
+
+/**
+ * Read the package.json version (do not require, prevents cached results)
+ */
+function getPackageJsonVersion() {
+    return JSON.parse( fs.readFileSync( `${ options.paths.package.path }${ options.paths.package.file }`, 'utf-8' ) ).version;
+}
