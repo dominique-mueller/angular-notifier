@@ -3,6 +3,21 @@ Also see [releases](https://github.com/dominique-mueller/angular-notifier/releas
 
 <br>
 
+## [1.0.1](https://github.com/dominique-mueller/angular-notifier/releases/tag/1.0.1) / 2016-12-05
+
+### Bug Fixes
+
+* **dependencies:** Fixed wrong type dependencies in definition files (#2) ([a986e66](https://github.com/dominique-mueller/angular-notifier/commit/a986e66)), closes [#2](https://github.com/dominique-mueller/angular-notifier/issues/2) [#1](https://github.com/dominique-mueller/angular-notifier/issues/1)
+* **gulp:** Fixed broken release task (#3) ([cdee2d8](https://github.com/dominique-mueller/angular-notifier/commit/cdee2d8)), closes [#3](https://github.com/dominique-mueller/angular-notifier/issues/3)
+
+
+### Chores
+
+* **gulp:** Fixed git tag for release ([f1fae3c](https://github.com/dominique-mueller/angular-notifier/commit/f1fae3c))
+
+
+<br>
+
 ## [1.0.0](https://github.com/dominique-mueller/angular-notifier/releases/tag/1.0.0) / 2016-12-04
 
 ### Bug Fixes
