@@ -50,5 +50,5 @@ gulp.task( 'release:git', gulp.series( [
  * Read the package.json version (do not require, prevents cached results)
  */
 function getPackageJsonVersion() {
-    return JSON.parse( fs.readFileSync( `${ options.paths.package.path }${ options.paths.package.file }`, 'utf-8' ) ).version;
+    return JSON.parse( fs.readFileSync( 'package.json', 'utf-8' ) ).version;
 }
