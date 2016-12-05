@@ -129,6 +129,7 @@ gulp.task( 'ts:build--publish', ( done ) => {
                         message: `Angular compiler error.\n${ err }`,
                         showStack: true
                     } );
+                    gutil.log( `[NGC] Angular compiler error.\n${ err }` );
                 } else {
 
                     // Now, copy the results back into the source folder

@@ -40,8 +40,7 @@
     "peerDependencies": {
         "@angular/core": "2.x",
         "@angular/common": "2.x",
-        "rxjs": "5.0.0-beta.12",
-        "web-animations-js": "2.2.x"
+        "rxjs": "5.0.0-beta.12"
     },
     "devDependencies": {
         "@angular/core": "2.x",
@@ -50,7 +49,6 @@
         "@angular/compiler-cli": "2.x",
         "@angular/platform-browser": "2.x",
         "@angular/platform-browser-dynamic": "2.x",
-        "@types/core-js": "0.9.x",
         "@types/jasmine": "2.5.x",
         "browser-sync": "2.18.x",
         "codelyzer": "2.0.0-beta.1",

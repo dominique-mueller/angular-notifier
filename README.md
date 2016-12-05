@@ -75,9 +75,12 @@ minified one (in `bundles/angular-notifier.umd.min.js`).
 Depending on the browser support we're aiming for, we might also need to bring in some of the following polyfills:
 
 * To be able to use newer JavaScript features in older browsers (e.g. Promises), we can use **[core-js](https://github.com/zloirock/core-js)**.
+  To use it, we simply have to include the `node_modules/core-js/client/shim.min.js` at the top of our main HTML page.
 * For animation support (in particular, for **[Web Animations API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API)** support), we can use **[web-animations-js](https://github.com/web-animations/web-animations-js)**.
+  To use it, we simply have to include the `node_modules/web-animations-js/web-animations-next.min.js` at the top of our main HTML page.
 
-> Both of these polyfills are also official recommendations by the Angular team.
+> Both of these polyfills are also official recommendations by the Angular team. Both are part of this project#s devDependencies (see
+>`package.json` file).
 
 <br><br>
 
