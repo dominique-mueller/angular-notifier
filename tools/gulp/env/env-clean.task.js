@@ -54,3 +54,12 @@ gulp.task( 'env:clean--demo', () => {
         '!demo/systemjs.config.js'
     ] );
 } );
+
+/**
+ * gulp task: Clean test coverage
+ */
+gulp.task( 'env:clean--coverage', () => {
+    return del( [
+        'test-coverage'
+    ] );
+} );

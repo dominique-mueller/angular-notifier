@@ -40,7 +40,8 @@ gulp.task( 'clean',
 	gulp.parallel( [
 		'env:clean--lib',
 		'env:clean--bundles',
-		'env:clean--demo'
+		'env:clean--demo',
+		'env:clean--coverage'
 	] )
 );
 
@@ -62,10 +63,7 @@ gulp.task( 'build--dev',
  */
 gulp.task( 'build--publish',
     gulp.series( [
-		gulp.parallel( [
-			'env:clean--lib',
-			'env:clean--bundles'
-		] ),
+		'clean',
         gulp.parallel( [
             'ts:lint',
             'sass:lint',
@@ -102,12 +100,16 @@ gulp.task( 'build--demo',
  */
 gulp.task( 'test',
 	gulp.series( [
-		'env:clean--lib',
+		gulp.parallel( [
+			'env:clean--lib',
+			'env:clean--coverage',
+		] ),
 		gulp.parallel( [
 			'ts:build--dev',
 			'ts:build--tests'
 		] ),
-    	'ts:spec'
+    	'ts:test--spec',
+		'ts:test--coverage'
 	] )
 );
 

@@ -17,14 +17,37 @@ module.exports = function( config ) {
 		// List of used plugins
 		plugins: [
 			require( 'karma-chrome-launcher' ),
+			require( 'karma-coverage' ),
 			require( 'karma-jasmine' ),
 			require( 'karma-mocha-reporter' )
 		],
 
+		// Preprocessors
+		preprocessors: {
+			'src/**/!(*spec).js': 'coverage'
+		},
+
 		// List of reporters, e.g. 'dots', 'progress' (see https://npmjs.org/browse/keyword/karma-reporter)
 		reporters: [
+			'coverage',
 			'mocha'
 		],
+
+		// Test coverage settings
+		coverageReporter: {
+			dir : './test-coverage/js',
+			reporters: [
+				{
+					type: 'json', // For remapping back to TypeScript
+					subdir: '.',
+					file: 'coverage.json'
+				},
+				{
+					type: 'html', // For viewing in the browser
+					subdir: '.' // Prevent browser-specific folder naming
+				}
+			]
+		},
 
 		// Web server port
 		port: 9876,

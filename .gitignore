@@ -27,6 +27,9 @@
 /demo/*.js
 !/demo/systemjs.config.js
 
+# Test coverage
+/test-coverage
+
 # Development
 /.vscode
 
