@@ -3,6 +3,27 @@ Also see [releases](https://github.com/dominique-mueller/angular-notifier/releas
 
 <br>
 
+## [1.0.2](https://github.com/dominique-mueller/angular-notifier/releases/tag/1.0.2) / 2016-12-21
+
+### Bug Fixes
+
+* **config:** Fixed broken configuration merge ([9793773](https://github.com/dominique-mueller/angular-notifier/commit/9793773))
+
+
+### Chores
+
+* **gulp:** Added test coverage generator ([6c142c8](https://github.com/dominique-mueller/angular-notifier/commit/6c142c8))
+* **gulp:** Fixed coveralls, fixed wrong dependencies ([ebfb393](https://github.com/dominique-mueller/angular-notifier/commit/ebfb393))
+* **test:** Added codecov to Travis config, added badge to README file^ ([923488a](https://github.com/dominique-mueller/angular-notifier/commit/923488a))
+
+
+### Tests
+
+* **library:** Added unit tests for the whole source code ([3624eef](https://github.com/dominique-mueller/angular-notifier/commit/3624eef))
+
+
+<br>
+
 ## [1.0.1](https://github.com/dominique-mueller/angular-notifier/releases/tag/1.0.1) / 2016-12-05
 
 ### Bug Fixes
