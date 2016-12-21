@@ -1,6 +1,6 @@
-import { NotifierAnimationData, NotifierAnimationPreset, NotifierAnimationPresetKeyframes } from './../models/notifier-animation.model';
-
 import { Injectable } from '@angular/core';
+
+import { NotifierAnimationData, NotifierAnimationPreset, NotifierAnimationPresetKeyframes } from './../models/notifier-animation.model';
 import { NotifierNotification } from './../models/notifier-notification.model';
 import { fade } from './../animation-presets/fade.animation-preset';
 import { slide } from './../animation-presets/slide.animation-preset';
@@ -44,19 +44,14 @@ export class NotifierAnimationService {
 		let keyframes: NotifierAnimationPresetKeyframes;
 		let duration: number;
 		let easing: string;
-		switch ( direction ) {
-			case 'show':
-				keyframes = this.animationPresets[ notification.component.getConfig().animations.show.preset ].show( notification );
-				duration = notification.component.getConfig().animations.show.speed;
-				easing = notification.component.getConfig().animations.show.easing;
-				break;
-			case 'hide':
-				keyframes = this.animationPresets[ notification.component.getConfig().animations.hide.preset ].hide( notification );
-				duration = notification.component.getConfig().animations.hide.speed;
-				easing = notification.component.getConfig().animations.hide.easing;
-				break;
-			default:
-				throw new Error( `Notifier Error: "${ direction }" is not a supported animation direction.` );
+		if ( direction === 'show' ) {
+			keyframes = this.animationPresets[ notification.component.getConfig().animations.show.preset ].show( notification );
+			duration = notification.component.getConfig().animations.show.speed;
+			easing = notification.component.getConfig().animations.show.easing;
+		} else {
+			keyframes = this.animationPresets[ notification.component.getConfig().animations.hide.preset ].hide( notification );
+			duration = notification.component.getConfig().animations.hide.speed;
+			easing = notification.component.getConfig().animations.hide.easing;
 		}
 
 		// Build and return animation data

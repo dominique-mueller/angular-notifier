@@ -231,23 +231,11 @@ export class NotifierNotificationComponent implements AfterViewInit {
 
 			// Calculate new position (position after the shift)
 			let newElementShift: number;
-			switch ( this.config.position.vertical.position ) {
-				case 'top':
-					if ( shiftToMakePlace ) {
-						newElementShift = this.elementShift + distance + this.config.position.vertical.gap;
-					} else {
-						newElementShift = this.elementShift - distance - this.config.position.vertical.gap;
-					}
-					break;
-				case 'bottom':
-					if ( shiftToMakePlace ) {
-						newElementShift = this.elementShift - distance - this.config.position.vertical.gap;
-					} else {
-						newElementShift = this.elementShift + distance + this.config.position.vertical.gap;
-					}
-					break;
-				default:
-					throw new Error( `Notifier Error: "${ this.config.position.vertical.position }" is not a valid vertical position.` );
+			if ( ( this.config.position.vertical.position === 'top' && shiftToMakePlace )
+				|| ( this.config.position.vertical.position === 'bottom' && !shiftToMakePlace ) ) {
+				newElementShift = this.elementShift + distance + this.config.position.vertical.gap;
+			} else {
+				newElementShift = this.elementShift - distance - this.config.position.vertical.gap;
 			}
 			const horizontalPosition: string = this.config.position.horizontal.position === 'middle' ? '-50%' : '0';
 
@@ -291,15 +279,10 @@ export class NotifierNotificationComponent implements AfterViewInit {
 	 * Handle mouseover over notification area
 	 */
 	public onNotificationMouseover(): void {
-		switch ( this.config.behaviour.onMouseover ) {
-			case 'pauseAutoHide':
-				this.pauseAutoHideTimer();
-				break;
-			case 'resetAutoHide':
-				this.stopAutoHideTimer();
-				break;
-			default:
-				return; // Ignore other values
+		if ( this.config.behaviour.onMouseover === 'pauseAutoHide' ) {
+			this.pauseAutoHideTimer();
+		} else if ( this.config.behaviour.onMouseover === 'resetAutoHide' ) {
+			this.stopAutoHideTimer();
 		}
 	}
 
@@ -307,19 +290,19 @@ export class NotifierNotificationComponent implements AfterViewInit {
 	 * Handle mouseout from notification area
 	 */
 	public onNotificationMouseout(): void {
-		this.startAutoHideTimer();
+		if ( this.config.behaviour.onMouseover === 'pauseAutoHide' ) {
+			this.continueAutoHideTimer();
+		} else if ( this.config.behaviour.onMouseover === 'resetAutoHide' ) {
+			this.startAutoHideTimer();
+		}
 	}
 
 	/**
 	 * Handle click on notification area
 	 */
 	public onNotificationClick(): void {
-		switch ( this.config.behaviour.onClick ) {
-			case 'hide':
-				this.pauseAutoHideTimer();
-				break;
-			default:
-				return; // Ignore other values
+		if ( this.config.behaviour.onClick === 'hide' ) {
+			this.onClickDismiss();
 		}
 	}
 
@@ -344,6 +327,15 @@ export class NotifierNotificationComponent implements AfterViewInit {
 	}
 
 	/**
+	 * Continue the auto hide timer (if enabled)
+	 */
+	private continueAutoHideTimer(): void {
+		if ( this.config.behaviour.autoHide !== false && this.config.behaviour.autoHide > 0 ) {
+			this.timerService.continue();
+		}
+	}
+
+	/**
 	 * Stop the auto hide timer (if enabled)
 	 */
 	private stopAutoHideTimer(): void {
@@ -358,29 +350,18 @@ export class NotifierNotificationComponent implements AfterViewInit {
 	private setup(): void {
 
 		// Set start position (initially the exact same for every new notification)
-		switch ( this.config.position.horizontal.position ) {
-			case 'left':
-				this.setStyle( 'left', `${ this.config.position.horizontal.distance }px` );
-				break;
-			case 'right':
-				this.setStyle( 'right', `${ this.config.position.horizontal.distance }px` );
-				break;
-			case 'middle':
-				this.setStyle( 'left', '50%' );
-				this.setStyle( 'transform', 'translate3d( -50%, 0, 0 )' ); // Let's get the GPU handle some work as well (#perfmatters)
-				break;
-			default:
-				throw new Error( `Notifier Error: "${ this.config.position.horizontal.position }" is not a valid horizontal position.` );
+		if ( this.config.position.horizontal.position === 'left' ) {
+			this.setStyle( 'left', `${ this.config.position.horizontal.distance }px` );
+		} else if ( this.config.position.horizontal.position === 'right' ) {
+			this.setStyle( 'right', `${ this.config.position.horizontal.distance }px` );
+		} else {
+			this.setStyle( 'left', '50%' );
+			this.setStyle( 'transform', 'translate3d( -50%, 0, 0 )' ); // Let's get the GPU handle some work as well (#perfmatters)
 		}
-		switch ( this.config.position.vertical.position ) {
-			case 'top':
-				this.setStyle( 'top', `${ this.config.position.vertical.distance }px` );
-				break;
-			case 'bottom':
-				this.setStyle( 'bottom', `${ this.config.position.vertical.distance }px` );
-				break;
-			default:
-				throw new Error( `Notifier Error: "${ this.config.position.vertical.position }" is not a valid vertical position.` );
+		if ( this.config.position.vertical.position === 'top' ) {
+			this.setStyle( 'top', `${ this.config.position.vertical.distance }px` );
+		} else {
+			this.setStyle( 'bottom', `${ this.config.position.vertical.distance }px` );
 		}
 
 		// Add classes (responsible for visual design)

@@ -153,7 +153,7 @@ export class NotifierConfig implements NotifierOptions {
 				position: 'bottom'
 			}
 		};
-		this.theme = 'material'
+		this.theme = 'material';
 
 		// The following merges the custom options into the notifier config, respecting the already set default values
 		// This linear, more explicit and code-sizy workflow is preferred here over a recursive one (because we know the object structure)

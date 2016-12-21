@@ -226,7 +226,9 @@ module.exports = function( config ) {
 			'/node_modules': '/base/node_modules',
 			'/src': '/base/src',
 			'/demo': '/base/demo'
-		}
+		},
+
+		browserNoActivityTimeout: 1000000 // FOR DEBUGGING REASONS
 
 	};
 

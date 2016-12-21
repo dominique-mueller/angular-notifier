@@ -19,44 +19,33 @@ export const slide: NotifierAnimationPreset = {
 		};
 
 		// Configure variables, depending on configuration and component
-		switch ( config.position.horizontal.position ) {
-			case 'left':
-				from = {
-					transform: `translate3d( 0, ${ shift }px, 0 )`
-				};
-				to = {
-					transform: `translate3d( calc( -100% - ${ config.position.horizontal.distance }px - 10px ), ${ shift }px, 0 )`
-				};
-				break;
-			case 'middle':
-				let horizontalPosition: string;
-				switch ( config.position.vertical.position ) {
-					case 'top':
-						horizontalPosition = `calc( -100% - ${ config.position.horizontal.distance }px - 10px )`;
-						break;
-					case 'bottom':
-						horizontalPosition = `calc( 100% + ${ config.position.horizontal.distance }px + 10px )`;
-						break;
-					default:
-						throw new Error( `Notifier Error: "${ config.position.vertical.position }" is not a valid vertical position.` );
-				}
-				from = {
-					transform: `translate3d( -50%, ${ shift }px, 0 )`
-				};
-				to = {
-					transform: `translate3d( -50%, ${ horizontalPosition }, 0 )`
-				};
-				break;
-			case 'right':
-				from = {
-					transform: `translate3d( 0, ${ shift }px, 0 )`
-				};
-				to = {
-					transform: `translate3d( calc( 100% + ${ config.position.horizontal.distance }px + 10px ), ${ shift }px, 0 )`
-				};
-				break;
-			default:
-				throw new Error( `Notifier Error: "${ config.position.horizontal.position }" is not a valid horizontal position.` );
+		if ( config.position.horizontal.position === 'left' ) {
+			from = {
+				transform: `translate3d( 0, ${ shift }px, 0 )`
+			};
+			to = {
+				transform: `translate3d( calc( -100% - ${ config.position.horizontal.distance }px - 10px ), ${ shift }px, 0 )`
+			};
+		} else if ( config.position.horizontal.position === 'right' ) {
+			from = {
+				transform: `translate3d( 0, ${ shift }px, 0 )`
+			};
+			to = {
+				transform: `translate3d( calc( 100% + ${ config.position.horizontal.distance }px + 10px ), ${ shift }px, 0 )`
+			};
+		} else {
+			let horizontalPosition: string;
+			if ( config.position.vertical.position === 'top' ) {
+				horizontalPosition = `calc( -100% - ${ config.position.horizontal.distance }px - 10px )`;
+			} else {
+				horizontalPosition = `calc( 100% + ${ config.position.horizontal.distance }px + 10px )`;
+			}
+			from = {
+				transform: `translate3d( -50%, ${ shift }px, 0 )`
+			};
+			to = {
+				transform: `translate3d( -50%, ${ horizontalPosition }, 0 )`
+			};
 		}
 
 		// Done
@@ -78,44 +67,33 @@ export const slide: NotifierAnimationPreset = {
 		};
 
 		// Configure variables, depending on configuration and component
-		switch ( config.position.horizontal.position ) {
-			case 'left':
-				from = {
-					transform: `translate3d( calc( -100% - ${ config.position.horizontal.distance }px - 10px ), 0, 0 )`
-				};
-				to = {
-					transform: 'translate3d( 0, 0, 0 )'
-				};
-				break;
-			case 'middle':
-				let horizontalPosition: string;
-				switch ( config.position.vertical.position ) {
-					case 'top':
-						horizontalPosition = `calc( -100% - ${ config.position.horizontal.distance }px - 10px )`;
-						break;
-					case 'bottom':
-						horizontalPosition = `calc( 100% + ${ config.position.horizontal.distance }px + 10px )`;
-						break;
-					default:
-						throw new Error( `Notifier Error: "${ config.position.vertical.position }" is not a valid vertical position.` );
-				}
-				from = {
-					transform: `translate3d( -50%, ${ horizontalPosition }, 0 )`
-				};
-				to = {
-					transform: 'translate3d( -50%, 0, 0 )'
-				};
-				break;
-			case 'right':
-				from = {
-					transform: `translate3d( calc( 100% + ${ config.position.horizontal.distance }px + 10px ), 0, 0 )`
-				};
-				to = {
-					transform: 'translate3d( 0, 0, 0 )'
-				};
-				break;
-			default:
-				throw new Error( `Notifier Error: "${ config.position.horizontal.position }" is not a valid horizontal position.` );
+		if ( config.position.horizontal.position === 'left' ) {
+			from = {
+				transform: `translate3d( calc( -100% - ${ config.position.horizontal.distance }px - 10px ), 0, 0 )`
+			};
+			to = {
+				transform: 'translate3d( 0, 0, 0 )'
+			};
+		} else if ( config.position.horizontal.position === 'right' ) {
+			from = {
+				transform: `translate3d( calc( 100% + ${ config.position.horizontal.distance }px + 10px ), 0, 0 )`
+			};
+			to = {
+				transform: 'translate3d( 0, 0, 0 )'
+			};
+		} else {
+			let horizontalPosition: string;
+			if ( config.position.vertical.position === 'top' ) {
+				horizontalPosition = `calc( -100% - ${ config.position.horizontal.distance }px - 10px )`;
+			} else {
+				horizontalPosition = `calc( 100% + ${ config.position.horizontal.distance }px + 10px )`;
+			}
+			from = {
+				transform: `translate3d( -50%, ${ horizontalPosition }, 0 )`
+			};
+			to = {
+				transform: 'translate3d( -50%, 0, 0 )'
+			};
 		}
 
 		// Done

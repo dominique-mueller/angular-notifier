@@ -48,11 +48,11 @@
 		],
 		"max-classes-per-file": [
 			true,
-			1
+			5
 		],
 		"max-file-line-count": [
 			true,
-			1000
+			1500
 		],
 		"max-line-length": [
 			true,

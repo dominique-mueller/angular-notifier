@@ -1,7 +1,7 @@
 'use strict';
 
 // General configuration
-Error.stackTraceLimit = 0; // Alternatively set to 'Infinity'
+Error.stackTraceLimit = Infinity; // Alternatively set to 'Infinity'
 jasmine.DEFAULT_TIMEOUT_INTERVAL = 3000;
 __karma__.loaded = function() {}; // Canceles Karma's synchronous start (will be started later manually)
 

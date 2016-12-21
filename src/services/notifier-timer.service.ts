@@ -47,16 +47,11 @@ export class NotifierTimerService {
 		return new Promise<undefined>( ( resolve: () => void, reject: () => void ) => {
 
 			// For the first run ...
-			if ( this.remaining === 0 ) {
-				this.remaining = duration;
-			}
+			this.remaining = duration;
 
 			// Setup, then start the timer
 			this.finishPromiseResolver = resolve;
-			this.now = new Date().getTime();
-			this.timerId = setTimeout( () => {
-				this.finish();
-			}, this.remaining );
+			this.continue();
 
 		} );
 	}
@@ -70,7 +65,17 @@ export class NotifierTimerService {
 	}
 
 	/**
-	 * Stop (or clear) the timer
+	 * Continue the timer
+	 */
+	public continue(): void {
+		this.now = new Date().getTime();
+		this.timerId = setTimeout( () => {
+			this.finish();
+		}, this.remaining );
+	}
+
+	/**
+	 * Stop the timer
 	 */
 	public stop(): void {
 		clearTimeout( this.timerId );

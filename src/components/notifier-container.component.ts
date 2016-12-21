@@ -91,7 +91,9 @@ export class NotifierContainerComponent implements OnDestroy, OnInit {
 	 * Component destroyment lifecycle hook, cleans up the observable subsciption
 	 */
 	public ngOnDestroy(): void {
-		this.queueServiceSubscription.unsubscribe();
+		if ( this.queueServiceSubscription ) {
+			this.queueServiceSubscription.unsubscribe();
+		}
 	}
 
 	/**
@@ -136,7 +138,9 @@ export class NotifierContainerComponent implements OnDestroy, OnInit {
 			case NotifierActionType.HIDE_ALL:
 				return this.handleHideAllAction( action );
 			default:
-				return new Promise<undefined>( ( resolve: () => void, reject: () => void ) => resolve ); // Ignore unknown action types
+				return new Promise<undefined>( ( resolve: () => void, reject: () => void ) => {
+					resolve(); // Ignore unknown action types
+				} );
 		}
 	}
 
@@ -211,6 +215,7 @@ export class NotifierContainerComponent implements OnDestroy, OnInit {
 						}
 
 					} else {
+						stepPromises.push( this.notifications[ 0 ].component.hide() );
 						stepPromises.push( this.shiftNotifications( oldNotifications, notification.component.getHeight(), true ) );
 						stepPromises.push( notification.component.show() );
 					}
@@ -269,6 +274,8 @@ export class NotifierContainerComponent implements OnDestroy, OnInit {
 	private handleHideAction( action: NotifierAction ): Promise<undefined> {
 		return new Promise<undefined>( ( resolve: () => void, reject: () => void ) => {
 
+			const stepPromises: Array<Promise<undefined>> = [];
+
 			// Does the notification exist / are there even any notifications? (let's prevent accidential errors)
 			const notification: NotifierNotification | undefined = this.findNotificationById( action.payload );
 			if ( notification === undefined ) {
@@ -276,34 +283,39 @@ export class NotifierContainerComponent implements OnDestroy, OnInit {
 				return;
 			}
 
-			// Hide this notification
-			const stepPromises: Array<Promise<undefined>> = [];
-			stepPromises.push( notification.component.hide() );
+			// Get older notifications
+			const notificationIndex: number | undefined = this.findNotificationIndexById( action.payload );
+			if ( notificationIndex === undefined ) {
+				resolve();
+				return;
+			}
+			const oldNotifications: Array<NotifierNotification> = this.notifications.slice( 0, notificationIndex );
 
-			// Are there more notifications than the one we want to hide?
-			if ( this.notifications.length > 1 ) {
+			// Do older notifications exist, and thus do we need to shift other notifications as a consequence?
+			if ( oldNotifications.length > 0 ) {
 
-				// Get older notifications
-				const notificationIndex: number | undefined = this.findNotificationIndexById( action.payload );
-				if ( notificationIndex === undefined ) {
-					resolve();
-					return;
-				}
-				const oldNotifications: Array<NotifierNotification> = this.notifications.slice( 0, notificationIndex );
+				// Are animations enabled?
+				if ( this.config.animations.enabled && this.config.animations.hide.speed > 0 ) {
 
-				// Do older notifications exist, and thus do we need to shift other notifications as a consequence?
-				if ( oldNotifications.length > 0 ) {
-
-					// Are animations enabled?
-					if ( this.config.animations.enabled && this.config.animations.hide.speed > 0 ) {
+					// Is animation overlap enabled?
+					if ( this.config.animations.overlap !== false && this.config.animations.overlap > 0 ) {
+						stepPromises.push( notification.component.hide() );
 						setTimeout( () => {
 							stepPromises.push( this.shiftNotifications( oldNotifications, notification.component.getHeight(), false ) );
-						}, this.config.animations.hide.speed / 2.5 ); // Delay animation to prevent overlapping notifications
+						}, this.config.animations.hide.speed - this.config.animations.overlap );
 					} else {
-						stepPromises.push( this.shiftNotifications( oldNotifications, notification.component.getHeight(), false ) );
+						notification.component.hide().then( () => {
+							stepPromises.push( this.shiftNotifications( oldNotifications, notification.component.getHeight(), false ) );
+						} );
 					}
-
+				} else {
+					stepPromises.push( notification.component.hide() );
+					stepPromises.push( this.shiftNotifications( oldNotifications, notification.component.getHeight(), false ) );
 				}
+
+			} else {
+
+				stepPromises.push( notification.component.hide() );
 
 			}
 
@@ -327,7 +339,9 @@ export class NotifierContainerComponent implements OnDestroy, OnInit {
 
 		// Are there any notifications? (prevent accidential errors)
 		if ( this.notifications.length === 0 ) {
-			return new Promise<undefined>( ( resolve: () => void, reject: () => void ) => resolve ); // Done
+			return new Promise<undefined>( ( resolve: () => void, reject: () => void ) => {
+				resolve();
+			} ); // Done
 		} else {
 			action.payload = this.notifications[ 0 ].id;
 			return this.handleHideAction( action );
@@ -345,7 +359,9 @@ export class NotifierContainerComponent implements OnDestroy, OnInit {
 
 		// Are there any notifications? (prevent accidential errors)
 		if ( this.notifications.length === 0 ) {
-			return new Promise<undefined>( ( resolve: () => void, reject: () => void ) => resolve ); // Done
+			return new Promise<undefined>( ( resolve: () => void, reject: () => void ) => {
+				resolve();
+			} ); // Done
 		} else {
 			action.payload = this.notifications[ this.notifications.length - 1 ].id;
 			return this.handleHideAction( action );
