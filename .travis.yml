@@ -29,9 +29,7 @@ before_script:
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start # Run xvfb to fake a display (muhaha ...)
 script:
-  - npm run gulp test && npm run gulp build--publish # First test, then build for npm publish
-after_success:
-  - npm run coveralls
+  - npm run gulp test && npm run coveralls && npm run gulp build--publish # First test, then build for npm publish
 
 before_deploy: # Automatic semantic release
   - git config --global user.name "dominique-mueller"; # Setup git

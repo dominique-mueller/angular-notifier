@@ -3,7 +3,7 @@
 const gulp = require( 'gulp' );
 const karma = require( 'karma' );
 const path = require( 'path' );
-const remapIstanbul = require( 'remap-istanbul/lib/gulpRemapIstanbul' ).default;
+const remapIstanbul = require( 'remap-istanbul/lib/gulpRemapIstanbul' );
 
 /**
  * Gulp task: Run TypeScript unit tests

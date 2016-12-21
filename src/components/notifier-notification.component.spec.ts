@@ -353,7 +353,7 @@ export function main(): void {
 				tick();
 
 				expect( componentFixture.debugElement.styles[ 'transform' ] )
-					.toBe( `translate3d( 0, ${ 0 + shiftDistance + testNotifierConfig.position.vertical.gap }px, 0 )` );
+					.toBe( `translate3d( 0, ${ shiftDistance + testNotifierConfig.position.vertical.gap }px, 0 )` );
 				expect( shiftCallback ).toHaveBeenCalled();
 
 			} ) );
@@ -389,7 +389,7 @@ export function main(): void {
 					return {
 						finished: new Promise<undefined>( ( resolve: () => void, reject: () => void ) => {
 							componentFixture.debugElement.styles[ 'transform' ] =
-								`translate3d( 0, ${ 0 + shiftDistance + testNotifierConfig.position.vertical.gap }px, 0 )`; // Fake animation result
+								`translate3d( 0, ${ shiftDistance + testNotifierConfig.position.vertical.gap }px, 0 )`; // Fake animation result
 							resolve();
 						} )
 					};
@@ -400,7 +400,7 @@ export function main(): void {
 				tick();
 
 				expect( componentFixture.debugElement.styles[ 'transform' ] )
-					.toBe( `translate3d( 0, ${ 0 + shiftDistance + testNotifierConfig.position.vertical.gap }px, 0 )` );
+					.toBe( `translate3d( 0, ${ shiftDistance + testNotifierConfig.position.vertical.gap }px, 0 )` );
 				expect( shiftCallback ).toHaveBeenCalled();
 
 			} ) );
@@ -438,7 +438,7 @@ export function main(): void {
 				tick();
 
 				expect( componentFixture.debugElement.styles[ 'transform' ] )
-					.toBe( `translate3d( 0, ${ 0 - shiftDistance - testNotifierConfig.position.vertical.gap }px, 0 )` );
+					.toBe( `translate3d( 0, ${ -shiftDistance - testNotifierConfig.position.vertical.gap }px, 0 )` );
 				expect( shiftCallback ).toHaveBeenCalled();
 
 			} ) );
@@ -473,7 +473,7 @@ export function main(): void {
 					return {
 						finished: new Promise<undefined>( ( resolve: () => void, reject: () => void ) => {
 							componentFixture.debugElement.styles[ 'transform' ] =
-								`translate3d( 0, ${ 0 - shiftDistance - testNotifierConfig.position.vertical.gap }px, 0 )`; // Fake animation result
+								`translate3d( 0, ${ -shiftDistance - testNotifierConfig.position.vertical.gap }px, 0 )`; // Fake animation result
 							resolve();
 						} )
 					};
@@ -484,7 +484,7 @@ export function main(): void {
 				tick();
 
 				expect( componentFixture.debugElement.styles[ 'transform' ] )
-					.toBe( `translate3d( 0, ${ 0 - shiftDistance - testNotifierConfig.position.vertical.gap }px, 0 )` );
+					.toBe( `translate3d( 0, ${ -shiftDistance - testNotifierConfig.position.vertical.gap }px, 0 )` );
 				expect( shiftCallback ).toHaveBeenCalled();
 
 			} ) );
@@ -522,7 +522,7 @@ export function main(): void {
 				tick();
 
 				expect( componentFixture.debugElement.styles[ 'transform' ] )
-					.toBe( `translate3d( 0, ${ 0 - shiftDistance - testNotifierConfig.position.vertical.gap }px, 0 )` );
+					.toBe( `translate3d( 0, ${ -shiftDistance - testNotifierConfig.position.vertical.gap }px, 0 )` );
 				expect( shiftCallback ).toHaveBeenCalled();
 
 			} ) );
@@ -557,7 +557,7 @@ export function main(): void {
 					return {
 						finished: new Promise<undefined>( ( resolve: () => void, reject: () => void ) => {
 							componentFixture.debugElement.styles[ 'transform' ] =
-								`translate3d( 0, ${ 0 - shiftDistance - testNotifierConfig.position.vertical.gap }px, 0 )`; // Fake animation result
+								`translate3d( 0, ${ -shiftDistance - testNotifierConfig.position.vertical.gap }px, 0 )`; // Fake animation result
 							resolve();
 						} )
 					};
@@ -606,7 +606,7 @@ export function main(): void {
 				tick();
 
 				expect( componentFixture.debugElement.styles[ 'transform' ] )
-					.toBe( `translate3d( 0, ${ 0 + shiftDistance + testNotifierConfig.position.vertical.gap }px, 0 )` );
+					.toBe( `translate3d( 0, ${ shiftDistance + testNotifierConfig.position.vertical.gap }px, 0 )` );
 				expect( shiftCallback ).toHaveBeenCalled();
 
 			} ) );
@@ -641,7 +641,7 @@ export function main(): void {
 					return {
 						finished: new Promise<undefined>( ( resolve: () => void, reject: () => void ) => {
 							componentFixture.debugElement.styles[ 'transform' ] =
-								`translate3d( 0, ${ 0 + shiftDistance + testNotifierConfig.position.vertical.gap }px, 0 )`; // Fake animation result
+								`translate3d( 0, ${ shiftDistance + testNotifierConfig.position.vertical.gap }px, 0 )`; // Fake animation result
 							resolve();
 						} )
 					};
@@ -652,7 +652,7 @@ export function main(): void {
 				tick();
 
 				expect( componentFixture.debugElement.styles[ 'transform' ] )
-					.toBe( `translate3d( 0, ${ 0 + shiftDistance + testNotifierConfig.position.vertical.gap }px, 0 )` );
+					.toBe( `translate3d( 0, ${ shiftDistance + testNotifierConfig.position.vertical.gap }px, 0 )` );
 				expect( shiftCallback ).toHaveBeenCalled();
 
 			} ) );
@@ -690,7 +690,7 @@ export function main(): void {
 				tick();
 
 				expect( componentFixture.debugElement.styles[ 'transform' ] )
-					.toBe( `translate3d( -50%, ${ 0 + shiftDistance + testNotifierConfig.position.vertical.gap }px, 0 )` );
+					.toBe( `translate3d( -50%, ${ shiftDistance + testNotifierConfig.position.vertical.gap }px, 0 )` );
 				expect( shiftCallback ).toHaveBeenCalled();
 
 			} ) );
@@ -728,7 +728,7 @@ export function main(): void {
 					return {
 						finished: new Promise<undefined>( ( resolve: () => void, reject: () => void ) => {
 							componentFixture.debugElement.styles[ 'transform' ] =
-								`translate3d( -50%, ${ 0 + shiftDistance + testNotifierConfig.position.vertical.gap }px, 0 )`; // Fake animation result
+								`translate3d( -50%, ${ shiftDistance + testNotifierConfig.position.vertical.gap }px, 0 )`; // Fake animation result
 							resolve();
 						} )
 					};
@@ -739,7 +739,7 @@ export function main(): void {
 				tick();
 
 				expect( componentFixture.debugElement.styles[ 'transform' ] )
-					.toBe( `translate3d( -50%, ${ 0 + shiftDistance + testNotifierConfig.position.vertical.gap }px, 0 )` );
+					.toBe( `translate3d( -50%, ${ shiftDistance + testNotifierConfig.position.vertical.gap }px, 0 )` );
 				expect( shiftCallback ).toHaveBeenCalled();
 
 			} ) );
