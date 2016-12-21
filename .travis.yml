@@ -30,6 +30,8 @@ before_script:
   - sh -e /etc/init.d/xvfb start # Run xvfb to fake a display (muhaha ...)
 script:
   - npm run gulp test && npm run gulp build--publish # First test, then build for npm publish
+after_success:
+  - npm run coveralls
 
 before_deploy: # Automatic semantic release
   - git config --global user.name "dominique-mueller"; # Setup git

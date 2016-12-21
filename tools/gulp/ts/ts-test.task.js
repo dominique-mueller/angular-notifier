@@ -29,6 +29,7 @@ gulp.task( 'ts:test--coverage', () => {
 			reports: {
 				'json': 'test-coverage/ts/coverage.json',
 				'html': 'test-coverage/ts/', // For viewing in the browser
+				'lcovonly': 'test-coverage/ts/lcov.info', // For the GitHub badge
 				'text-summary': null // Print coverage summary to the console
 			}
 		} ) );

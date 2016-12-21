@@ -45,6 +45,10 @@ module.exports = function( config ) {
 				{
 					type: 'html', // For viewing in the browser
 					subdir: '.' // Prevent browser-specific folder naming
+				},
+				{
+					type: 'lcovonly', // For the GitHub badge
+					subdir: '.'
 				}
 			]
 		},

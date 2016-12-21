@@ -3,6 +3,7 @@
 [![dev dependency status](https://img.shields.io/david/dev/dominique-mueller/angular-notifier.svg?maxAge=2592000&style=flat-square)](https://david-dm.org/dominique-mueller/angular-notifier?type=dev)
 [![peer dependency status](https://img.shields.io/david/peer/dominique-mueller/angular-notifier.svg?maxAge=2592000&style=flat-square)](https://david-dm.org/dominique-mueller/angular-notifier?type=peer)
 [![travis ci build status](https://img.shields.io/travis/dominique-mueller/angular-notifier/master.svg?maxAge=2592000&style=flat-square)](https://travis-ci.org/dominique-mueller/angular-notifier)
+[![Codecov](https://img.shields.io/codecov/c/github/dominique-mueller/angular-notifier/master.svg?maxAge=2592000&style=flat-square)]()
 [![license](https://img.shields.io/npm/l/angular-notifier.svg?maxAge=2592000&style=flat-square)](https://github.com/dominique-mueller/angular-notifier/LICENSE)
 
 # angular-notifier
