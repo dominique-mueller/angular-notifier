@@ -3,6 +3,21 @@ Also see [releases](https://github.com/dominique-mueller/angular-notifier/releas
 
 <br>
 
+## [1.0.3](https://github.com/dominique-mueller/angular-notifier/releases/tag/1.0.3) / 2017-02-05
+
+### Bug Fixes
+
+* **aot:** Fixed error occuring when using NotifierModule.forRoot with ([a501f40](https://github.com/dominique-mueller/angular-notifier/commit/a501f40)), closes [#5](https://github.com/dominique-mueller/angular-notifier/issues/5)
+
+
+### Chores
+
+* **dependencies:** Updated dev dependencies, fixed SystemJS config ([85051b9](https://github.com/dominique-mueller/angular-notifier/commit/85051b9))
+* **tslint:** Updated linting rules, fixed linting issues ([53091cf](https://github.com/dominique-mueller/angular-notifier/commit/53091cf))
+
+
+<br>
+
 ## [1.0.2](https://github.com/dominique-mueller/angular-notifier/releases/tag/1.0.2) / 2016-12-21
 
 ### Bug Fixes
