@@ -9,6 +9,10 @@ export function main(): void {
 
 	describe( 'Notifier Timer Service', () => {
 
+		const fullAnimationTime: number = 5000;
+		const longAnimationTime: number = 4000;
+		const shortAnimationTime: number = 1000;
+
 		let timerService: NotifierTimerService;
 		let mockDate: MockDate = new MockDate();
 
@@ -36,13 +40,13 @@ export function main(): void {
 		it( 'should start and stop the timer', fakeAsync( () => {
 
 			const timerServiceCallback: () => {} = jasmine.createSpy( 'timerServiceCallback' );
-			timerService.start( 5000 ).then( timerServiceCallback );
+			timerService.start( fullAnimationTime ).then( timerServiceCallback );
 
-			tick( 4000 );
+			tick( longAnimationTime );
 
 			expect( timerServiceCallback ).not.toHaveBeenCalled();
 
-			tick( 1000 );
+			tick( shortAnimationTime );
 
 			expect( timerServiceCallback ).toHaveBeenCalled();
 
@@ -52,21 +56,21 @@ export function main(): void {
 
 			spyOn( window, 'Date' ).and.callFake( () => mockDate );
 			const timerServiceCallback: () => {} = jasmine.createSpy( 'timerServiceCallback' );
-			timerService.start( 5000 ).then( timerServiceCallback );
+			timerService.start( fullAnimationTime ).then( timerServiceCallback );
 
-			tick( 4000 );
-			mockDate.fastForwardTime( 4000 ); // Also update the global Date (in addition to the tick)
+			tick( longAnimationTime );
+			mockDate.fastForwardTime( longAnimationTime ); // Also update the global Date (in addition to the tick)
 
 			timerService.pause();
 
-			tick( 1000 );
-			mockDate.fastForwardTime( 1000 ); // Also update the global Date (in addition to the tick)
+			tick( shortAnimationTime );
+			mockDate.fastForwardTime( shortAnimationTime ); // Also update the global Date (in addition to the tick)
 
 			expect( timerServiceCallback ).not.toHaveBeenCalled();
 
 			// Resumes the timer, using the same duration as above (a continue doesn't exist yet)
 			timerService.continue();
-			tick( 1000 );
+			tick( shortAnimationTime );
 
 			expect( timerServiceCallback ).toHaveBeenCalled();
 
@@ -75,11 +79,11 @@ export function main(): void {
 		it( 'should stop the timer', fakeAsync( () => {
 
 			const timerServiceCallback: () => {} = jasmine.createSpy( 'timerServiceCallback' );
-			timerService.start( 5000 ).then( timerServiceCallback );
+			timerService.start( fullAnimationTime ).then( timerServiceCallback );
 
-			tick( 4000 );
+			tick( longAnimationTime );
 			timerService.stop();
-			tick( 1000 );
+			tick( shortAnimationTime );
 
 			expect( timerServiceCallback ).not.toHaveBeenCalled();
 

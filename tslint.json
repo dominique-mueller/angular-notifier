@@ -6,6 +6,7 @@
 
 	"rules": {
 
+		"adjacent-overload-signatures": true,
 		"align": [
 			true,
 			"statements"
@@ -20,9 +21,6 @@
 		"comment-format": [
 			true,
 			"check-space"
-		],
-		"completed-docs": [
-			true
 		],
 		"curly": true,
 		"cyclomatic-complexity": [
@@ -85,7 +83,7 @@
 		],
 		"new-parens": true,
 		"no-angle-bracket-type-assertion": false,
-		"no-any": false,
+		"no-any": true,
 		"no-arg": true,
 		"no-bitwise": true,
 		"no-conditional-assignment": true,
@@ -107,13 +105,14 @@
 		"no-default-export": true,
 		"no-duplicate-variable": true,
 		"no-empty": true,
+		"no-empty-interface": true,
 		"no-eval": true,
-		"no-for-in-array": true,
 		"no-inferrable-types": [
 			false
 		],
 		"no-internal-module": true,
 		"no-invalid-this": true,
+		"no-magic-numbers": true,
 		"no-mergeable-namespace": true,
 		"no-namespace": true,
 		"no-null-keyword": false,
@@ -160,7 +159,6 @@
 			"single"
 		],
 		"radix": true,
-		"restrict-plus-operands": true,
 		"semicolon": [
 			true,
 			"always"

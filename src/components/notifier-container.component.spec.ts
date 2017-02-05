@@ -47,10 +47,12 @@ export function main(): void {
 			componentFixture.detectChanges();
 			spyOn( queueService, 'continue' );
 
+			// tslint:disable no-any
 			queueService.push( <any> {
 				payload: 'STUFF',
 				type: 'WHATEVS'
 			} );
+			// tslint:enable no-any
 			componentFixture.detectChanges();
 			tick();
 
@@ -79,9 +81,11 @@ export function main(): void {
 
 				expect( listElements.length ).toBe( 1 );
 
-				const mockNotificationComponent: any = new MockNotifierNotificationComponent();
+				const mockNotificationComponent: MockNotifierNotificationComponent = new MockNotifierNotificationComponent();
 				spyOn( mockNotificationComponent, 'show' ).and.callThrough(); // Continue
-				componentInstance.onNotificationReady( mockNotificationComponent ); // Trigger the ready event manually
+				// tslint:disable no-any
+				componentInstance.onNotificationReady( <any> mockNotificationComponent ); // Trigger the ready event manually
+				// tslint:enable no-any
 
 				tick();
 
@@ -109,9 +113,11 @@ export function main(): void {
 					type: NotifierActionType.SHOW
 				} );
 				componentFixture.detectChanges();
-				const mockFirstNotificationComponent: any = new MockNotifierNotificationComponent();
+				const mockFirstNotificationComponent: MockNotifierNotificationComponent = new MockNotifierNotificationComponent();
 				spyOn( mockFirstNotificationComponent, 'hide' ).and.callThrough(); // Continue
-				componentInstance.onNotificationReady( mockFirstNotificationComponent ); // Trigger the ready event manually
+				// tslint:disable no-any
+				componentInstance.onNotificationReady( <any> mockFirstNotificationComponent ); // Trigger the ready event manually
+				// tslint:enable no-any
 
 				tick();
 
@@ -124,9 +130,11 @@ export function main(): void {
 					type: NotifierActionType.SHOW
 				} );
 				componentFixture.detectChanges();
-				const mockSecondNotificationComponent: any = new MockNotifierNotificationComponent();
+				const mockSecondNotificationComponent: MockNotifierNotificationComponent = new MockNotifierNotificationComponent();
 				spyOn( mockSecondNotificationComponent, 'show' ).and.callThrough(); // Continue
-				componentInstance.onNotificationReady( mockSecondNotificationComponent ); // Trigger the ready event manually
+				// tslint:disable no-any
+				componentInstance.onNotificationReady( <any> mockSecondNotificationComponent ); // Trigger the ready event manually
+				// tslint:enable no-any
 
 				tick();
 
@@ -157,9 +165,11 @@ export function main(): void {
 					type: NotifierActionType.SHOW
 				} );
 				componentFixture.detectChanges();
-				const mockFirstNotificationComponent: any = new MockNotifierNotificationComponent();
+				const mockFirstNotificationComponent: MockNotifierNotificationComponent = new MockNotifierNotificationComponent();
 				spyOn( mockFirstNotificationComponent, 'hide' ).and.callThrough(); // Continue
-				componentInstance.onNotificationReady( mockFirstNotificationComponent ); // Trigger the ready event manually
+				// tslint:disable no-any
+				componentInstance.onNotificationReady( <any> mockFirstNotificationComponent ); // Trigger the ready event manually
+				// tslint:enable no-any
 
 				tick();
 
@@ -172,9 +182,11 @@ export function main(): void {
 					type: NotifierActionType.SHOW
 				} );
 				componentFixture.detectChanges();
-				const mockSecondNotificationComponent: any = new MockNotifierNotificationComponent();
+				const mockSecondNotificationComponent: MockNotifierNotificationComponent = new MockNotifierNotificationComponent();
 				spyOn( mockSecondNotificationComponent, 'shift' ).and.callThrough(); // Continue
-				componentInstance.onNotificationReady( mockSecondNotificationComponent ); // Trigger the ready event manually
+				// tslint:disable no-any
+				componentInstance.onNotificationReady( <any> mockSecondNotificationComponent ); // Trigger the ready event manually
+				// tslint:enable no-any
 
 				tick();
 
@@ -187,9 +199,11 @@ export function main(): void {
 					type: NotifierActionType.SHOW
 				} );
 				componentFixture.detectChanges();
-				const mockThirdNotificationComponent: any = new MockNotifierNotificationComponent();
+				const mockThirdNotificationComponent: MockNotifierNotificationComponent = new MockNotifierNotificationComponent();
 				spyOn( mockThirdNotificationComponent, 'show' ).and.callThrough(); // Continue
-				componentInstance.onNotificationReady( mockThirdNotificationComponent ); // Trigger the ready event manually
+				// tslint:disable no-any
+				componentInstance.onNotificationReady( <any> mockThirdNotificationComponent ); // Trigger the ready event manually
+				// tslint:enable no-any
 
 				tick();
 
@@ -222,9 +236,11 @@ export function main(): void {
 					type: NotifierActionType.SHOW
 				} );
 				componentFixture.detectChanges();
-				const mockFirstNotificationComponent: any = new MockNotifierNotificationComponent();
+				const mockFirstNotificationComponent: MockNotifierNotificationComponent = new MockNotifierNotificationComponent();
 				spyOn( mockFirstNotificationComponent, 'hide' ).and.callThrough(); // Continue
-				componentInstance.onNotificationReady( mockFirstNotificationComponent ); // Trigger the ready event manually
+				// tslint:disable no-any
+				componentInstance.onNotificationReady( <any> mockFirstNotificationComponent ); // Trigger the ready event manually
+				// tslint:enable no-any
 
 				tick();
 
@@ -237,9 +253,11 @@ export function main(): void {
 					type: NotifierActionType.SHOW
 				} );
 				componentFixture.detectChanges();
-				const mockSecondNotificationComponent: any = new MockNotifierNotificationComponent();
+				const mockSecondNotificationComponent: MockNotifierNotificationComponent = new MockNotifierNotificationComponent();
 				spyOn( mockSecondNotificationComponent, 'shift' ).and.callThrough(); // Continue
-				componentInstance.onNotificationReady( mockSecondNotificationComponent ); // Trigger the ready event manually
+				// tslint:disable no-any
+				componentInstance.onNotificationReady( <any> mockSecondNotificationComponent ); // Trigger the ready event manually
+				// tslint:enable no-any
 
 				tick();
 
@@ -252,9 +270,11 @@ export function main(): void {
 					type: NotifierActionType.SHOW
 				} );
 				componentFixture.detectChanges();
-				const mockThirdNotificationComponent: any = new MockNotifierNotificationComponent();
+				const mockThirdNotificationComponent: MockNotifierNotificationComponent = new MockNotifierNotificationComponent();
 				spyOn( mockThirdNotificationComponent, 'show' ).and.callThrough(); // Continue
-				componentInstance.onNotificationReady( mockThirdNotificationComponent ); // Trigger the ready event manually
+				// tslint:disable no-any
+				componentInstance.onNotificationReady( <any> mockThirdNotificationComponent ); // Trigger the ready event manually
+				// tslint:enable no-any
 
 				tick();
 
@@ -284,9 +304,11 @@ export function main(): void {
 					type: NotifierActionType.SHOW
 				} );
 				componentFixture.detectChanges();
-				const mockFirstNotificationComponent: any = new MockNotifierNotificationComponent();
+				const mockFirstNotificationComponent: MockNotifierNotificationComponent = new MockNotifierNotificationComponent();
 				spyOn( mockFirstNotificationComponent, 'hide' ).and.callThrough(); // Continue
-				componentInstance.onNotificationReady( mockFirstNotificationComponent ); // Trigger the ready event manually
+				// tslint:disable no-any
+				componentInstance.onNotificationReady( <any> mockFirstNotificationComponent ); // Trigger the ready event manually
+				// tslint:enable no-any
 
 				tick();
 
@@ -299,9 +321,11 @@ export function main(): void {
 					type: NotifierActionType.SHOW
 				} );
 				componentFixture.detectChanges();
-				const mockSecondNotificationComponent: any = new MockNotifierNotificationComponent();
+				const mockSecondNotificationComponent: MockNotifierNotificationComponent = new MockNotifierNotificationComponent();
 				spyOn( mockSecondNotificationComponent, 'shift' ).and.callThrough(); // Continue
-				componentInstance.onNotificationReady( mockSecondNotificationComponent ); // Trigger the ready event manually
+				// tslint:disable no-any
+				componentInstance.onNotificationReady( <any> mockSecondNotificationComponent ); // Trigger the ready event manually
+				// tslint:enable no-any
 
 				tick();
 
@@ -314,9 +338,11 @@ export function main(): void {
 					type: NotifierActionType.SHOW
 				} );
 				componentFixture.detectChanges();
-				const mockThirdNotificationComponent: any = new MockNotifierNotificationComponent();
+				const mockThirdNotificationComponent: MockNotifierNotificationComponent = new MockNotifierNotificationComponent();
 				spyOn( mockThirdNotificationComponent, 'show' ).and.callThrough(); // Continue
-				componentInstance.onNotificationReady( mockThirdNotificationComponent ); // Trigger the ready event manually
+				// tslint:disable no-any
+				componentInstance.onNotificationReady( <any> mockThirdNotificationComponent ); // Trigger the ready event manually
+				// tslint:enable no-any
 
 				tick( testNotifierConfig.animations.hide.speed + testNotifierConfig.animations.shift.speed
 					- <number> testNotifierConfig.animations.overlap );
@@ -354,9 +380,11 @@ export function main(): void {
 					type: NotifierActionType.SHOW
 				} );
 				componentFixture.detectChanges();
-				const mockNotificationComponent: any = new MockNotifierNotificationComponent();
+				const mockNotificationComponent: MockNotifierNotificationComponent = new MockNotifierNotificationComponent();
 				spyOn( mockNotificationComponent, 'hide' ).and.callThrough(); // Continue
-				componentInstance.onNotificationReady( mockNotificationComponent ); // Trigger the ready event manually
+				// tslint:disable no-any
+				componentInstance.onNotificationReady( <any> mockNotificationComponent ); // Trigger the ready event manually
+				// tslint:enable no-any
 
 				tick();
 
@@ -399,9 +427,11 @@ export function main(): void {
 					type: NotifierActionType.SHOW
 				} );
 				componentFixture.detectChanges();
-				const mockNotificationComponent: any = new MockNotifierNotificationComponent();
+				const mockNotificationComponent: MockNotifierNotificationComponent = new MockNotifierNotificationComponent();
 				spyOn( mockNotificationComponent, 'hide' ).and.callThrough(); // Continue
-				componentInstance.onNotificationReady( mockNotificationComponent ); // Trigger the ready event manually
+				// tslint:disable no-any
+				componentInstance.onNotificationReady( <any> mockNotificationComponent ); // Trigger the ready event manually
+				// tslint:enable no-any
 
 				tick();
 
@@ -442,9 +472,11 @@ export function main(): void {
 					type: NotifierActionType.SHOW
 				} );
 				componentFixture.detectChanges();
-				const mockFirstNotificationComponent: any = new MockNotifierNotificationComponent();
+				const mockFirstNotificationComponent: MockNotifierNotificationComponent = new MockNotifierNotificationComponent();
 				spyOn( mockFirstNotificationComponent, 'shift' ).and.callThrough(); // Continue
-				componentInstance.onNotificationReady( mockFirstNotificationComponent ); // Trigger the ready event manually
+				// tslint:disable no-any
+				componentInstance.onNotificationReady( <any> mockFirstNotificationComponent ); // Trigger the ready event manually
+				// tslint:enable no-any
 
 				// Show second notification
 				const testNotificationId: string = 'FAKE_ID';
@@ -457,9 +489,11 @@ export function main(): void {
 					type: NotifierActionType.SHOW
 				} );
 				componentFixture.detectChanges();
-				const mockSecondNotificationComponent: any = new MockNotifierNotificationComponent();
+				const mockSecondNotificationComponent: MockNotifierNotificationComponent = new MockNotifierNotificationComponent();
 				spyOn( mockSecondNotificationComponent, 'hide' ).and.callThrough(); // Continue
-				componentInstance.onNotificationReady( mockSecondNotificationComponent ); // Trigger the ready event manually
+				// tslint:disable no-any
+				componentInstance.onNotificationReady( <any> mockSecondNotificationComponent ); // Trigger the ready event manually
+				// tslint:enable no-any
 
 				// Hide second notification
 				queueService.push( {
@@ -473,10 +507,11 @@ export function main(): void {
 
 				const listElements: Array<DebugElement> = componentFixture.debugElement.queryAll( By.css( '.x-notifier__container-list' ) );
 
+				const expectedCallTimes: number = 3;
 				expect( listElements.length ).toBe( 1 );
 				expect( mockFirstNotificationComponent.shift ).toHaveBeenCalled();
 				expect( mockSecondNotificationComponent.hide ).toHaveBeenCalled();
-				expect( queueService.continue ).toHaveBeenCalledTimes( 3 );
+				expect( queueService.continue ).toHaveBeenCalledTimes( expectedCallTimes );
 
 			} ) );
 
@@ -501,9 +536,11 @@ export function main(): void {
 					type: NotifierActionType.SHOW
 				} );
 				componentFixture.detectChanges();
-				const mockFirstNotificationComponent: any = new MockNotifierNotificationComponent();
+				const mockFirstNotificationComponent: MockNotifierNotificationComponent = new MockNotifierNotificationComponent();
 				spyOn( mockFirstNotificationComponent, 'shift' ).and.callThrough(); // Continue
-				componentInstance.onNotificationReady( mockFirstNotificationComponent ); // Trigger the ready event manually
+				// tslint:disable no-any
+				componentInstance.onNotificationReady( <any> mockFirstNotificationComponent ); // Trigger the ready event manually
+				// tslint:enable no-any
 
 				// Show second notification
 				const testNotificationId: string = 'FAKE_ID';
@@ -516,9 +553,11 @@ export function main(): void {
 					type: NotifierActionType.SHOW
 				} );
 				componentFixture.detectChanges();
-				const mockSecondNotificationComponent: any = new MockNotifierNotificationComponent();
+				const mockSecondNotificationComponent: MockNotifierNotificationComponent = new MockNotifierNotificationComponent();
 				spyOn( mockSecondNotificationComponent, 'hide' ).and.callThrough(); // Continue
-				componentInstance.onNotificationReady( mockSecondNotificationComponent ); // Trigger the ready event manually
+				// tslint:disable no-any
+				componentInstance.onNotificationReady( <any> mockSecondNotificationComponent ); // Trigger the ready event manually
+				// tslint:enable no-any
 
 				// Hide second notification
 				queueService.push( {
@@ -532,10 +571,11 @@ export function main(): void {
 
 				const listElements: Array<DebugElement> = componentFixture.debugElement.queryAll( By.css( '.x-notifier__container-list' ) );
 
+				const expectedCallTimes: number = 3;
 				expect( listElements.length ).toBe( 1 );
 				expect( mockFirstNotificationComponent.shift ).toHaveBeenCalled();
 				expect( mockSecondNotificationComponent.hide ).toHaveBeenCalled();
-				expect( queueService.continue ).toHaveBeenCalledTimes( 3 );
+				expect( queueService.continue ).toHaveBeenCalledTimes( expectedCallTimes );
 
 			} ) );
 
@@ -556,9 +596,11 @@ export function main(): void {
 					type: NotifierActionType.SHOW
 				} );
 				componentFixture.detectChanges();
-				const mockFirstNotificationComponent: any = new MockNotifierNotificationComponent();
+				const mockFirstNotificationComponent: MockNotifierNotificationComponent = new MockNotifierNotificationComponent();
 				spyOn( mockFirstNotificationComponent, 'shift' ).and.callThrough(); // Continue
-				componentInstance.onNotificationReady( mockFirstNotificationComponent ); // Trigger the ready event manually
+				// tslint:disable no-any
+				componentInstance.onNotificationReady( <any> mockFirstNotificationComponent ); // Trigger the ready event manually
+				// tslint:enable no-any
 
 				// Show second notification
 				const testNotificationId: string = 'FAKE_ID';
@@ -571,9 +613,11 @@ export function main(): void {
 					type: NotifierActionType.SHOW
 				} );
 				componentFixture.detectChanges();
-				const mockSecondNotificationComponent: any = new MockNotifierNotificationComponent();
+				const mockSecondNotificationComponent: MockNotifierNotificationComponent = new MockNotifierNotificationComponent();
 				spyOn( mockSecondNotificationComponent, 'hide' ).and.callThrough(); // Continue
-				componentInstance.onNotificationReady( mockSecondNotificationComponent ); // Trigger the ready event manually
+				// tslint:disable no-any
+				componentInstance.onNotificationReady( <any> mockSecondNotificationComponent ); // Trigger the ready event manually
+				// tslint:enable no-any
 
 				// Hide second notification
 				queueService.push( {
@@ -587,10 +631,11 @@ export function main(): void {
 
 				const listElements: Array<DebugElement> = componentFixture.debugElement.queryAll( By.css( '.x-notifier__container-list' ) );
 
+				const expectedCallTimes: number = 3;
 				expect( listElements.length ).toBe( 1 );
 				expect( mockFirstNotificationComponent.shift ).toHaveBeenCalled();
 				expect( mockSecondNotificationComponent.hide ).toHaveBeenCalled();
-				expect( queueService.continue ).toHaveBeenCalledTimes( 3 );
+				expect( queueService.continue ).toHaveBeenCalledTimes( expectedCallTimes );
 
 			} ) );
 
@@ -616,9 +661,11 @@ export function main(): void {
 					type: NotifierActionType.SHOW
 				} );
 				componentFixture.detectChanges();
-				const mockNotificationComponent: any = new MockNotifierNotificationComponent();
+				const mockNotificationComponent: MockNotifierNotificationComponent = new MockNotifierNotificationComponent();
 				spyOn( mockNotificationComponent, 'hide' ).and.callThrough(); // Continue
-				componentInstance.onNotificationReady( mockNotificationComponent ); // Trigger the ready event manually
+				// tslint:disable no-any
+				componentInstance.onNotificationReady( <any> mockNotificationComponent ); // Trigger the ready event manually
+				// tslint:enable no-any
 
 				// Hide second notification
 				componentInstance.onNotificationDismiss( testNotificationId );
@@ -627,9 +674,10 @@ export function main(): void {
 
 				const listElements: Array<DebugElement> = componentFixture.debugElement.queryAll( By.css( '.x-notifier__container-list' ) );
 
+				const expectedCallTimes: number = 2;
 				expect( listElements.length ).toBe( 0 );
 				expect( mockNotificationComponent.hide ).toHaveBeenCalled();
-				expect( queueService.continue ).toHaveBeenCalledTimes( 2 );
+				expect( queueService.continue ).toHaveBeenCalledTimes( expectedCallTimes );
 
 			} ) );
 
@@ -658,9 +706,11 @@ export function main(): void {
 					type: NotifierActionType.SHOW
 				} );
 				componentFixture.detectChanges();
-				const mockFirstNotificationComponent: any = new MockNotifierNotificationComponent();
+				const mockFirstNotificationComponent: MockNotifierNotificationComponent = new MockNotifierNotificationComponent();
 				spyOn( mockFirstNotificationComponent, 'hide' ).and.callThrough(); // Continue
-				componentInstance.onNotificationReady( mockFirstNotificationComponent ); // Trigger the ready event manually
+				// tslint:disable no-any
+				componentInstance.onNotificationReady( <any> mockFirstNotificationComponent ); // Trigger the ready event manually
+				// tslint:enable no-any
 
 				// Show first notification
 				queueService.push( {
@@ -671,9 +721,11 @@ export function main(): void {
 					type: NotifierActionType.SHOW
 				} );
 				componentFixture.detectChanges();
-				const mockSecondNotificationComponent: any = new MockNotifierNotificationComponent();
+				const mockSecondNotificationComponent: MockNotifierNotificationComponent = new MockNotifierNotificationComponent();
 				spyOn( mockSecondNotificationComponent, 'hide' ).and.callThrough(); // Continue
-				componentInstance.onNotificationReady( mockSecondNotificationComponent ); // Trigger the ready event manually
+				// tslint:disable no-any
+				componentInstance.onNotificationReady( <any> mockSecondNotificationComponent ); // Trigger the ready event manually
+				// tslint:enable no-any
 
 				// Hide second notification
 				queueService.push( {
@@ -686,10 +738,11 @@ export function main(): void {
 
 				const listElements: Array<DebugElement> = componentFixture.debugElement.queryAll( By.css( '.x-notifier__container-list' ) );
 
+				const expectedCallTimes: number = 3;
 				expect( listElements.length ).toBe( 1 );
 				expect( mockFirstNotificationComponent.hide ).toHaveBeenCalled();
 				expect( mockSecondNotificationComponent.hide ).not.toHaveBeenCalled();
-				expect( queueService.continue ).toHaveBeenCalledTimes( 3 );
+				expect( queueService.continue ).toHaveBeenCalledTimes( expectedCallTimes );
 
 			} ) );
 
@@ -735,9 +788,11 @@ export function main(): void {
 					type: NotifierActionType.SHOW
 				} );
 				componentFixture.detectChanges();
-				const mockFirstNotificationComponent: any = new MockNotifierNotificationComponent();
+				const mockFirstNotificationComponent: MockNotifierNotificationComponent = new MockNotifierNotificationComponent();
 				spyOn( mockFirstNotificationComponent, 'hide' ).and.callThrough(); // Continue
-				componentInstance.onNotificationReady( mockFirstNotificationComponent ); // Trigger the ready event manually
+				// tslint:disable no-any
+				componentInstance.onNotificationReady( <any> mockFirstNotificationComponent ); // Trigger the ready event manually
+				// tslint:enable no-any
 
 				// Show first notification
 				queueService.push( {
@@ -749,9 +804,11 @@ export function main(): void {
 					type: NotifierActionType.SHOW
 				} );
 				componentFixture.detectChanges();
-				const mockSecondNotificationComponent: any = new MockNotifierNotificationComponent();
+				const mockSecondNotificationComponent: MockNotifierNotificationComponent = new MockNotifierNotificationComponent();
 				spyOn( mockSecondNotificationComponent, 'hide' ).and.callThrough(); // Continue
-				componentInstance.onNotificationReady( mockSecondNotificationComponent ); // Trigger the ready event manually
+				// tslint:disable no-any
+				componentInstance.onNotificationReady( <any> mockSecondNotificationComponent ); // Trigger the ready event manually
+				// tslint:enable no-any
 
 				// Hide second notification
 				queueService.push( {
@@ -764,10 +821,11 @@ export function main(): void {
 
 				const listElements: Array<DebugElement> = componentFixture.debugElement.queryAll( By.css( '.x-notifier__container-list' ) );
 
+				const expectedCallTimes: number = 3;
 				expect( listElements.length ).toBe( 1 );
 				expect( mockFirstNotificationComponent.hide ).not.toHaveBeenCalled();
 				expect( mockSecondNotificationComponent.hide ).toHaveBeenCalled();
-				expect( queueService.continue ).toHaveBeenCalledTimes( 3 );
+				expect( queueService.continue ).toHaveBeenCalledTimes( expectedCallTimes );
 
 			} ) );
 
@@ -817,9 +875,11 @@ export function main(): void {
 					type: NotifierActionType.SHOW
 				} );
 				componentFixture.detectChanges();
-				const mockFirstNotificationComponent: any = new MockNotifierNotificationComponent();
+				const mockFirstNotificationComponent: MockNotifierNotificationComponent = new MockNotifierNotificationComponent();
 				spyOn( mockFirstNotificationComponent, 'hide' ).and.callThrough(); // Continue
-				componentInstance.onNotificationReady( mockFirstNotificationComponent ); // Trigger the ready event manually
+				// tslint:disable no-any
+				componentInstance.onNotificationReady( <any> mockFirstNotificationComponent ); // Trigger the ready event manually
+				// tslint:enable no-any
 
 				// Show first notification
 				queueService.push( {
@@ -830,9 +890,11 @@ export function main(): void {
 					type: NotifierActionType.SHOW
 				} );
 				componentFixture.detectChanges();
-				const mockSecondNotificationComponent: any = new MockNotifierNotificationComponent();
+				const mockSecondNotificationComponent: MockNotifierNotificationComponent = new MockNotifierNotificationComponent();
 				spyOn( mockSecondNotificationComponent, 'hide' ).and.callThrough(); // Continue
-				componentInstance.onNotificationReady( mockSecondNotificationComponent ); // Trigger the ready event manually
+				// tslint:disable no-any
+				componentInstance.onNotificationReady( <any> mockSecondNotificationComponent ); // Trigger the ready event manually
+				// tslint:enable no-any
 
 				// Hide second notification
 				queueService.push( {
@@ -845,10 +907,11 @@ export function main(): void {
 
 				const listElements: Array<DebugElement> = componentFixture.debugElement.queryAll( By.css( '.x-notifier__container-list' ) );
 
+				const expectedCallTimes: number = 3;
 				expect( listElements.length ).toBe( 0 );
 				expect( mockFirstNotificationComponent.hide ).toHaveBeenCalled();
 				expect( mockSecondNotificationComponent.hide ).toHaveBeenCalled();
-				expect( queueService.continue ).toHaveBeenCalledTimes( 3 );
+				expect( queueService.continue ).toHaveBeenCalledTimes( expectedCallTimes );
 
 			} ) );
 
@@ -869,9 +932,11 @@ export function main(): void {
 					type: NotifierActionType.SHOW
 				} );
 				componentFixture.detectChanges();
-				const mockFirstNotificationComponent: any = new MockNotifierNotificationComponent();
+				const mockFirstNotificationComponent: MockNotifierNotificationComponent = new MockNotifierNotificationComponent();
 				spyOn( mockFirstNotificationComponent, 'hide' ).and.callThrough(); // Continue
-				componentInstance.onNotificationReady( mockFirstNotificationComponent ); // Trigger the ready event manually
+				// tslint:disable no-any
+				componentInstance.onNotificationReady( <any> mockFirstNotificationComponent ); // Trigger the ready event manually
+				// tslint:enable no-any
 
 				// Show first notification
 				queueService.push( {
@@ -882,9 +947,11 @@ export function main(): void {
 					type: NotifierActionType.SHOW
 				} );
 				componentFixture.detectChanges();
-				const mockSecondNotificationComponent: any = new MockNotifierNotificationComponent();
+				const mockSecondNotificationComponent: MockNotifierNotificationComponent = new MockNotifierNotificationComponent();
 				spyOn( mockSecondNotificationComponent, 'hide' ).and.callThrough(); // Continue
-				componentInstance.onNotificationReady( mockSecondNotificationComponent ); // Trigger the ready event manually
+				// tslint:disable no-any
+				componentInstance.onNotificationReady( <any> mockSecondNotificationComponent ); // Trigger the ready event manually
+				// tslint:enable no-any
 
 				// Hide second notification
 				queueService.push( {
@@ -892,15 +959,17 @@ export function main(): void {
 				} );
 				componentFixture.detectChanges();
 
-				tick( testNotifierConfig.animations.hide.speed + ( 2 * <number> testNotifierConfig.animations.hide.offset ) );
+				const numberOfNotifications: number = 2;
+				tick( testNotifierConfig.animations.hide.speed + ( numberOfNotifications * <number> testNotifierConfig.animations.hide.offset ) );
 				componentFixture.detectChanges(); // Run a second change detection (to update the template)
 
 				const listElements: Array<DebugElement> = componentFixture.debugElement.queryAll( By.css( '.x-notifier__container-list' ) );
 
+				const expectedCallTimes: number = 3;
 				expect( listElements.length ).toBe( 0 );
 				expect( mockFirstNotificationComponent.hide ).toHaveBeenCalled();
 				expect( mockSecondNotificationComponent.hide ).toHaveBeenCalled();
-				expect( queueService.continue ).toHaveBeenCalledTimes( 3 );
+				expect( queueService.continue ).toHaveBeenCalledTimes( expectedCallTimes );
 
 			} ) );
 
@@ -931,7 +1000,7 @@ export function main(): void {
 		/**
 		 * Helper for upfront configuration
 		 */
-		function beforeEachWithConfig( testNotifierConfig: any ): void {
+		function beforeEachWithConfig( testNotifierConfig: NotifierConfig ): void {
 
 			TestBed.configureTestingModule( {
 				declarations: [
@@ -992,6 +1061,11 @@ class MockNotifierQueueService extends NotifierQueueService {
 }
 
 /**
+ * Random notification height
+ */
+const randomHeight: number = 42;
+
+/**
  * Mock Notifier Notification Component
  */
 class MockNotifierNotificationComponent { // Don't extend to prevent DI null issues
@@ -1004,7 +1078,7 @@ class MockNotifierNotificationComponent { // Don't extend to prevent DI null iss
 	 * @override
 	 */
 	public getHeight(): number {
-		return 42; // Random ...
+		return randomHeight; // Random ...
 	}
 
 	/**

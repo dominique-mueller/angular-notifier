@@ -9,10 +9,12 @@
  */
 export interface NotifierAction {
 
+	// tslint:disable no-any
 	/**
 	 * Action payload containing all information necessary to process the action (optional)
 	 */
 	payload?: any;
+	// tslint:enable no-any
 
 	/**
 	 * Action type

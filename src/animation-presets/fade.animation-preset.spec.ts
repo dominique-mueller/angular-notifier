@@ -1,3 +1,4 @@
+import { NotifierConfig } from '../models/notifier-config.model';
 import { NotifierAnimationPresetKeyframes } from '../models/notifier-animation.model';
 import { fade } from './../animation-presets/fade.animation-preset';
 
@@ -12,7 +13,7 @@ export function main(): void {
 
 			it( 'should return animation keyframes', () => {
 
-				const testNotification: any = new MockNotification( {} );
+				const testNotification: MockNotification = new MockNotification( <NotifierConfig> {} );
 				const expectedKeyframes: NotifierAnimationPresetKeyframes = {
 					from: {
 						opacity: '0'
@@ -21,7 +22,9 @@ export function main(): void {
 						opacity: '1'
 					}
 				};
-				const keyframes: NotifierAnimationPresetKeyframes = fade.show( testNotification );
+				// tslint:disable no-any
+				const keyframes: NotifierAnimationPresetKeyframes = fade.show( <any> testNotification );
+				// tslint:enable no-any
 
 				expect( keyframes ).toEqual( expectedKeyframes );
 
@@ -33,7 +36,7 @@ export function main(): void {
 
 			it( 'should return animation keyframes', () => {
 
-				const testNotification: any = new MockNotification( {} );
+				const testNotification: MockNotification = new MockNotification( <NotifierConfig> {} );
 				const expectedKeyframes: NotifierAnimationPresetKeyframes = {
 					from: {
 						opacity: '1'
@@ -42,7 +45,9 @@ export function main(): void {
 						opacity: '0'
 					}
 				};
-				const keyframes: NotifierAnimationPresetKeyframes = fade.hide( testNotification );
+				// tslint:disable no-any
+				const keyframes: NotifierAnimationPresetKeyframes = fade.hide( <any> testNotification );
+				// tslint:enable no-any
 
 				expect( keyframes ).toEqual( expectedKeyframes );
 
@@ -55,6 +60,21 @@ export function main(): void {
 }
 
 /**
+ * Mock Notification Height
+ */
+const mockNotificationHeight: number = 40;
+
+/**
+ * Mock Notification Shift
+ */
+const mockNotificationShift: number = 80;
+
+/**
+ * Mock Notification Width
+ */
+const mockNotificationWidth: number = 300;
+
+/**
  * Mock notification, providing static values except the global configuration
  */
 class MockNotification {
@@ -62,7 +82,7 @@ class MockNotification {
 	/**
 	 * Configuration
 	 */
-	public config: any;
+	public config: NotifierConfig;
 
 	/**
 	 * Notification ID
@@ -79,22 +99,24 @@ class MockNotification {
 	 */
 	public message: string = 'Lorem ipsum dolor sit amet.';
 
+	// tslint:disable no-any
 	/**
 	 * Notification component
 	 */
 	public component: any = {
 		getConfig: () => this.config,
-		getHeight: () => 40,
-		getShift: () => 80,
-		getWidth: () => 300
+		getHeight: () => mockNotificationHeight,
+		getShift: () => mockNotificationShift,
+		getWidth: () => mockNotificationWidth
 	};
+	// tslint:enable no-any
 
 	/**
 	 * Constructor
 	 *
-	 * @param {any} config Configuration
+	 * @param {NotifierConfig} config Configuration
 	 */
-	public constructor( config: any ) {
+	public constructor( config: NotifierConfig ) {
 		this.config = config;
 	}
 

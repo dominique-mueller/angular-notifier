@@ -930,7 +930,7 @@ export function main(): void {
 		/**
 		 * Helper for upfront configuration
 		 */
-		function beforeEachWithConfig( testNotifierConfig: any ): void {
+		function beforeEachWithConfig( testNotifierConfig: NotifierConfig ): void {
 
 			TestBed
 				.configureTestingModule( {
@@ -1034,7 +1034,7 @@ class MockNotifierTimerService extends NotifierTimerService {
 	 *
 	 * @override
 	 */
-	private resolveFunction: any;
+	private resolveFunction: Function;
 
 	/**
 	 * Start (or resume) the timer - doing nothing here

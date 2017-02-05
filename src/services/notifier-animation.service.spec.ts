@@ -45,7 +45,7 @@ export function main(): void {
 					}
 				}
 			} );
-			const testNotification: NotifierNotification = new MockNotification( testConfig );
+			const testNotification: MockNotification = new MockNotification( testConfig );
 			const expectedAnimationData: NotifierAnimationData = {
 				keyframes: [
 					{
@@ -61,7 +61,9 @@ export function main(): void {
 					fill: 'forwards'
 				}
 			};
-			const animationData: NotifierAnimationData = animationService.getAnimationData( 'show', testNotification );
+			// tslint:disable no-any
+			const animationData: NotifierAnimationData = animationService.getAnimationData( 'show', <any> testNotification );
+			// tslint:enable no-any
 
 			expect( animationData ).toEqual( expectedAnimationData );
 
@@ -78,7 +80,7 @@ export function main(): void {
 					}
 				}
 			} );
-			const testNotification: NotifierNotification = new MockNotification( testConfig );
+			const testNotification: MockNotification = new MockNotification( testConfig );
 			const expectedAnimationData: NotifierAnimationData = {
 				keyframes: [
 					{
@@ -94,7 +96,9 @@ export function main(): void {
 					fill: 'forwards'
 				}
 			};
-			const animationData: NotifierAnimationData = animationService.getAnimationData( 'hide', testNotification );
+			// tslint:disable no-any
+			const animationData: NotifierAnimationData = animationService.getAnimationData( 'hide', <any> testNotification );
+			// tslint:enable no-any
 
 			expect( animationData ).toEqual( expectedAnimationData );
 
@@ -105,6 +109,21 @@ export function main(): void {
 }
 
 /**
+ * Mock Notification Height
+ */
+const mockNotificationHeight: number = 40;
+
+/**
+ * Mock Notification Shift
+ */
+const mockNotificationShift: number = 80;
+
+/**
+ * Mock Notification Width
+ */
+const mockNotificationWidth: number = 300;
+
+/**
  * Mock notification
  */
 class MockNotification {
@@ -112,7 +131,7 @@ class MockNotification {
 	/**
 	 * Configuration
 	 */
-	public config: any;
+	public config: NotifierConfig;
 
 	/**
 	 * Notification ID
@@ -132,19 +151,19 @@ class MockNotification {
 	/**
 	 * Notification component
 	 */
-	public component: any = {
+	public component: { [ key: string ]: Function } = {
 		getConfig: () => this.config,
-		getHeight: () => 40,
-		getShift: () => 80,
-		getWidth: () => 300
+		getHeight: () => mockNotificationHeight,
+		getShift: () => mockNotificationShift,
+		getWidth: () => mockNotificationWidth
 	};
 
 	/**
 	 * Constructor
 	 *
-	 * @param {any} config Configuration
+	 * @param {NotifierConfig} config Configuration
 	 */
-	public constructor( config: any ) {
+	public constructor( config: NotifierConfig ) {
 		this.config = config;
 	}
 

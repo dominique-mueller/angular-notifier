@@ -47,6 +47,11 @@ export function main(): void {
 }
 
 /**
+ * Mock current time
+ */
+const mockCurrentTime: number = 1482312338350;
+
+/**
  * Mock Date
  */
 class MockDate extends Date {
@@ -55,7 +60,7 @@ class MockDate extends Date {
 	 * Get the time - always returns the same value, useful for comparison
 	 */
 	public getTime(): number {
-		return 1482312338350;
+		return mockCurrentTime;
 	}
 
 }

@@ -71,10 +71,12 @@ export class NotifierNotificationComponent implements AfterViewInit {
 	 */
 	private readonly config: NotifierConfig;
 
+	// tslint:disable no-any
 	/**
 	 * Native element reference, used for manipulating DOM properties
 	 */
 	private readonly element: any; // Similar to an HTMLElement, but also includes web animations properties / methods
+	// tslint:enable no-any
 
 	/**
 	 * Current notification height, calculated and cached here (#perfmatters)

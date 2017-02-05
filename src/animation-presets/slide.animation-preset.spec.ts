@@ -25,7 +25,7 @@ export function main(): void {
 						}
 					}
 				} );
-				const testNotification: any = new MockNotification( testConfig );
+				const testNotification: MockNotification = new MockNotification( testConfig );
 				const expectedKeyframes: NotifierAnimationPresetKeyframes = {
 					from: {
 						transform: `translate3d( calc( -100% - ${ testConfig.position.horizontal.distance }px - 10px ), 0, 0 )`
@@ -34,7 +34,9 @@ export function main(): void {
 						transform: 'translate3d( 0, 0, 0 )'
 					}
 				};
-				const keyframes: NotifierAnimationPresetKeyframes = slide.show( testNotification );
+				// tslint:disable no-any
+				const keyframes: NotifierAnimationPresetKeyframes = slide.show( <any> testNotification );
+				// tslint:enable no-any
 
 				expect( keyframes ).toEqual( expectedKeyframes );
 
@@ -54,7 +56,7 @@ export function main(): void {
 						}
 					}
 				} );
-				const testNotification: any = new MockNotification( testConfig );
+				const testNotification: MockNotification = new MockNotification( testConfig );
 				const expectedKeyframes: NotifierAnimationPresetKeyframes = {
 					from: {
 						transform: `translate3d( calc( 100% + ${ testConfig.position.horizontal.distance }px + 10px ), 0, 0 )`
@@ -63,7 +65,9 @@ export function main(): void {
 						transform: 'translate3d( 0, 0, 0 )'
 					}
 				};
-				const keyframes: NotifierAnimationPresetKeyframes = slide.show( testNotification );
+				// tslint:disable no-any
+				const keyframes: NotifierAnimationPresetKeyframes = slide.show( <any> testNotification );
+				// tslint:enable no-any
 
 				expect( keyframes ).toEqual( expectedKeyframes );
 
@@ -83,7 +87,7 @@ export function main(): void {
 						}
 					}
 				} );
-				const testNotification: any = new MockNotification( testConfig );
+				const testNotification: MockNotification = new MockNotification( testConfig );
 				const expectedKeyframes: NotifierAnimationPresetKeyframes = {
 					from: {
 						transform: `translate3d( -50%, calc( -100% - ${ testConfig.position.horizontal.distance }px - 10px ), 0 )`
@@ -92,7 +96,9 @@ export function main(): void {
 						transform: 'translate3d( -50%, 0, 0 )'
 					}
 				};
-				const keyframes: NotifierAnimationPresetKeyframes = slide.show( testNotification );
+				// tslint:disable no-any
+				const keyframes: NotifierAnimationPresetKeyframes = slide.show( <any> testNotification );
+				// tslint:enable no-any
 
 				expect( keyframes ).toEqual( expectedKeyframes );
 
@@ -112,7 +118,7 @@ export function main(): void {
 						}
 					}
 				} );
-				const testNotification: any = new MockNotification( testConfig );
+				const testNotification: MockNotification = new MockNotification( testConfig );
 				const expectedKeyframes: NotifierAnimationPresetKeyframes = {
 					from: {
 						transform: `translate3d( -50%, calc( 100% + ${ testConfig.position.horizontal.distance }px + 10px ), 0 )`
@@ -121,7 +127,9 @@ export function main(): void {
 						transform: 'translate3d( -50%, 0, 0 )'
 					}
 				};
-				const keyframes: NotifierAnimationPresetKeyframes = slide.show( testNotification );
+				// tslint:disable no-any
+				const keyframes: NotifierAnimationPresetKeyframes = slide.show( <any> testNotification );
+				// tslint:enable no-any
 
 				expect( keyframes ).toEqual( expectedKeyframes );
 
@@ -144,7 +152,7 @@ export function main(): void {
 						}
 					}
 				} );
-				const testNotification: any = new MockNotification( testConfig );
+				const testNotification: MockNotification = new MockNotification( testConfig );
 				const expectedKeyframes: NotifierAnimationPresetKeyframes = {
 					from: {
 						transform: `translate3d( 0, ${ testNotification.component.getShift() }px, 0 )`
@@ -155,7 +163,9 @@ export function main(): void {
 						/* tslint:enable max-line-length */
 					}
 				};
-				const keyframes: NotifierAnimationPresetKeyframes = slide.hide( testNotification );
+				// tslint:disable no-any
+				const keyframes: NotifierAnimationPresetKeyframes = slide.hide( <any> testNotification );
+				// tslint:enable no-any
 
 				expect( keyframes ).toEqual( expectedKeyframes );
 
@@ -174,7 +184,7 @@ export function main(): void {
 						}
 					}
 				} );
-				const testNotification: any = new MockNotification( testConfig );
+				const testNotification: MockNotification = new MockNotification( testConfig );
 				const expectedKeyframes: NotifierAnimationPresetKeyframes = {
 					from: {
 						transform: `translate3d( 0, ${ testNotification.component.getShift() }px, 0 )`
@@ -185,7 +195,9 @@ export function main(): void {
 						/* tslint:enable max-line-length */
 					}
 				};
-				const keyframes: NotifierAnimationPresetKeyframes = slide.hide( testNotification );
+				// tslint:disable no-any
+				const keyframes: NotifierAnimationPresetKeyframes = slide.hide( <any> testNotification );
+				// tslint:enable no-any
 
 				expect( keyframes ).toEqual( expectedKeyframes );
 
@@ -204,7 +216,7 @@ export function main(): void {
 						}
 					}
 				} );
-				const testNotification: any = new MockNotification( testConfig );
+				const testNotification: MockNotification = new MockNotification( testConfig );
 				const expectedKeyframes: NotifierAnimationPresetKeyframes = {
 					from: {
 						transform: `translate3d( -50%, ${ testNotification.component.getShift() }px, 0 )`
@@ -213,7 +225,9 @@ export function main(): void {
 						transform: `translate3d( -50%, calc( -100% - ${ testConfig.position.horizontal.distance }px - 10px ), 0 )`
 					}
 				};
-				const keyframes: NotifierAnimationPresetKeyframes = slide.hide( testNotification );
+				// tslint:disable no-any
+				const keyframes: NotifierAnimationPresetKeyframes = slide.hide( <any> testNotification );
+				// tslint:enable no-any
 
 				expect( keyframes ).toEqual( expectedKeyframes );
 
@@ -232,7 +246,7 @@ export function main(): void {
 						}
 					}
 				} );
-				const testNotification: any = new MockNotification( testConfig );
+				const testNotification: MockNotification = new MockNotification( testConfig );
 				const expectedKeyframes: NotifierAnimationPresetKeyframes = {
 					from: {
 						transform: `translate3d( -50%, ${ testNotification.component.getShift() }px, 0 )`
@@ -241,7 +255,9 @@ export function main(): void {
 						transform: `translate3d( -50%, calc( 100% + ${ testConfig.position.horizontal.distance }px + 10px ), 0 )`
 					}
 				};
-				const keyframes: NotifierAnimationPresetKeyframes = slide.hide( testNotification );
+				// tslint:disable no-any
+				const keyframes: NotifierAnimationPresetKeyframes = slide.hide( <any> testNotification );
+				// tslint:enable no-any
 
 				expect( keyframes ).toEqual( expectedKeyframes );
 
@@ -254,6 +270,21 @@ export function main(): void {
 }
 
 /**
+ * Mock Notification Height
+ */
+const mockNotificationHeight: number = 40;
+
+/**
+ * Mock Notification Shift
+ */
+const mockNotificationShift: number = 80;
+
+/**
+ * Mock Notification Width
+ */
+const mockNotificationWidth: number = 300;
+
+/**
  * Mock notification, providing static values except the global configuration
  */
 class MockNotification {
@@ -261,7 +292,7 @@ class MockNotification {
 	/**
 	 * Configuration
 	 */
-	public config: any;
+	public config: NotifierConfig;
 
 	/**
 	 * Notification ID
@@ -278,22 +309,24 @@ class MockNotification {
 	 */
 	public message: string = 'Lorem ipsum dolor sit amet.';
 
+	// tslint:disable no-any
 	/**
 	 * Notification component
 	 */
 	public component: any = {
 		getConfig: () => this.config,
-		getHeight: () => 40,
-		getShift: () => 80,
-		getWidth: () => 300
+		getHeight: () => mockNotificationHeight,
+		getShift: () => mockNotificationShift,
+		getWidth: () => mockNotificationWidth
 	};
+	// tslint:enable no-any
 
 	/**
 	 * Constructor
 	 *
-	 * @param {any} config Configuration
+	 * @param {NotifierConfig} config Configuration
 	 */
-	public constructor( config: any ) {
+	public constructor( config: NotifierConfig ) {
 		this.config = config;
 	}
 

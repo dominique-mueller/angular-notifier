@@ -177,8 +177,10 @@ export class NotifierContainerComponent implements OnDestroy, OnInit {
 			notification.component.show().then( this.tempPromiseResolver ); // Done
 		} else {
 
+			const implicitStackingLimit: number = 2;
+
 			// Stacking enabled? (stacking value below 2 means stacking is disabled)
-			if ( this.config.behaviour.stacking === false || this.config.behaviour.stacking < 2 ) {
+			if ( this.config.behaviour.stacking === false || this.config.behaviour.stacking < implicitStackingLimit ) {
 				this.notifications[ 0 ].component.hide().then( () => {
 					this.removeNotificationFromList( this.notifications[ 0 ] );
 					notification.component.show().then( this.tempPromiseResolver ); // Done
