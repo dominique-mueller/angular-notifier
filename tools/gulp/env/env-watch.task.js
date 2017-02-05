@@ -16,7 +16,7 @@ gulp.task( 'env:serve', () => {
         },
         startPath: '/demo',
         logConnections: true,
-        logPrefix: '[BROWSER-SYNC]',
+        logPrefix: 'BROWSER-SYNC',
         notify: {
             styles: { // Custom styles for the notification in the browser, bottom center
                 top: 'auto',

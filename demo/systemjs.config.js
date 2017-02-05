@@ -11,10 +11,10 @@ System.config( {
 	map: {
 
 		// Demo & library
-		'app': './',
+		'app': './main.js',
 		'../': './../',
 
-		// Libraries
+		// External libraries
 		'@angular/common': 'npm:@angular/common/bundles/common.umd.js',
 		'@angular/compiler': 'npm:@angular/compiler/bundles/compiler.umd.js',
 		'@angular/core': 'npm:@angular/core/bundles/core.umd.js',
@@ -27,17 +27,13 @@ System.config( {
 	// Package loading details
 	packages: {
 
-		// App & library
-		'app': {
-			main: 'main.js',
-			defaultExtension: 'js'
-		},
+		// Library
 		'../': {
 			main: 'index.js',
 			defaultExtension: 'js'
 		},
 
-		// Libraries
+		// External libraries
 		'rxjs': {
 			defaultExtension: 'js'
 		}
