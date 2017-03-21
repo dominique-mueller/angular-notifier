@@ -13,8 +13,9 @@
 # Build: Temp folder
 /temp
 
-# Demo
+# Demo & docs
 /demo
+/docs
 
 # Not needed files
 /tools
