@@ -33,6 +33,11 @@ import { NotifierNotificationComponent } from './notifier-notification.component
 export class NotifierContainerComponent implements OnDestroy, OnInit {
 
 	/**
+	 * List of currently somewhat active notifications
+	 */
+	public notifications: Array<NotifierNotification>;
+
+	/**
 	 * Change detector
 	 */
 	private readonly changeDetector: ChangeDetectorRef;
@@ -46,11 +51,6 @@ export class NotifierContainerComponent implements OnDestroy, OnInit {
 	 * Notifier configuration
 	 */
 	private readonly config: NotifierConfig;
-
-	/**
-	 * List of currently somewhat active notifications
-	 */
-	private notifications: Array<NotifierNotification>;
 
 	/**
 	 * Queue service observable subscription (saved for cleanup)

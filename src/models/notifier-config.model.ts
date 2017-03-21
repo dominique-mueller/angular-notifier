@@ -108,12 +108,19 @@ export class NotifierConfig implements NotifierOptions {
 	 */
 	public theme: string;
 
+	// tslint:disable no-any
 	/**
 	 * Constructor
 	 *
-	 * @param {NotifierOptions} [customOptions={}] Custom notifier options, optional
+	 * Note:
+	 * As for now, Angular cannot handle interface declarations in constructors of injectable classes. This issue got fixed, however only
+	 * for Angular 4+. Therefore, we use the 'any' type temporarily. For further details, see
+	 * - the issue on <https://github.com/angular/angular/issues/12631> as well as
+	 * - the fix on <https://github.com/angular/angular/pull/14894>.
+	 *
+	 * @param {any} [customOptions={}] Custom notifier options, optional
 	 */
-	public constructor( customOptions: NotifierOptions = {} ) {
+	public constructor( customOptions: any = {} ) {
 
 		// Set default values
 		this.animations = {
@@ -191,5 +198,6 @@ export class NotifierConfig implements NotifierOptions {
 		}
 
 	}
+	// tslint:enable no-any
 
 }

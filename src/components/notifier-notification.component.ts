@@ -52,6 +52,11 @@ export class NotifierNotificationComponent implements AfterViewInit {
 	public dismiss: EventEmitter<string>;
 
 	/**
+	 * Notifier configuration
+	 */
+	public readonly config: NotifierConfig;
+
+	/**
 	 * Notifier timer service
 	 */
 	private readonly timerService: NotifierTimerService;
@@ -65,11 +70,6 @@ export class NotifierNotificationComponent implements AfterViewInit {
 	 * Angular renderer, used to preserve the overall DOM abstraction & independence
 	 */
 	private readonly renderer: Renderer;
-
-	/**
-	 * Notifier configuration
-	 */
-	private readonly config: NotifierConfig;
 
 	// tslint:disable no-any
 	/**
