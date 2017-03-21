@@ -3,6 +3,15 @@ Also see [releases](https://github.com/dominique-mueller/angular-notifier/releas
 
 <br>
 
+## [1.0.4](https://github.com/dominique-mueller/angular-notifier/releases/tag/1.0.4) / 2017-03-21
+
+### Bug Fixes
+
+* **aot:** Fixed Angular AoT compilation issue ([e5ed9bb](https://github.com/dominique-mueller/angular-notifier/commit/e5ed9bb)), closes [#7](https://github.com/dominique-mueller/angular-notifier/issues/7)
+
+
+<br>
+
 ## [1.0.3](https://github.com/dominique-mueller/angular-notifier/releases/tag/1.0.3) / 2017-02-05
 
 ### Bug Fixes
