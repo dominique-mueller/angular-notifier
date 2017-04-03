@@ -3,6 +3,20 @@ Also see [releases](https://github.com/dominique-mueller/angular-notifier/releas
 
 <br>
 
+## [1.0.5](https://github.com/dominique-mueller/angular-notifier/releases/tag/1.0.5) / 2017-04-03
+
+### Bug Fixes
+
+* **notification-container:** Fix wrong ngFor trackby implementation ([f086ae4](https://github.com/dominique-mueller/angular-notifier/commit/f086ae4)), closes [#12](https://github.com/dominique-mueller/angular-notifier/issues/12)
+
+
+### Chores
+
+* **dependencies:** Update NPM dependencies ([af51222](https://github.com/dominique-mueller/angular-notifier/commit/af51222))
+
+
+<br>
+
 ## [1.0.4](https://github.com/dominique-mueller/angular-notifier/releases/tag/1.0.4) / 2017-03-21
 
 ### Bug Fixes
