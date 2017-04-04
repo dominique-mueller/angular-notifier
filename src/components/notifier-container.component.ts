@@ -97,6 +97,17 @@ export class NotifierContainerComponent implements OnDestroy, OnInit {
 	}
 
 	/**
+	 * Notification identifier, used as the ngFor trackby function
+	 *
+	 * @param   {number}               index        Index
+	 * @param   {NotifierNotification} notification Notifier notification
+	 * @returns {string}                            Notification ID as the unique identnfier
+	 */
+	public identifyNotification( index: number, notification: NotifierNotification ): string {
+		return notification.id;
+	}
+
+	/**
 	 * Event handler, handles clicks on notification dismiss buttons
 	 *
 	 * @param {string} notificationId ID of the notification to dismiss

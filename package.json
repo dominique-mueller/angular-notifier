@@ -1,7 +1,7 @@
 {
     "name": "angular-notifier",
     "description": "A well designed, fully animated, highly customizable, and easy-to-use notification library for your Angular 2+ application.",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "author": {
         "name": "Dominique Müller",
         "email": "dominique.m.mueller@gmail.com",
@@ -39,17 +39,16 @@
         "coveralls": "cat ./test-coverage/ts/lcov.info | coveralls"
     },
     "peerDependencies": {
-        "@angular/core": "2.x",
-        "@angular/common": "2.x",
-        "rxjs": "5.0.1"
+        "@angular/core": ">= 2.0.0 < 5.0.0",
+        "@angular/common": ">= 2.0.0 < 5.0.0"
     },
     "devDependencies": {
-        "@angular/core": "2.x",
-        "@angular/common": "2.x",
-        "@angular/compiler": "2.x",
-        "@angular/compiler-cli": "2.x",
-        "@angular/platform-browser": "2.x",
-        "@angular/platform-browser-dynamic": "2.x",
+        "@angular/core": "2.4.x",
+        "@angular/common": "2.4.x",
+        "@angular/compiler": "2.4.x",
+        "@angular/compiler-cli": "2.4.x",
+        "@angular/platform-browser": "2.4.x",
+        "@angular/platform-browser-dynamic": "2.4.x",
         "@types/jasmine": "2.5.x",
         "browser-sync": "2.18.x",
         "codelyzer": "2.0.0-beta.4",
