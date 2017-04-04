@@ -3,6 +3,15 @@ Also see [releases](https://github.com/dominique-mueller/angular-notifier/releas
 
 <br>
 
+## [1.0.6](https://github.com/dominique-mueller/angular-notifier/releases/tag/1.0.6) / 2017-04-04
+
+### Styles
+
+* **type-colors:** Use bootstrap colors for notification types ([18eb1d2](https://github.com/dominique-mueller/angular-notifier/commit/18eb1d2)), closes [#11](https://github.com/dominique-mueller/angular-notifier/issues/11)
+
+
+<br>
+
 ## [1.0.5](https://github.com/dominique-mueller/angular-notifier/releases/tag/1.0.5) / 2017-04-03
 
 ### Bug Fixes
