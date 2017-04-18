@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, Output, Renderer } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, Output, Renderer2 } from '@angular/core';
 
 import { NotifierAnimationData } from './../models/notifier-animation.model';
 import { NotifierAnimationService } from './../services/notifier-animation.service';
@@ -69,7 +69,7 @@ export class NotifierNotificationComponent implements AfterViewInit {
 	/**
 	 * Angular renderer, used to preserve the overall DOM abstraction & independence
 	 */
-	private readonly renderer: Renderer;
+	private readonly renderer: Renderer2;
 
 	// tslint:disable no-any
 	/**
@@ -97,12 +97,12 @@ export class NotifierNotificationComponent implements AfterViewInit {
 	 * Constructor
 	 *
 	 * @param {ElementRef}               elementRef               Reference to the component's element
-	 * @param {Renderer}                 renderer                 Angular renderer
+	 * @param {Renderer2}                renderer                 Angular renderer
 	 * @param {NotifierService}          notifierService          Notifier service
 	 * @param {NotifierTimerService}     notifierTimerService     Notifier timer service
 	 * @param {NotifierAnimationService} notifierAnimationService Notifier animation service
 	 */
-	public constructor( elementRef: ElementRef, renderer: Renderer, notifierService: NotifierService,
+	public constructor( elementRef: ElementRef, renderer: Renderer2, notifierService: NotifierService,
 		notifierTimerService: NotifierTimerService, notifierAnimationService: NotifierAnimationService ) {
 		this.config = notifierService.getConfig();
 		this.ready = new EventEmitter<NotifierNotificationComponent>();
@@ -177,11 +177,12 @@ export class NotifierNotificationComponent implements AfterViewInit {
 				// Set initial styles (styles before animation), prevents quick flicker when animation starts
 				const animatedProperties: Array<string> = Object.keys( animationData.keyframes[ 0 ] );
 				for ( let i: number = animatedProperties.length - 1; i >= 0; i-- ) {
-					this.setStyle( animatedProperties[ i ], animationData.keyframes[ 0 ][ animatedProperties[ i ] ] );
+					this.renderer.setStyle( this.element, animatedProperties[ i ],
+						animationData.keyframes[ 0 ][ animatedProperties[ i ] ] );
 				}
 
 				// Animate notification in
-				this.setStyle( 'visibility', 'visible' );
+				this.renderer.setStyle( this.element, 'visibility', 'visible' );
 				this.element.animate( animationData.keyframes, animationData.options ).finished.then( () => {
 					this.startAutoHideTimer();
 					resolve(); // Done
@@ -190,7 +191,7 @@ export class NotifierNotificationComponent implements AfterViewInit {
 			} else {
 
 				// Show notification
-				this.setStyle( 'visibility', 'visible' );
+				this.renderer.setStyle( this.element, 'visibility', 'visible' );
 				this.startAutoHideTimer();
 				resolve(); // Done
 
@@ -261,7 +262,7 @@ export class NotifierNotificationComponent implements AfterViewInit {
 				this.elementShift = newElementShift;
 				this.element.animate( animationData.keyframes, animationData.options ).finished.then( resolve ); // Done
 			} else {
-				this.setStyle( 'transform', `translate3d( ${ horizontalPosition }, ${ newElementShift }px, 0 )` );
+				this.renderer.setStyle( this.element, 'transform', `translate3d( ${ horizontalPosition }, ${ newElementShift }px, 0 )` );
 				this.elementShift = newElementShift;
 				resolve(); // Done
 			}
@@ -353,42 +354,24 @@ export class NotifierNotificationComponent implements AfterViewInit {
 
 		// Set start position (initially the exact same for every new notification)
 		if ( this.config.position.horizontal.position === 'left' ) {
-			this.setStyle( 'left', `${ this.config.position.horizontal.distance }px` );
+			this.renderer.setStyle( this.element, 'left', `${ this.config.position.horizontal.distance }px` );
 		} else if ( this.config.position.horizontal.position === 'right' ) {
-			this.setStyle( 'right', `${ this.config.position.horizontal.distance }px` );
+			this.renderer.setStyle( this.element, 'right', `${ this.config.position.horizontal.distance }px` );
 		} else {
-			this.setStyle( 'left', '50%' );
-			this.setStyle( 'transform', 'translate3d( -50%, 0, 0 )' ); // Let's get the GPU handle some work as well (#perfmatters)
+			this.renderer.setStyle( this.element, 'left', '50%' );
+			// Let's get the GPU handle some work as well (#perfmatters)
+			this.renderer.setStyle( this.element, 'transform', 'translate3d( -50%, 0, 0 )' );
 		}
 		if ( this.config.position.vertical.position === 'top' ) {
-			this.setStyle( 'top', `${ this.config.position.vertical.distance }px` );
+			this.renderer.setStyle( this.element, 'top', `${ this.config.position.vertical.distance }px` );
 		} else {
-			this.setStyle( 'bottom', `${ this.config.position.vertical.distance }px` );
+			this.renderer.setStyle( this.element, 'bottom', `${ this.config.position.vertical.distance }px` );
 		}
 
 		// Add classes (responsible for visual design)
-		this.addClass( `x-notifier__notification--${ this.notification.type }` );
-		this.addClass( `x-notifier__notification--${ this.config.theme }` );
+		this.renderer.addClass( this.element, `x-notifier__notification--${ this.notification.type }` );
+		this.renderer.addClass( this.element, `x-notifier__notification--${ this.config.theme }` );
 
-	}
-
-	/**
-	 * Helper: Set a notification element style
-	 *
-	 * @param {string} styleName  Name of the style
-	 * @param {string} styleValue Value of the style
-	 */
-	private setStyle( styleName: string, styleValue: string ): void {
-		this.renderer.setElementStyle( this.element, styleName, styleValue );
-	}
-
-	/**
-	 * Helper: Add a class to the notification element
-	 *
-	 * @param {string} className Name of the class to add
-	 */
-	private addClass( className: string ): void {
-		this.renderer.setElementClass( this.element, className, true );
 	}
 
 }
