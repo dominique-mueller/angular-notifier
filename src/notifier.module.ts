@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ModuleWithProviders, NgModule, OpaqueToken } from '@angular/core';
+import { InjectionToken, ModuleWithProviders, NgModule } from '@angular/core';
 
 import { NotifierContainerComponent } from './components/notifier-container.component';
 import { NotifierNotificationComponent } from './components/notifier-notification.component';
@@ -12,7 +12,7 @@ import { NotifierService } from './services/notifier.service';
 /**
  * Dependency Injection token for custom notifier options
  */
-export const CustomNotifierOptions: OpaqueToken = new OpaqueToken( 'NotifierOptions' );
+export const CustomNotifierOptions: InjectionToken<string> = new InjectionToken<string>( 'NotifierOptions' );
 // tslint:enable variable-name
 
 /**
