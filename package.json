@@ -89,7 +89,7 @@
         "source-map-loader": "0.1.x",
         "systemjs": "0.20.x",
         "tslint": "4.4.x",
-        "typescript": "2.0.x",
+        "typescript": "2.2.x",
         "web-animations-js": "2.2.x",
         "webpack": "2.2.x",
         "zone.js": "0.8.5"
