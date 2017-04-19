@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { NotifierModule, NotifierOptions } from './../index';
+import { NotifierModule, NotifierOptions } from './../lib/index';
 
 import { AppComponent } from './app.component';
 

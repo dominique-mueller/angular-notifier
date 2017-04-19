@@ -964,7 +964,7 @@ export function main(): void {
 			componentInstance = componentFixture.componentInstance;
 
 			// Get the service from the component's local injector
-			timerService = componentFixture.debugElement.injector.get( NotifierTimerService );
+			timerService = <MockNotifierTimerService> componentFixture.debugElement.injector.get( NotifierTimerService );
 
 		}
 

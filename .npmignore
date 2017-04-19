@@ -3,6 +3,7 @@
 
 # Source code
 /index.ts
+/src/demo
 /src/**/*.ts
 /src/**/*.html
 !/src/**/*.d.ts
@@ -14,7 +15,6 @@
 /temp
 
 # Demo & docs
-/demo
 /docs
 
 # Not needed files

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { NotifierService } from './../index';
+
+import { NotifierService } from './../lib/index';
 
 /**
  * App component

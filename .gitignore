@@ -1,6 +1,9 @@
 # Dependencies
 /node_modules
 
+# Build
+/build
+
 # Build: TypeScript output
 /index.d.ts
 /index.js
@@ -10,6 +13,7 @@
 /src/**/*.js
 /src/**/*.js.map
 /src/**/*.metadata.json
+!/src/demo/systemjs.config.js
 
 # Build: SASS output
 /style.css
@@ -22,10 +26,6 @@
 
 # Build: Temp folder
 /temp
-
-# Build: Demo
-/demo/*.js
-!/demo/systemjs.config.js
 
 # Test coverage
 /test-coverage
