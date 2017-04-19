@@ -9,14 +9,6 @@ const envCleanTasks = require( './tools/gulp/env/env-clean.task' );
 const envWatchTasks = require( './tools/gulp/env/env-watch.task' );
 
 /**
- * Gulp tasks: Release
- */
-const releaseChangelogTasks = require( './tools/gulp/release/release-changelog.task' );
-const releaseGitTasks = require( './tools/gulp/release/release-git.task' );
-const releaseGithubTasks = require( './tools/gulp/release/release-github.task' );
-const releaseVersionTasks = require( './tools/gulp/release/release-version.task' );
-
-/**
  * Gulp tasks: SASS
  */
 const sassBuildTasks = require( './tools/gulp/sass/sass-build.task' );
@@ -110,18 +102,6 @@ gulp.task( 'test',
 		] ),
     	'ts:test--spec',
 		'ts:test--coverage'
-	] )
-);
-
-/**
- * Gulp task: Release process for Continuous Integration (Travis CI)
- */
-gulp.task( 'release',
-	gulp.series( [
-    	'release:version',
-    	'release:changelog',
-    	'release:git',
-    	'release:github'
 	] )
 );
 
