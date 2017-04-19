@@ -16,33 +16,42 @@ branches:
   only:
     - master # Testing, Building, Releasing
     - develop # Testing, Building
-    - feature/travis # Branch for testing Travis CI
+    - feature/travis # Branch specifically for testing Travis CI
 
 before_install:
-  - export CHROME_BIN=/usr/bin/google-chrome # Chrome path
-  - npm install -g npm # Update npm to its latest version
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then
+      git clone "https://github.com/$TRAVIS_REPO_SLUG.git" "$TRAVIS_REPO_SLUG";
+      cd "$TRAVIS_REPO_SLUG";
+      git checkout -qf "$TRAVIS_COMMIT";
+    fi
+  - npm install -g npm
 install:
+  - npm prune
   - npm install
+  - npm update
 
 before_script:
+  - export CHROME_BIN=/usr/bin/google-chrome # Set Chrome path
   - npm prune
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start # Run xvfb to fake a display (muhaha ...)
 script:
   - npm run gulp test && npm run coveralls && npm run gulp build--publish # First test, then build for npm publish
 
-before_deploy: # Automatic semantic release
-  - git config --global user.name "dominique-mueller"; # Setup git
-  - git config --global user.email "dominique.m.mueller@gmail.com";
-  - git config credential.helper "store --file=.git/credentials";
-  - echo "https://${GH_TOKEN}:@github.com" > .git/credentials; # GH_TOKEN = env variable
-  - git checkout master # Fix Travis CI issue of detached head in git
-  - npm run gulp release # Release
+before_deploy:
+  - git config --global user.name "dominique-mueller"
+  - git config --global user.email "dominique.m.mueller@gmail.com"
+  - git config credential.helper "store --file=.git/credentials"
+  - echo "https://$GH_TOKEN:@github.com" > .git/credentials
+  - git checkout master
+  - npm run release:automatic-release
 deploy:
   provider: npm
   email: dominique.m.mueller@gmail.com
-  api_key: "${NPM_TOKEN}" # NPM_TOKEN = env variable
-  skip_cleanup: true # Publish built files
+  api_key: "$NPM_TOKEN"
+  skip_cleanup: true
   on:
     branch: master
     repo: dominique-mueller/angular-notifier
+after_deploy:
+  - npm run release:list-deployed-files
