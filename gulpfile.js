@@ -21,7 +21,8 @@ gulp.task( 'run',
 			] ),
 			gulp.series( [
 				'ts:build-es5',
-				'ts:bundle-fesm5'
+				'ts:bundle-fesm5',
+				'ts:bundle-umd'
 			] )
 		] )
 	] )
