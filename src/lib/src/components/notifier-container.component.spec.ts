@@ -5,7 +5,7 @@ import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testin
 import { Subject } from 'rxjs/Rx';
 
 import { NotifierNotification } from '../models/notifier-notification.model';
-import { NotifierAction, NotifierActionType } from '../models/notifier-action.model';
+import { NotifierAction } from '../models/notifier-action.model';
 import { NotifierConfig } from '../models/notifier-config.model';
 import { NotifierQueueService } from '../services/notifier-queue.service';
 import { NotifierNotificationComponent } from './notifier-notification.component';
@@ -74,7 +74,7 @@ export function main(): void {
 						message: 'Lorem ipsum dolor sit amet.',
 						type: 'SUCCESS'
 					},
-					type: NotifierActionType.SHOW
+					type: 'SHOW'
 				} );
 				componentFixture.detectChanges();
 				const listElements: Array<DebugElement> = componentFixture.debugElement.queryAll( By.css( '.x-notifier__container-list' ) );
@@ -110,7 +110,7 @@ export function main(): void {
 						message: 'Lorem ipsum dolor sit amet.',
 						type: 'SUCCESS'
 					},
-					type: NotifierActionType.SHOW
+					type: 'SHOW'
 				} );
 				componentFixture.detectChanges();
 				const mockFirstNotificationComponent: MockNotifierNotificationComponent = new MockNotifierNotificationComponent();
@@ -127,7 +127,7 @@ export function main(): void {
 						message: 'Blubberfish.',
 						type: 'ERROR'
 					},
-					type: NotifierActionType.SHOW
+					type: 'SHOW'
 				} );
 				componentFixture.detectChanges();
 				const mockSecondNotificationComponent: MockNotifierNotificationComponent = new MockNotifierNotificationComponent();
@@ -162,7 +162,7 @@ export function main(): void {
 						message: 'Lorem ipsum dolor sit amet.',
 						type: 'SUCCESS'
 					},
-					type: NotifierActionType.SHOW
+					type: 'SHOW'
 				} );
 				componentFixture.detectChanges();
 				const mockFirstNotificationComponent: MockNotifierNotificationComponent = new MockNotifierNotificationComponent();
@@ -179,7 +179,7 @@ export function main(): void {
 						message: 'Blubberfish.',
 						type: 'ERROR'
 					},
-					type: NotifierActionType.SHOW
+					type: 'SHOW'
 				} );
 				componentFixture.detectChanges();
 				const mockSecondNotificationComponent: MockNotifierNotificationComponent = new MockNotifierNotificationComponent();
@@ -196,7 +196,7 @@ export function main(): void {
 						message: 'This. Is. Angular!',
 						type: 'INFO'
 					},
-					type: NotifierActionType.SHOW
+					type: 'SHOW'
 				} );
 				componentFixture.detectChanges();
 				const mockThirdNotificationComponent: MockNotifierNotificationComponent = new MockNotifierNotificationComponent();
@@ -233,7 +233,7 @@ export function main(): void {
 						message: 'Lorem ipsum dolor sit amet.',
 						type: 'SUCCESS'
 					},
-					type: NotifierActionType.SHOW
+					type: 'SHOW'
 				} );
 				componentFixture.detectChanges();
 				const mockFirstNotificationComponent: MockNotifierNotificationComponent = new MockNotifierNotificationComponent();
@@ -250,7 +250,7 @@ export function main(): void {
 						message: 'Blubberfish.',
 						type: 'ERROR'
 					},
-					type: NotifierActionType.SHOW
+					type: 'SHOW'
 				} );
 				componentFixture.detectChanges();
 				const mockSecondNotificationComponent: MockNotifierNotificationComponent = new MockNotifierNotificationComponent();
@@ -267,7 +267,7 @@ export function main(): void {
 						message: 'This. Is. Angular!',
 						type: 'INFO'
 					},
-					type: NotifierActionType.SHOW
+					type: 'SHOW'
 				} );
 				componentFixture.detectChanges();
 				const mockThirdNotificationComponent: MockNotifierNotificationComponent = new MockNotifierNotificationComponent();
@@ -301,7 +301,7 @@ export function main(): void {
 						message: 'Lorem ipsum dolor sit amet.',
 						type: 'SUCCESS'
 					},
-					type: NotifierActionType.SHOW
+					type: 'SHOW'
 				} );
 				componentFixture.detectChanges();
 				const mockFirstNotificationComponent: MockNotifierNotificationComponent = new MockNotifierNotificationComponent();
@@ -318,7 +318,7 @@ export function main(): void {
 						message: 'Blubberfish.',
 						type: 'ERROR'
 					},
-					type: NotifierActionType.SHOW
+					type: 'SHOW'
 				} );
 				componentFixture.detectChanges();
 				const mockSecondNotificationComponent: MockNotifierNotificationComponent = new MockNotifierNotificationComponent();
@@ -335,7 +335,7 @@ export function main(): void {
 						message: 'This. Is. Angular!',
 						type: 'INFO'
 					},
-					type: NotifierActionType.SHOW
+					type: 'SHOW'
 				} );
 				componentFixture.detectChanges();
 				const mockThirdNotificationComponent: MockNotifierNotificationComponent = new MockNotifierNotificationComponent();
@@ -377,7 +377,7 @@ export function main(): void {
 						message: 'Lorem ipsum dolor sit amet.',
 						type: 'SUCCESS'
 					},
-					type: NotifierActionType.SHOW
+					type: 'SHOW'
 				} );
 				componentFixture.detectChanges();
 				const mockNotificationComponent: MockNotifierNotificationComponent = new MockNotifierNotificationComponent();
@@ -391,7 +391,7 @@ export function main(): void {
 				// Hide notification
 				queueService.push( {
 					payload: testNotificationId,
-					type: NotifierActionType.HIDE
+					type: 'HIDE'
 				} );
 				componentFixture.detectChanges();
 
@@ -424,7 +424,7 @@ export function main(): void {
 						message: 'Lorem ipsum dolor sit amet.',
 						type: 'SUCCESS'
 					},
-					type: NotifierActionType.SHOW
+					type: 'SHOW'
 				} );
 				componentFixture.detectChanges();
 				const mockNotificationComponent: MockNotifierNotificationComponent = new MockNotifierNotificationComponent();
@@ -438,7 +438,7 @@ export function main(): void {
 				// Hide notification
 				queueService.push( {
 					payload: 'NOT_EXISTING_ID',
-					type: NotifierActionType.HIDE
+					type: 'HIDE'
 				} );
 				componentFixture.detectChanges();
 				tick();
@@ -469,7 +469,7 @@ export function main(): void {
 						message: 'Whut.',
 						type: 'ERROR'
 					},
-					type: NotifierActionType.SHOW
+					type: 'SHOW'
 				} );
 				componentFixture.detectChanges();
 				const mockFirstNotificationComponent: MockNotifierNotificationComponent = new MockNotifierNotificationComponent();
@@ -486,7 +486,7 @@ export function main(): void {
 						message: 'Lorem ipsum dolor sit amet.',
 						type: 'SUCCESS'
 					},
-					type: NotifierActionType.SHOW
+					type: 'SHOW'
 				} );
 				componentFixture.detectChanges();
 				const mockSecondNotificationComponent: MockNotifierNotificationComponent = new MockNotifierNotificationComponent();
@@ -498,7 +498,7 @@ export function main(): void {
 				// Hide second notification
 				queueService.push( {
 					payload: testNotificationId,
-					type: NotifierActionType.HIDE
+					type: 'HIDE'
 				} );
 				componentFixture.detectChanges();
 
@@ -533,7 +533,7 @@ export function main(): void {
 						message: 'Whut.',
 						type: 'ERROR'
 					},
-					type: NotifierActionType.SHOW
+					type: 'SHOW'
 				} );
 				componentFixture.detectChanges();
 				const mockFirstNotificationComponent: MockNotifierNotificationComponent = new MockNotifierNotificationComponent();
@@ -550,7 +550,7 @@ export function main(): void {
 						message: 'Lorem ipsum dolor sit amet.',
 						type: 'SUCCESS'
 					},
-					type: NotifierActionType.SHOW
+					type: 'SHOW'
 				} );
 				componentFixture.detectChanges();
 				const mockSecondNotificationComponent: MockNotifierNotificationComponent = new MockNotifierNotificationComponent();
@@ -562,7 +562,7 @@ export function main(): void {
 				// Hide second notification
 				queueService.push( {
 					payload: testNotificationId,
-					type: NotifierActionType.HIDE
+					type: 'HIDE'
 				} );
 				componentFixture.detectChanges();
 
@@ -593,7 +593,7 @@ export function main(): void {
 						message: 'Whut.',
 						type: 'ERROR'
 					},
-					type: NotifierActionType.SHOW
+					type: 'SHOW'
 				} );
 				componentFixture.detectChanges();
 				const mockFirstNotificationComponent: MockNotifierNotificationComponent = new MockNotifierNotificationComponent();
@@ -610,7 +610,7 @@ export function main(): void {
 						message: 'Lorem ipsum dolor sit amet.',
 						type: 'SUCCESS'
 					},
-					type: NotifierActionType.SHOW
+					type: 'SHOW'
 				} );
 				componentFixture.detectChanges();
 				const mockSecondNotificationComponent: MockNotifierNotificationComponent = new MockNotifierNotificationComponent();
@@ -622,7 +622,7 @@ export function main(): void {
 				// Hide second notification
 				queueService.push( {
 					payload: testNotificationId,
-					type: NotifierActionType.HIDE
+					type: 'HIDE'
 				} );
 				componentFixture.detectChanges();
 
@@ -658,7 +658,7 @@ export function main(): void {
 						message: 'Lorem ipsum dolor sit amet.',
 						type: 'SUCCESS'
 					},
-					type: NotifierActionType.SHOW
+					type: 'SHOW'
 				} );
 				componentFixture.detectChanges();
 				const mockNotificationComponent: MockNotifierNotificationComponent = new MockNotifierNotificationComponent();
@@ -703,7 +703,7 @@ export function main(): void {
 						message: 'Lorem ipsum dolor sit amet.',
 						type: 'SUCCESS'
 					},
-					type: NotifierActionType.SHOW
+					type: 'SHOW'
 				} );
 				componentFixture.detectChanges();
 				const mockFirstNotificationComponent: MockNotifierNotificationComponent = new MockNotifierNotificationComponent();
@@ -718,7 +718,7 @@ export function main(): void {
 						message: 'Whut.',
 						type: 'ERROR'
 					},
-					type: NotifierActionType.SHOW
+					type: 'SHOW'
 				} );
 				componentFixture.detectChanges();
 				const mockSecondNotificationComponent: MockNotifierNotificationComponent = new MockNotifierNotificationComponent();
@@ -729,7 +729,7 @@ export function main(): void {
 
 				// Hide second notification
 				queueService.push( {
-					type: NotifierActionType.HIDE_OLDEST
+					type: 'HIDE_OLDEST'
 				} );
 				componentFixture.detectChanges();
 
@@ -759,7 +759,7 @@ export function main(): void {
 
 				// Hide notification
 				queueService.push( {
-					type: NotifierActionType.HIDE_OLDEST
+					type: 'HIDE_OLDEST'
 				} );
 				componentFixture.detectChanges();
 				tick();
@@ -785,7 +785,7 @@ export function main(): void {
 						message: 'Whut.',
 						type: 'ERROR'
 					},
-					type: NotifierActionType.SHOW
+					type: 'SHOW'
 				} );
 				componentFixture.detectChanges();
 				const mockFirstNotificationComponent: MockNotifierNotificationComponent = new MockNotifierNotificationComponent();
@@ -801,7 +801,7 @@ export function main(): void {
 						message: 'Lorem ipsum dolor sit amet.',
 						type: 'SUCCESS'
 					},
-					type: NotifierActionType.SHOW
+					type: 'SHOW'
 				} );
 				componentFixture.detectChanges();
 				const mockSecondNotificationComponent: MockNotifierNotificationComponent = new MockNotifierNotificationComponent();
@@ -812,7 +812,7 @@ export function main(): void {
 
 				// Hide second notification
 				queueService.push( {
-					type: NotifierActionType.HIDE_NEWEST
+					type: 'HIDE_NEWEST'
 				} );
 				componentFixture.detectChanges();
 
@@ -842,7 +842,7 @@ export function main(): void {
 
 				// Hide notification
 				queueService.push( {
-					type: NotifierActionType.HIDE_NEWEST
+					type: 'HIDE_NEWEST'
 				} );
 				componentFixture.detectChanges();
 				tick();
@@ -872,7 +872,7 @@ export function main(): void {
 						message: 'Lorem ipsum dolor sit amet.',
 						type: 'SUCCESS'
 					},
-					type: NotifierActionType.SHOW
+					type: 'SHOW'
 				} );
 				componentFixture.detectChanges();
 				const mockFirstNotificationComponent: MockNotifierNotificationComponent = new MockNotifierNotificationComponent();
@@ -887,7 +887,7 @@ export function main(): void {
 						message: 'Whut.',
 						type: 'ERROR'
 					},
-					type: NotifierActionType.SHOW
+					type: 'SHOW'
 				} );
 				componentFixture.detectChanges();
 				const mockSecondNotificationComponent: MockNotifierNotificationComponent = new MockNotifierNotificationComponent();
@@ -898,7 +898,7 @@ export function main(): void {
 
 				// Hide second notification
 				queueService.push( {
-					type: NotifierActionType.HIDE_ALL
+					type: 'HIDE_ALL'
 				} );
 				componentFixture.detectChanges();
 
@@ -929,7 +929,7 @@ export function main(): void {
 						message: 'Lorem ipsum dolor sit amet.',
 						type: 'SUCCESS'
 					},
-					type: NotifierActionType.SHOW
+					type: 'SHOW'
 				} );
 				componentFixture.detectChanges();
 				const mockFirstNotificationComponent: MockNotifierNotificationComponent = new MockNotifierNotificationComponent();
@@ -944,7 +944,7 @@ export function main(): void {
 						message: 'Whut.',
 						type: 'ERROR'
 					},
-					type: NotifierActionType.SHOW
+					type: 'SHOW'
 				} );
 				componentFixture.detectChanges();
 				const mockSecondNotificationComponent: MockNotifierNotificationComponent = new MockNotifierNotificationComponent();
@@ -955,7 +955,7 @@ export function main(): void {
 
 				// Hide second notification
 				queueService.push( {
-					type: NotifierActionType.HIDE_ALL
+					type: 'HIDE_ALL'
 				} );
 				componentFixture.detectChanges();
 
@@ -986,7 +986,7 @@ export function main(): void {
 
 				// Hide notification
 				queueService.push( {
-					type: NotifierActionType.HIDE_ALL
+					type: 'HIDE_ALL'
 				} );
 				componentFixture.detectChanges();
 				tick();

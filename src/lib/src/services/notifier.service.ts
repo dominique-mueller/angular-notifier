@@ -1,6 +1,5 @@
 import { Injectable, Optional } from '@angular/core';
 
-import { NotifierActionType } from './../models/notifier-action.model';
 import { NotifierConfig } from './../models/notifier-config.model';
 import { NotifierNotificationOptions } from './../models/notifier-notification.model';
 import { NotifierQueueService } from './notifier-queue.service';
@@ -53,7 +52,7 @@ export class NotifierService {
 	public show( notificationOptions: NotifierNotificationOptions ): void {
 		this.queueService.push( {
 			payload: notificationOptions,
-			type: NotifierActionType.SHOW
+			type: 'SHOW'
 		} );
 	}
 
@@ -65,7 +64,7 @@ export class NotifierService {
 	public hide( notificationId: string ): void {
 		this.queueService.push( {
 			payload: notificationId,
-			type: NotifierActionType.HIDE
+			type: 'HIDE'
 		} );
 	}
 
@@ -74,7 +73,7 @@ export class NotifierService {
 	 */
 	public hideNewest(): void {
 		this.queueService.push( {
-			type: NotifierActionType.HIDE_NEWEST
+			type: 'HIDE_NEWEST'
 		} );
 	}
 
@@ -83,7 +82,7 @@ export class NotifierService {
 	 */
 	public hideOldest(): void {
 		this.queueService.push( {
-			type: NotifierActionType.HIDE_OLDEST
+			type: 'HIDE_OLDEST'
 		} );
 	}
 
@@ -92,7 +91,7 @@ export class NotifierService {
 	 */
 	public hideAll(): void {
 		this.queueService.push( {
-			type: NotifierActionType.HIDE_ALL
+			type: 'HIDE_ALL'
 		} );
 	}
 

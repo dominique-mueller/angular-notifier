@@ -19,17 +19,6 @@ export interface NotifierAction {
 	/**
 	 * Action type
 	 */
-	type: NotifierActionType;
+	type: 'SHOW' | 'HIDE' | 'HIDE_ALL' | 'HIDE_NEWEST' | 'HIDE_OLDEST';
 
-}
-
-/**
- * Notifier action type
- */
-export enum NotifierActionType {
-	'SHOW',
-	'HIDE',
-	'HIDE_ALL',
-	'HIDE_NEWEST',
-	'HIDE_OLDEST'
 }

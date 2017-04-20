@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnIni
 
 import { Subscription } from 'rxjs/Subscription';
 
-import { NotifierAction, NotifierActionType } from './../models/notifier-action.model';
+import { NotifierAction } from './../models/notifier-action.model';
 import { NotifierConfig } from './../models/notifier-config.model';
 import { NotifierNotification } from './../models/notifier-notification.model';
 import { NotifierQueueService } from './../services/notifier-queue.service';
@@ -115,7 +115,7 @@ export class NotifierContainerComponent implements OnDestroy, OnInit {
 	public onNotificationDismiss( notificationId: string ): void {
 		this.queueService.push( {
 			payload: notificationId,
-			type: NotifierActionType.HIDE
+			type: 'HIDE'
 		} );
 	}
 
@@ -138,15 +138,15 @@ export class NotifierContainerComponent implements OnDestroy, OnInit {
 	 */
 	private handleAction( action: NotifierAction ): Promise<undefined> {
 		switch ( action.type ) { // TODO: Maybe a map (actionType -> class method) is a cleaner solution here?
-			case NotifierActionType.SHOW:
+			case 'SHOW':
 				return this.handleShowAction( action );
-			case NotifierActionType.HIDE:
+			case 'HIDE':
 				return this.handleHideAction( action );
-			case NotifierActionType.HIDE_OLDEST:
+			case 'HIDE_OLDEST':
 				return this.handleHideOldestAction( action );
-			case NotifierActionType.HIDE_NEWEST:
+			case 'HIDE_NEWEST':
 				return this.handleHideNewestAction( action );
-			case NotifierActionType.HIDE_ALL:
+			case 'HIDE_ALL':
 				return this.handleHideAllAction( action );
 			default:
 				return new Promise<undefined>( ( resolve: () => void, reject: () => void ) => {

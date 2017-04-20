@@ -2,7 +2,7 @@ import { inject, TestBed } from '@angular/core/testing';
 
 import { NotifierConfig } from '../models/notifier-config.model';
 import { NotifierNotificationOptions } from '../models/notifier-notification.model';
-import { NotifierAction, NotifierActionType } from '../models/notifier-action.model';
+import { NotifierAction } from '../models/notifier-action.model';
 import { NotifierQueueService } from './notifier-queue.service';
 import { NotifierService } from './notifier.service';
 
@@ -97,7 +97,7 @@ export function main(): void {
 			};
 			const expectedAction: NotifierAction = {
 				payload: testNotificationOptions,
-				type: NotifierActionType.SHOW
+				type: 'SHOW'
 			};
 			service.show( testNotificationOptions );
 
@@ -113,7 +113,7 @@ export function main(): void {
 			};
 			const expectedAction: NotifierAction = {
 				payload: testNotificationOptions,
-				type: NotifierActionType.SHOW
+				type: 'SHOW'
 			};
 			service.notify( testNotificationOptions.type, testNotificationOptions.message );
 
@@ -130,7 +130,7 @@ export function main(): void {
 			};
 			const expectedAction: NotifierAction = {
 				payload: testNotificationOptions,
-				type: NotifierActionType.SHOW
+				type: 'SHOW'
 			};
 			service.notify( testNotificationOptions.type, testNotificationOptions.message, testNotificationOptions.id );
 
@@ -143,7 +143,7 @@ export function main(): void {
 			const testNotificationId: string = 'ID_FAKE';
 			const expectedAction: NotifierAction = {
 				payload: testNotificationId,
-				type: NotifierActionType.HIDE
+				type: 'HIDE'
 			};
 			service.hide( testNotificationId );
 
@@ -154,7 +154,7 @@ export function main(): void {
 		it( 'should hide the newest notification', () => {
 
 			const expectedAction: NotifierAction = {
-				type: NotifierActionType.HIDE_NEWEST
+				type: 'HIDE_NEWEST'
 			};
 			service.hideNewest();
 
@@ -165,7 +165,7 @@ export function main(): void {
 		it( 'should hide the oldest notification', () => {
 
 			const expectedAction: NotifierAction = {
-				type: NotifierActionType.HIDE_OLDEST
+				type: 'HIDE_OLDEST'
 			};
 			service.hideOldest();
 
@@ -176,7 +176,7 @@ export function main(): void {
 		it( 'should hide all notifications', () => {
 
 			const expectedAction: NotifierAction = {
-				type: NotifierActionType.HIDE_ALL
+				type: 'HIDE_ALL'
 			};
 			service.hideAll();
 

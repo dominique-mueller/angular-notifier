@@ -1,0 +1,22 @@
+{
+  "extends": "./../../tsconfig.json",
+  "compilerOptions": {
+    "declaration": true,
+    "target": "es5",
+    "outDir": "./../../build/temp/lib-es5",
+    "baseUrl": "",
+    "types": [],
+    "stripInternal": true
+  },
+  "files": [
+    "./../../build/temp/lib-inline/index.ts"
+  ],
+  "angularCompilerOptions": {
+    "annotateForClosureCompiler": true,
+    "strictMetadataEmit": true,
+    "skipTemplateCodegen": true,
+    "flatModuleOutFile": "angular-notifier.js",
+    "flatModuleId": "angular-notifier",
+    "genDir": "./../../build/temp/lib-es5-gen-dir"
+  }
+}

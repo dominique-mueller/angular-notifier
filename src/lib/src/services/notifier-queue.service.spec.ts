@@ -3,7 +3,7 @@ import { TestBed, inject } from '@angular/core/testing';
 import { BehaviorSubject, Subject } from 'rxjs/Rx';
 
 import { NotifierQueueService } from './notifier-queue.service';
-import { NotifierAction, NotifierActionType } from '../models/notifier-action.model';
+import { NotifierAction } from '../models/notifier-action.model';
 
 /**
  * Notifier Queue Service - Unit Test
@@ -39,7 +39,7 @@ export function main(): void {
 
 			const testAction: NotifierAction = {
 				payload: 'FANCY',
-				type: NotifierActionType.SHOW
+				type: 'SHOW'
 			};
 			let expectedTestAction: NotifierAction | undefined;
 
@@ -56,11 +56,11 @@ export function main(): void {
 
 			const firstTestAction: NotifierAction = {
 				payload: 'AWESOME',
-				type: NotifierActionType.SHOW
+				type: 'SHOW'
 			};
 			const secondTestAction: NotifierAction = {
 				payload: 'GREAT',
-				type: NotifierActionType.HIDE
+				type: 'HIDE'
 			};
 			let expectedTestAction: NotifierAction | undefined;
 
