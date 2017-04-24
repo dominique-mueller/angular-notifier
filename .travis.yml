@@ -1,15 +1,8 @@
-sudo: required # Necessary for the apt-get
 dist: trusty # Beta build environment (newer OS, at least it seems)
 language: node_js
 cache:
   directories:
     - node_modules
-addons:
-  apt:
-    sources:
-      - google-chrome
-    packages:
-      - google-chrome-stable # Get the latest stable version of Chrome (Karma will work with it)
 notifications:
   email: false
 branches:
@@ -30,13 +23,8 @@ install:
   - npm install
   - npm update
 
-before_script:
-  - export CHROME_BIN=/usr/bin/google-chrome # Set Chrome path
-  - npm prune
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start # Run xvfb to fake a display (muhaha ...)
 script:
-  - npm run gulp test && npm run coveralls && npm run gulp build--publish # First test, then build for npm publish
+  - npm run test:ci && npm run coveralls && npm run build:publish
 
 before_deploy:
   - git config --global user.name "dominique-mueller"
