@@ -20,3 +20,12 @@ gulp.task( 'env:clean-dist', () => {
 		'dist/**'
 	] );
 } );
+
+/**
+ * Gulp task: Clean test coverage (with all its content)
+ */
+gulp.task( 'env:clean-coverage', () => {
+	return del( [
+		'coverage/**'
+	] );
+} );

@@ -28,7 +28,8 @@ gulp.task( 'lint',
 gulp.task( 'clean',
 	gulp.parallel( [
 		'env:clean-build',
-		'env:clean-dist'
+		'env:clean-dist',
+		'env:clean-coverage'
 	] )
 );
 
