@@ -31,10 +31,12 @@
         "module",
         "js"
     ],
-    "main": "bundles/angular-notifier.umd.js",
-    "module": "index.js",
-    "typings": "index.d.ts",
+    "main": "dist/angular-notifier.umd.js",
+    "module": "dist/angular-notifier.es5.js",
+    "es2015": "dist/angular-notifier.es2015.js",
+    "typings": "dist/angular-notifier.d.ts",
     "scripts": {
+        "pkg-ok": "pkg-ok",
         "gulp": "gulp",
         "webpack-dev-server": "webpack-dev-server",
 		"build:dev": "webpack --config ./tools/webpack/webpack.config.js --hide-modules",

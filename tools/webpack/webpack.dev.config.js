@@ -75,7 +75,7 @@ module.exports = {
 					{
 						loader: 'awesome-typescript-loader',
 						options: {
-							configFileName: path.resolve( process.cwd(), 'tsconfig.dev.json' ),
+							configFileName: path.resolve( process.cwd(), 'tools', 'tsc', 'tsconfig.dev.json' ),
 							// silent: true // Disable any output
 						}
 					},
@@ -193,7 +193,7 @@ module.exports = {
 			chunks: [
 				'app'
 			],
-			minChunks: ( module ) => module.resource && module.resource.startsWith( path.join( process.cwd()	, 'node_modules' ) )
+			minChunks: ( module ) => module.resource && module.resource.startsWith( path.join( process.cwd(), 'node_modules' ) )
 		} ),
 
 		// Define the correct order all external scripts will be injected into the index.html file
@@ -279,14 +279,14 @@ module.exports = {
 
 		new SimpleProgressWebpackPlugin( {
 			format: 'minimal'
-		} )
+		} ),
 
-		// new FriendlyErrorsWebpackPlugin( {
-		// 	compilationSuccessInfo: {
-		// 		messages: [ 'You application is running here http://localhost:3000' ],
-		// 		notes: [ 'Some additionnal notes to be displayed unpon successful compilation' ]
-		// 	},
-		// } )
+		new FriendlyErrorsWebpackPlugin( {
+			compilationSuccessInfo: {
+				messages: [ 'You application is running here http://localhost:3000' ],
+				notes: [ 'Some additionnal notes to be displayed unpon successful compilation' ]
+			},
+		} )
 
 	],
 
