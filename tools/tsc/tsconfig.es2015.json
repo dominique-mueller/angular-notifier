@@ -2,15 +2,15 @@
   "extends": "./../../tsconfig.json",
   "compilerOptions": {
     "declaration": true,
-    "outDir": "./../../build/temp/lib-es2015",
+    "outDir": "./../../build/library-es2015",
     "target": "es2015",
-    "rootDir": "./../../build/temp/lib-inline",
+    "rootDir": "./../../build/library-inline",
     "baseUrl": "",
     "types": [],
     "stripInternal": true
   },
   "files": [
-    "./../../build/temp/lib-inline/index.ts"
+    "./../../build/library-inline/index.ts"
   ],
   "angularCompilerOptions": {
     "annotateForClosureCompiler": true,
@@ -18,6 +18,6 @@
     "skipTemplateCodegen": true,
     "flatModuleOutFile": "angular-notifier.js",
     "flatModuleId": "angular-notifier",
-    "genDir": "./../../build/temp/lib-es2015-gen-dir"
+    "genDir": "./../../build/library-es2015-gen-dir"
   }
 }

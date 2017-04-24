@@ -3,6 +3,7 @@
 
 # Build
 /build
+/dist
 
 # Build: TypeScript output
 /index.d.ts

@@ -2,29 +2,37 @@
 
 const gulp = require( 'gulp' );
 
-const cleanTask = require( './tools/gulp/clean.task' );
+const envCleanTask = require( './tools/gulp/env/env-clean.task' );
+const envDistTask = require( './tools/gulp/env/env-dist.task' );
 const tsInlineResourcesTask = require( './tools/gulp/ts/ts-inline-resources.task' );
 const tsBuildTask = require( './tools/gulp/ts/ts-build.task' );
 const tsBundleTask = require( './tools/gulp/ts/ts-bundle.task' );
+const sassBuildTask = require( './tools/gulp/sass/sass-build.task' );
 
 gulp.task( 'run',
 	gulp.series( [
 		gulp.parallel( [
-			'clean:build-temp',
-			'clean:build-bundles'
+			'env:clean-build',
+			'env:clean-dist',
 		] ),
-		'ts:inline-resources',
 		gulp.parallel( [
+			'sass:build',
 			gulp.series( [
-				'ts:build-es2015',
-				'ts:bundle-fesm2015'
-			] ),
-			gulp.series( [
-				'ts:build-es5',
-				'ts:bundle-fesm5',
-				'ts:bundle-umd'
+				'ts:inline-resources',
+				gulp.parallel( [
+					gulp.series( [
+						'ts:build-es2015',
+						'ts:bundle-fesm2015'
+					] ),
+					gulp.series( [
+						'ts:build-es5',
+						'ts:bundle-fesm5',
+						'ts:bundle-umd'
+					] )
+				] )
 			] )
-		] )
+		] ),
+		'emv:clean-build'
 	] )
 );
 

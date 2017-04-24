@@ -3,13 +3,14 @@
 const gulp = require( 'gulp' );
 const inlineTemplate = require( 'gulp-inline-ng2-template' );
 
+// Options ...
 const inlineTemplateOptions = {
     indent: 4,
     useRelativePaths: true
 };
 
 /**
- * Gulp task: Inline TypeScript resources
+ * Gulp task: Inline ressources (Angular HTML templates into TypeScript class decorators)
  */
 gulp.task( 'ts:inline-resources', () => {
 
@@ -20,6 +21,6 @@ gulp.task( 'ts:inline-resources', () => {
 			'!src/lib/**/*.d.ts'
 		] )
 		.pipe( inlineTemplate( inlineTemplateOptions ) )
-		.pipe( gulp.dest( 'build/temp/lib-inline' ) );
+		.pipe( gulp.dest( 'build/library-inline' ) );
 
 } );
