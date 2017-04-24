@@ -5,59 +5,55 @@ import { fade } from './../animation-presets/fade.animation-preset';
 /**
  * Fade animation preset - Unit Test
  */
-export function main(): void {
+describe( 'Fade Animation Preset', () => {
 
-	describe( 'Fade Animation Preset', () => {
+	describe( '(show)', () => {
 
-		describe( '(show)', () => {
+		it( 'should return animation keyframes', () => {
 
-			it( 'should return animation keyframes', () => {
+			const testNotification: MockNotification = new MockNotification( <NotifierConfig> {} );
+			const expectedKeyframes: NotifierAnimationPresetKeyframes = {
+				from: {
+					opacity: '0'
+				},
+				to: {
+					opacity: '1'
+				}
+			};
+			// tslint:disable no-any
+			const keyframes: NotifierAnimationPresetKeyframes = fade.show( <any> testNotification );
+			// tslint:enable no-any
 
-				const testNotification: MockNotification = new MockNotification( <NotifierConfig> {} );
-				const expectedKeyframes: NotifierAnimationPresetKeyframes = {
-					from: {
-						opacity: '0'
-					},
-					to: {
-						opacity: '1'
-					}
-				};
-				// tslint:disable no-any
-				const keyframes: NotifierAnimationPresetKeyframes = fade.show( <any> testNotification );
-				// tslint:enable no-any
-
-				expect( keyframes ).toEqual( expectedKeyframes );
-
-			} );
-
-		} );
-
-		describe( '(hide)', () => {
-
-			it( 'should return animation keyframes', () => {
-
-				const testNotification: MockNotification = new MockNotification( <NotifierConfig> {} );
-				const expectedKeyframes: NotifierAnimationPresetKeyframes = {
-					from: {
-						opacity: '1'
-					},
-					to: {
-						opacity: '0'
-					}
-				};
-				// tslint:disable no-any
-				const keyframes: NotifierAnimationPresetKeyframes = fade.hide( <any> testNotification );
-				// tslint:enable no-any
-
-				expect( keyframes ).toEqual( expectedKeyframes );
-
-			} );
+			expect( keyframes ).toEqual( expectedKeyframes );
 
 		} );
 
 	} );
 
-}
+	describe( '(hide)', () => {
+
+		it( 'should return animation keyframes', () => {
+
+			const testNotification: MockNotification = new MockNotification( <NotifierConfig> {} );
+			const expectedKeyframes: NotifierAnimationPresetKeyframes = {
+				from: {
+					opacity: '1'
+				},
+				to: {
+					opacity: '0'
+				}
+			};
+			// tslint:disable no-any
+			const keyframes: NotifierAnimationPresetKeyframes = fade.hide( <any> testNotification );
+			// tslint:enable no-any
+
+			expect( keyframes ).toEqual( expectedKeyframes );
+
+		} );
+
+	} );
+
+} );
 
 /**
  * Mock Notification Height

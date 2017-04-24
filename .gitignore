@@ -5,31 +5,8 @@
 /build
 /dist
 
-# Build: TypeScript output
-/index.d.ts
-/index.js
-/index.js.map
-/index.metadata.json
-/src/**/*.d.ts
-/src/**/*.js
-/src/**/*.js.map
-/src/**/*.metadata.json
-!/src/demo/systemjs.config.js
-
-# Build: SASS output
-/style.css
-/style.css.map
-/src/styles/**/*.css
-/src/styles/**/*.css.map
-
-# Build: Bundles
-/bundles
-
-# Build: Temp folder
-/temp
-
 # Test coverage
-/test-coverage
+/coverage
 
 # Development
 /.vscode

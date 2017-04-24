@@ -8,105 +8,101 @@ import { NotifierAnimationService } from './notifier-animation.service';
 /**
  * Notifier Animation Service - Unit Test
  */
-export function main(): void {
+describe( 'Notifier Animation Service', () => {
 
-	describe( 'Notifier Animation Service', () => {
+	let animationService: NotifierAnimationService;
 
-		let animationService: NotifierAnimationService;
-
-		// Setup test module
-		beforeEach( () => {
-			TestBed.configureTestingModule( {
-				providers: [
-					NotifierAnimationService
-				]
-			} );
+	// Setup test module
+	beforeEach( () => {
+		TestBed.configureTestingModule( {
+			providers: [
+				NotifierAnimationService
+			]
 		} );
+	} );
 
-		// Inject dependencies
-		beforeEach( inject( [ NotifierAnimationService ], ( notifierAnimationService: NotifierAnimationService ) => {
-			animationService = notifierAnimationService;
-		} ) );
+	// Inject dependencies
+	beforeEach( inject( [ NotifierAnimationService ], ( notifierAnimationService: NotifierAnimationService ) => {
+		animationService = notifierAnimationService;
+	} ) );
 
-		it( 'should instantiate', () => {
+	it( 'should instantiate', () => {
 
-			expect( animationService ).toBeDefined();
-
-		} );
-
-		it( 'should build the animation data for showing a notification', () => {
-
-			const testConfig: NotifierConfig = new NotifierConfig( {
-				animations: {
-					show: {
-						easing: 'ease-in-out',
-						preset: 'fade',
-						speed: 400
-					}
-				}
-			} );
-			const testNotification: MockNotification = new MockNotification( testConfig );
-			const expectedAnimationData: NotifierAnimationData = {
-				keyframes: [
-					{
-						opacity: '0'
-					},
-					{
-						opacity: '1'
-					}
-				],
-				options: {
-					duration: testConfig.animations.show.speed,
-					easing: testConfig.animations.show.easing,
-					fill: 'forwards'
-				}
-			};
-			// tslint:disable no-any
-			const animationData: NotifierAnimationData = animationService.getAnimationData( 'show', <any> testNotification );
-			// tslint:enable no-any
-
-			expect( animationData ).toEqual( expectedAnimationData );
-
-		} );
-
-		it( 'should build the animation data for hiding a notification', () => {
-
-			const testConfig: NotifierConfig = new NotifierConfig( {
-				animations: {
-					hide: {
-						easing: 'ease-in-out',
-						preset: 'fade',
-						speed: 400
-					}
-				}
-			} );
-			const testNotification: MockNotification = new MockNotification( testConfig );
-			const expectedAnimationData: NotifierAnimationData = {
-				keyframes: [
-					{
-						opacity: '1'
-					},
-					{
-						opacity: '0'
-					}
-				],
-				options: {
-					duration: testConfig.animations.hide.speed,
-					easing: testConfig.animations.hide.easing,
-					fill: 'forwards'
-				}
-			};
-			// tslint:disable no-any
-			const animationData: NotifierAnimationData = animationService.getAnimationData( 'hide', <any> testNotification );
-			// tslint:enable no-any
-
-			expect( animationData ).toEqual( expectedAnimationData );
-
-		} );
+		expect( animationService ).toBeDefined();
 
 	} );
 
-}
+	it( 'should build the animation data for showing a notification', () => {
+
+		const testConfig: NotifierConfig = new NotifierConfig( {
+			animations: {
+				show: {
+					easing: 'ease-in-out',
+					preset: 'fade',
+					speed: 400
+				}
+			}
+		} );
+		const testNotification: MockNotification = new MockNotification( testConfig );
+		const expectedAnimationData: NotifierAnimationData = {
+			keyframes: [
+				{
+					opacity: '0'
+				},
+				{
+					opacity: '1'
+				}
+			],
+			options: {
+				duration: testConfig.animations.show.speed,
+				easing: testConfig.animations.show.easing,
+				fill: 'forwards'
+			}
+		};
+		// tslint:disable no-any
+		const animationData: NotifierAnimationData = animationService.getAnimationData( 'show', <any> testNotification );
+		// tslint:enable no-any
+
+		expect( animationData ).toEqual( expectedAnimationData );
+
+	} );
+
+	it( 'should build the animation data for hiding a notification', () => {
+
+		const testConfig: NotifierConfig = new NotifierConfig( {
+			animations: {
+				hide: {
+					easing: 'ease-in-out',
+					preset: 'fade',
+					speed: 400
+				}
+			}
+		} );
+		const testNotification: MockNotification = new MockNotification( testConfig );
+		const expectedAnimationData: NotifierAnimationData = {
+			keyframes: [
+				{
+					opacity: '1'
+				},
+				{
+					opacity: '0'
+				}
+			],
+			options: {
+				duration: testConfig.animations.hide.speed,
+				easing: testConfig.animations.hide.easing,
+				fill: 'forwards'
+			}
+		};
+		// tslint:disable no-any
+		const animationData: NotifierAnimationData = animationService.getAnimationData( 'hide', <any> testNotification );
+		// tslint:enable no-any
+
+		expect( animationData ).toEqual( expectedAnimationData );
+
+	} );
+
+} );
 
 /**
  * Mock Notification Height

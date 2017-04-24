@@ -1,18 +1,15 @@
 # Dependencies
 /node_modules
 
-# Source code
-/index.ts
+# Build
+/build
+
+# Source code (unnecessary parts, at least)
+/src/lib/**/*.spec.ts
 /src/demo
-/src/**/*.ts
-/src/**/*.html
-!/src/**/*.d.ts
 
-# Build: Test output
-/src/**/*.spec.js
-
-# Build: Temp folder
-/temp
+# Test coverage
+/coverage
 
 # Demo & docs
 /docs
@@ -25,14 +22,8 @@
 /.travis.yml
 /browserlist
 /gulpfile.js
-/karma.config.js
-/karma-angular.config.js
 /tsconfig.json
-/tsconfig-aot.json
 /tslint.json
-
-# Test coverage
-/test-coverage
 
 # GitHub templates
 /.github
