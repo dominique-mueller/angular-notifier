@@ -18,6 +18,7 @@
 # Not needed files
 /tools
 /.gitignore
+/.npmignore
 /.nvmrc
 /.sass-lint.yml
 /.travis.yml
