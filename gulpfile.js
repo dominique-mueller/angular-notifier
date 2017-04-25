@@ -59,14 +59,11 @@ gulp.task( 'build',
 /**
  * Gulp task: Build for publishment
  */
-gulp.task( 'all',
-	gulp.parallel( [
-		'lint',
-		gulp.series( [
-			'clean',
-			'build',
-			'env:dist',
-			'env:clean-build'
-		] )
+gulp.task( 'run',
+	gulp.series( [
+		'clean',
+		'build',
+		'env:dist',
+		'env:clean-build'
 	] )
 );

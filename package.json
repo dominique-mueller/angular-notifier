@@ -36,17 +36,16 @@
     "es2015": "dist/angular-notifier.es2015.js",
     "typings": "dist/angular-notifier.d.ts",
     "scripts": {
-        "pkg-ok": "pkg-ok",
         "gulp": "gulp",
         "webpack-dev-server": "webpack-dev-server",
-		"build:dev": "webpack --config ./tools/webpack/webpack.config.js --hide-modules",
-        "build:publish": "gulp all",
 		"start": "webpack --config ./tools/webpack/webpack.dll.config.js --hide-modules && webpack-dev-server --config ./tools/webpack/webpack.dev.config.js",
-        "release:automatic-release": "automatic-release",
-        "release:list-deployed-files": "pkgfiles --sort=name",
-        "coveralls": "cat ./coverage/remapped/lcov.info | coveralls",
         "test": "jest --config ./tools/jest/jest.config.json",
-		"test:ci": "jest --config ./tools/jest/jest.config.json --runInBand"
+        "lint": "gulp lint",
+        "build": "gulp run",
+        "ci:automatic-release": "automatic-release",
+        "ci:list-released-files": "pkgfiles --sort=name",
+        "ci:coveralls": "cat ./coverage/remapped/lcov.info | coveralls",
+		"ci:test": "jest --config ./tools/jest/jest.config.json --runInBand"
     },
     "peerDependencies": {
         "@angular/core": ">= 4.0.0 < 5.0.0",

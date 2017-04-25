@@ -24,7 +24,10 @@ install:
   - npm update
 
 script:
-  - npm run test:ci && npm run coveralls && npm run build:publish
+  - npm run lint || travis_terminate 1 # Fail fast
+  - npm run ci:test || travis_terminate 1 # Fail fast
+  - npm run ci:coveralls # Continue on errors
+  - npm run build || travis_terminate 1 # Fail fast
 
 before_deploy:
   - git config --global user.name "dominique-mueller"
@@ -32,7 +35,7 @@ before_deploy:
   - git config credential.helper "store --file=.git/credentials"
   - echo "https://$GH_TOKEN:@github.com" > .git/credentials
   - git checkout master
-  - npm run release:automatic-release
+  - npm run ci:automatic-release
 deploy:
   provider: npm
   email: dominique.m.mueller@gmail.com
@@ -42,4 +45,4 @@ deploy:
     branch: master
     repo: dominique-mueller/angular-notifier
 after_deploy:
-  - npm run release:list-deployed-files
+  - npm run ci:list-released-files
