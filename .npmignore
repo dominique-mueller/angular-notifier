@@ -5,7 +5,8 @@
 /build
 
 # Source code (unnecessary parts, at least)
-/src/lib/**/*.spec.ts
+/src/lib/src
+/src/lib/index.ts
 /src/demo
 
 # Test coverage
