@@ -26,7 +26,7 @@ install:
 script:
   - npm run lint || travis_terminate 1 # Fail fast
   - npm run ci:test || travis_terminate 1 # Fail fast
-  - npm run ci:coveralls # Continue on errors
+  - npm run ci:coverage # Continue on errors
   - npm run build || travis_terminate 1 # Fail fast
 
 before_deploy:
