@@ -1,0 +1,14 @@
+{
+	"extends": "./../../tsconfig.json",
+	"compilerOptions": {
+		"outDir": "./../../build/tsc/app",
+		"baseUrl": "",
+		"types": [
+			"node"
+		]
+	},
+	"exclude": [
+		"./../../node_modules",
+		"./../../src/lib/**/*.spec.ts"
+	]
+}

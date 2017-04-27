@@ -1,159 +1,61 @@
 'use strict';
 
+const path = require( 'path' );
+
 const gulp = require( 'gulp' );
-const gutil = require( 'gulp-util' );
-const ProgressBarPlugin = require('progress-bar-webpack-plugin');
-const webpack = require( 'webpack' );
+const rename = require( 'gulp-rename' );
+const rollup = require( 'gulp-rollup' );
+const sourcemaps = require( 'gulp-sourcemaps' );
+
+// Options ...
+const rollupFesm2015Options = require( './../../rollup/rollup.fesm2015.config' );
+const rollupFesm5Options = require( './../../rollup/rollup.fesm5.config' );
+const rollupUmdOptions = require( './../../rollup/rollup.umd.config' );
+const sourcemapsOptions = {
+	loadMaps: true
+};
 
 /**
- * Gulp task: Bundle TypeScript as UMD
+ * Gulp task: Bundle TypeScript as Flat ECMAScript 2015 Module (short FESM2015)
  */
-gulp.task( 'ts:bundle:umd', ( done ) => {
+gulp.task( 'ts:bundle-fesm2015', () => {
 
-    webpack( {
-		devtool: 'source-map',
-		entry: './index.js', // Explicitely needs the './' at the beginning of the path!
-		output: {
-			path: 'bundles',
-			filename: 'angular-notifier.umd.js',
-			library: 'angular-notifier',
-			libraryTarget: 'umd',
-			sourceMapFilename: 'angular-notifier.umd.map.js'
-		},
-		resolve: {
-			modules: [
-				'node_modules'
-			],
-			extensions: [
-				'.js'
-			]
-		},
-		externals: [ // Don't bundle up external dependencies (here Angular modules and rxjs)
-			/^\@angular\//,
-			/^rxjs\//
-		],
-		target: 'web',
-		module: {
-			rules: [
-				{ // Re-use existing sourcemaps
-					enforce: 'pre',
-					test: /\.js$/,
-					loader: 'source-map-loader'
-				}
-			]
-		},
-		plugins: [
-			new ProgressBarPlugin()
-		]
-	}, ( error, stats ) => {
-
-		if ( error ) {
-			new gutil.PluginError( {
-				plugin: 'webpack',
-				message: `Webpack error.\n${ error }`
-			} );
-		} else {
-			gutil.log( stats.toString( {
-				colors: true,
-				chunks: false
-			} ) );
-			done();
-		}
-
-	} );
+	return gulp
+		.src( 'build/library-es2015/**/*.js' )
+		.pipe( sourcemaps.init( sourcemapsOptions ) )
+		.pipe( rollup( rollupFesm2015Options ) )
+		.pipe( rename( 'angular-notifier.js' ) ) // Default
+		.pipe( sourcemaps.write( '.' ) )
+		.pipe( gulp.dest( 'build/library-bundles' ) );
 
 } );
 
 /**
- * Gulp task: Bundle and minify TypeScript as UMD
+ * Gulp task: Bundle TypeScript as Flat ECMAScript 5 Module (short FESM5)
  */
-gulp.task( 'ts:bundle:umd:min', ( done ) => {
+gulp.task( 'ts:bundle-fesm5', () => {
 
-    webpack( {
-		devtool: 'source-map',
-		entry: './index.js', // Explicitely needs the './' at the beginning of the path!
-		output: {
-			path: 'bundles',
-			filename: 'angular-notifier.umd.min.js',
-			library: 'angular-notifier',
-			libraryTarget: 'umd',
-			sourceMapFilename: 'angular-notifier.umd.min.map.js'
-		},
-		resolve: {
-			modules: [
-				'node_modules'
-			],
-			extensions: [
-				'.js'
-			]
-		},
-		externals: [ // Don't bundle up external dependencies (here Angular modules and rxjs)
-			/^\@angular\//,
-			/^rxjs\//
-		],
-		target: 'web',
-		module: {
-			rules: [
-				{ // Re-use existing sourcemaps
-					enforce: 'pre',
-					test: /\.js$/,
-					loader: 'source-map-loader'
-				}
-			]
-		},
-		plugins: [
-			new ProgressBarPlugin(),
-			new webpack.optimize.UglifyJsPlugin( {
-				compress: {
-					booleans: true,
-					cascade: true,
-					collapse_vars: false,
-					comparisons: true,
-					conditionals: true,
-					dead_code: true,
-					drop_console: true,
-					drop_debugger: true,
-					evaluate: true,
-					hoist_funs: true,
-					hoist_vars: false,
-					if_return: true,
-					join_vars: true,
-					keep_fargs: false,
-					keep_fnames: false,
-					loops: true,
-					negate_iife: false, // (#perfmatters)
-					passes: 1,
-					properties: true,
-					pure_funcs: null,
-					pure_getters: true,
-					sequences: true,
-					unsafe: true,
-					unsafe_comps: false,
-					unused: true,
-					warnings: false // Enable for debugging
-				},
-				mangle: {
-					toplevel: true,
-					keep_fnames: false
-				},
-				sourceMap: true
-			} )
-		]
-	}, ( error, stats ) => {
+	return gulp
+		.src( 'build/library-es5/**/*.js' )
+		.pipe( sourcemaps.init( sourcemapsOptions ) )
+		.pipe( rollup( rollupFesm5Options ) )
+		.pipe( rename( 'angular-notifier.es5.js' ) )
+		.pipe( sourcemaps.write( '.' ) )
+		.pipe( gulp.dest( 'build/library-bundles' ) );
 
-		if ( error ) {
-			new gutil.PluginError( {
-				plugin: 'webpack',
-				message: `Webpack error.\n${ error }`
-			} );
-		} else {
-			gutil.log( stats.toString( {
-				colors: true,
-				chunks: false
-			} ) );
-			done();
-		}
+} );
 
-	} );
+/**
+ * Gulp task: Bundle TypeScript as UMD bundle (bundle using the Universal Module Definition)
+ */
+gulp.task( 'ts:bundle-umd', () => {
+
+	return gulp
+		.src( 'build/library-es5/**/*.js' )
+		.pipe( sourcemaps.init( sourcemapsOptions ) )
+		.pipe( rollup( rollupUmdOptions ) )
+		.pipe( rename( 'angular-notifier.umd.js' ) )
+		.pipe( sourcemaps.write( '.' ) )
+		.pipe( gulp.dest( 'build/library-bundles' ) );
 
 } );

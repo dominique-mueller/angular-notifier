@@ -6,12 +6,12 @@ const sass = require( 'gulp-sass' );
 const sourcemaps = require( 'gulp-sourcemaps' );
 
 /**
- * Gulp task: Build SASS for development
+ * Gulp task: Build SASS
  */
-gulp.task( 'sass:build--dev', () => {
+gulp.task( 'sass:build', () => {
     return gulp
         .src( [
-            'style.scss', // Only root style file
+            'src/lib/**/*.scss'
         ] )
         .pipe( sourcemaps.init() )
         .pipe( sass( {
@@ -20,25 +20,5 @@ gulp.task( 'sass:build--dev', () => {
         } ).on( 'error', sass.logError ) )
         .pipe( autoprefixer() )
         .pipe( sourcemaps.write( '.' ) ) // Relative path
-        .pipe( gulp.dest( '.' ) );
-} );
-
-/**
- * Gulp task: Build SASS for publishment
- */
-gulp.task( 'sass:build--publish', () => {
-    return gulp
-        .src( [
-            '**/*.scss', // Keep the file structure
-            '!node_modules/**', // Ignore dependencies
-            '!demo/**' // Ignore demo
-        ] )
-        .pipe( sourcemaps.init() )
-        .pipe( sass( {
-            'errLogToConsole': true,
-            'outputStyle': 'expanded' // No minifying
-        } ).on( 'error', sass.logError ) )
-        .pipe( autoprefixer() )
-        .pipe( sourcemaps.write( '.' ) ) // Relative path
-        .pipe( gulp.dest( '.' ) );
+        .pipe( gulp.dest( 'build/library-styles' ) );
 } );

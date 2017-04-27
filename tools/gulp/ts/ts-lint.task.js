@@ -1,30 +1,29 @@
 'use strict';
 
 const gulp = require( 'gulp' );
-const gulpTslint = require( 'gulp-tslint' );
-const path = require( 'path' );
-const tslint = require( 'tslint' );
+const pureTslint = require( 'tslint' );
+const typescript = require( 'typescript' );
+const tslint = require( 'gulp-tslint' );
 
 /**
- * Gulp task: Lint project TypeScript (and checks styleguide conventions)
+ * Gulp task: Lint all TypeScript files (and check styleguide conventions)
  */
 gulp.task( 'ts:lint', () => {
 
-    const program = tslint.Linter.createProgram( path.resolve( 'tsconfig.json' ) ); // Enable type-checked rules
+	// Enable type-checked rules (see <https://github.com/panuhorsmalahti/gulp-tslint/issues/105>)
+    const tslintProgram = pureTslint.Linter.createProgram( 'tsconfig.json' );
+	typescript.getPreEmitDiagnostics( tslintProgram );
 
     return gulp
-        .src( [
-            'index.ts',
-            'src/**/*.ts',
-            '!src/**/*.d.ts'
-        ], {
-            base: '.' // Fixes program issues, see <https://github.com/panuhorsmalahti/gulp-tslint/issues/71>
+        .src( 'src/lib/**/*.ts', {
+            base: '.' // Fixes program issues (see <https://github.com/panuhorsmalahti/gulp-tslint/issues/71>)
         } )
-        .pipe( gulpTslint( { // Also runs codelyzer rules
-            formatter: 'prose',
-            program
+        .pipe( tslint( { // Also runs codelyzer rules
+            formatter: 'stylish',
+            program: tslintProgram
         } ) )
-        .pipe( gulpTslint.report( {
+        .pipe( tslint.report( {
+			emitError: true,
             summarizeFailureOutput: true // Count tslint errors
         } ) );
 

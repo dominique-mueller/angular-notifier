@@ -1,34 +1,12 @@
 # Dependencies
 /node_modules
 
-# Build: TypeScript output
-/index.d.ts
-/index.js
-/index.js.map
-/index.metadata.json
-/src/**/*.d.ts
-/src/**/*.js
-/src/**/*.js.map
-/src/**/*.metadata.json
-
-# Build: SASS output
-/style.css
-/style.css.map
-/src/styles/**/*.css
-/src/styles/**/*.css.map
-
-# Build: Bundles
-/bundles
-
-# Build: Temp folder
-/temp
-
-# Build: Demo
-/demo/*.js
-!/demo/systemjs.config.js
+# Build
+/build
+/dist
 
 # Test coverage
-/test-coverage
+/coverage
 
 # Development
 /.vscode

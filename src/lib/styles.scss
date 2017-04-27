@@ -1,0 +1,21 @@
+// NOTIFIER: COMBINED STYLES
+//
+// This file acts as an index - it imports the core styles as well as all provided themes and types. For performance and maintainability
+// reasons, it's probably better include only the files needed within the specific project. Alternatively, it's also possible to only use
+// those parts (SASS files) used, or even write the styles completely from scratch.
+//
+// Technical sidenote:
+// We do *NOT* use the partial syntax, and also explicitely write out the file type, so compiling works properly.
+
+// Core
+@import "./styles/core.scss";
+
+// Themes
+@import "./styles/themes/theme-material.scss";
+
+// Types
+@import "./styles/types/type-default.scss";
+@import "./styles/types/type-error.scss";
+@import "./styles/types/type-info.scss";
+@import "./styles/types/type-success.scss";
+@import "./styles/types/type-warning.scss";
