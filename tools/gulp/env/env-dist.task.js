@@ -9,10 +9,22 @@ gulp.task( 'env:dist', () => {
 
 	return gulp
 		.src( [
+
+			// Bundles, typings, sourcemaps
 			'build/library-bundles/**/*',
 			'build/library-es2015/**/*.d.ts',
 			'build/library-es2015/**/*.metadata.json',
-			'build/library-styles/**/*'
+			'build/library-styles/**/*',
+
+			// Source SASS files
+			'src/lib/**/*.scss',
+
+			// Additional files
+			'package.json',
+			'README.md',
+			'CHANGELOG.md',
+			'LICENSE'
+
 		] )
 		.pipe( gulp.dest( 'dist' ) );
 

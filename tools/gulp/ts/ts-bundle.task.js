@@ -24,7 +24,7 @@ gulp.task( 'ts:bundle-fesm2015', () => {
 		.src( 'build/library-es2015/**/*.js' )
 		.pipe( sourcemaps.init( sourcemapsOptions ) )
 		.pipe( rollup( rollupFesm2015Options ) )
-		.pipe( rename( 'angular-notifier.es2015.js' ) )
+		.pipe( rename( 'angular-notifier.js' ) ) // Default
 		.pipe( sourcemaps.write( '.' ) )
 		.pipe( gulp.dest( 'build/library-bundles' ) );
 

@@ -31,10 +31,10 @@
         "module",
         "js"
     ],
-    "main": "dist/angular-notifier.umd.js",
-    "module": "dist/angular-notifier.es5.js",
-    "es2015": "dist/angular-notifier.es2015.js",
-    "typings": "dist/angular-notifier.d.ts",
+    "main": "./angular-notifier.umd.js",
+    "module": "./angular-notifier.es5.js",
+    "es2015": "./angular-notifier.js",
+    "typings": "./angular-notifier.d.ts",
     "scripts": {
         "codecov": "codecov",
         "gulp": "gulp",
@@ -44,7 +44,6 @@
         "lint": "gulp lint",
         "build": "gulp run",
         "ci:automatic-release": "automatic-release",
-        "ci:list-released-files": "pkgfiles --sort=name",
         "ci:coverage": "codecov -f ./coverage/remapped/coverage.json",
 		"ci:test": "jest --config ./tools/jest/jest.config.json --runInBand"
     },
@@ -53,7 +52,6 @@
         "@angular/core": ">= 4.0.0 < 5.0.0"
     },
     "devDependencies": {
-		"jest-preset-angular": "1.1.x",
         "@angular/common": "4.0.x",
         "@angular/compiler-cli": "4.0.x",
         "@angular/compiler": "4.0.x",
@@ -89,7 +87,7 @@
         "html-minifier": "3.4.x",
         "html-webpack-plugin": "2.28.x",
         "jest": "19.0.x",
-        "pkgfiles": "2.3.x",
+		"jest-preset-angular": "1.1.x",
         "progress-bar-webpack-plugin": "1.9.x",
         "raw-loader": "0.5.x",
         "reflect-metadata": "0.1.x",
