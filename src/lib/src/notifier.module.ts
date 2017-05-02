@@ -84,7 +84,7 @@ export class NotifierModule {
 	 * @param   {NotifierOptions}     [options={}] - Custom notifier options
 	 * @returns {ModuleWithProviders}              - Notifier module with custom providers
 	 */
-	public static forRoot( options: NotifierOptions = {} ): ModuleWithProviders {
+	public static withConfig( options: NotifierOptions = {} ): ModuleWithProviders {
 		return {
 			ngModule: NotifierModule,
 			providers: [
