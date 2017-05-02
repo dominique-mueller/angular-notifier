@@ -1,8 +1,9 @@
-import { Injectable, Optional } from '@angular/core';
+import { forwardRef, Inject, Injectable, Optional } from '@angular/core';
 
 import { NotifierConfig } from './../models/notifier-config.model';
 import { NotifierNotificationOptions } from './../models/notifier-notification.model';
 import { NotifierQueueService } from './notifier-queue.service';
+import { NotifierConfigToken } from './../notifier.module';
 
 /**
  * Notifier service
@@ -30,9 +31,12 @@ export class NotifierService {
 	 * @param {NotifierQueueService} notifierQueueService Notifier queue service
 	 * @param {NotifierConfig}       config               Notifier configuration, optionally injected as a dependency
 	 */
-	public constructor( notifierQueueService: NotifierQueueService, @Optional() config: NotifierConfig ) {
+	public constructor(
+		notifierQueueService: NotifierQueueService,
+		@Inject( forwardRef( () => NotifierConfigToken ) ) config: NotifierConfig // The forwardRef is (sadly) required here
+	) {
 		this.queueService = notifierQueueService;
-		this.config = config === null ? new NotifierConfig() : config; // Use custom config (if set), else create a default config
+		this.config = config;
 	}
 
 	/**
