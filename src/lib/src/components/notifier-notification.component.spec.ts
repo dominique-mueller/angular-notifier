@@ -2,6 +2,7 @@ import { DebugElement, ElementRef, Provider, Renderer } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { async, ComponentFixture, fakeAsync, flushMicrotasks, TestBed, tick } from '@angular/core/testing';
 
+import { NotifierConfigToken } from '../notifier.module';
 import { NotifierAnimationData } from '../models/notifier-animation.model';
 import { NotifierNotification } from '../models/notifier-notification.model';
 import { NotifierConfig } from '../models/notifier-config.model';
@@ -941,6 +942,10 @@ describe( 'Notifier Notification Component', () => {
 						useValue: {
 							getConfig: () => testNotifierConfig
 						}
+					},
+					{ // No idea why this is *actually* necessary -- it shouldn't be ...
+						provide: NotifierConfigToken,
+						useValue: {}
 					},
 					{
 						provide: NotifierAnimationService,

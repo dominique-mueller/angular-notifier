@@ -9,23 +9,44 @@ import { NotifierQueueService } from './services/notifier-queue.service';
 import { NotifierService } from './services/notifier.service';
 
 // tslint:disable variable-name
+
 /**
- * Dependency Injection token for custom notifier options
+ * Injection Token for notifier options
  */
-export const CustomNotifierOptions: InjectionToken<string> = new InjectionToken<string>( 'NotifierOptions' );
+export const NotifierOptionsToken: InjectionToken<NotifierOptions>
+	= new InjectionToken<NotifierOptions>( '[angular-notifier] Notifier Options' );
+
+/**
+ * Injection Token for notifier configuration
+ */
+export const NotifierConfigToken: InjectionToken<NotifierConfig>
+	= new InjectionToken<NotifierConfig>( '[anuglar-notifier] Notifier Config' );
+
 // tslint:enable variable-name
 
 /**
- * Factory for creating a notifier configuration object
+ * Factory for a notifier configuration with custom options
  *
  * Sidenote:
- * This functionality had to be extracted from the NotifierModule.forRoot function, described below. Otherwhise, the Angular AoT compiler
- * would throw errors. For further details, also see:
- * - Angular issue #11262 <https://github.com/angular/angular/issues/11262>
- * - Angular issue #10789 <https://github.com/angular/angular/issues/10789>
+ * Required as Angular AoT compilation cannot handle dynamic functions; see <https://github.com/angular/angular/issues/11262>.
+ *
+ * @param   {NotifierOptions} options - Custom notifier options
+ * @returns {NotifierConfig}          - Notifier configuration as result
  */
-export function notifierConfigFactory( options: NotifierOptions ): NotifierConfig {
+export function notifierCustomConfigFactory( options: NotifierOptions ): NotifierConfig {
 	return new NotifierConfig( options );
+}
+
+/**
+ * Factory for a notifier configuration with default options
+ *
+ * Sidenote:
+ * Required as Angular AoT compilation cannot handle dynamic functions; see <https://github.com/angular/angular/issues/11262>.
+ *
+ * @returns {NotifierConfig} - Notifier configuration as result
+ */
+export function notifierDefaultConfigFactory(): NotifierConfig {
+	return new NotifierConfig( {} );
 }
 
 /**
@@ -45,29 +66,44 @@ export function notifierConfigFactory( options: NotifierOptions ): NotifierConfi
 	providers: [
 		NotifierAnimationService,
 		NotifierService,
-		NotifierQueueService
+		NotifierQueueService,
+
+		// Provide the default notifier configuration if just the module is imported
+		{
+			provide: NotifierConfigToken,
+			useFactory: notifierDefaultConfigFactory
+		}
+
 	]
 } )
 export class NotifierModule {
 
 	/**
-	 * Setup custom module (service) configuration
+	 * Setup the notifier module with custom providers, in this case with a custom configuration based on the givne options
+	 *
+	 * @param   {NotifierOptions}     [options={}] - Custom notifier options
+	 * @returns {ModuleWithProviders}              - Notifier module with custom providers
 	 */
-	public static forRoot( options: NotifierOptions ): ModuleWithProviders {
+	public static withConfig( options: NotifierOptions = {} ): ModuleWithProviders {
 		return {
 			ngModule: NotifierModule,
 			providers: [
+
+				// Provide the options itself upfront (as we need to inject them as dependencies -- see below)
 				{
-					provide: CustomNotifierOptions,
+					provide: NotifierOptionsToken,
 					useValue: options
 				},
+
+				// Provide a custom notifier configuration, based on the given notifier options
 				{
 					deps: [
-						CustomNotifierOptions
+						NotifierOptionsToken
 					],
-					provide: NotifierConfig,
-					useFactory: notifierConfigFactory
+					provide: NotifierConfigToken,
+					useFactory: notifierCustomConfigFactory
 				}
+
 			]
 		};
 	}

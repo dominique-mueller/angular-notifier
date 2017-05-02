@@ -1,5 +1,6 @@
 import { inject, TestBed } from '@angular/core/testing';
 
+import { NotifierConfigToken } from '../notifier.module';
 import { NotifierConfig } from '../models/notifier-config.model';
 import { NotifierNotificationOptions } from '../models/notifier-notification.model';
 import { NotifierAction } from '../models/notifier-action.model';
@@ -9,7 +10,7 @@ import { NotifierService } from './notifier.service';
 /**
  * Notifier Service - Unit Test
  */
-const testNotifierConfig: NotifierConfig = {
+const testNotifierConfig: NotifierConfig = new NotifierConfig( {
 	animations: {
 		enabled: true,
 		hide: {
@@ -48,7 +49,7 @@ const testNotifierConfig: NotifierConfig = {
 		}
 	},
 	theme: 'material'
-};
+} );
 
 describe( 'Notifier Service', () => {
 
@@ -65,7 +66,7 @@ describe( 'Notifier Service', () => {
 					useClass: MockNotifierQueueService
 				},
 				{
-					provide: NotifierConfig,
+					provide: NotifierConfigToken,
 					useValue: testNotifierConfig
 				}
 			]

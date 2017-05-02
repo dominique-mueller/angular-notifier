@@ -101,7 +101,7 @@ describe( 'Notifier Module', () => {
 
 		TestBed.configureTestingModule( {
 			imports: [
-				NotifierModule.forRoot( testNotifierOptions )
+				NotifierModule.withConfig( testNotifierOptions )
 			]
 		} );
 		let service: NotifierService = TestBed.get( NotifierService );

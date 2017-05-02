@@ -4,6 +4,7 @@ import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testin
 
 import { Subject } from 'rxjs/Rx';
 
+import { NotifierConfigToken } from '../notifier.module';
 import { NotifierNotification } from '../models/notifier-notification.model';
 import { NotifierAction } from '../models/notifier-action.model';
 import { NotifierConfig } from '../models/notifier-config.model';
@@ -1010,6 +1011,10 @@ describe( 'Notifier Container Component', () => {
 					useValue: {
 						getConfig: () => testNotifierConfig
 					}
+				},
+				{ // No idea why this is *actually* necessary -- it shouldn't be ...
+					provide: NotifierConfigToken,
+					useValue: {}
 				},
 				{
 					provide: NotifierQueueService,

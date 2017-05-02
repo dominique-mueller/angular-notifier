@@ -1,5 +1,3 @@
-import { Injectable } from '@angular/core';
-
 /**
  * Notifier options
  */
@@ -51,7 +49,6 @@ export interface NotifierOptions {
  * configuration, which means that it only can be set once (at the beginning), and cannot be changed afterwards. Aligning to the world of
  * Angular, this configuration can be provided in the root app module - alternatively, a meaningful default configuration will be used.
  */
-@Injectable()
 export class NotifierConfig implements NotifierOptions {
 
 	/**
@@ -108,19 +105,12 @@ export class NotifierConfig implements NotifierOptions {
 	 */
 	public theme: string;
 
-	// tslint:disable no-any
 	/**
 	 * Constructor
 	 *
-	 * Note:
-	 * As for now, Angular cannot handle interface declarations in constructors of injectable classes. This issue got fixed, however only
-	 * for Angular 4+. Therefore, we use the 'any' type temporarily. For further details, see
-	 * - the issue on <https://github.com/angular/angular/issues/12631> as well as
-	 * - the fix on <https://github.com/angular/angular/pull/14894>.
-	 *
-	 * @param {any} [customOptions={}] Custom notifier options, optional
+	 * @param {NotifierOptions} [customOptions={}] Custom notifier options, optional
 	 */
-	public constructor( customOptions: any = {} ) {
+	public constructor( customOptions: NotifierOptions = {} ) {
 
 		// Set default values
 		this.animations = {
@@ -198,6 +188,5 @@ export class NotifierConfig implements NotifierOptions {
 		}
 
 	}
-	// tslint:enable no-any
 
 }

@@ -61,7 +61,7 @@ const customNotifierOptions: NotifierOptions = {
 	],
 	imports: [
 		BrowserModule,
-		NotifierModule.forRoot( customNotifierOptions )
+		NotifierModule.withConfig( customNotifierOptions )
 	]
 } )
 export class AppModule {}
