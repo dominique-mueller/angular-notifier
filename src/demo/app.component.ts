@@ -49,7 +49,7 @@ import { NotifierService } from './../lib/index';
 			Hide notification with ID named 'ID_TEST'
 		</button>
 
-		<x-notifier-container></x-notifier-container>
+		<notifier-container></notifier-container>
 	`
 } )
 export class AppComponent {

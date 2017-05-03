@@ -1,9 +1,9 @@
 <ul>
-	<li class="x-notifier__container-list" *ngFor="let notification of notifications; trackBy: identifyNotification;">
-		<x-notifier-notification
+	<li class="notifier__container-list" *ngFor="let notification of notifications; trackBy: identifyNotification;">
+		<notifier-notification
 			[notification]="notification"
 			(ready)="onNotificationReady( $event )"
 			(dismiss)="onNotificationDismiss( $event )">
-		</x-notifier-notification>
+		</notifier-notification>
 	</li>
 </ul>

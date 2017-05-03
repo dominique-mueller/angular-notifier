@@ -21,14 +21,14 @@ import { NotifierTimerService } from './../services/notifier-timer.service';
 		'(click)': 'onNotificationClick()',
 		'(mouseout)': 'onNotificationMouseout()',
 		'(mouseover)': 'onNotificationMouseover()',
-		class: 'x-notifier__notification'
+		class: 'notifier__notification'
 	},
 	providers: [
 		// We provide the timer to the component's local injector, so that every notification components gets its own
 		// instance of the timer service, thus running their timers independently from each other
 		NotifierTimerService
 	],
-	selector: 'x-notifier-notification',
+	selector: 'notifier-notification',
 	templateUrl: './notifier-notification.component.html'
 } )
 export class NotifierNotificationComponent implements AfterViewInit {
@@ -369,8 +369,8 @@ export class NotifierNotificationComponent implements AfterViewInit {
 		}
 
 		// Add classes (responsible for visual design)
-		this.renderer.addClass( this.element, `x-notifier__notification--${ this.notification.type }` );
-		this.renderer.addClass( this.element, `x-notifier__notification--${ this.config.theme }` );
+		this.renderer.addClass( this.element, `notifier__notification--${ this.notification.type }` );
+		this.renderer.addClass( this.element, `notifier__notification--${ this.config.theme }` );
 
 	}
 

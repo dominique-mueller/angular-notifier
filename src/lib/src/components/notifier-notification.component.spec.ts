@@ -53,15 +53,15 @@ describe( 'Notifier Notification Component', () => {
 			expect( componentInstance.getShift() ).toBe( 0 );
 
 			// Check the template
-			const messageElement: DebugElement = componentFixture.debugElement.query( By.css( '.x-notifier__notification-message' ) );
+			const messageElement: DebugElement = componentFixture.debugElement.query( By.css( '.notifier__notification-message' ) );
 			expect( messageElement.nativeElement.textContent ).toContain( componentInstance.notification.message );
-			const dismissButtonElement: DebugElement = componentFixture.debugElement.query( By.css( '.x-notifier__notification-button' ) );
+			const dismissButtonElement: DebugElement = componentFixture.debugElement.query( By.css( '.notifier__notification-button' ) );
 			expect( dismissButtonElement ).not.toBeNull();
 
 			// Check the class names
-			const classNameType: string = `x-notifier__notification--${ componentInstance.notification.type }`;
+			const classNameType: string = `notifier__notification--${ componentInstance.notification.type }`;
 			expect( componentFixture.nativeElement.classList.contains( classNameType ) ).toBeTruthy();
-			const classNameTheme: string = `x-notifier__notification--${ componentInstance.getConfig().theme }`;
+			const classNameTheme: string = `notifier__notification--${ componentInstance.getConfig().theme }`;
 			expect( componentFixture.nativeElement.classList.contains( classNameTheme ) ).toBeTruthy();
 
 		} );
@@ -792,7 +792,7 @@ describe( 'Notifier Notification Component', () => {
 			componentInstance.show();
 			jest.spyOn( componentInstance, 'onClickDismiss' );
 
-			const dismissButtonElement: DebugElement = componentFixture.debugElement.query( By.css( '.x-notifier__notification-button' ) );
+			const dismissButtonElement: DebugElement = componentFixture.debugElement.query( By.css( '.notifier__notification-button' ) );
 			dismissButtonElement.nativeElement.click(); // Emulate click event
 			componentFixture.detectChanges();
 
