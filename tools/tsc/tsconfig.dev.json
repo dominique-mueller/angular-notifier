@@ -1,8 +1,8 @@
 {
 	"extends": "./../../tsconfig.json",
 	"compilerOptions": {
-		"outDir": "./../../build/tsc/app",
 		"baseUrl": "",
+		"outDir": "./../../build/tsc/app",
 		"types": [
 			"node"
 		]
