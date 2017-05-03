@@ -1,14 +1,14 @@
 // NOTIFIER: DEFAULT TYPE STYLES
 
-$notifier-default-background-color: #444;
-$notifier-default-font-color: #FFF;
-$notifier-default-icon-color: #FFF;
+$notifier-default-background-color: #444 !default;
+$notifier-default-font-color: #FFF !default;
+$notifier-default-icon-color: #FFF !default;
 
-.x-notifier__notification--default {
+.notifier__notification--default {
 	background-color: $notifier-default-background-color;
 	color: $notifier-default-font-color;
 
-	.x-notifier__notification-button-icon { // 16x16 fixed size
+	.notifier__notification-button-icon { // 16x16 fixed size
 		fill: $notifier-default-icon-color;
 	}
 

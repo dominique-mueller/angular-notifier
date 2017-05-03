@@ -1,14 +1,14 @@
 // NOTIFIER: INFO TYPE STYLES
 
-$notifier-info-background-color: #5BC0DE;
-$notifier-info-font-color: #FFF;
-$notifier-info-icon-color: #FFF;
+$notifier-info-background-color: #5BC0DE !default;
+$notifier-info-font-color: #FFF !default;
+$notifier-info-icon-color: #FFF !default;
 
-.x-notifier__notification--info {
+.notifier__notification--info {
 	background-color: $notifier-info-background-color;
 	color: $notifier-info-font-color;
 
-	.x-notifier__notification-button-icon { // 16x16 fixed size
+	.notifier__notification-button-icon { // 16x16 fixed size
 		fill: $notifier-info-icon-color;
 	}
 

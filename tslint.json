@@ -212,13 +212,13 @@
 		"directive-selector": [
 			true,
 			"attribute",
-			"x",
+			"notifier",
 			"camelCase"
 		],
     	"component-selector": [
 			true,
 			"element",
-			"x",
+			"notifier",
 			"kebab-case"
 		],
 		"use-input-property-decorator": true,
@@ -233,7 +233,7 @@
 		"pipe-naming": [
 			true,
 			"camelCase",
-			"x"
+			"notifier"
 		],
 		"component-class-suffix": true,
 		"directive-class-suffix": true,

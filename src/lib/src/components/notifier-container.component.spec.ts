@@ -76,7 +76,7 @@ describe( 'Notifier Container Component', () => {
 				type: 'SHOW'
 			} );
 			componentFixture.detectChanges();
-			const listElements: Array<DebugElement> = componentFixture.debugElement.queryAll( By.css( '.x-notifier__container-list' ) );
+			const listElements: Array<DebugElement> = componentFixture.debugElement.queryAll( By.css( '.notifier__container-list' ) );
 
 			expect( listElements.length ).toBe( 1 );
 
@@ -397,7 +397,7 @@ describe( 'Notifier Container Component', () => {
 			tick();
 			componentFixture.detectChanges(); // Run a second change detection (to update the template)
 
-			const listElements: Array<DebugElement> = componentFixture.debugElement.queryAll( By.css( '.x-notifier__container-list' ) );
+			const listElements: Array<DebugElement> = componentFixture.debugElement.queryAll( By.css( '.notifier__container-list' ) );
 
 			expect( listElements.length ).toBe( 0 );
 			expect( mockNotificationComponent.hide ).toHaveBeenCalled();
@@ -443,7 +443,7 @@ describe( 'Notifier Container Component', () => {
 			tick();
 			componentFixture.detectChanges(); // Run a second change detection (to update the template)
 
-			let listElements: Array<DebugElement> = componentFixture.debugElement.queryAll( By.css( '.x-notifier__container-list' ) );
+			let listElements: Array<DebugElement> = componentFixture.debugElement.queryAll( By.css( '.notifier__container-list' ) );
 
 			expect( listElements.length ).toBe( 1 );
 			expect( mockNotificationComponent.hide ).not.toHaveBeenCalled();
@@ -504,7 +504,7 @@ describe( 'Notifier Container Component', () => {
 			tick();
 			componentFixture.detectChanges(); // Run a second change detection (to update the template)
 
-			const listElements: Array<DebugElement> = componentFixture.debugElement.queryAll( By.css( '.x-notifier__container-list' ) );
+			const listElements: Array<DebugElement> = componentFixture.debugElement.queryAll( By.css( '.notifier__container-list' ) );
 
 			const expectedCallTimes: number = 3;
 			expect( listElements.length ).toBe( 1 );
@@ -568,7 +568,7 @@ describe( 'Notifier Container Component', () => {
 			tick( testNotifierConfig.animations.hide.speed );
 			componentFixture.detectChanges(); // Run a second change detection (to update the template)
 
-			const listElements: Array<DebugElement> = componentFixture.debugElement.queryAll( By.css( '.x-notifier__container-list' ) );
+			const listElements: Array<DebugElement> = componentFixture.debugElement.queryAll( By.css( '.notifier__container-list' ) );
 
 			const expectedCallTimes: number = 3;
 			expect( listElements.length ).toBe( 1 );
@@ -628,7 +628,7 @@ describe( 'Notifier Container Component', () => {
 			tick( testNotifierConfig.animations.hide.speed - <number> testNotifierConfig.animations.overlap );
 			componentFixture.detectChanges(); // Run a second change detection (to update the template)
 
-			const listElements: Array<DebugElement> = componentFixture.debugElement.queryAll( By.css( '.x-notifier__container-list' ) );
+			const listElements: Array<DebugElement> = componentFixture.debugElement.queryAll( By.css( '.notifier__container-list' ) );
 
 			const expectedCallTimes: number = 3;
 			expect( listElements.length ).toBe( 1 );
@@ -671,7 +671,7 @@ describe( 'Notifier Container Component', () => {
 			tick();
 			componentFixture.detectChanges();
 
-			const listElements: Array<DebugElement> = componentFixture.debugElement.queryAll( By.css( '.x-notifier__container-list' ) );
+			const listElements: Array<DebugElement> = componentFixture.debugElement.queryAll( By.css( '.notifier__container-list' ) );
 
 			const expectedCallTimes: number = 2;
 			expect( listElements.length ).toBe( 0 );
@@ -735,7 +735,7 @@ describe( 'Notifier Container Component', () => {
 			tick();
 			componentFixture.detectChanges(); // Run a second change detection (to update the template)
 
-			const listElements: Array<DebugElement> = componentFixture.debugElement.queryAll( By.css( '.x-notifier__container-list' ) );
+			const listElements: Array<DebugElement> = componentFixture.debugElement.queryAll( By.css( '.notifier__container-list' ) );
 
 			const expectedCallTimes: number = 3;
 			expect( listElements.length ).toBe( 1 );
@@ -818,7 +818,7 @@ describe( 'Notifier Container Component', () => {
 			tick();
 			componentFixture.detectChanges(); // Run a second change detection (to update the template)
 
-			const listElements: Array<DebugElement> = componentFixture.debugElement.queryAll( By.css( '.x-notifier__container-list' ) );
+			const listElements: Array<DebugElement> = componentFixture.debugElement.queryAll( By.css( '.notifier__container-list' ) );
 
 			const expectedCallTimes: number = 3;
 			expect( listElements.length ).toBe( 1 );
@@ -904,7 +904,7 @@ describe( 'Notifier Container Component', () => {
 			tick();
 			componentFixture.detectChanges(); // Run a second change detection (to update the template)
 
-			const listElements: Array<DebugElement> = componentFixture.debugElement.queryAll( By.css( '.x-notifier__container-list' ) );
+			const listElements: Array<DebugElement> = componentFixture.debugElement.queryAll( By.css( '.notifier__container-list' ) );
 
 			const expectedCallTimes: number = 3;
 			expect( listElements.length ).toBe( 0 );
@@ -962,7 +962,7 @@ describe( 'Notifier Container Component', () => {
 			tick( testNotifierConfig.animations.hide.speed + ( numberOfNotifications * <number> testNotifierConfig.animations.hide.offset ) );
 			componentFixture.detectChanges(); // Run a second change detection (to update the template)
 
-			const listElements: Array<DebugElement> = componentFixture.debugElement.queryAll( By.css( '.x-notifier__container-list' ) );
+			const listElements: Array<DebugElement> = componentFixture.debugElement.queryAll( By.css( '.notifier__container-list' ) );
 
 			const expectedCallTimes: number = 3;
 			expect( listElements.length ).toBe( 0 );

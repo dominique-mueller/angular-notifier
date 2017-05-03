@@ -25,9 +25,9 @@ import { NotifierNotificationComponent } from './notifier-notification.component
 @Component( {
 	changeDetection: ChangeDetectionStrategy.OnPush, // (#perfmatters)
 	host: {
-		class: 'x-notifier__container'
+		class: 'notifier__container'
 	},
-	selector: 'x-notifier-container',
+	selector: 'notifier-container',
 	templateUrl: './notifier-container.component.html'
 } )
 export class NotifierContainerComponent implements OnDestroy, OnInit {
