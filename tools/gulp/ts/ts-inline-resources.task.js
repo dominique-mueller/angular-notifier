@@ -54,9 +54,8 @@ gulp.task( 'ts:inline-resources', () => {
 
 	return gulp
 		.src( [
-			'src/lib/**/*.ts',
-			'!src/lib/**/*.spec.ts',
-			'!src/lib/**/*.d.ts'
+			'src/lib/**/*.ts', // This includes custom typings
+			'!src/lib/**/*.spec.ts'
 		] )
 		.pipe( inlineTemplate( inlineTemplateOptions ) )
 		.pipe( gulp.dest( 'build/library-inline' ) );

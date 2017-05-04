@@ -16,6 +16,12 @@ import { NotifierTimerService } from '../services/notifier-timer.service';
  */
 describe( 'Notifier Notification Component', () => {
 
+	// tslint:disable no-any
+	const fakeAnimation: any = {
+		onfinish: () => null // We only need this property to be actually mocked away
+	};
+	// tslint:enable no-any
+
 	const testNotification: NotifierNotification = new NotifierNotification( {
 		id: 'ID_FAKE',
 		message: 'Lorem ipsum dolor sit amet.',
@@ -239,16 +245,13 @@ describe( 'Notifier Notification Component', () => {
 
 			// Mock away the Web Animations API
 			jest.spyOn( componentFixture.nativeElement, 'animate' ).mockImplementation( () => {
-				return {
-					finished: new Promise<undefined>( ( resolve: () => void, reject: () => void ) => {
-						componentFixture.debugElement.styles[ 'opacity' ] = '1'; // Fake animation result
-						resolve();
-					} )
-				};
+				componentFixture.debugElement.styles[ 'opacity' ] = '1'; // Fake animation result
+				return fakeAnimation;
 			} );
 
 			const showCallback: () => {} = jest.fn();
 			componentInstance.show().then( showCallback );
+			fakeAnimation.onfinish();
 			tick();
 
 			expect( componentFixture.debugElement.styles[ 'visibility' ] ).toBe( 'visible' );
@@ -298,16 +301,13 @@ describe( 'Notifier Notification Component', () => {
 
 			// Mock away the Web Animations API
 			jest.spyOn( componentFixture.nativeElement, 'animate' ).mockImplementation( () => {
-				return {
-					finished: new Promise<undefined>( ( resolve: () => void, reject: () => void ) => {
-						componentFixture.debugElement.styles[ 'opacity' ] = '0'; // Fake animation result
-						resolve();
-					} )
-				};
+				componentFixture.debugElement.styles[ 'opacity' ] = '0'; // Fake animation result
+				return fakeAnimation;
 			} );
 
 			const hideCallback: () => {} = jest.fn();
 			componentInstance.hide().then( hideCallback );
+			fakeAnimation.onfinish();
 			tick();
 
 			expect( componentFixture.debugElement.styles[ 'opacity' ] ).toBe( '0' );
@@ -385,17 +385,14 @@ describe( 'Notifier Notification Component', () => {
 
 			// Mock away the Web Animations API
 			jest.spyOn( componentFixture.nativeElement, 'animate' ).mockImplementation( () => {
-				return {
-					finished: new Promise<undefined>( ( resolve: () => void, reject: () => void ) => {
-						componentFixture.debugElement.styles[ 'transform' ] =
-							`translate3d( 0, ${ shiftDistance + testNotifierConfig.position.vertical.gap }px, 0 )`; // Fake animation result
-						resolve();
-					} )
-				};
+				componentFixture.debugElement.styles[ 'transform' ] =
+					`translate3d( 0, ${ shiftDistance + testNotifierConfig.position.vertical.gap }px, 0 )`; // Fake animation result
+				return fakeAnimation;
 			} );
 
 			const shiftCallback: () => {} = jest.fn();
 			componentInstance.shift( shiftDistance, true ).then( shiftCallback );
+			fakeAnimation.onfinish();
 			tick();
 
 			expect( componentFixture.debugElement.styles[ 'transform' ] )
@@ -469,17 +466,14 @@ describe( 'Notifier Notification Component', () => {
 			// Mock away the Web Animations API
 			const shiftDistance: number = 100;
 			jest.spyOn( componentFixture.nativeElement, 'animate' ).mockImplementation( () => {
-				return {
-					finished: new Promise<undefined>( ( resolve: () => void, reject: () => void ) => {
-						componentFixture.debugElement.styles[ 'transform' ] =
-							`translate3d( 0, ${ -shiftDistance - testNotifierConfig.position.vertical.gap }px, 0 )`; // Fake animation result
-						resolve();
-					} )
-				};
+				componentFixture.debugElement.styles[ 'transform' ] =
+					`translate3d( 0, ${ -shiftDistance - testNotifierConfig.position.vertical.gap }px, 0 )`; // Fake animation result
+				return fakeAnimation;
 			} );
 
 			const shiftCallback: () => {} = jest.fn();
 			componentInstance.shift( shiftDistance, true ).then( shiftCallback );
+			fakeAnimation.onfinish();
 			tick();
 
 			expect( componentFixture.debugElement.styles[ 'transform' ] )
@@ -553,17 +547,14 @@ describe( 'Notifier Notification Component', () => {
 			// Mock away the Web Animations API
 			const shiftDistance: number = 100;
 			jest.spyOn( componentFixture.nativeElement, 'animate' ).mockImplementation( () => {
-				return {
-					finished: new Promise<undefined>( ( resolve: () => void, reject: () => void ) => {
-						componentFixture.debugElement.styles[ 'transform' ] =
-							`translate3d( 0, ${ -shiftDistance - testNotifierConfig.position.vertical.gap }px, 0 )`; // Fake animation result
-						resolve();
-					} )
-				};
+				componentFixture.debugElement.styles[ 'transform' ] =
+					`translate3d( 0, ${ -shiftDistance - testNotifierConfig.position.vertical.gap }px, 0 )`; // Fake animation result
+				return fakeAnimation;
 			} );
 
 			const shiftCallback: () => {} = jest.fn();
 			componentInstance.shift( shiftDistance, false ).then( shiftCallback );
+			fakeAnimation.onfinish();
 			tick();
 
 			expect( componentFixture.debugElement.styles[ 'transform' ] )
@@ -637,17 +628,14 @@ describe( 'Notifier Notification Component', () => {
 			// Mock away the Web Animations API
 			const shiftDistance: number = 100;
 			jest.spyOn( componentFixture.nativeElement, 'animate' ).mockImplementation( () => {
-				return {
-					finished: new Promise<undefined>( ( resolve: () => void, reject: () => void ) => {
-						componentFixture.debugElement.styles[ 'transform' ] =
-							`translate3d( 0, ${ shiftDistance + testNotifierConfig.position.vertical.gap }px, 0 )`; // Fake animation result
-						resolve();
-					} )
-				};
+				componentFixture.debugElement.styles[ 'transform' ] =
+					`translate3d( 0, ${ shiftDistance + testNotifierConfig.position.vertical.gap }px, 0 )`; // Fake animation result
+				return fakeAnimation;
 			} );
 
 			const shiftCallback: () => {} = jest.fn();
 			componentInstance.shift( shiftDistance, false ).then( shiftCallback );
+			fakeAnimation.onfinish();
 			tick();
 
 			expect( componentFixture.debugElement.styles[ 'transform' ] )
@@ -724,17 +712,14 @@ describe( 'Notifier Notification Component', () => {
 			// Mock away the Web Animations API
 			const shiftDistance: number = 100;
 			jest.spyOn( componentFixture.nativeElement, 'animate' ).mockImplementation( () => {
-				return {
-					finished: new Promise<undefined>( ( resolve: () => void, reject: () => void ) => {
-						componentFixture.debugElement.styles[ 'transform' ] =
-							`translate3d( -50%, ${ shiftDistance + testNotifierConfig.position.vertical.gap }px, 0 )`; // Fake animation result
-						resolve();
-					} )
-				};
+				componentFixture.debugElement.styles[ 'transform' ] =
+					`translate3d( -50%, ${ shiftDistance + testNotifierConfig.position.vertical.gap }px, 0 )`; // Fake animation result
+				return fakeAnimation;
 			} );
 
 			const shiftCallback: () => {} = jest.fn();
 			componentInstance.shift( shiftDistance, true ).then( shiftCallback );
+			fakeAnimation.onfinish();
 			tick();
 
 			expect( componentFixture.debugElement.styles[ 'transform' ] )
