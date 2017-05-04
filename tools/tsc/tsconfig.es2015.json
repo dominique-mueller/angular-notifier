@@ -10,7 +10,8 @@
 		"types": []
 	},
 	"files": [
-		"./../../build/library-inline/index.ts"
+		"./../../build/library-inline/index.ts",
+		"./../../build/library-inline/typings.d.ts"
 	],
 	"angularCompilerOptions": {
 		"annotateForClosureCompiler": true,

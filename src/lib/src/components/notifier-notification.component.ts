@@ -71,12 +71,10 @@ export class NotifierNotificationComponent implements AfterViewInit {
 	 */
 	private readonly renderer: Renderer2;
 
-	// tslint:disable no-any
 	/**
 	 * Native element reference, used for manipulating DOM properties
 	 */
-	private readonly element: any; // Similar to an HTMLElement, but also includes web animations properties / methods
-	// tslint:enable no-any
+	private readonly element: HTMLElement;
 
 	/**
 	 * Current notification height, calculated and cached here (#perfmatters)
@@ -183,10 +181,11 @@ export class NotifierNotificationComponent implements AfterViewInit {
 
 				// Animate notification in
 				this.renderer.setStyle( this.element, 'visibility', 'visible' );
-				this.element.animate( animationData.keyframes, animationData.options ).finished.then( () => {
+				const animation: Animation = this.element.animate( animationData.keyframes, animationData.options );
+				animation.onfinish = () => {
 					this.startAutoHideTimer();
 					resolve(); // Done
-				} );
+				};
 
 			} else {
 
@@ -214,7 +213,10 @@ export class NotifierNotificationComponent implements AfterViewInit {
 			// Are animations enabled?
 			if ( this.config.animations.enabled && this.config.animations.hide.speed > 0 ) {
 				const animationData: NotifierAnimationData = this.animationService.getAnimationData( 'hide', this.notification );
-				this.element.animate( animationData.keyframes, animationData.options ).finished.then( resolve ); // Done
+				const animation: Animation = this.element.animate( animationData.keyframes, animationData.options );
+				animation.onfinish = () => {
+					resolve(); // Done
+				};
 			} else {
 				resolve(); // Done
 			}
@@ -260,7 +262,11 @@ export class NotifierNotificationComponent implements AfterViewInit {
 					}
 				};
 				this.elementShift = newElementShift;
-				this.element.animate( animationData.keyframes, animationData.options ).finished.then( resolve ); // Done
+				const animation: Animation = this.element.animate( animationData.keyframes, animationData.options );
+				animation.onfinish = () => {
+					resolve(); // Done
+				};
+
 			} else {
 				this.renderer.setStyle( this.element, 'transform', `translate3d( ${ horizontalPosition }, ${ newElementShift }px, 0 )` );
 				this.elementShift = newElementShift;

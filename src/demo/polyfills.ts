@@ -31,4 +31,4 @@ import 'zone.js/dist/zone';
 
 // Web Animations API polyfill
 // -> Required for most browser
-import 'web-animations-js/web-animations-next.min.js';
+import 'web-animations-js';

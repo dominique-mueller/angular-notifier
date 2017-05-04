@@ -32,12 +32,12 @@ export interface NotifierAnimationData {
 		/**
 		 * Animation easing function (comp. CSS easing functions)
 		 */
-		easing: string;
+		easing?: 'linear' | 'ease' | 'ease-in' | 'ease-out' | 'ease-in-out' | string;
 
 		/**
 		 * Animation fill mode
 		 */
-		fill: string;
+		fill: 'none' | 'forwards' | 'backwards';
 
 	};
 
