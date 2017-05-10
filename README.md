@@ -26,13 +26,13 @@ You can play around with this library with **[this Plunker right here](https://p
 
 ## Table of Contents
 
-- **[How to install](#how-to-install)**<br>Download via npm, configuration for SystemJS, bundles, polyfills.
-- **[How to setup](#how-to-setup)**<br>Use library in Angular applications, include CSS / SASS styles.
-- **[How to use](#how-to-use)**<br>Inject Notifier Service, showing notifications, hiding notifications.
-- **[How to customize](#how-to-customize)**<br>Customize how notifications look, behave, and get animated.
-- **[What's next?](#whats-next)**<br>Braindump of feature and enhancement ideas.
+- **[How to install](#how-to-install)**
+- **[How to setup](#how-to-setup)**
+- **[How to use](#how-to-use)**
+- **[How to customize](#how-to-customize)**
+- **[What's next?](#whats-next)**
 
-Moreover, you can take a look at the **[Changelog](/CHANGELOG.md)** as well as at the **[MIT License](/LICENSE)**. Or **[learn about me](#creator)**.
+> Also, see the **[Changelog](/CHANGELOG.md)** as well as at the **[MIT License](/LICENSE)**. Or **[learn about me](#creator)**.
 
 <br><br>
 
