@@ -193,9 +193,9 @@ this.notifier.notify( 'success', 'You are awesome! I mean it!', 'THAT_NOTIFICATI
 
 ``` typescript
 this.notifier.show( {
-	type: 'success',
-	message: 'You are awesome! I mean it!',
-	id: 'THAT_NOTIFICATION_ID' // Again, this is optional
+  type: 'success',
+  message: 'You are awesome! I mean it!',
+  id: 'THAT_NOTIFICATION_ID' // Again, this is optional
 } );
 ```
 
