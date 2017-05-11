@@ -23,6 +23,7 @@ gulp.task( 'env:dist', () => {
 			'package.json',
 			'README.md',
 			'CHANGELOG.md',
+			'MIGRATION-GUIDE.md',
 			'LICENSE'
 
 		] )

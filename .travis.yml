@@ -35,6 +35,7 @@ before_deploy:
   - echo "https://$GH_TOKEN:@github.com" > .git/credentials
   - git checkout master
   - npm run ci:automatic-release
+  - npm run ci:post-automatic-release
   - npm install -g irish-pub@0.2.x pkg-ok@1.1.x
   - cd dist
   - pkg-ok module es2015 typings

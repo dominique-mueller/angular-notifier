@@ -5,6 +5,7 @@ const gulp = require( 'gulp' );
 // Tasks ...
 const envCleanTask = require( './tools/gulp/env/env-clean.task' );
 const envDistTask = require( './tools/gulp/env/env-dist.task' );
+const envReleaseTask = require( './tools/gulp/env/env-release.task' );
 const tsInlineResourcesTask = require( './tools/gulp/ts/ts-inline-resources.task' );
 const tsBuildTask = require( './tools/gulp/ts/ts-build.task' );
 const tsBundleTask = require( './tools/gulp/ts/ts-bundle.task' );

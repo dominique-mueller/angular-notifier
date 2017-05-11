@@ -44,6 +44,7 @@
         "lint": "gulp lint",
         "build": "gulp run",
         "ci:automatic-release": "automatic-release",
+		"ci:post-automatic-release": "gulp env:release",
         "ci:coverage": "codecov -f ./coverage/remapped/coverage.json",
 		"ci:test": "jest --config ./tools/jest/jest.config.json --runInBand"
     },
