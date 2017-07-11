@@ -1,7 +1,7 @@
 {
 	"extends": "./../../tsconfig.json",
-		"baseUrl": "",
-		"compilerOptions": {
+	"baseUrl": "",
+	"compilerOptions": {
 		"declaration": true,
 		"outDir": "./../../build/library-es5",
 		"stripInternal": true,
