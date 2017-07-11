@@ -25,7 +25,12 @@ install:
 script:
   - npm run lint
   - npm run ci:test && npm run ci:coverage
-  - npm run build && cd dist && ls && cd ..
+  - npm run build
+
+after_success:
+  - cd dist && echo "" && echo "====== BUILD FILES ======" && echo ""
+  - tree
+  - echo "" && echo "=========================" && echo "" && cd ..
 
 before_deploy:
   - git config --global user.name "dominique-mueller"
