@@ -27,9 +27,6 @@ script:
   - npm run ci:test && npm run ci:coverage
   - npm run build
 
-after_success:
-  - cd dist && find . && cd ..
-
 before_deploy:
   - git config --global user.name "dominique-mueller"
   - git config --global user.email "dominique.m.mueller@gmail.com"
