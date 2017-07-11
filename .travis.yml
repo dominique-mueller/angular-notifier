@@ -28,9 +28,7 @@ script:
   - npm run build
 
 after_success:
-  - cd dist && echo "" && echo "====== BUILD FILES ======" && echo ""
-  - tree
-  - echo "" && echo "=========================" && echo "" && cd ..
+  - cd dist && ls -lR && cd ..
 
 before_deploy:
   - git config --global user.name "dominique-mueller"
