@@ -25,7 +25,7 @@ install:
 script:
   - npm run lint
   - npm run ci:test && npm run ci:coverage
-  - npm run build
+  - npm run build && cd dist && ls && cd ..
 
 before_deploy:
   - git config --global user.name "dominique-mueller"
@@ -36,8 +36,8 @@ before_deploy:
   - npm run ci:automatic-release
   - npm run ci:post-automatic-release
   - npm install -g irish-pub@0.2.x pkg-ok@1.1.x
-  - cd dist
-  - pkg-ok module es2015 typings
+  - cd dist && pkg-ok module es2015 typings && cd ..
+  - irish-pub
 deploy:
   provider: npm
   email: dominique.m.mueller@gmail.com
@@ -46,5 +46,3 @@ deploy:
   on:
     branch: master
     repo: dominique-mueller/angular-notifier
-after_deploy:
-  - irish-pub

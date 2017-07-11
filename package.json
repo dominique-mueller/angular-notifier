@@ -53,12 +53,12 @@
 		"@angular/core": ">= 4.0.0 < 5.0.0"
 	},
 	"devDependencies": {
-		"@angular/common": "4.x",
-		"@angular/compiler-cli": "4.x",
-		"@angular/compiler": "4.x",
-		"@angular/core": "4.x",
-		"@angular/platform-browser-dynamic": "4.x",
-		"@angular/platform-browser": "4.x",
+		"@angular/common": "4.1.x",
+		"@angular/compiler-cli": "4.1.x",
+		"@angular/compiler": "4.1.x",
+		"@angular/core": "4.1.x",
+		"@angular/platform-browser-dynamic": "4.1.x",
+		"@angular/platform-browser": "4.1.x",
 		"@types/jest": "20.0.x",
 		"@types/node": "8.0.x",
 		"add-asset-html-webpack-plugin": "2.0.x",
