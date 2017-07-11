@@ -1,4 +1,5 @@
 dist: trusty # Beta build environment (newer OS, at least it seems)
+sudo: false # Container instead of VM (thus, a lot faster)
 language: node_js
 cache:
   directories:
@@ -19,9 +20,7 @@ before_install:
     fi
   - npm install -g npm
 install:
-  - npm prune
   - npm install
-  - npm update
 
 script:
   - npm run lint
@@ -37,8 +36,8 @@ before_deploy:
   - npm run ci:automatic-release
   - npm run ci:post-automatic-release
   - npm install -g irish-pub@0.2.x pkg-ok@1.1.x
-  - cd dist
-  - pkg-ok module es2015 typings
+  - cd dist && pkg-ok module es2015 typings && cd ..
+  - irish-pub
 deploy:
   provider: npm
   email: dominique.m.mueller@gmail.com
@@ -47,5 +46,3 @@ deploy:
   on:
     branch: master
     repo: dominique-mueller/angular-notifier
-after_deploy:
-  - irish-pub

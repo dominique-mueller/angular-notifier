@@ -40,8 +40,8 @@ export class NotifierTimerService {
 	/**
 	 * Start (or resume) the timer
 	 *
-	 * @param   {number}             duration Timer duration, in ms
-	 * @returns {Promise<undefined>}          Promise, resolved once the timer finishes
+	 * @param   duration Timer duration, in ms
+	 * @returns          Promise, resolved once the timer finishes
 	 */
 	public start( duration: number ): Promise<undefined> {
 		return new Promise<undefined>( ( resolve: () => void, reject: () => void ) => {
