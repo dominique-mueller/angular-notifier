@@ -1,7 +1,7 @@
 {
 	"extends": "./../../tsconfig.json",
-		"baseUrl": "",
-		"compilerOptions": {
+	"baseUrl": "",
+	"compilerOptions": {
 		"declaration": true,
 		"outDir": "./../../build/library-es5",
 		"stripInternal": true,
@@ -15,7 +15,7 @@
 	"angularCompilerOptions": {
 		"annotateForClosureCompiler": true,
 		"flatModuleId": "angular-notifier",
-		"flatModuleOutFile": "index.js",
+		"flatModuleOutFile": "angular-notifier.js",
 		"genDir": "./../../build/library-es5-gen-dir",
 		"skipTemplateCodegen": true,
 		"strictMetadataEmit": true
