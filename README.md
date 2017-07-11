@@ -112,10 +112,10 @@ root (app) component. For example:
 
 ``` typescript
 @Component( {
-  selector: 'app',
+  selector: 'my-app',
   template: `
     <h1>Hello World</h1>
-    <x-notifier-container></x-notifier-container>
+    <notifier-container></notifier-container>
   `
 } )
 export class AppComponent {}
