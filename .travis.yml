@@ -28,7 +28,7 @@ script:
   - npm run build
 
 after_success:
-  - cd dist && ls -lR && cd ..
+  - cd dist && find . && cd ..
 
 before_deploy:
   - git config --global user.name "dominique-mueller"
