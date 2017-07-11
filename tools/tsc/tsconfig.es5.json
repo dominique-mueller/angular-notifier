@@ -15,7 +15,7 @@
 	"angularCompilerOptions": {
 		"annotateForClosureCompiler": true,
 		"flatModuleId": "angular-notifier",
-		"flatModuleOutFile": "angular-notifier.js",
+		"flatModuleOutFile": "index.js",
 		"genDir": "./../../build/library-es5-gen-dir",
 		"skipTemplateCodegen": true,
 		"strictMetadataEmit": true
