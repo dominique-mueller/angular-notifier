@@ -1,4 +1,5 @@
 dist: trusty # Beta build environment (newer OS, at least it seems)
+sudo: false # Container instead of VM (thus, a lot faster)
 language: node_js
 cache:
   directories:
@@ -19,9 +20,7 @@ before_install:
     fi
   - npm install -g npm
 install:
-  - npm prune
   - npm install
-  - npm update
 
 script:
   - npm run lint
