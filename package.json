@@ -31,22 +31,22 @@
 		"module",
 		"js"
 	],
-	"main": "./angular-notifier.umd.js",
-	"module": "./angular-notifier.es5.js",
-	"es2015": "./angular-notifier.js",
-	"typings": "./angular-notifier.d.ts",
+	"main": "angular-notifier.umd.js",
+	"module": "angular-notifier.es5.js",
+	"es2015": "angular-notifier.js",
+	"typings": "angular-notifier.d.ts",
 	"scripts": {
 		"codecov": "codecov",
 		"gulp": "gulp",
 		"webpack-dev-server": "webpack-dev-server",
-		"start": "webpack --config ./tools/webpack/webpack.dll.config.js --hide-modules && webpack-dev-server --config ./tools/webpack/webpack.dev.config.js",
-		"test": "jest --config jest.config.json",
+		"start": "webpack --config tools/webpack/webpack.dll.config.js --hide-modules && webpack-dev-server --config tools/webpack/webpack.dev.config.js",
+		"test": "jest --config tools/jest/jest.config.json",
 		"lint": "gulp lint",
 		"build": "gulp run",
 		"ci:automatic-release": "automatic-release",
 		"ci:post-automatic-release": "gulp env:release",
-		"ci:coverage": "codecov -f ./coverage/coverage-final.json",
-		"ci:test": "jest --config jest.config.json --runInBand --no-cache"
+		"ci:coverage": "codecov -f coverage/coverage-final.json",
+		"ci:test": "jest --config tools/jest/jest.config.json --runInBand --no-cache"
 	},
 	"peerDependencies": {
 		"@angular/common": ">= 4.0.0 < 5.0.0",
