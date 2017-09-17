@@ -11,6 +11,7 @@
 [![Codecov](https://img.shields.io/codecov/c/github/dominique-mueller/angular-notifier.svg?maxAge=3600&style=flat)](https://codecov.io/gh/dominique-mueller/angular-notifier)
 [![Known Vulnerabilities](https://snyk.io/test/github/dominique-mueller/angular-notifier/badge.svg)](https://snyk.io/test/github/dominique-mueller/simple-progress-webpack-plugin)
 [![license](https://img.shields.io/npm/l/angular-notifier.svg?maxAge=3600&style=flat)](https://github.com/dominique-mueller/angular-notifier/LICENSE)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fdominique-mueller%2Fangular-notifier.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fdominique-mueller%2Fangular-notifier?ref=badge_shield)
 
 </div>
 
@@ -527,3 +528,7 @@ __[right here](https://github.com/brillout/awesome-angular-components#notificati
 - E-Mail: **[dominique.m.mueller@gmail.com](mailto:dominique.m.mueller@gmail.com)**
 - Website: **[www.devdom.io](https://www.devdom.io)**
 - Twitter: **[@itsdevdom](https://twitter.com/itsdevdom)**
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fdominique-mueller%2Fangular-notifier.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fdominique-mueller%2Fangular-notifier?ref=badge_large)
