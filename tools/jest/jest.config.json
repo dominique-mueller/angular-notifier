@@ -17,9 +17,6 @@
 		"html"
 	],
 	"mapCoverage": true,
-	"moduleNameMapper": {
-		"(.*)": "<rootDir>/src/$1"
-	},
 	"rootDir": "../../",
 	"transformIgnorePatterns": [
 		"node_modules/(?!@ngrx)"
