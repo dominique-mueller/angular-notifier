@@ -34,9 +34,9 @@ export class NotifierAnimationService {
 	 * This method generates all data the Web Animations API needs to animate our notification. The result depends on both the animation
 	 * direction (either in or out) as well as the notifications (and its attributes) itself.
 	 *
-	 * @param   {'show' | 'hide'}       direction    Animation direction, either in or out
-	 * @param   {NotifierNotification}  notification Notification the animation data should be generated for
-	 * @returns {NotifierAnimationData}              Animation information
+	 * @param   direction    Animation direction, either in or out
+	 * @param   notification Notification the animation data should be generated for
+	 * @returns Animation information
 	 */
 	public getAnimationData( direction: 'show' | 'hide', notification: NotifierNotification ): NotifierAnimationData {
 

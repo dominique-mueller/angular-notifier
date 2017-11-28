@@ -94,11 +94,11 @@ export class NotifierNotificationComponent implements AfterViewInit {
 	/**
 	 * Constructor
 	 *
-	 * @param {ElementRef}               elementRef               Reference to the component's element
-	 * @param {Renderer2}                renderer                 Angular renderer
-	 * @param {NotifierService}          notifierService          Notifier service
-	 * @param {NotifierTimerService}     notifierTimerService     Notifier timer service
-	 * @param {NotifierAnimationService} notifierAnimationService Notifier animation service
+	 * @param elementRef               Reference to the component's element
+	 * @param renderer                 Angular renderer
+	 * @param notifierService          Notifier service
+	 * @param notifierTimerService     Notifier timer service
+	 * @param notifierAnimationService Notifier animation service
 	 */
 	public constructor( elementRef: ElementRef, renderer: Renderer2, notifierService: NotifierService,
 		notifierTimerService: NotifierTimerService, notifierAnimationService: NotifierAnimationService ) {
@@ -125,7 +125,7 @@ export class NotifierNotificationComponent implements AfterViewInit {
 	/**
 	 * Get the notifier config
 	 *
-	 * @returns {NotifierConfig} Notifier configuration
+	 * @returns Notifier configuration
 	 */
 	public getConfig(): NotifierConfig {
 		return this.config;
@@ -134,7 +134,7 @@ export class NotifierNotificationComponent implements AfterViewInit {
 	/**
 	 * Get notification element height (in px)
 	 *
-	 * @returns {number} Notification element height (in px)
+	 * @returns Notification element height (in px)
 	 */
 	public getHeight(): number {
 		return this.elementHeight;
@@ -143,7 +143,7 @@ export class NotifierNotificationComponent implements AfterViewInit {
 	/**
 	 * Get notification element width (in px)
 	 *
-	 * @returns {number} Notification element height (in px)
+	 * @returns Notification element height (in px)
 	 */
 	public getWidth(): number {
 		return this.elementWidth;
@@ -152,7 +152,7 @@ export class NotifierNotificationComponent implements AfterViewInit {
 	/**
 	 * Get notification shift offset (in px)
 	 *
-	 * @returns {number} Notification element shift offset (in px)
+	 * @returns Notification element shift offset (in px)
 	 */
 	public getShift(): number {
 		return this.elementShift;
@@ -161,7 +161,7 @@ export class NotifierNotificationComponent implements AfterViewInit {
 	/**
 	 * Show (animate in) this notification
 	 *
-	 * @returns {Promise<undefined>} Promise, resolved when done
+	 * @returns Promise, resolved when done
 	 */
 	public show(): Promise<undefined> {
 		return new Promise<undefined>( ( resolve: () => void, reject: () => void ) => {
@@ -203,7 +203,7 @@ export class NotifierNotificationComponent implements AfterViewInit {
 	/**
 	 * Hide (animate out) this notification
 	 *
-	 * @returns {Promise<undefined>} Promise, resolved when done
+	 * @returns Promise, resolved when done
 	 */
 	public hide(): Promise<undefined> {
 		return new Promise<undefined>( ( resolve: () => void, reject: () => void ) => {
@@ -227,9 +227,9 @@ export class NotifierNotificationComponent implements AfterViewInit {
 	/**
 	 * Shift (move) this notification
 	 *
-	 * @param   {number}             distance         Distance to shift (in px)
-	 * @param   {boolean}            shiftToMakePlace Flag, defining in which direction to shift
-	 * @returns {Promise<undefined>}                  Promise, resolved when done
+	 * @param   distance         Distance to shift (in px)
+	 * @param   shiftToMakePlace Flag, defining in which direction to shift
+	 * @returns Promise, resolved when done
 	 */
 	public shift( distance: number, shiftToMakePlace: boolean ): Promise<undefined> {
 		return new Promise<undefined>( ( resolve: () => void, reject: () => void ) => {

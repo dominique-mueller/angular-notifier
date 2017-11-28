@@ -6,7 +6,9 @@
 		"outDir": "./../../build/library-es5",
 		"stripInternal": true,
 		"target": "es5",
-		"types": []
+		"types": [
+			"@types/node"
+		]
 	},
 	"files": [
 		"./../../build/library-inline/index.ts",

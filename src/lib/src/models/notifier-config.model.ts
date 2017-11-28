@@ -108,7 +108,7 @@ export class NotifierConfig implements NotifierOptions {
 	/**
 	 * Constructor
 	 *
-	 * @param {NotifierOptions} [customOptions={}] Custom notifier options, optional
+	 * @param [customOptions={}] Custom notifier options, optional
 	 */
 	public constructor( customOptions: NotifierOptions = {} ) {
 

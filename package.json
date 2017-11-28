@@ -66,7 +66,7 @@
 		"classlist.js": "1.1.x",
 		"codecov": "2.2.x",
 		"codelyzer": "3.1.x",
-		"core-js": "2.4.x",
+		"core-js": "2.5.x",
 		"css-loader": "0.28.x",
 		"del": "3.0.x",
 		"friendly-errors-webpack-plugin": "1.6.x",

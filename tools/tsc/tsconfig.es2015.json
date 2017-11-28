@@ -7,7 +7,9 @@
 		"rootDir": "./../../build/library-inline",
 		"stripInternal": true,
 		"target": "es2015",
-		"types": []
+		"types": [
+			"@types/node"
+		]
 	},
 	"files": [
 		"./../../build/library-inline/index.ts",

@@ -1,6 +1,6 @@
 module.exports = {
-	entry: 'build/library-es5/index.js',
-	moduleName: 'angular-notifier',
+	input: 'build/library-es5/index.js',
+	name: 'angular-notifier',
 	format: 'umd',
 	external: [
 		'@angular/core',
@@ -10,7 +10,7 @@ module.exports = {
 	globals: {
 		'@angular/core': 'ng.core',
 		'@angular/common': 'ng.common',
-		'rxjs/Subject': 'Rx'
+		'rxjs/Subject': 'rxjs/Subject'
 	},
 	onwarn: ( warning ) => {
 
