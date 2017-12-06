@@ -27,73 +27,73 @@ jobs:
   include:
 
     - stage: build
-	  env:
-	    - ANGULAR=5.0.x
+      env:
+        - ANGULAR=5.0.x
       install:
         - npm install
-		- npm install @angular/common@$ANGULAR @angular/core@$ANGULAR
+        - npm install @angular/common@$ANGULAR @angular/core@$ANGULAR
       script:
         - npm run build:js
         - npm run build:sass
         - npm run build:css
-	-
-	  env:
-	    - ANGULAR=5.1.x
-	  install:
+    -
+      env:
+        - ANGULAR=5.1.x
+      install:
         - npm install
-		- npm install @angular/common@$ANGULAR @angular/core@$ANGULAR
+        - npm install @angular/common@$ANGULAR @angular/core@$ANGULAR
       script:
         - npm run build:js
         - npm run build:sass
         - npm run build:css
 
     - stage: test
-	  env:
-	    - ANGULAR=5.0.x
+      env:
+        - ANGULAR=5.0.x
       install:
         - npm install
-		- npm install @angular/common@$ANGULAR @angular/core@$ANGULAR
+        - npm install @angular/common@$ANGULAR @angular/core@$ANGULAR
       script:
         - npm run test
     -
-	  env:
-	    - ANGULAR=5.1.x
+      env:
+        - ANGULAR=5.1.x
       install:
         - npm install
-		- npm install @angular/common@$ANGULAR @angular/core@$ANGULAR
+        - npm install @angular/common@$ANGULAR @angular/core@$ANGULAR
       script:
         - npm run test
-	  after_success:
+      after_success:
         - npm run test:coverage
 
-	- stage: release
-	  before_install:
-	    # Clone the whole repository because we also need the develop branch for releasing (Travis only gives us the master by default)
-	    - git clone "https://github.com/$TRAVIS_REPO_SLUG.git" "$TRAVIS_REPO_SLUG";
-	    - cd "$TRAVIS_REPO_SLUG";
-	    - git checkout -qf "$TRAVIS_COMMIT";
-	    #  Fix Travis CI issue of detached heads in git
-	    - git checkout master
-	  install:
-	    - npm install
-	  script:
-	    - npm run build:js
+    - stage: release
+      before_install:
+        # Clone the whole repository because we also need the develop branch for releasing (Travis only gives us the master by default)
+        - git clone "https://github.com/$TRAVIS_REPO_SLUG.git" "$TRAVIS_REPO_SLUG";
+        - cd "$TRAVIS_REPO_SLUG";
+        - git checkout -qf "$TRAVIS_COMMIT";
+        #  Fix Travis CI issue of detached heads in git
+        - git checkout master
+      install:
+        - npm install
+      script:
+        - npm run build:js
         - npm run build:sass
         - npm run build:css
-	  before_deploy:
-	    # Login to Git to be able to make commits (required by automatic-release)
-	    - git config --global user.name "dominique-mueller";
-	    - git config --global user.email "dominique.m.mueller@gmail.com";
-	    - git config credential.helper "store --file=.git/credentials";
-	    - echo "https://$GH_TOKEN:@github.com" > .git/credentials;
-	    # Do release
-	    - npm run release
-	    # Publish the dist folder
-	    - cd dist
-	  deploy:
-	    provider: npm
-	    email: dominique.m.mueller@gmail.com
-	    api_key: "$NPM_TOKEN"
-	    skip_cleanup: true
-	  after_deploy:
-	    - cd ..
+      before_deploy:
+        # Login to Git to be able to make commits (required by automatic-release)
+        - git config --global user.name "dominique-mueller";
+        - git config --global user.email "dominique.m.mueller@gmail.com";
+        - git config credential.helper "store --file=.git/credentials";
+        - echo "https://$GH_TOKEN:@github.com" > .git/credentials;
+        # Do release
+        - npm run release
+        # Publish the dist folder
+        - cd dist
+      deploy:
+        provider: npm
+        email: dominique.m.mueller@gmail.com
+        api_key: "$NPM_TOKEN"
+        skip_cleanup: true
+      after_deploy:
+        - cd ..
