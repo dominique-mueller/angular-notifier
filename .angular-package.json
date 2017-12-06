@@ -1,0 +1,5 @@
+{
+	"$schema": "./node_modules/angular-package-builder/angular-package.schema.json",
+	"entryFile": "src/lib/index.ts",
+	"outDir": "dist"
+}
