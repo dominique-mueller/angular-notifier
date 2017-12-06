@@ -22,7 +22,7 @@ export class NotifierTimerService {
 	/**
 	 * Timeout ID, used for clearing the timeout later on
 	 */
-	private timer: NodeJS.Timer;
+	private timerId: number;
 
 	/**
 	 * Promise resolve function, eventually getting called once the timer finishes
@@ -60,7 +60,7 @@ export class NotifierTimerService {
 	 * Pause the timer
 	 */
 	public pause(): void {
-		clearTimeout( this.timer );
+		clearTimeout( this.timerId );
 		this.remaining -= new Date().getTime() - this.now;
 	}
 
@@ -69,7 +69,7 @@ export class NotifierTimerService {
 	 */
 	public continue(): void {
 		this.now = new Date().getTime();
-		this.timer = setTimeout( () => {
+		this.timerId = window.setTimeout( () => {
 			this.finish();
 		}, this.remaining );
 	}
@@ -78,7 +78,7 @@ export class NotifierTimerService {
 	 * Stop the timer
 	 */
 	public stop(): void {
-		clearTimeout( this.timer );
+		clearTimeout( this.timerId );
 		this.remaining = 0;
 	}
 
