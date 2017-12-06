@@ -16,10 +16,6 @@ import 'core-js/es6/regexp';
 import 'core-js/es6/map';
 import 'core-js/es6/set';
 
-// Classlist polyfill
-// -> Required for IE10, IE11
-import 'classlist.js';
-
 // Reflect Metadata polyfill
 // -> Required for every browser
 import 'core-js/es6/reflect';
