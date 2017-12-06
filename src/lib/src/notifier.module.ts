@@ -30,8 +30,8 @@ export const NotifierConfigToken: InjectionToken<NotifierConfig>
  * Sidenote:
  * Required as Angular AoT compilation cannot handle dynamic functions; see <https://github.com/angular/angular/issues/11262>.
  *
- * @param   {NotifierOptions} options - Custom notifier options
- * @returns {NotifierConfig}          - Notifier configuration as result
+ * @param   options - Custom notifier options
+ * @returns - Notifier configuration as result
  */
 export function notifierCustomConfigFactory( options: NotifierOptions ): NotifierConfig {
 	return new NotifierConfig( options );
@@ -43,7 +43,7 @@ export function notifierCustomConfigFactory( options: NotifierOptions ): Notifie
  * Sidenote:
  * Required as Angular AoT compilation cannot handle dynamic functions; see <https://github.com/angular/angular/issues/11262>.
  *
- * @returns {NotifierConfig} - Notifier configuration as result
+ * @returns - Notifier configuration as result
  */
 export function notifierDefaultConfigFactory(): NotifierConfig {
 	return new NotifierConfig( {} );
@@ -81,8 +81,8 @@ export class NotifierModule {
 	/**
 	 * Setup the notifier module with custom providers, in this case with a custom configuration based on the givne options
 	 *
-	 * @param   {NotifierOptions}     [options={}] - Custom notifier options
-	 * @returns {ModuleWithProviders}              - Notifier module with custom providers
+	 * @param   [options={}] - Custom notifier options
+	 * @returns - Notifier module with custom providers
 	 */
 	public static withConfig( options: NotifierOptions = {} ): ModuleWithProviders {
 		return {

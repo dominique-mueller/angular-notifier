@@ -65,9 +65,9 @@ export class NotifierContainerComponent implements OnDestroy, OnInit {
 	/**
 	 * Constructor
 	 *
-	 * @param {ChangeDetectorRef}    changeDetector       Change detector, used for manually triggering change detection runs
-	 * @param {NotifierQueueService} notifierQueueService Notifier queue service
-	 * @param {NotifierService}      notifierService      Notifier service
+	 * @param changeDetector       Change detector, used for manually triggering change detection runs
+	 * @param notifierQueueService Notifier queue service
+	 * @param notifierService      Notifier service
 	 */
 	public constructor( changeDetector: ChangeDetectorRef, notifierQueueService: NotifierQueueService, notifierService: NotifierService ) {
 		this.changeDetector = changeDetector;
@@ -99,9 +99,9 @@ export class NotifierContainerComponent implements OnDestroy, OnInit {
 	/**
 	 * Notification identifier, used as the ngFor trackby function
 	 *
-	 * @param   {number}               index        Index
-	 * @param   {NotifierNotification} notification Notifier notification
-	 * @returns {string}                            Notification ID as the unique identnfier
+	 * @param   index        Index
+	 * @param   notification Notifier notification
+	 * @returns Notification ID as the unique identnfier
 	 */
 	public identifyNotification( index: number, notification: NotifierNotification ): string {
 		return notification.id;
@@ -110,7 +110,7 @@ export class NotifierContainerComponent implements OnDestroy, OnInit {
 	/**
 	 * Event handler, handles clicks on notification dismiss buttons
 	 *
-	 * @param {string} notificationId ID of the notification to dismiss
+	 * @param notificationId ID of the notification to dismiss
 	 */
 	public onNotificationDismiss( notificationId: string ): void {
 		this.queueService.push( {
@@ -122,7 +122,7 @@ export class NotifierContainerComponent implements OnDestroy, OnInit {
 	/**
 	 * Event handler, handles notification ready events
 	 *
-	 * @param {NotifierNotificationComponent} notificationComponent Notification component reference
+	 * @param notificationComponent Notification component reference
 	 */
 	public onNotificationReady( notificationComponent: NotifierNotificationComponent ): void {
 		let currentNotification: NotifierNotification = this.notifications[ this.notifications.length - 1 ]; // Get the latest notification
@@ -133,8 +133,8 @@ export class NotifierContainerComponent implements OnDestroy, OnInit {
 	/**
 	 * Handle incoming actions by mapping action types to methods, and then running them
 	 *
-	 * @param   {NotifierAction}     action Action object
-	 * @returns {Promise<undefined>}        Promise, resolved when done
+	 * @param   action Action object
+	 * @returns Promise, resolved when done
 	 */
 	private handleAction( action: NotifierAction ): Promise<undefined> {
 		switch ( action.type ) { // TODO: Maybe a map (actionType -> class method) is a cleaner solution here?
@@ -160,8 +160,8 @@ export class NotifierContainerComponent implements OnDestroy, OnInit {
 	 *
 	 * We simply add the notification to the list, and then wait until its properly initialized / created / rendered.
 	 *
-	 * @param   {NotifierAction}     action Action object
-	 * @returns {Promise<undefined>}        Promise, resolved when done
+	 * @param   action Action object
+	 * @returns Promise, resolved when done
 	 */
 	private handleShowAction( action: NotifierAction ): Promise<undefined> {
 		return new Promise<undefined>( ( resolve: () => void, reject: () => void ) => {
@@ -178,7 +178,7 @@ export class NotifierContainerComponent implements OnDestroy, OnInit {
 	 * shift all older notifications, and then show our new notification. In addition, if there are too many notification on the screen,
 	 * we hide the oldest one first. Furthermore, if configured, animation overlapping is applied.
 	 *
-	 * @param {NotifierNotification} notification New notification to show
+	 * @param notification New notification to show
 	 */
 	private continueHandleShowAction( notification: NotifierNotification ): void {
 
@@ -281,8 +281,8 @@ export class NotifierContainerComponent implements OnDestroy, OnInit {
 	 * notification. If there exist older notifications, we then shift them around to fill the gap. Once both hiding the given notification
 	 * and shifting the older notificaitons is done, the given notification gets finally removed (from the DOM).
 	 *
-	 * @param   {NotifierAction}     action Action object, payload contains the notification ID
-	 * @returns {Promise<undefined>}        Promise, resolved when done
+	 * @param   action Action object, payload contains the notification ID
+	 * @returns Promise, resolved when done
 	 */
 	private handleHideAction( action: NotifierAction ): Promise<undefined> {
 		return new Promise<undefined>( ( resolve: () => void, reject: () => void ) => {
@@ -345,8 +345,8 @@ export class NotifierContainerComponent implements OnDestroy, OnInit {
 	/**
 	 * Hide the oldest notification (bridge to handleHideAction)
 	 *
-	 * @param   {NotifierAction}     action Action object
-	 * @returns {Promise<undefined>}        Promise, resolved when done
+	 * @param   action Action object
+	 * @returns Promise, resolved when done
 	 */
 	private handleHideOldestAction( action: NotifierAction ): Promise<undefined> {
 
@@ -365,8 +365,8 @@ export class NotifierContainerComponent implements OnDestroy, OnInit {
 	/**
 	 * Hide the newest notification (bridge to handleHideAction)
 	 *
-	 * @param   {NotifierAction}     action Action object
-	 * @returns {Promise<undefined>}        Promise, resolved when done
+	 * @param   action Action object
+	 * @returns Promise, resolved when done
 	 */
 	private handleHideNewestAction( action: NotifierAction ): Promise<undefined> {
 
@@ -385,8 +385,8 @@ export class NotifierContainerComponent implements OnDestroy, OnInit {
 	/**
 	 * Hide all notifications at once
 	 *
-	 * @param   {NotifierAction}     action Action object
-	 * @returns {Promise<undefined>}        Promise, resolved when done
+	 * @param   action Action object
+	 * @returns Promise, resolved when done
 	 */
 	private handleHideAllAction( action: NotifierAction ): Promise<undefined> {
 		return new Promise<undefined>( ( resolve: () => void, reject: () => void ) => {
@@ -437,10 +437,10 @@ export class NotifierContainerComponent implements OnDestroy, OnInit {
 	/**
 	 * Shift multiple notifications at once
 	 *
-	 * @param   {Array<NotifierNotification>} notifications List containing the notifications to be shifted
-	 * @param   {number}                      distance      Distance to shift (in px)
-	 * @param   {boolean}                     toMakePlace   Flag, defining in which direciton to shift
-	 * @returns {Promise<undefined>}                        Promise, resolved when done
+	 * @param   notifications List containing the notifications to be shifted
+	 * @param   distance      Distance to shift (in px)
+	 * @param   toMakePlace   Flag, defining in which direciton to shift
+	 * @returns Promise, resolved when done
 	 */
 	private shiftNotifications( notifications: Array<NotifierNotification>, distance: number, toMakePlace: boolean ): Promise<undefined> {
 		return new Promise<undefined>( ( resolve: () => void, reject: () => void ) => {
@@ -463,7 +463,7 @@ export class NotifierContainerComponent implements OnDestroy, OnInit {
 	/**
 	 * Add a new notification to the list of notifications (triggers change detection)
 	 *
-	 * @param {NotifierNotification} notification Notification to add to the list of notifications
+	 * @param notification Notification to add to the list of notifications
 	 */
 	private addNotificationToList( notification: NotifierNotification ): void {
 		this.notifications.push( notification );
@@ -473,7 +473,7 @@ export class NotifierContainerComponent implements OnDestroy, OnInit {
 	/**
 	 * Remove an existing notification from the list of notifications (triggers change detection)
 	 *
-	 * @param {NotifierNotification} notification Notification to be removed from the list of notifications
+	 * @param notification Notification to be removed from the list of notifications
 	 */
 	private removeNotificationFromList( notification: NotifierNotification ): void {
 		this.notifications =
@@ -492,8 +492,8 @@ export class NotifierContainerComponent implements OnDestroy, OnInit {
 	/**
 	 * Helper: Find a notification in the notification list by a given notification ID
 	 *
-	 * @param   {string}                           notificationId Notification ID, used for finding notification
-	 * @returns {NotifierNotification | undefined}                Notification, undefined if not found
+	 * @param   notificationId Notification ID, used for finding notification
+	 * @returns Notification, undefined if not found
 	 */
 	private findNotificationById( notificationId: string ): NotifierNotification | undefined {
 		return this.notifications.find( ( currentNotification: NotifierNotification ) => currentNotification.id === notificationId );
@@ -502,8 +502,8 @@ export class NotifierContainerComponent implements OnDestroy, OnInit {
 	/**
 	 * Helper: Find a notification's index by a given notification ID
 	 *
-	 * @param   {string}             notificationId Notification ID, used for finding a notification's index
-	 * @returns {number | undefined}                Notification index, undefined if not found
+	 * @param   notificationId Notification ID, used for finding a notification's index
+	 * @returns Notification index, undefined if not found
 	 */
 	private findNotificationIndexById( notificationId: string ): number | undefined {
 		const notificationIndex: number =

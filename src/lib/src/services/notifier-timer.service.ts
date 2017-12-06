@@ -69,7 +69,7 @@ export class NotifierTimerService {
 	 */
 	public continue(): void {
 		this.now = new Date().getTime();
-		this.timerId = setTimeout( () => {
+		this.timerId = window.setTimeout( () => {
 			this.finish();
 		}, this.remaining );
 	}

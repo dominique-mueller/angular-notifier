@@ -45,7 +45,7 @@ export class NotifierQueueService {
 	/**
 	 * Push a new action to the queue, and try to run it
 	 *
-	 * @param {NotifierAction} action Action object
+	 * @param action Action object
 	 */
 	public push( action: NotifierAction ): void {
 		this.actionQueue.push( action );

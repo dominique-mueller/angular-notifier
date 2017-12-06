@@ -28,8 +28,8 @@ export class NotifierService {
 	/**
 	 * Constructor
 	 *
-	 * @param {NotifierQueueService} notifierQueueService Notifier queue service
-	 * @param {NotifierConfig}       config               Notifier configuration, optionally injected as a dependency
+	 * @param notifierQueueService Notifier queue service
+	 * @param config               Notifier configuration, optionally injected as a dependency
 	 */
 	public constructor(
 		notifierQueueService: NotifierQueueService,
@@ -42,7 +42,7 @@ export class NotifierService {
 	/**
 	 * Get the notifier configuration
 	 *
-	 * @returns {NotifierConfig} Notifier configuration
+	 * @returns Notifier configuration
 	 */
 	public getConfig(): NotifierConfig {
 		return this.config;
@@ -51,7 +51,7 @@ export class NotifierService {
 	/**
 	 * API: Show a new notification
 	 *
-	 * @param {NotifierNotificationOptions} notificationOptions Notification options
+	 * @param notificationOptions Notification options
 	 */
 	public show( notificationOptions: NotifierNotificationOptions ): void {
 		this.queueService.push( {
@@ -63,7 +63,7 @@ export class NotifierService {
 	/**
 	 * API: Hide a specific notification, given its ID
 	 *
-	 * @param {string} notificationId ID of the notification to hide
+	 * @param notificationId ID of the notification to hide
 	 */
 	public hide( notificationId: string ): void {
 		this.queueService.push( {
@@ -102,9 +102,9 @@ export class NotifierService {
 	/**
 	 * API: Shortcut for showing a new notification
 	 *
-	 * @param {string} type             Type of the notification
-	 * @param {string} message          Message of the notification
-	 * @param {string} [notificationId] Unique ID for the notification (optional)
+	 * @param type             Type of the notification
+	 * @param message          Message of the notification
+	 * @param [notificationId] Unique ID for the notification (optional)
 	 */
 	public notify( type: string, message: string, notificationId?: string ): void {
 		let notificationOptions: NotifierNotificationOptions = {

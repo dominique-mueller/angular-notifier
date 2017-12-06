@@ -30,7 +30,7 @@ export class NotifierNotification {
 	/**
 	 * Constructor
 	 *
-	 * @param {NotifierNotificationOptions} options Notifier options
+	 * @param options Notifier options
 	 */
 	public constructor( options: NotifierNotificationOptions ) {
 

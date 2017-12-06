@@ -1,6 +1,6 @@
 module.exports = {
-	entry: 'build/library-es2015/index.js',
-	moduleName: 'angular-notifier',
+	input: 'build/library-es2015/index.js',
+	name: 'angular-notifier',
 	format: 'es',
 	external: [
 		'@angular/core',
