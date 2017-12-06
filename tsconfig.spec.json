@@ -9,14 +9,14 @@
 			"es2016",
 			"dom"
 		],
-		"module": "es2015",
+		"module": "commonjs",
 		"moduleResolution": "node",
 		"outDir": "./build/tsc",
 		"sourceMap": true,
 		"target": "es5"
 	},
-	"exclude": [
-		"node_modules",
-		"src/lib/**/*.spec.ts"
+	"include": [
+		"src/lib/**/*.spec.ts",
+		"src/lib/**/*.d.ts"
 	]
 }

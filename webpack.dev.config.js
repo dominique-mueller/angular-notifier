@@ -2,8 +2,6 @@
 
 const path = require( 'path' );
 
-const chalk = require( 'chalk' );
-
 const AddAssetHtmlPlugin = require( 'add-asset-html-webpack-plugin' );
 const BrowserSyncPlugin = require( 'browser-sync-webpack-plugin' );
 const CheckerPlugin = require( 'awesome-typescript-loader' ).CheckerPlugin;
@@ -75,7 +73,7 @@ module.exports = {
 					{
 						loader: 'awesome-typescript-loader',
 						options: {
-							configFileName: path.resolve( process.cwd(), 'tools', 'tsc', 'tsconfig.dev.json' ),
+							configFileName: path.resolve( process.cwd(), 'tsconfig.json' ),
 							// silent: true // Disable any output
 						}
 					},
