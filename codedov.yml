@@ -1,0 +1,11 @@
+comment:
+  layout: "diff, flags, files" # Do not show the weird graph
+
+coverage:
+  status:
+    project:
+      default:
+        threshold: 1 # Allow the coverage to decrease by 1%
+    patch:
+      default:
+        threshold: 1 # Allow the coverage to decrease by 1%

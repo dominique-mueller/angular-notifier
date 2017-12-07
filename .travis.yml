@@ -1,6 +1,9 @@
-dist: trusty # Beta build environment (newer OS, at least it seems)
-sudo: false # Container instead of VM (thus, a lot faster)
+# General settings
+dist: trusty
+sudo: false
 language: node_js
+node_js:
+  - "lts/*"
 cache:
   directories:
     - node_modules
@@ -8,41 +11,89 @@ notifications:
   email: false
 branches:
   only:
-    - master # Testing, Building, Releasing
-    - develop # Testing, Building
-    - feature/travis # Branch specifically for testing Travis CI
+    - master
+    - develop
+    - /^greenkeeper/.*$/
 
-before_install:
-  - if [ "$TRAVIS_BRANCH" == "master" ]; then
-      git clone "https://github.com/$TRAVIS_REPO_SLUG.git" "$TRAVIS_REPO_SLUG";
-      cd "$TRAVIS_REPO_SLUG";
-      git checkout -qf "$TRAVIS_COMMIT";
-    fi
-  - npm install -g npm
-install:
-  - npm install
+# Build stages
+stages:
+  - name: build
+  - name: test
+  - name: release
+    if: branch = master
 
-script:
-  - npm run lint
-  - npm run ci:test && npm run ci:coverage
-  - npm run build
+# Build jobs
+jobs:
+  include:
 
-before_deploy:
-  - git config --global user.name "dominique-mueller"
-  - git config --global user.email "dominique.m.mueller@gmail.com"
-  - git config credential.helper "store --file=.git/credentials"
-  - echo "https://$GH_TOKEN:@github.com" > .git/credentials
-  - git checkout master
-  - npm run ci:automatic-release
-  - npm run ci:post-automatic-release
-  - npm install -g irish-pub@0.2.x pkg-ok@1.1.x
-  - cd dist && pkg-ok module es2015 typings && cd ..
-  - irish-pub
-deploy:
-  provider: npm
-  email: dominique.m.mueller@gmail.com
-  api_key: "$NPM_TOKEN"
-  skip_cleanup: true
-  on:
-    branch: master
-    repo: dominique-mueller/angular-notifier
+    - stage: build
+      env:
+        - ANGULAR=5.0.x
+      install:
+        - npm install
+        - npm install @angular/common@$ANGULAR @angular/core@$ANGULAR
+      script:
+        - npm run build:js
+        - npm run build:sass
+        - npm run build:css
+    -
+      env:
+        - ANGULAR=5.1.x
+      install:
+        - npm install
+        - npm install @angular/common@$ANGULAR @angular/core@$ANGULAR
+      script:
+        - npm run build:js
+        - npm run build:sass
+        - npm run build:css
+
+    - stage: test
+      env:
+        - ANGULAR=5.0.x
+      install:
+        - npm install
+        - npm install @angular/common@$ANGULAR @angular/core@$ANGULAR
+      script:
+        - npm run test
+    -
+      env:
+        - ANGULAR=5.1.x
+      install:
+        - npm install
+        - npm install @angular/common@$ANGULAR @angular/core@$ANGULAR
+      script:
+        - npm run test
+      after_success:
+        - npm run test:coverage
+
+    - stage: release
+      before_install:
+        # Clone the whole repository because we also need the develop branch for releasing (Travis only gives us the master by default)
+        - git clone "https://github.com/$TRAVIS_REPO_SLUG.git" "$TRAVIS_REPO_SLUG";
+        - cd "$TRAVIS_REPO_SLUG";
+        - git checkout -qf "$TRAVIS_COMMIT";
+        #  Fix Travis CI issue of detached heads in git
+        - git checkout master
+      install:
+        - npm install
+      script:
+        - npm run build:js
+        - npm run build:sass
+        - npm run build:css
+      before_deploy:
+        # Login to Git to be able to make commits (required by automatic-release)
+        - git config --global user.name "dominique-mueller";
+        - git config --global user.email "dominique.m.mueller@gmail.com";
+        - git config credential.helper "store --file=.git/credentials";
+        - echo "https://$GH_TOKEN:@github.com" > .git/credentials;
+        # Do release
+        - npm run release
+        # Publish the dist folder
+        - cd dist
+      deploy:
+        provider: npm
+        email: dominique.m.mueller@gmail.com
+        api_key: "$NPM_TOKEN"
+        skip_cleanup: true
+      after_deploy:
+        - cd ..
