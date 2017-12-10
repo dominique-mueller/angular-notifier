@@ -32,6 +32,18 @@ or running the following command:
 npm install angular-notifier
 ```
 
+<br>
+
+### Angular versions
+
+The following list describes the Angular compatibility:
+
+- **angular-notifier `1.x`**&nbsp;&nbsp;is compatible with&nbsp;&nbsp;**Angular `2.x`**
+- **angular-notifier `2.x`**&nbsp;&nbsp;is compatible with&nbsp;&nbsp;**Angular `4.x`**
+- **angular-notifier `3.x`**&nbsp;&nbsp;is compatible with&nbsp;&nbsp;**Angular `5.x`**
+
+<br>
+
 ### Browser support & polyfills
 
 By default, meaning without any polyfills, **angular-notifier** is compatible with **the latest versions of Chrome, Firefox, and Opera**.
@@ -55,7 +67,7 @@ your `polyfills.ts` file - waiting for you to enable and install them.
 Before actually being able to use the **angular-notifier** library within our code, we have to first set it up within Angular, and also
 bring the styles into our project.
 
-<br><br>
+<br>
 
 ### 1. Import the `NotifierModule`
 
@@ -89,7 +101,7 @@ import { NotifierModule } from 'angular-notifier';
 export class AppModule {}
 ```
 
-<br><br>
+<br>
 
 ### 2. Use the `notifier-container` component
 
@@ -109,7 +121,7 @@ export class AppComponent {}
 
 > Later on, this component will contain and manage all your applications' notifications.
 
-<br><br>
+<br>
 
 ### 3. Import the styles
 
@@ -155,7 +167,7 @@ export class MyAwesomeComponent {
 }
 ```
 
-<br><br>
+<br>
 
 ### Show notifications
 
@@ -185,7 +197,7 @@ this.notifier.show( {
 } );
 ```
 
-<br><br>
+<br>
 
 ### Hide notifications
 
@@ -225,7 +237,7 @@ should already provide a great User Experience.
 > Keep in mind that **angular-notifier** can be configured only once - which is at the time you import the `NotifierModule` into your root
 > (app) module.
 
-<br><br>
+<br>
 
 ### Position
 
@@ -275,7 +287,7 @@ position: {
 }
 ```
 
-<br><br>
+<br>
 
 ### Theme
 
@@ -298,7 +310,7 @@ when being created. For example, using `material` as the theme results in all no
 > For example on how to create a theme from scratch, just take a look at the themes coming along with this library (as for now only the
 > `material` theme).
 
-<br><br>
+<br>
 
 ### Behaviour
 
@@ -340,7 +352,7 @@ behaviour: {
 }
 ```
 
-<br><br>
+<br>
 
 ### Animations
 
@@ -430,7 +442,7 @@ animations: {
 }
 ```
 
-<br><br>
+<br>
 
 ### In short -- the default configuration
 
