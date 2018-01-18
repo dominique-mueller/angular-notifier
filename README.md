@@ -6,7 +6,6 @@
 
 [![npm version](https://img.shields.io/npm/v/angular-notifier.svg?maxAge=3600&style=flat)](https://www.npmjs.com/package/angular-notifier)
 [![dependency status](https://img.shields.io/david/dominique-mueller/angular-notifier.svg?maxAge=3600&style=flat)](https://david-dm.org/dominique-mueller/angular-notifier)
-[![peer dependency status](https://img.shields.io/david/peer/dominique-mueller/angular-notifier.svg?maxAge=3600&style=flat)](https://david-dm.org/dominique-mueller/angular-notifier?type=peer)
 [![travis ci build status](https://img.shields.io/travis/dominique-mueller/angular-notifier/master.svg?maxAge=3600&style=flat)](https://travis-ci.org/dominique-mueller/angular-notifier)
 [![Codecov](https://img.shields.io/codecov/c/github/dominique-mueller/angular-notifier.svg?maxAge=3600&style=flat)](https://codecov.io/gh/dominique-mueller/angular-notifier)
 [![Known Vulnerabilities](https://snyk.io/test/github/dominique-mueller/angular-notifier/badge.svg)](https://snyk.io/test/github/dominique-mueller/simple-progress-webpack-plugin)
@@ -14,7 +13,7 @@
 
 </div>
 
-<br>
+<br><br>
 
 ## Demo
 
@@ -22,34 +21,33 @@ You can play around with this library with **[this Plunker right here](https://p
 
 ![Angular Notifier Animated Preview GIF](/docs/angular-notifier-preview.gif?raw=true)
 
-<br>
-
-## Table of Contents
-
-- **[How to install](#how-to-install)**
-- **[How to setup](#how-to-setup)**
-- **[How to use](#how-to-use)**
-- **[How to customize](#how-to-customize)**
-- **[What's next?](#whats-next)**
-
-> Also, see the **[Changelog](/CHANGELOG.md)** as well as at the **[MIT License](/LICENSE)**. Or **[learn about me](#creator)**.
-
-<br><br>
+<br><br><br>
 
 ## How to install
 
-To get **angular-notifier** via **npm**, simply add it as a new dependency to your `package.json` file and run `npm install`. Alternatively, install it directly by running:
+You can get **angular-notifier** via **npm** by either adding it as a new *dependency* to your `package.json` file and running npm install,
+or running the following command:
 
 ``` bash
-npm install angular-notifier --save
+npm install angular-notifier
 ```
 
 <br>
 
-### Browser Support & Polyfills
+### Angular versions
 
-By default, meaning without any polyfills, **angular-notifier** should be compatible with **the latest versions of Chrome, Firefox, and
-Opera**. Bringing in the following polyfills will extend the browser support:
+The following list describes the Angular compatibility:
+
+- **angular-notifier `1.x`**&nbsp;&nbsp;is compatible with&nbsp;&nbsp;**Angular `2.x`**
+- **angular-notifier `2.x`**&nbsp;&nbsp;is compatible with&nbsp;&nbsp;**Angular `4.x`**
+- **angular-notifier `3.x`**&nbsp;&nbsp;is compatible with&nbsp;&nbsp;**Angular `5.x`**
+
+<br>
+
+### Browser support & polyfills
+
+By default, meaning without any polyfills, **angular-notifier** is compatible with **the latest versions of Chrome, Firefox, and Opera**.
+Bringing in the following polyfills will improve browser support:
 
 - To be able to use the latest and greatest JavaScript features in older browsers (e.g. older version of IE & Safari), you might want to
 add **[core-js](https://github.com/zloirock/core-js)** to your polyfills.
@@ -62,7 +60,7 @@ add **[core-js](https://github.com/zloirock/core-js)** to your polyfills.
 Angular project with the **[Angular CLI](https://github.com/angular/angular-cli)**, all the polyfills mentioned above do already exist in
 your `polyfills.ts` file - waiting for you to enable and install them.
 
-<br><br>
+<br><br><br>
 
 ## How to setup
 
@@ -105,7 +103,7 @@ export class AppModule {}
 
 <br>
 
-### 2. Add the `notifier-container` component
+### 2. Use the `notifier-container` component
 
 In addition, you have to place the `notifier-container` component somewhere in your application, best at the last element of your
 root (app) component. For example:
@@ -133,7 +131,7 @@ write your own styles from scratch.
 
 #### The easy way: Import all the styles
 
-To import all the styles, simple include either the `~/angular.notifier/styles.(scss|css)` file. It contains the core styles as well as all
+To import all the styles, simple include either the `~/angular-notifier/styles.(scss|css)` file. It contains the core styles as well as all
 the themes and notification types.
 
 #### The advanced way: Only import the styles actually needed
@@ -145,7 +143,7 @@ the styles actually needed by our application. The **angular-notifier** styles a
 - Themes can be imported from the `~/angular-notifier/styles/theme` folder
 - The different notification types, then, can be imported from the `~/angular-notifier/styles/types` folder
 
-<br><br>
+<br><br><br>
 
 ## How to use
 
@@ -156,7 +154,7 @@ service, ...) you want to use in. For example:
 import { NotifierService } from 'angular-notifier';
 
 @Component( {
-  // Implementation details
+	// ...
 } )
 export class MyAwesomeComponent {
 
@@ -228,7 +226,7 @@ And, of course, it's also possible to hide all visible notifications at once:
 this.notifier.hideAll();
 ```
 
-<br><br>
+<br><br><br>
 
 ## How to customize
 
@@ -493,32 +491,7 @@ const notifierDefaultOptions: NotifierOptions = {
 };
 ```
 
-<br><br>
-
-## What's next?
-
-There is an endless number of features, enhancements, and optimizations that would be possible (and awesome to have) in the
-**angular-notifier** library. Some ideas:
-
-* Extended options for all - and even single - notifications
-  * Symbol for notifications (e.g. checkmark, cross, or even images)
-  * Custom buttons next to the close button (with callback functionality)
-  * Callback functions / observable streams for specific events / global events
-  * Enhanced stacking (e.g. negative values, document size as implicit stacking limit)
-* Allowing the change of content from outside (e.g. while the notifications is still on-screen)
-* Allow custom animation presets, configurable from outside (similar to that creating custom themes is possible)
-* More themes coming along with **angular-notifier** (e.g. iOS style, MDL style, bootstrap style)
-* HTML templates as notification content
-* React on document size changes (full responsiveness)
-* Pull Request Templates, Contributing Guidelines
-* Refactor unit tests
-
-> You can't wait for one of these features? Or have some new ideas? Let me know by **[creating an issue](https://github.com/dominique-mueller/angular-notifier/issues/new)**. Contributions are of course welcomed at any time!
-
-*Or look at one of the alternative notification libraries for Angular. A great collection can be found
-__[right here](https://github.com/brillout/awesome-angular-components#notification)__.*
-
-<br><br>
+<br><br><br>
 
 ## Creator
 
