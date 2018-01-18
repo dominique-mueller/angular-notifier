@@ -1,37 +1,59 @@
 # Changelog
 
-Also see the **[release page]( https://github.com/dominique-mueller/angular-notifier/releases )**.
+Also see the **[release page](https://github.com/dominique-mueller/angular-notifier.git/releases)**.
 
 <br>
 
-## [2.0.0](https://github.com/dominique-mueller/angular-notifier/releases/tag/2.0.0) / 2017-05-11
-
-### Bug Fixes
-
-* **notifier-config:** Fix notifier config injection error, refactor notifier module ([#22](https://github.com/dominique-mueller/angular-notifier/issues/22)) ([67f09f5](https://github.com/dominique-mueller/angular-notifier/commit/67f09f5)), closes [#17](https://github.com/dominique-mueller/angular-notifier/issues/17)
+## [3.0.0](https://github.com/dominique-mueller/angular-notifier/releases/tag/3.0.0) (2018-01-18)
 
 ### Chores
 
-* **build:** Upgrade build process ([#21](https://github.com/dominique-mueller/angular-notifier/issues/21)) ([37ea7c9](https://github.com/dominique-mueller/angular-notifier/commit/37ea7c9))
-* **config:** Enable TSC strict mode, add editorconfig file ([#24](https://github.com/dominique-mueller/angular-notifier/issues/24)) ([596f18a](https://github.com/dominique-mueller/angular-notifier/commit/596f18a))
-* **release:** Update automatic release process ([#20](https://github.com/dominique-mueller/angular-notifier/issues/20)) ([e494fe3](https://github.com/dominique-mueller/angular-notifier/commit/e494fe3))
-* **travis:** Fix post automatic-release deploy ([#29](https://github.com/dominique-mueller/angular-notifier/issues/29)) ([a286b9c](https://github.com/dominique-mueller/angular-notifier/commit/a286b9c))
-* **tslint:** Add tslint language service & update dependencies ([#23](https://github.com/dominique-mueller/angular-notifier/issues/23)) ([47c0e57](https://github.com/dominique-mueller/angular-notifier/commit/47c0e57))
+* Cleanup and refactor build process ([#39](https://github.com/dominique-mueller/angular-notifier.git/issues/39)) ([26992ac](https://github.com/dominique-mueller/angular-notifier/commit/26992ac))
+* Upgrade dev dependencies, fix build & tests ([#33](https://github.com/dominique-mueller/angular-notifier.git/issues/33)) ([7bf905f](https://github.com/dominique-mueller/angular-notifier/commit/7bf905f))
+* **jest:** Fix jest config path ([#34](https://github.com/dominique-mueller/angular-notifier.git/issues/34)) ([1b8019f](https://github.com/dominique-mueller/angular-notifier/commit/1b8019f))
 
 ### Documentation
 
-* **preview:** Update animated GIF preview showing the new colors ([#18](https://github.com/dominique-mueller/angular-notifier/issues/18)) ([571b098](https://github.com/dominique-mueller/angular-notifier/commit/571b098))
-* **README, MIGRATION:** Update README, add MIGRATION-GUIDE ([#28](https://github.com/dominique-mueller/angular-notifier/issues/28)) ([f2c7781](https://github.com/dominique-mueller/angular-notifier/commit/f2c7781))
+* **README:** Add Angular compatibility details, cleanup ([#40](https://github.com/dominique-mueller/angular-notifier.git/issues/40)) ([9286920](https://github.com/dominique-mueller/angular-notifier/commit/9286920))
+* **README:** Fix wrong notifier container selector ([#32](https://github.com/dominique-mueller/angular-notifier.git/issues/32)) ([7b82d35](https://github.com/dominique-mueller/angular-notifier/commit/7b82d35)), closes [#30](https://github.com/dominique-mueller/angular-notifier/issues/30)
 
 ### Features
 
-* **angular:** Upgrade to Angular 4 and its new APIs ([#19](https://github.com/dominique-mueller/angular-notifier/issues/19)) ([0a0be99](https://github.com/dominique-mueller/angular-notifier/commit/0a0be99))
+* **angular:** Upgrade to Angular 5 ([#38](https://github.com/dominique-mueller/angular-notifier.git/issues/38)) ([355785e](https://github.com/dominique-mueller/angular-notifier/commit/355785e))
+
+### BREAKING CHANGES
+
+* **angular:** The upgrade to Angular 5 breaks compatibility with Angular 4.
+
+<br>
+
+## [2.0.0](https://github.com/dominique-mueller/angular-notifier/releases/tag/2.0.0) (2017-05-11)
+
+### Bug Fixes
+
+* **notifier-config:** Fix notifier config injection error, refactor notifier module ([#22](https://github.com/dominique-mueller/angular-notifier.git/issues/22)) ([67f09f5](https://github.com/dominique-mueller/angular-notifier/commit/67f09f5)), closes [#17](https://github.com/dominique-mueller/angular-notifier/issues/17)
+
+### Chores
+
+* **build:** Upgrade build process ([#21](https://github.com/dominique-mueller/angular-notifier.git/issues/21)) ([37ea7c9](https://github.com/dominique-mueller/angular-notifier/commit/37ea7c9))
+* **config:** Enable TSC strict mode, add editorconfig file ([#24](https://github.com/dominique-mueller/angular-notifier.git/issues/24)) ([596f18a](https://github.com/dominique-mueller/angular-notifier/commit/596f18a))
+* **release:** Update automatic release process ([#20](https://github.com/dominique-mueller/angular-notifier.git/issues/20)) ([e494fe3](https://github.com/dominique-mueller/angular-notifier/commit/e494fe3))
+* **travis:** Fix post automatic-release deploy ([#29](https://github.com/dominique-mueller/angular-notifier.git/issues/29)) ([a286b9c](https://github.com/dominique-mueller/angular-notifier/commit/a286b9c))
+* **tslint:** Add tslint language service & update dependencies ([#23](https://github.com/dominique-mueller/angular-notifier.git/issues/23)) ([47c0e57](https://github.com/dominique-mueller/angular-notifier/commit/47c0e57))
+
+### Documentation
+
+* **preview:** Update animated GIF preview showing the new colors ([#18](https://github.com/dominique-mueller/angular-notifier.git/issues/18)) ([571b098](https://github.com/dominique-mueller/angular-notifier/commit/571b098))
+* **README, MIGRATION:** Update README, add MIGRATION-GUIDE ([#28](https://github.com/dominique-mueller/angular-notifier.git/issues/28)) ([f2c7781](https://github.com/dominique-mueller/angular-notifier/commit/f2c7781))
+
+### Features
+
+* **angular:** Upgrade to Angular 4 and its new APIs ([#19](https://github.com/dominique-mueller/angular-notifier.git/issues/19)) ([0a0be99](https://github.com/dominique-mueller/angular-notifier/commit/0a0be99))
 
 ### Refactoring
 
-* **animations:** Refactor usage of Web Animations API, add typings ([#27](https://github.com/dominique-mueller/angular-notifier/issues/27)) ([d34f9f3](https://github.com/dominique-mueller/angular-notifier/commit/d34f9f3))
-* **naming:** Refactor namings to no longer use the "x-" prefix ([#26](https://github.com/dominique-mueller/angular-notifier/issues/26)) ([d2158bd](https://github.com/dominique-mueller/angular-notifier/commit/d2158bd))
-
+* **animations:** Refactor usage of Web Animations API, add typings ([#27](https://github.com/dominique-mueller/angular-notifier.git/issues/27)) ([d34f9f3](https://github.com/dominique-mueller/angular-notifier/commit/d34f9f3))
+* **naming:** Refactor namings to no longer use the "x-" prefix ([#26](https://github.com/dominique-mueller/angular-notifier.git/issues/26)) ([d2158bd](https://github.com/dominique-mueller/angular-notifier/commit/d2158bd))
 
 ### BREAKING CHANGES
 
@@ -42,7 +64,7 @@ Also see the **[release page]( https://github.com/dominique-mueller/angular-noti
 
 <br>
 
-## [1.0.6](https://github.com/dominique-mueller/angular-notifier/releases/tag/1.0.6) / 2017-04-04
+## [1.0.6](https://github.com/dominique-mueller/angular-notifier/releases/tag/1.0.6) (2017-04-04)
 
 ### Styles
 
@@ -50,7 +72,7 @@ Also see the **[release page]( https://github.com/dominique-mueller/angular-noti
 
 <br>
 
-## [1.0.5](https://github.com/dominique-mueller/angular-notifier/releases/tag/1.0.5) / 2017-04-03
+## [1.0.5](https://github.com/dominique-mueller/angular-notifier/releases/tag/1.0.5) (2017-04-03)
 
 ### Bug Fixes
 
@@ -62,7 +84,7 @@ Also see the **[release page]( https://github.com/dominique-mueller/angular-noti
 
 <br>
 
-## [1.0.4](https://github.com/dominique-mueller/angular-notifier/releases/tag/1.0.4) / 2017-03-21
+## [1.0.4](https://github.com/dominique-mueller/angular-notifier/releases/tag/1.0.4) (2017-03-21)
 
 ### Bug Fixes
 
@@ -70,7 +92,7 @@ Also see the **[release page]( https://github.com/dominique-mueller/angular-noti
 
 <br>
 
-## [1.0.3](https://github.com/dominique-mueller/angular-notifier/releases/tag/1.0.3) / 2017-02-05
+## [1.0.3](https://github.com/dominique-mueller/angular-notifier/releases/tag/1.0.3) (2017-02-05)
 
 ### Bug Fixes
 
@@ -83,7 +105,7 @@ Also see the **[release page]( https://github.com/dominique-mueller/angular-noti
 
 <br>
 
-## [1.0.2](https://github.com/dominique-mueller/angular-notifier/releases/tag/1.0.2) / 2016-12-21
+## [1.0.2](https://github.com/dominique-mueller/angular-notifier/releases/tag/1.0.2) (2016-12-21)
 
 ### Bug Fixes
 
@@ -101,12 +123,12 @@ Also see the **[release page]( https://github.com/dominique-mueller/angular-noti
 
 <br>
 
-## [1.0.1](https://github.com/dominique-mueller/angular-notifier/releases/tag/1.0.1) / 2016-12-05
+## [1.0.1](https://github.com/dominique-mueller/angular-notifier/releases/tag/1.0.1) (2016-12-05)
 
 ### Bug Fixes
 
-* **dependencies:** Fixed wrong type dependencies in definition files ([#2](https://github.com/dominique-mueller/angular-notifier/issues/2)) ([a986e66](https://github.com/dominique-mueller/angular-notifier/commit/a986e66)), closes [#1](https://github.com/dominique-mueller/angular-notifier/issues/1)
-* **gulp:** Fixed broken release task ([#3](https://github.com/dominique-mueller/angular-notifier/issues/3)) ([cdee2d8](https://github.com/dominique-mueller/angular-notifier/commit/cdee2d8))
+* **dependencies:** Fixed wrong type dependencies in definition files ([#2](https://github.com/dominique-mueller/angular-notifier.git/issues/2)) ([a986e66](https://github.com/dominique-mueller/angular-notifier/commit/a986e66)), closes [#1](https://github.com/dominique-mueller/angular-notifier/issues/1)
+* **gulp:** Fixed broken release task ([#3](https://github.com/dominique-mueller/angular-notifier.git/issues/3)) ([cdee2d8](https://github.com/dominique-mueller/angular-notifier/commit/cdee2d8))
 
 ### Chores
 
@@ -114,7 +136,7 @@ Also see the **[release page]( https://github.com/dominique-mueller/angular-noti
 
 <br>
 
-## [1.0.0](https://github.com/dominique-mueller/angular-notifier/releases/tag/1.0.0) / 2016-12-04
+## [1.0.0](https://github.com/dominique-mueller/angular-notifier/releases/tag/1.0.0) (2016-12-04)
 
 ### Bug Fixes
 
@@ -137,7 +159,6 @@ Also see the **[release page]( https://github.com/dominique-mueller/angular-noti
 * **library:** Added animations ([bdec4ab](https://github.com/dominique-mueller/angular-notifier/commit/bdec4ab))
 * **library:** Added minimal feature implementation ([36aa4e3](https://github.com/dominique-mueller/angular-notifier/commit/36aa4e3))
 * **library:** Extended API ([4fcab3b](https://github.com/dominique-mueller/angular-notifier/commit/4fcab3b))
-
 
 ### BREAKING CHANGES
 
