@@ -86,7 +86,7 @@
 		"script-ext-html-webpack-plugin": "1.8.x",
 		"simple-progress-webpack-plugin": "1.0.x",
 		"source-map-loader": "0.2.x",
-		"style-loader": "0.19.x",
+		"style-loader": "0.20.x",
 		"ts-jest": "21.2.x",
 		"typescript": "2.4.x",
 		"web-animations-js": "2.3.x",
