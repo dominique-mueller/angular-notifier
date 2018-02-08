@@ -1,0 +1,17 @@
+{
+	"extends": [
+		"config:base"
+	],
+	"assignees": [
+		"dominique-mueller"
+	],
+	"dependencies": {
+		"semanticPrefix": "chore(dependencies):"
+	},
+	"labels": [
+		"renovate"
+	],
+	"pinVersions": false,
+	"semanticCommitScope": "dependencies",
+	"semanticCommitType": "chore"
+}
