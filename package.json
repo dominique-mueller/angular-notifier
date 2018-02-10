@@ -91,7 +91,7 @@
 		"typescript": "2.4.x",
 		"web-animations-js": "2.3.x",
 		"webpack-dev-server": "2.9.x",
-		"webpack": "3.10.x",
+		"webpack": "3.11.x",
 		"zone.js": "0.8.18"
 	}
 }
