@@ -59,7 +59,7 @@
 		"@angular/core": "5.1.x",
 		"@angular/platform-browser-dynamic": "5.1.x",
 		"@angular/platform-browser": "5.1.x",
-		"@types/jest": "21.1.x",
+		"@types/jest": "22.1.x",
 		"@types/node": "8.9.x",
 		"add-asset-html-webpack-plugin": "2.1.x",
 		"angular-package-builder": "1.0.x",
