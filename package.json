@@ -74,7 +74,7 @@
 		"css-loader": "0.28.x",
 		"friendly-errors-webpack-plugin": "1.6.x",
 		"html-webpack-plugin": "2.30.x",
-		"jest-preset-angular": "5.0.x",
+		"jest-preset-angular": "5.1.x",
 		"jest": "22.4.x",
 		"node-sass": "4.7.x",
 		"progress-bar-webpack-plugin": "1.10.x",
