@@ -69,7 +69,7 @@
 		"browser-sync-webpack-plugin": "2.0.x",
 		"browser-sync": "2.23.x",
 		"codecov": "3.0.x",
-		"copyfiles": "1.2.x",
+		"copyfiles": "2.0.x",
 		"core-js": "2.5.x",
 		"css-loader": "0.28.x",
 		"friendly-errors-webpack-plugin": "1.6.x",
