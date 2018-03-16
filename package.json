@@ -84,7 +84,7 @@
 		"rxjs": "5.5.x",
 		"sass-loader": "6.0.x",
 		"script-ext-html-webpack-plugin": "1.8.x",
-		"simple-progress-webpack-plugin": "1.0.x",
+		"simple-progress-webpack-plugin": "1.1.x",
 		"source-map-loader": "0.2.x",
 		"style-loader": "0.20.x",
 		"ts-jest": "21.2.x",
