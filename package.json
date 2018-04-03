@@ -73,7 +73,7 @@
 		"core-js": "2.5.x",
 		"css-loader": "0.28.x",
 		"friendly-errors-webpack-plugin": "1.6.x",
-		"html-webpack-plugin": "2.30.x",
+		"html-webpack-plugin": "3.2.x",
 		"jest-preset-angular": "5.1.x",
 		"jest": "22.4.x",
 		"node-sass": "4.7.x",
