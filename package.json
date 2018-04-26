@@ -76,7 +76,7 @@
 		"html-webpack-plugin": "2.30.x",
 		"jest-preset-angular": "5.1.x",
 		"jest": "22.4.x",
-		"node-sass": "4.7.x",
+		"node-sass": "4.9.x",
 		"progress-bar-webpack-plugin": "1.10.x",
 		"raw-loader": "0.5.x",
 		"reflect-metadata": "0.1.x",
