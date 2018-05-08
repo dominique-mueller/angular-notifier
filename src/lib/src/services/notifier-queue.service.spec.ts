@@ -1,6 +1,6 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { Subject } from 'rxjs/Subject';
+import { Subject } from 'rxjs';
 
 import { NotifierQueueService } from './notifier-queue.service';
 import { NotifierAction } from '../models/notifier-action.model';

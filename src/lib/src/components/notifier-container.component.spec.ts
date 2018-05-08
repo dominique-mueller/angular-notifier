@@ -2,7 +2,7 @@ import { By } from '@angular/platform-browser';
 import { DebugElement, EventEmitter, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 
-import { Subject } from 'rxjs/Subject';
+import { Subject } from 'rxjs';
 
 import { NotifierConfigToken } from '../notifier.module';
 import { NotifierNotification } from '../models/notifier-notification.model';
