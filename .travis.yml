@@ -26,7 +26,7 @@ jobs:
     - stage: build
       before_install:
         - npm install -g npm
-	  install:
+      install:
         - npm ci
       script:
         - npm run build:js
@@ -36,7 +36,7 @@ jobs:
     - stage: test
       before_install:
         - npm install -g npm
-	  install:
+      install:
         - npm ci
       script:
         - npm run test
