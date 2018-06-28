@@ -4,16 +4,13 @@ sudo: false
 language: node_js
 node_js:
   - "lts/*"
-cache:
-  directories:
-    - node_modules
+cache: false
 notifications:
   email: false
 branches:
   only:
     - master
     - develop
-    - /^greenkeeper/.*$/
 
 # Build stages
 stages:
@@ -27,44 +24,18 @@ jobs:
   include:
 
     - stage: build
-      env:
-        - ANGULAR=5.0.x
       install:
-        - npm install
-        - npm install @angular/common@$ANGULAR @angular/core@$ANGULAR
-      script:
-        - npm run build:js
-        - npm run build:sass
-        - npm run build:css
-    -
-      env:
-        - ANGULAR=5.1.x
-      install:
-        - npm install
-        - npm install @angular/common@$ANGULAR @angular/core@$ANGULAR
+        - npm ci
       script:
         - npm run build:js
         - npm run build:sass
         - npm run build:css
 
     - stage: test
-      env:
-        - ANGULAR=5.0.x
       install:
-        - npm install
-        - npm install @angular/common@$ANGULAR @angular/core@$ANGULAR
+        - npm ci
       script:
         - npm run test
-    -
-      env:
-        - ANGULAR=5.1.x
-      install:
-        - npm install
-        - npm install @angular/common@$ANGULAR @angular/core@$ANGULAR
-      script:
-        - npm run test
-      after_success:
-        - npm run test:coverage
 
     - stage: release
       before_install:
@@ -75,7 +46,7 @@ jobs:
         #  Fix Travis CI issue of detached heads in git
         - git checkout master
       install:
-        - npm install
+        - npm ci
       script:
         - npm run build:js
         - npm run build:sass
