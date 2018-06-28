@@ -39,7 +39,7 @@ jobs:
       install:
         - npm ci
       script:
-		    - npm run test
+        - npm run test
       after_success:
         - npm run test:coverage
 
