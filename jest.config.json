@@ -6,6 +6,10 @@
 		},
 		"__TRANSFORM_HTML__": true
 	},
+	"modulePathIgnorePatterns": [
+		"/dist/"
+	],
 	"preset": "jest-preset-angular",
-	"setupTestFrameworkScriptFile": "./jest.setup.ts"
+	"setupTestFrameworkScriptFile": "./jest.setup.ts",
+	"verbose": true
 }

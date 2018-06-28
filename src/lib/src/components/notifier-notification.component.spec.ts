@@ -1,6 +1,6 @@
-import { DebugElement, ElementRef, Provider, Renderer } from '@angular/core';
+import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { async, ComponentFixture, fakeAsync, flushMicrotasks, TestBed, tick } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 
 import { NotifierConfigToken } from '../notifier.module';
 import { NotifierAnimationData } from '../models/notifier-animation.model';

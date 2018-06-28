@@ -1,4 +1,4 @@
-import { forwardRef, Inject, Injectable, Optional } from '@angular/core';
+import { Inject, Injectable, forwardRef } from '@angular/core';
 
 import { NotifierConfig } from './../models/notifier-config.model';
 import { NotifierNotificationOptions } from './../models/notifier-notification.model';

@@ -2,12 +2,9 @@
 
 const path = require( 'path' );
 
-const AddAssetHtmlPlugin = require( 'add-asset-html-webpack-plugin' );
 const BrowserSyncPlugin = require( 'browser-sync-webpack-plugin' );
 const CheckerPlugin = require( 'awesome-typescript-loader' ).CheckerPlugin;
-const CommonsChunkPlugin = require( 'webpack/lib/optimize/CommonsChunkPlugin' );
 const ContextReplacementPlugin = require( 'webpack/lib/ContextReplacementPlugin' );
-const DllReferencePlugin = require( 'webpack/lib/DllReferencePlugin' );
 const FriendlyErrorsWebpackPlugin = require( 'friendly-errors-webpack-plugin' );
 const HotModuleReplacementPlugin = require( 'webpack/lib/HotModuleReplacementPlugin' );
 const HtmlWebpackPlugin = require( 'html-webpack-plugin' );
@@ -20,6 +17,9 @@ const SimpleProgressWebpackPlugin = require( 'simple-progress-webpack-plugin' );
  * Webpack Configuration
  */
 module.exports = {
+
+	// Mode
+	mode: 'development',
 
 	// Entry files
 	entry: {
@@ -170,56 +170,11 @@ module.exports = {
 	plugins: [
 
 		// Fix Angular-specific warnings
-		// For details, see <https://github.com/angular/angular/issues/11580>
+		// For details, see <https://github.com/angular/angular/issues/11580> and <https://github.com/angular/angular/issues/14898>
 		new ContextReplacementPlugin(
-			/angular(\\|\/)core(\\|\/)@angular/,
-			path.resolve( process.cwd(), 'src' ),
-			{}
+			/\@angular(\\|\/)core(\\|\/)fesm5/,
+			path.resolve( __dirname, "./src" )
 		),
-
-		// Define polyfills chunk
-		new CommonsChunkPlugin( {
-			name: 'polyfills',
-			chunks: [
-				'polyfills'
-			]
-		} ),
-
-		// Define vendor chunk (enabling tree shaking of vendor modules)
-		new CommonsChunkPlugin( {
-			name: 'vendor',
-			chunks: [
-				'app'
-			],
-			minChunks: ( module ) => module.resource && module.resource.startsWith( path.join( process.cwd(), 'node_modules' ) )
-		} ),
-
-		// Define the correct order all external scripts will be injected into the index.html file
-		new CommonsChunkPlugin( {
-			name: [
-				'vendor',
-				'polyfills'
-			]
-		} ),
-
-		new DllReferencePlugin( {
-			context: path.resolve( process.cwd() ),
-			manifest: require( path.resolve( process.cwd(), 'build', 'dll', 'polyfills-manifest.json' ) )
-		} ),
-
-		new DllReferencePlugin( {
-			context: path.resolve( process.cwd() ),
-			manifest: require( path.resolve( process.cwd(), 'build', 'dll', 'vendor-manifest.json' ) )
-		} ),
-
-		new AddAssetHtmlPlugin( [
-			{
-				filepath: require.resolve( path.resolve( process.cwd(), 'build', 'dll', 'polyfills.dll.js' ) )
-			},
-			{
-				filepath: require.resolve( path.resolve( process.cwd(), 'build', 'dll', 'vendor.dll.js' ) )
-			}
-		] ),
 
 		// Better TS compiler performance
 		new CheckerPlugin(),
@@ -271,9 +226,9 @@ module.exports = {
 				}
 			}
 		}, {
-			// Browser Sync Plugin options
-			reload: false // Disable auto-reloading, the Webpack Dev Server will take over this task
-		} ),
+				// Browser Sync Plugin options
+				reload: false // Disable auto-reloading, the Webpack Dev Server will take over this task
+			} ),
 
 		new SimpleProgressWebpackPlugin( {
 			format: 'minimal'
@@ -292,31 +247,7 @@ module.exports = {
 		historyApiFallback: true,
 		host: 'localhost',
 		hot: true,
-		inline: true,
 		port: 3100,
-		stats: {
-			assets: true,
-			cached: false,
-			children: false,
-			chunks: false,
-			chunkModules: false,
-			chunkOrigins: false,
-			colors: true,
-			errors: true,
-			errorDetails: true,
-			hash: false,
-			modules: false,
-			publicPath: false,
-			reasons: false,
-			source: false,
-			timings: false,
-			version: false,
-			warnings: true
-		},
-		watchOptions: {
-			aggregateTimeout: 300,
-			poll: 1000
-		}
-    }
+	}
 
 };
