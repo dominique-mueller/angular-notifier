@@ -43,13 +43,13 @@ jobs:
 
     - stage: release
       before_install:
-	  	- npm install -g npm
         # Clone the whole repository because we also need the develop branch for releasing (Travis only gives us the master by default)
         - git clone "https://github.com/$TRAVIS_REPO_SLUG.git" "$TRAVIS_REPO_SLUG";
         - cd "$TRAVIS_REPO_SLUG";
         - git checkout -qf "$TRAVIS_COMMIT";
         #  Fix Travis CI issue of detached heads in git
         - git checkout master
+	  	- npm install -g npm
       install:
         - npm ci
       script:
