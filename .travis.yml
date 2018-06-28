@@ -24,7 +24,9 @@ jobs:
   include:
 
     - stage: build
-      install:
+      before_install:
+	  	- npm install -g npm
+	  install:
         - npm ci
       script:
         - npm run build:js
@@ -32,13 +34,16 @@ jobs:
         - npm run build:css
 
     - stage: test
-      install:
+      before_install:
+	  	- npm install -g npm
+	  install:
         - npm ci
       script:
         - npm run test
 
     - stage: release
       before_install:
+	  	- npm install -g npm
         # Clone the whole repository because we also need the develop branch for releasing (Travis only gives us the master by default)
         - git clone "https://github.com/$TRAVIS_REPO_SLUG.git" "$TRAVIS_REPO_SLUG";
         - cd "$TRAVIS_REPO_SLUG";
