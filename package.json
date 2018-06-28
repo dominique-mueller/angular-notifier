@@ -66,7 +66,6 @@
 		"@types/jest": "23.1.x",
 		"@types/node": "10.5.x",
 		"@types/web-animations-js": "2.2.x",
-		"add-asset-html-webpack-plugin": "2.1.x",
 		"angular-package-builder": "file:./angular-package-builder-2.0.0.tgz",
 		"angular2-template-loader": "0.6.x",
 		"automatic-release": "1.1.x",

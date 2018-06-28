@@ -36,11 +36,14 @@ npm install angular-notifier
 
 ### Angular versions
 
-The following list describes the Angular compatibility:
+The following list describes the compatibility with Angular:
 
-- **angular-notifier `1.x`**&nbsp;&nbsp;is compatible with&nbsp;&nbsp;**Angular `2.x`**
-- **angular-notifier `2.x`**&nbsp;&nbsp;is compatible with&nbsp;&nbsp;**Angular `4.x`**
-- **angular-notifier `3.x`**&nbsp;&nbsp;is compatible with&nbsp;&nbsp;**Angular `5.x`**
+| Angular Notifier  | Angular |
+| ----------------- | ------- |
+| `1.x`             | `2.x`   |
+| `2.x`             | `4.x`   |
+| `3.x`             | `5.x`   |
+| `4.x`             | `6.x`   |
 
 <br>
 
