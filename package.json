@@ -67,7 +67,7 @@
 		"automatic-release": "1.1.x",
 		"awesome-typescript-loader": "3.5.x",
 		"browser-sync-webpack-plugin": "2.0.x",
-		"browser-sync": "2.23.x",
+		"browser-sync": "2.24.x",
 		"codecov": "3.0.x",
 		"copyfiles": "2.0.x",
 		"core-js": "2.5.x",
