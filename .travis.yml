@@ -60,8 +60,8 @@ jobs:
         - echo "https://$GH_TOKEN:@github.com" > .git/credentials;
         # Do release
         - npm run release
-		- npm run build
-		- npm run release:copy
+        - npm run build
+        - npm run release:copy
         # Publish the dist folder
         - cd dist
       deploy:
