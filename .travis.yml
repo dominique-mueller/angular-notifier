@@ -4,16 +4,13 @@ sudo: false
 language: node_js
 node_js:
   - "lts/*"
-cache:
-  directories:
-    - node_modules
+cache: false
 notifications:
   email: false
 branches:
   only:
     - master
     - develop
-    - /^greenkeeper/.*$/
 
 # Build stages
 stages:
@@ -27,40 +24,18 @@ jobs:
   include:
 
     - stage: build
-      env:
-        - ANGULAR=5.0.x
+      before_install:
+        - npm install -g npm
       install:
-        - npm install
-        - npm install @angular/common@$ANGULAR @angular/core@$ANGULAR
+        - npm ci
       script:
-        - npm run build:js
-        - npm run build:sass
-        - npm run build:css
-    -
-      env:
-        - ANGULAR=5.1.x
-      install:
-        - npm install
-        - npm install @angular/common@$ANGULAR @angular/core@$ANGULAR
-      script:
-        - npm run build:js
-        - npm run build:sass
-        - npm run build:css
+        - npm run build
 
     - stage: test
-      env:
-        - ANGULAR=5.0.x
+      before_install:
+        - npm install -g npm
       install:
-        - npm install
-        - npm install @angular/common@$ANGULAR @angular/core@$ANGULAR
-      script:
-        - npm run test
-    -
-      env:
-        - ANGULAR=5.1.x
-      install:
-        - npm install
-        - npm install @angular/common@$ANGULAR @angular/core@$ANGULAR
+        - npm ci
       script:
         - npm run test
       after_success:
@@ -68,6 +43,7 @@ jobs:
 
     - stage: release
       before_install:
+        - npm install -g npm
         # Clone the whole repository because we also need the develop branch for releasing (Travis only gives us the master by default)
         - git clone "https://github.com/$TRAVIS_REPO_SLUG.git" "$TRAVIS_REPO_SLUG";
         - cd "$TRAVIS_REPO_SLUG";
@@ -75,11 +51,7 @@ jobs:
         #  Fix Travis CI issue of detached heads in git
         - git checkout master
       install:
-        - npm install
-      script:
-        - npm run build:js
-        - npm run build:sass
-        - npm run build:css
+        - npm ci
       before_deploy:
         # Login to Git to be able to make commits (required by automatic-release)
         - git config --global user.name "dominique-mueller";
@@ -88,6 +60,8 @@ jobs:
         - echo "https://$GH_TOKEN:@github.com" > .git/credentials;
         # Do release
         - npm run release
+        - npm run build
+        - npm run release:copy
         # Publish the dist folder
         - cd dist
       deploy:

@@ -7,7 +7,7 @@ import 'jest-preset-angular';
 // mocked away by Jest anyway.
 
 // tslint:disable no-any
-( <any> window ).Element.prototype.animate = ( keyframes: any, options: any ): any => {
+( <any> window ).Element.prototype.animate = (): any => {
 	// Nothing to implement
 };
 // tslint:enable no-any
