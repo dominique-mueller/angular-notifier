@@ -29,9 +29,7 @@ jobs:
       install:
         - npm ci
       script:
-        - npm run build:js
-        - npm run build:sass
-        - npm run build:css
+        - npm run build
 
     - stage: test
       before_install:
@@ -54,10 +52,6 @@ jobs:
         - git checkout master
       install:
         - npm ci
-      script:
-        - npm run build:js
-        - npm run build:sass
-        - npm run build:css
       before_deploy:
         # Login to Git to be able to make commits (required by automatic-release)
         - git config --global user.name "dominique-mueller";
@@ -66,6 +60,8 @@ jobs:
         - echo "https://$GH_TOKEN:@github.com" > .git/credentials;
         # Do release
         - npm run release
+		- npm run build
+		- npm run release:copy
         # Publish the dist folder
         - cd dist
       deploy:
