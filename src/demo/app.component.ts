@@ -1,11 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 
 import { NotifierService } from './../lib/index';
 
 /**
  * App component
  */
-@Component( {
+@Component({
 	host: {
 		class: 'app'
 	},
@@ -29,6 +29,9 @@ import { NotifierService } from './../lib/index';
 		<button class="button button--primary" (click)="showNotification( 'error', 'Whoops, something went wrong. Probably.' )">
 			Error me!
 		</button>
+		<button class="button button--primary" (click)="showCustomNotificationTemplate( 'info', 'This is a custom notification template' )">
+			Custom notification
+		</button>
 
 		<h2>Hide notifications</h2>
 		<button class="button button--secondary" (click)="hideAllNotifications()">
@@ -50,9 +53,17 @@ import { NotifierService } from './../lib/index';
 		</button>
 
 		<notifier-container></notifier-container>
+
+		<ng-template #customTemplate let-notification="notification">
+			<div>
+				<strong>{{ notification.type}}:</strong> {{ notification.message }}
+			</div>
+		</ng-template>
+
 	`
-} )
+})
 export class AppComponent {
+	@ViewChild('customTemplate') customNotificationTmpl;
 
 	/**
 	 * Notifier service
@@ -64,7 +75,7 @@ export class AppComponent {
 	 *
 	 * @param {NotifierService} notifier Notifier service
 	 */
-	public constructor( notifier: NotifierService ) {
+	public constructor(notifier: NotifierService) {
 		this.notifier = notifier;
 	}
 
@@ -74,8 +85,8 @@ export class AppComponent {
 	 * @param {string} type    Notification type
 	 * @param {string} message Notification message
 	 */
-	public showNotification( type: string, message: string ): void {
-		this.notifier.notify( type, message );
+	public showNotification(type: string, message: string): void {
+		this.notifier.notify(type, message);
 	}
 
 	/**
@@ -99,6 +110,19 @@ export class AppComponent {
 		this.notifier.hideAll();
 	}
 
+	public showCustomNotificationTemplate(
+		type: string,
+		message: string,
+		id: string
+	): void {
+		this.notifier.show({
+			id,
+			message,
+			type,
+			template: this.customNotificationTmpl
+		});
+	}
+
 	/**
 	 * Show a specific notification (with a custom notification ID)
 	 *
@@ -106,12 +130,16 @@ export class AppComponent {
 	 * @param {string} message Notification message
 	 * @param {string} id      Notification ID
 	 */
-	public showSpecificNotification( type: string, message: string, id: string ): void {
-		this.notifier.show( {
+	public showSpecificNotification(
+		type: string,
+		message: string,
+		id: string
+	): void {
+		this.notifier.show({
 			id,
 			message,
 			type
-		} );
+		});
 	}
 
 	/**
@@ -119,8 +147,7 @@ export class AppComponent {
 	 *
 	 * @param {string} id Notification ID
 	 */
-	public hideSpecificNotification( id: string ): void {
-		this.notifier.hide( id );
+	public hideSpecificNotification(id: string): void {
+		this.notifier.hide(id);
 	}
-
 }

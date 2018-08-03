@@ -357,6 +357,50 @@ behaviour: {
 
 <br>
 
+### Custom Templates
+
+If you need more control over how the inner HTML part of the notification looks like, either because your style-guide requires it, or for being able to add icons etc, then you can **define a custom `<ng-template>`** which you pass to the `NotifierService`.
+
+You can define a custom `ng-template` as follows:
+
+```html
+<ng-template #customNotification let-notificationData="notification">
+	<my-custom-alert type="notificationData.type">
+		{{ notificationData.message }}
+	</my-custom-alert>
+</ng-template>
+```
+
+In this case you could wrap your own HTML, even a `<my-custom-alert>` component which you might use in your application. The notification data is passed in as a `notification` object, which you can reference inside the `<ng-template>` using the `let-` syntax.
+
+Inside your component, you can then reference the `<ng-template>` by its template variable `#customNotification` using Angular's `ViewChild`:
+
+```
+import { ViewChild } from '@angular/core'
+...
+@Component({...})
+export class SomeComponent {
+	@ViewChild('customNotification') customNotificationTmpl;
+   ...
+   constructor(private notifierService: NotifierService) {}
+
+   showNotification() {
+	   const msg = {
+		   message: 'Hi there!',
+		   type: 'info'
+	   };
+
+	   this.notifier.show({
+		   message: msg.message,
+		   type: msg.messageType,
+		   template: this.customNotificationTmpl
+		});
+   }
+}
+```
+
+<br>
+
 ### Animations
 
 With the `animations` property your can define whether and how exactly notification will be animated:

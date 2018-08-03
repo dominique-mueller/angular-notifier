@@ -1,4 +1,5 @@
 import { NotifierNotificationComponent } from './../components/notifier-notification.component';
+import { TemplateRef } from '@angular/core';
 
 /**
  * Notification
@@ -6,7 +7,6 @@ import { NotifierNotificationComponent } from './../components/notifier-notifica
  * This class describes the structure of a notifiction, including all information it needs to live, and everyone else needs to work with it.
  */
 export class NotifierNotification {
-
 	/**
 	 * Unique notification ID, can be set manually to control the notification from outside later on
 	 */
@@ -23,6 +23,12 @@ export class NotifierNotification {
 	public message: string;
 
 	/**
+	 * The template to customize
+	 * the appearance of the notification
+	 */
+	public template?: TemplateRef<any> = null;
+
+	/**
 	 * Component reference of this notification, created and set during creation time
 	 */
 	public component: NotifierNotificationComponent;
@@ -32,19 +38,16 @@ export class NotifierNotification {
 	 *
 	 * @param options Notifier options
 	 */
-	public constructor( options: NotifierNotificationOptions ) {
-
-		Object.assign( this, options );
+	public constructor(options: NotifierNotificationOptions) {
+		Object.assign(this, options);
 
 		// If not set manually, we have to create a unique notification ID by ourselves. The ID generation relies on the current browser
 		// datetime in ms, in praticular the moment this notification gets constructed. Concurrency, and thus two IDs being the exact same,
 		// is not possible due to the action queue concept.
-		if ( options.id === undefined ) {
-			this.id = `ID_${ new Date().getTime() }`;
+		if (options.id === undefined) {
+			this.id = `ID_${new Date().getTime()}`;
 		}
-
 	}
-
 }
 
 /**
@@ -54,7 +57,6 @@ export class NotifierNotification {
  * call must provide.
  */
 export interface NotifierNotificationOptions {
-
 	/**
 	 * Notification ID, optional
 	 */
@@ -70,4 +72,9 @@ export interface NotifierNotificationOptions {
 	 */
 	message: string;
 
+	/**
+	 * The template to customize
+	 * the appearance of the notification
+	 */
+	template?: TemplateRef<any>;
 }
