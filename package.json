@@ -55,7 +55,7 @@
 		"@angular/core": "6.0.x",
 		"@angular/platform-browser-dynamic": "6.0.x",
 		"@angular/platform-browser": "6.0.x",
-		"@types/jest": "23.1.x",
+		"@types/jest": "23.3.x",
 		"@types/node": "10.5.x",
 		"@types/web-animations-js": "2.2.x",
 		"angular-package-builder": "2.0.x",
