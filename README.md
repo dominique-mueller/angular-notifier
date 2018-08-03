@@ -17,7 +17,7 @@
 
 ## Demo
 
-You can play around with this library with **[this Plunker right here](https://plnkr.co/edit/b3xiPr?p=preview)**.
+You can play around with this library with **[this Stackblitz right here](https://stackblitz.com/edit/angular-notifier-demo)**.
 
 ![Angular Notifier Animated Preview GIF](/docs/angular-notifier-preview.gif?raw=true)
 
