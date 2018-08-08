@@ -1,6 +1,6 @@
-import { DebugElement } from '@angular/core';
+import { DebugElement, Component, ViewChild, NO_ERRORS_SCHEMA, TemplateRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick, async } from '@angular/core/testing';
 
 import { NotifierConfigToken } from '../notifier.module';
 import { NotifierAnimationData } from '../models/notifier-animation.model';
@@ -71,6 +71,45 @@ describe( 'Notifier Notification Component', () => {
 			expect( componentFixture.nativeElement.classList.contains( classNameTheme ) ).toBeTruthy();
 
 		} );
+
+		it( 'should render the custom template if provided by the user', async(() => {
+			// Setup test module
+			const testNotifierConfig: NotifierConfig = new NotifierConfig( {
+				position: {
+					horizontal: {
+						distance: 10,
+						position: 'left'
+					},
+					vertical: {
+						distance: 10,
+						gap: 4,
+						position: 'top'
+					}
+				}
+			} );
+			beforeEachWithConfig( testNotifierConfig, false );
+
+			const template = `<ng-template #tpl let-notificationData="notification"><div class="custom-notification-body">{{notificationData.message}}</div></ng-template>`;
+
+         	const testcmp = createTestComponent(template);
+
+			// associate the templateref
+			const myTestNotification = {
+				...testNotification,
+				template: testcmp.componentInstance.currentTplRef
+			}
+			expect(testcmp.componentInstance.currentTplRef).toBeDefined();
+
+			componentFixture = TestBed.createComponent( NotifierNotificationComponent );
+			componentInstance = componentFixture.componentInstance;
+
+			componentInstance.notification = myTestNotification;
+			componentFixture.detectChanges();
+
+			// // assert
+			expect( componentFixture.debugElement.query(By.css('div.custom-notification-body'))).not.toBeNull();
+			expect( componentFixture.debugElement.query(By.css('div.custom-notification-body')).nativeElement.innerHTML).toBe(myTestNotification.message);
+		}));
 
 		it( 'should render on the left', () => {
 
@@ -914,12 +953,13 @@ describe( 'Notifier Notification Component', () => {
 	/**
 	 * Helper for upfront configuration
 	 */
-	function beforeEachWithConfig( testNotifierConfig: NotifierConfig ): void {
+	function beforeEachWithConfig( testNotifierConfig: NotifierConfig, extractServices:boolean = true ): void {
 
 		TestBed
 			.configureTestingModule( {
 				declarations: [
-					NotifierNotificationComponent
+					NotifierNotificationComponent,
+					TestComponent
 				],
 				providers: [
 					{
@@ -948,12 +988,14 @@ describe( 'Notifier Notification Component', () => {
 					]
 				}
 			} );
-		componentFixture = TestBed.createComponent( NotifierNotificationComponent );
-		componentInstance = componentFixture.componentInstance;
 
-		// Get the service from the component's local injector
-		timerService = <MockNotifierTimerService> componentFixture.debugElement.injector.get( NotifierTimerService );
+			if(extractServices) {
+				componentFixture = TestBed.createComponent( NotifierNotificationComponent );
+				componentInstance = componentFixture.componentInstance;
 
+				// Get the service from the component's local injector
+				timerService = <MockNotifierTimerService> componentFixture.debugElement.injector.get( NotifierTimerService );
+			}
 	}
 
 } );
@@ -1064,4 +1106,16 @@ class MockNotifierTimerService extends NotifierTimerService {
 		this.resolveFunction();
 	}
 
+}
+
+@Component({selector: 'test-cmp', template: ''})
+class TestComponent {
+  @ViewChild('tpl')
+  currentTplRef: TemplateRef<any>;
+}
+
+function createTestComponent(template: string): ComponentFixture<TestComponent> {
+	return TestBed.overrideComponent(TestComponent, {set: {template: template}})
+		.configureTestingModule({schemas: [NO_ERRORS_SCHEMA]})
+		.createComponent(TestComponent);
 }
