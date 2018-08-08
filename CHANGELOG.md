@@ -4,6 +4,18 @@ Also see the **[release page](https://github.com/dominique-mueller/angular-notif
 
 <br>
 
+## [4.1.0](https://github.com/dominique-mueller/angular-notifier/releases/tag/4.1.0) (2018-08-08)
+
+### Features
+
+* **notification:** Allow templateRef as notification content ([#95](https://github.com/dominique-mueller/angular-notifier.git/issues/95)) ([d705180](https://github.com/dominique-mueller/angular-notifier/commit/d705180))
+
+### Documentation
+
+* **README:** Update demo to Stackblitz example ([#93](https://github.com/dominique-mueller/angular-notifier.git/issues/93)) ([1e26507](https://github.com/dominique-mueller/angular-notifier/commit/1e26507))
+
+<br>
+
 ## [4.0.0](https://github.com/dominique-mueller/angular-notifier/releases/tag/4.0.0) (2018-07-04)
 
 ### Features
