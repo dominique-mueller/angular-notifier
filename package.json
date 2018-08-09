@@ -39,6 +39,7 @@
 		"clean": "rimraf -r dist/**",
 		"release": "automatic-release",
 		"release:copy": "copyfiles \"docs/**\" CHANGELOG.md MIGRATION-GUIDE.md LICENSE README.md dist",
+		"release:npm": "cd dist && npm publish && cd ..",
 		"start": "webpack-dev-server --config webpack.dev.config.js",
 		"test:coverage": "codecov -f coverage/coverage-final.json",
 		"test": "jest --config jest.config.json --runInBand --no-cache"
