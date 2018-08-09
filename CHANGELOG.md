@@ -4,6 +4,14 @@ Also see the **[release page](https://github.com/dominique-mueller/angular-notif
 
 <br>
 
+## [4.1.1](https://github.com/dominique-mueller/angular-notifier/releases/tag/4.1.1) (2018-08-09)
+
+### Bug Fixes
+
+* **package:** Fix artifact ([#99](https://github.com/dominique-mueller/angular-notifier.git/issues/99)) ([7ce901b](https://github.com/dominique-mueller/angular-notifier/commit/7ce901b))
+
+<br>
+
 ## [4.1.0](https://github.com/dominique-mueller/angular-notifier/releases/tag/4.1.0) (2018-08-08)
 
 ### Features

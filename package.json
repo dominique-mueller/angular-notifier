@@ -1,7 +1,7 @@
 {
 	"name": "angular-notifier",
 	"description": "A well designed, fully animated, highly customizable, and easy-to-use notification library for your Angular application.",
-	"version": "4.1.0",
+	"version": "4.1.1",
 	"author": {
 		"name": "Dominique Müller",
 		"email": "dominique.m.mueller@gmail.com",
