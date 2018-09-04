@@ -67,7 +67,7 @@
 		"codecov": "3.0.x",
 		"copyfiles": "2.0.x",
 		"core-js": "2.5.x",
-		"css-loader": "0.28.x",
+		"css-loader": "1.0.x",
 		"friendly-errors-webpack-plugin": "1.7.x",
 		"html-webpack-plugin": "3.2.x",
 		"jest": "23.2.x",
