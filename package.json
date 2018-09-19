@@ -83,7 +83,7 @@
 		"simple-progress-webpack-plugin": "1.1.x",
 		"source-map-loader": "0.2.x",
 		"style-loader": "0.21.x",
-		"ts-jest": "22.4.x",
+		"ts-jest": "23.10.x",
 		"typescript": "2.7.x",
 		"web-animations-js": "2.3.x",
 		"webpack": "4.13.x",
