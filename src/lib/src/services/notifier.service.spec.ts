@@ -1,6 +1,6 @@
 import { inject, TestBed } from '@angular/core/testing';
 
-import { NotifierConfigToken } from '../notifier.module';
+import { NotifierConfigToken } from '../notifier-token';
 import { NotifierConfig } from '../models/notifier-config.model';
 import { NotifierNotificationOptions } from '../models/notifier-notification.model';
 import { NotifierAction } from '../models/notifier-action.model';

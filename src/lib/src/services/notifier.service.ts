@@ -3,7 +3,7 @@ import { Inject, Injectable, forwardRef } from '@angular/core';
 import { NotifierConfig } from './../models/notifier-config.model';
 import { NotifierNotificationOptions } from './../models/notifier-notification.model';
 import { NotifierQueueService } from './notifier-queue.service';
-import { NotifierConfigToken } from './../notifier.module';
+import { NotifierConfigToken } from './../notifier-token';
 
 /**
  * Notifier service
@@ -33,7 +33,7 @@ export class NotifierService {
 	 */
 	public constructor(
 		notifierQueueService: NotifierQueueService,
-		@Inject( forwardRef( () => NotifierConfigToken ) ) config: NotifierConfig // The forwardRef is (sadly) required here
+		@Inject(NotifierConfigToken) config: NotifierConfig
 	) {
 		this.queueService = notifierQueueService;
 		this.config = config;
