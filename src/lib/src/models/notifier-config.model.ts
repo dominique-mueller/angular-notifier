@@ -22,7 +22,7 @@ export interface NotifierOptions {
 		};
 	};
 	behaviour?: {
-		autoHide?: number | false;
+		autoHide?: number | false | {[key: string]: number | false};
 		onClick?: 'hide' | false;
 		onMouseover?: 'pauseAutoHide' | 'resetAutoHide' | false;
 		showDismissButton?: boolean;
@@ -78,7 +78,7 @@ export class NotifierConfig implements NotifierOptions {
 	 * Customize behaviour
 	 */
 	public behaviour: {
-		autoHide: number | false;
+		autoHide: number | false | {[key: string]: number | false};
 		onClick: 'hide' | false;
 		onMouseover: 'pauseAutoHide' | 'resetAutoHide' | false;
 		showDismissButton: boolean;

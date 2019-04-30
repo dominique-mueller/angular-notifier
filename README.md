@@ -324,7 +324,8 @@ behaviour: {
 
   /**
    * Defines whether each notification will hide itself automatically after a timeout passes
-   * @type {number | false}
+   * support and object with a key per type defaulting to default key.
+   * @type {number | false | [{key: string]: number | false}}
    */
   autoHide: 5000,
 
@@ -510,7 +511,7 @@ const notifierDefaultOptions: NotifierOptions = {
   },
   theme: 'material',
   behaviour: {
-    autoHide: 5000,
+  autoHide: {default: 5000, info: 3000, error: false},
     onClick: false,
     onMouseover: 'pauseAutoHide',
     showDismissButton: true,
