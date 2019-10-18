@@ -37,7 +37,7 @@
 		"build:library:angular": "ng build angular-notifier",
 		"build:library:css": "node-sass projects/angular-notifier/src --output dist/angular-notifier --source-map true --output-style expanded",
 		"build:library:sass": "copyfiles \"projects/angular-notifier/src/**/*.scss\" \"dist/angular-notifier\" --up 3",
-		"release:copy": "copyfiles \"docs/**\" CHANGELOG.md MIGRATION-GUIDE.md LICENSE README.md dist/angular-notifier",
+		"release:complete": "node tools/update-package.js && copyfiles \"docs/**\" CHANGELOG.md MIGRATION-GUIDE.md LICENSE README.md dist/angular-notifier",
 		"release": "automatic-release",
 		"start": "ng serve angular-notifier-demo",
 		"test:library:coverage": "codecov -f coverage/coverage-final.json",

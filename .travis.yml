@@ -62,7 +62,7 @@ jobs:
         # Do release
         - npm run release
         - npm run build:library
-        - npm run release:copy
+        - npm run release:complete
         # Publish the dist folder
         - cd dist/angular-notifier
       deploy:
