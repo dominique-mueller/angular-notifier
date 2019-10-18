@@ -79,7 +79,7 @@
 		"rimraf": "2.6.x",
 		"rxjs": "6.2.x",
 		"sass-loader": "7.0.x",
-		"script-ext-html-webpack-plugin": "2.0.x",
+		"script-ext-html-webpack-plugin": "2.1.x",
 		"simple-progress-webpack-plugin": "1.1.x",
 		"source-map-loader": "0.2.x",
 		"style-loader": "0.21.x",
