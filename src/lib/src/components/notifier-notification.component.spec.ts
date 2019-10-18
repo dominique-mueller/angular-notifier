@@ -2,7 +2,7 @@ import { DebugElement, Component, ViewChild, NO_ERRORS_SCHEMA, TemplateRef } fro
 import { By } from '@angular/platform-browser';
 import { ComponentFixture, fakeAsync, TestBed, tick, async } from '@angular/core/testing';
 
-import { NotifierConfigToken } from '../notifier.module';
+import { NotifierConfigToken } from '../notifier-token';
 import { NotifierAnimationData } from '../models/notifier-animation.model';
 import { NotifierNotification } from '../models/notifier-notification.model';
 import { NotifierConfig } from '../models/notifier-config.model';

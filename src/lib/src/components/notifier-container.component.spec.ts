@@ -2,7 +2,7 @@ import { By } from '@angular/platform-browser';
 import { DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 
-import { NotifierConfigToken } from '../notifier.module';
+import { NotifierConfigToken } from '../notifier-token';
 import { NotifierAction } from '../models/notifier-action.model';
 import { NotifierConfig } from '../models/notifier-config.model';
 import { NotifierQueueService } from '../services/notifier-queue.service';
