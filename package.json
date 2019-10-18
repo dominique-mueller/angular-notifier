@@ -73,7 +73,7 @@
 		"jest": "23.2.x",
 		"jest-preset-angular": "5.2.x",
 		"node-sass": "4.9.x",
-		"progress-bar-webpack-plugin": "1.11.x",
+		"progress-bar-webpack-plugin": "1.12.x",
 		"raw-loader": "0.5.x",
 		"reflect-metadata": "0.1.x",
 		"rimraf": "2.6.x",
