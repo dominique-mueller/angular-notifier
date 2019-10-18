@@ -4,6 +4,14 @@ Also see the **[release page](https://github.com/dominique-mueller/angular-notif
 
 <br>
 
+## [4.1.2](https://github.com/dominique-mueller/angular-notifier/releases/tag/4.1.2) (2019-10-18)
+
+### Bug Fixes
+
+* **notifier:** Fix circular dependency issues of injection tokens ([#124](https://github.com/dominique-mueller/angular-notifier.git/issues/124)) ([139d43c](https://github.com/dominique-mueller/angular-notifier/commit/139d43c))
+
+<br>
+
 ## [4.1.1](https://github.com/dominique-mueller/angular-notifier/releases/tag/4.1.1) (2018-08-09)
 
 ### Bug Fixes
