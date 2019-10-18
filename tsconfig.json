@@ -5,12 +5,12 @@
 		"outDir": "./dist/out-tsc",
 		"sourceMap": true,
 		"declaration": false,
-		"module": "es2015",
-		"moduleResolution": "node",
-		"emitDecoratorMetadata": true,
+		"downlevelIteration": true,
 		"experimentalDecorators": true,
+		"module": "esnext",
+		"moduleResolution": "node",
 		"importHelpers": true,
-		"target": "es5",
+		"target": "es2015",
 		"typeRoots": [
 			"node_modules/@types"
 		],
@@ -29,5 +29,9 @@
 				"dist/angular-notifier/*"
 			]
 		}
+	},
+	"angularCompilerOptions": {
+		"fullTemplateTypeCheck": true,
+		"strictInjectionParameters": true
 	}
 }
