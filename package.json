@@ -77,7 +77,7 @@
 		"raw-loader": "0.5.x",
 		"reflect-metadata": "0.1.x",
 		"rimraf": "2.6.x",
-		"rxjs": "6.2.x",
+		"rxjs": "6.5.x",
 		"sass-loader": "7.0.x",
 		"script-ext-html-webpack-plugin": "2.0.x",
 		"simple-progress-webpack-plugin": "1.1.x",
