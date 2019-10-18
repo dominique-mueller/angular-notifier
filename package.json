@@ -88,7 +88,7 @@
 		"web-animations-js": "2.3.x",
 		"webpack": "4.13.x",
 		"webpack-cli": "3.0.x",
-		"webpack-dev-server": "3.1.x",
+		"webpack-dev-server": "3.8.x",
 		"zone.js": "0.8.26"
 	}
 }
