@@ -44,6 +44,7 @@ The following list describes the compatibility with Angular:
 | `2.x`             | `4.x`   |
 | `3.x`             | `5.x`   |
 | `4.x`             | `6.x`   |
+| `5.x`             | `7.x`   |
 
 <br>
 

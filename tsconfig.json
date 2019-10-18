@@ -1,22 +1,33 @@
 {
 	"compileOnSave": false,
 	"compilerOptions": {
-		"baseUrl": "src",
+		"baseUrl": "./",
+		"outDir": "./dist/out-tsc",
+		"sourceMap": true,
 		"declaration": false,
-		"emitDecoratorMetadata": true,
-		"experimentalDecorators": true,
-		"lib": [
-			"es2016",
-			"dom"
-		],
 		"module": "es2015",
 		"moduleResolution": "node",
-		"outDir": "./build/tsc",
-		"sourceMap": true,
-		"target": "es5"
-	},
-	"exclude": [
-		"node_modules",
-		"src/lib/**/*.spec.ts"
-	]
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		"importHelpers": true,
+		"target": "es5",
+		"typeRoots": [
+			"node_modules/@types"
+		],
+		"types": [
+			"jest"
+		],
+		"lib": [
+			"es2018",
+			"dom"
+		],
+		"paths": {
+			"angular-notifier": [
+				"dist/angular-notifier"
+			],
+			"angular-notifier/*": [
+				"dist/angular-notifier/*"
+			]
+		}
+	}
 }
