@@ -84,7 +84,7 @@
 		"source-map-loader": "0.2.x",
 		"style-loader": "0.21.x",
 		"ts-jest": "22.4.x",
-		"typescript": "2.7.x",
+		"typescript": "2.9.x",
 		"web-animations-js": "2.3.x",
 		"webpack": "4.13.x",
 		"webpack-cli": "3.0.x",
