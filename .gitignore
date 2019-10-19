@@ -1,20 +1,46 @@
-# Dependencies
-/node_modules
+# Created by https://www.gitignore.io/api/angular,visualstudiocode
+# Edit at https://www.gitignore.io/?templates=angular,visualstudiocode
 
-# Build
-/dist
+### Angular ###
+## Angular ##
+# compiled output
+dist/
+tmp/
+app/**/*.js
+app/**/*.js.map
 
-# Test coverage
-/coverage
+# dependencies
+node_modules/
+bower_components/
 
-# Development
-/.vscode
+# IDEs and editors
+.idea/
 
-# Logs
-*.log
+# misc
+.sass-cache/
+connect.lock/
+coverage/
+libpeerconnection.log/
+npm-debug.log
+testem.log
+typings/
 
-# Other
-*.todo
-*.old
-*.temp
-*.tmp
+# e2e
+e2e/*.js
+e2e/*.map
+
+#System Files
+.DS_Store/
+
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+.history
+
+# End of https://www.gitignore.io/api/angular,visualstudiocode

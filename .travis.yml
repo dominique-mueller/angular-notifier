@@ -29,7 +29,8 @@ jobs:
       install:
         - npm ci
       script:
-        - npm run build
+        - npm run build:library
+        - npm run build:demo
 
     - stage: test
       before_install:
@@ -37,9 +38,9 @@ jobs:
       install:
         - npm ci
       script:
-        - npm run test
+        - npm run test:library
       after_success:
-        - npm run test:coverage
+        - npm run test:library:coverage
 
     - stage: release
       before_install:
@@ -60,14 +61,14 @@ jobs:
         - echo "https://$GH_TOKEN:@github.com" > .git/credentials;
         # Do release
         - npm run release
-        - npm run build
-        - npm run release:copy
+        - npm run build:library
+        - npm run release:complete
         # Publish the dist folder
-        - cd dist
+        - cd dist/angular-notifier
       deploy:
         provider: npm
         email: dominique.m.mueller@gmail.com
         api_key: "$NPM_TOKEN"
         skip_cleanup: true
       after_deploy:
-        - cd ..
+        - cd ../..
