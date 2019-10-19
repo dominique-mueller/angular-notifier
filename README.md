@@ -383,7 +383,7 @@ import { ViewChild } from "@angular/core";
 	// ...
 })
 export class SomeComponent {
-	@ViewChild("customNotification") customNotificationTmpl;
+	@ViewChild("customNotification", {static: true}) customNotificationTmpl;
 
 	constructor(private notifierService: NotifierService) {}
 
