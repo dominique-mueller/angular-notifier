@@ -72,7 +72,7 @@
 		"node-sass": "4.12.x",
 		"rxjs": "6.5.x",
 		"ts-node": "7.0.x",
-		"tsickle": "0.34.x",
+		"tsickle": "0.37.x",
 		"tslib": "1.10.x",
 		"typescript": "3.2.x",
 		"web-animations-js": "2.3.x",
