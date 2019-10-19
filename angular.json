@@ -43,8 +43,7 @@
 						"styles": [
 							"projects/angular-notifier-demo/src/styles.scss"
 						],
-						"scripts": [],
-						"es5BrowserSupport": true
+						"scripts": []
 					},
 					"configurations": {
 						"production": {
