@@ -4,9 +4,9 @@
 	"newProjectRoot": "projects",
 	"projects": {
 		"angular-notifier": {
+			"projectType": "library",
 			"root": "projects/angular-notifier",
 			"sourceRoot": "projects/angular-notifier/src",
-			"projectType": "library",
 			"architect": {
 				"build": {
 					"builder": "@angular-devkit/build-ng-packagr:build",
@@ -24,9 +24,9 @@
 			}
 		},
 		"angular-notifier-demo": {
+			"projectType": "application",
 			"root": "projects/angular-notifier-demo/",
 			"sourceRoot": "projects/angular-notifier-demo/src",
-			"projectType": "application",
 			"architect": {
 				"build": {
 					"builder": "@angular-devkit/build-angular:browser",
@@ -36,6 +36,7 @@
 						"main": "projects/angular-notifier-demo/src/main.ts",
 						"polyfills": "projects/angular-notifier-demo/src/polyfills.ts",
 						"tsConfig": "projects/angular-notifier-demo/tsconfig.app.json",
+						"aot": false,
 						"assets": [
 							"projects/angular-notifier-demo/src/favicon.ico",
 							"projects/angular-notifier-demo/src/assets"
@@ -43,8 +44,7 @@
 						"styles": [
 							"projects/angular-notifier-demo/src/styles.scss"
 						],
-						"scripts": [],
-						"es5BrowserSupport": true
+						"scripts": []
 					},
 					"configurations": {
 						"production": {
@@ -60,7 +60,7 @@
 							"extractCss": true,
 							"namedChunks": false,
 							"aot": true,
-							"extractLicenses": true,
+							"extractLicenses": false,
 							"vendorChunk": false,
 							"buildOptimizer": true
 						}
