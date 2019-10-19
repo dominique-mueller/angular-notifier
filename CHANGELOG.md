@@ -4,6 +4,18 @@ Also see the **[release page](https://github.com/dominique-mueller/angular-notif
 
 <br>
 
+## [5.0.0](https://github.com/dominique-mueller/angular-notifier/releases/tag/5.0.0) (2019-10-19)
+
+### Features
+
+* Upgrade to Angular 7 ([#134](https://github.com/dominique-mueller/angular-notifier.git/issues/134)) ([8f13440](https://github.com/dominique-mueller/angular-notifier/commit/8f13440))
+
+### BREAKING CHANGES
+
+* The upgrade to Angular 7 breaks compatibility with Angular 6 (and previous versions).
+
+<br>
+
 ## [4.1.2](https://github.com/dominique-mueller/angular-notifier/releases/tag/4.1.2) (2019-10-18)
 
 ### Bug Fixes
