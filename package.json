@@ -50,8 +50,8 @@
 	},
 	"devDependencies": {
 		"@angular-builders/jest": "7.4.x",
-		"@angular-devkit/build-angular": "0.13.x",
-		"@angular-devkit/build-ng-packagr": "0.13.x",
+		"@angular-devkit/build-angular": "0.803.x",
+		"@angular-devkit/build-ng-packagr": "0.803.x",
 		"@angular/cli": "7.3.x",
 		"@angular/common": "7.2.x",
 		"@angular/compiler-cli": "7.2.x",
