@@ -66,7 +66,7 @@
 		"automatic-release": "1.1.x",
 		"codecov": "3.0.x",
 		"copyfiles": "2.0.x",
-		"core-js": "2.5.x",
+		"core-js": "2.6.x",
 		"jest": "24.9.x",
 		"ng-packagr": "4.2.x",
 		"node-sass": "4.12.x",
