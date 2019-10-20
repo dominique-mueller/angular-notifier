@@ -77,6 +77,6 @@
 		"tsickle": "0.37.x",
 		"typescript": "3.5.x",
 		"web-animations-js": "2.3.x",
-		"zone.js": "0.9.x"
+		"zone.js": "0.10.x"
 	}
 }
