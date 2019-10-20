@@ -45,6 +45,7 @@ The following list describes the compatibility with Angular:
 | `3.x`            | `5.x`   |
 | `4.x`            | `6.x`   |
 | `5.x`            | `7.x`   |
+| `6.x`            | `8.x`   |
 
 <br>
 
@@ -383,7 +384,7 @@ import { ViewChild } from "@angular/core";
 	// ...
 })
 export class SomeComponent {
-	@ViewChild("customNotification", {static: true}) customNotificationTmpl;
+	@ViewChild("customNotification", { static: true }) customNotificationTmpl;
 
 	constructor(private notifierService: NotifierService) {}
 
