@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
 
 import { Subscription } from 'rxjs';
 
@@ -30,7 +30,7 @@ import { NotifierNotificationComponent } from './notifier-notification.component
 	selector: 'notifier-container',
 	templateUrl: './notifier-container.component.html'
 } )
-export class NotifierContainerComponent implements OnDestroy, OnInit {
+export class NotifierContainerComponent implements OnDestroy {
 
 	/**
 	 * List of currently somewhat active notifications
@@ -74,17 +74,14 @@ export class NotifierContainerComponent implements OnDestroy, OnInit {
 		this.queueService = notifierQueueService;
 		this.config = notifierService.getConfig();
 		this.notifications = [];
-	}
 
-	/**
-	 * Component initialization lifecycle hook, connects this component to the action queue, and then handles incoming actions
-	 */
-	public ngOnInit(): void {
+		// Connects this component up to the action queue, then handle incoming actions
 		this.queueServiceSubscription = this.queueService.actionStream.subscribe( ( action: NotifierAction ) => {
 			this.handleAction( action ).then( () => {
 				this.queueService.continue();
 			} );
 		} );
+
 	}
 
 	/**
