@@ -4,6 +4,18 @@ Also see the **[release page](https://github.com/dominique-mueller/angular-notif
 
 <br>
 
+## [6.0.1](https://github.com/dominique-mueller/angular-notifier/releases/tag/6.0.1) (2019-10-20)
+
+### Bug Fixes
+
+* **notifier-container:** Setup notifier-container as early as possible ([#144](https://github.com/dominique-mueller/angular-notifier.git/issues/144)) ([17b5953](https://github.com/dominique-mueller/angular-notifier/commit/17b5953)), closes [#119](https://github.com/dominique-mueller/angular-notifier/issues/119)
+
+### Documentation
+
+* **README:** Add version information to README ([#143](https://github.com/dominique-mueller/angular-notifier.git/issues/143)) ([f838719](https://github.com/dominique-mueller/angular-notifier/commit/f838719))
+
+<br>
+
 ## [6.0.0](https://github.com/dominique-mueller/angular-notifier/releases/tag/6.0.0) (2019-10-19)
 
 ### Features
