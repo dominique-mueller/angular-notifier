@@ -71,7 +71,7 @@
 		"copyfiles": "2.1.x",
 		"jest": "24.9.x",
 		"ng-packagr": "5.7.x",
-		"node-sass": "4.12.x",
+		"node-sass": "4.13.x",
 		"rxjs": "6.5.x",
 		"ts-node": "8.4.x",
 		"tsickle": "0.37.x",
