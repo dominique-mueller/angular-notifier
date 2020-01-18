@@ -63,7 +63,7 @@
 		"@angular/language-service": "8.2.x",
 		"@angular/platform-browser-dynamic": "8.2.x",
 		"@angular/platform-browser": "8.2.x",
-		"@types/jest": "24.0.x",
+		"@types/jest": "24.9.x",
 		"@types/node": "12.11.x",
 		"@types/web-animations-js": "2.2.x",
 		"automatic-release": "1.1.x",
