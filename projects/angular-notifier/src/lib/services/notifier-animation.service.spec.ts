@@ -2,7 +2,6 @@ import { inject, TestBed } from '@angular/core/testing';
 
 import { NotifierConfig } from '../models/notifier-config.model';
 import { NotifierAnimationData } from '../models/notifier-animation.model';
-import { NotifierNotification } from '../models/notifier-notification.model';
 import { NotifierAnimationService } from './notifier-animation.service';
 
 /**
