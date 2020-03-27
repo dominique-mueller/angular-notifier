@@ -29,6 +29,12 @@ export class NotifierNotification {
 	public template?: TemplateRef<any> = null;
 
 	/**
+	 * The template to customize
+	 * the appearance of the notification
+	 */
+	public hideOnlyOnAction: boolean = false;
+
+	/**
 	 * Component reference of this notification, created and set during creation time
 	 */
 	public component: NotifierNotificationComponent;
@@ -77,4 +83,12 @@ export interface NotifierNotificationOptions {
 	 * the appearance of the notification
 	 */
 	template?: TemplateRef<any>;
+
+	/**
+	 * To show a particular notification for
+	 * indefinite period until user performs
+	 * an action or notification is cleared
+	 * by notifier api
+	 */
+	hideOnlyOnAction?: boolean;
 }

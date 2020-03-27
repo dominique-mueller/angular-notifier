@@ -25,8 +25,16 @@ describe( 'Notifier Notification Component', () => {
 	const testNotification: NotifierNotification = new NotifierNotification( {
 		id: 'ID_FAKE',
 		message: 'Lorem ipsum dolor sit amet.',
-		type: 'SUCCESS'
-	} );
+		type: 'SUCCESS',
+		hideOnlyOnAction: false
+	});
+
+	const testNotificationHideOnlyOnActionTrue: NotifierNotification = new NotifierNotification( {
+		id: 'ID_FAKE',
+		message: 'Lorem ipsum dolor sit amet.',
+		type: 'SUCCESS',
+		hideOnlyOnAction: true
+	});
 
 	let componentFixture: ComponentFixture<NotifierNotificationComponent>;
 	let componentInstance: NotifierNotificationComponent;
@@ -794,6 +802,31 @@ describe( 'Notifier Notification Component', () => {
 			tick();
 
 			expect( componentInstance.onClickDismiss ).toHaveBeenCalled();
+
+		} ) );
+
+		it( 'should not hide automatically after timeout', fakeAsync( () => {
+
+			// Setup test module
+			beforeEachWithConfig( new NotifierConfig( {
+				animations: {
+					enabled: false
+				},
+				behaviour: {
+					autoHide: 5000
+				}
+			} ) );
+
+			componentInstance.notification = testNotificationHideOnlyOnActionTrue;
+			componentFixture.detectChanges();
+
+			jest.spyOn( timerService, 'pause' );
+
+			componentInstance.show();
+
+			tick();
+
+			expect( timerService.pause).toHaveBeenCalled();
 
 		} ) );
 

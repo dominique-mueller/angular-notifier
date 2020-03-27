@@ -105,8 +105,9 @@ export class NotifierService {
 	 * @param type             Type of the notification
 	 * @param message          Message of the notification
 	 * @param [notificationId] Unique ID for the notification (optional)
+	 * @param hideOnlyOnAction To Stop Notification Hide Timer (optional)
 	 */
-	public notify( type: string, message: string, notificationId?: string ): void {
+	public notify( type: string, message: string, notificationId?: string, hideOnlyOnAction?: boolean ): void {
 		let notificationOptions: NotifierNotificationOptions = {
 			message,
 			type
@@ -114,6 +115,11 @@ export class NotifierService {
 		if ( notificationId !== undefined ) {
 			notificationOptions.id = notificationId;
 		}
+
+		if( hideOnlyOnAction !== undefined) {
+			notificationOptions.hideOnlyOnAction = hideOnlyOnAction;
+		}
+
 		this.show( notificationOptions );
 	}
 

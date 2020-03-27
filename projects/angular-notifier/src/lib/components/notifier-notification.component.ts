@@ -184,6 +184,9 @@ export class NotifierNotificationComponent implements AfterViewInit {
 				const animation: Animation = this.element.animate( animationData.keyframes, animationData.options );
 				animation.onfinish = () => {
 					this.startAutoHideTimer();
+					if (this.notification.hideOnlyOnAction) {
+						this.pauseAutoHideTimer();
+					}
 					resolve(); // Done
 				};
 
@@ -192,6 +195,9 @@ export class NotifierNotificationComponent implements AfterViewInit {
 				// Show notification
 				this.renderer.setStyle( this.element, 'visibility', 'visible' );
 				this.startAutoHideTimer();
+				if (this.notification.hideOnlyOnAction) {
+					this.pauseAutoHideTimer();
+				}
 				resolve(); // Done
 
 			}
@@ -286,23 +292,32 @@ export class NotifierNotificationComponent implements AfterViewInit {
 
 	/**
 	 * Handle mouseover over notification area
+	 * Don't Perform any action if hideOnlyAction
+	 * is true
 	 */
 	public onNotificationMouseover(): void {
-		if ( this.config.behaviour.onMouseover === 'pauseAutoHide' ) {
-			this.pauseAutoHideTimer();
-		} else if ( this.config.behaviour.onMouseover === 'resetAutoHide' ) {
-			this.stopAutoHideTimer();
+		if (this.notification.hideOnlyOnAction !== true) {
+			if (this.config.behaviour.onMouseover === 'pauseAutoHide') {
+				this.pauseAutoHideTimer();
+			} else if (this.config.behaviour.onMouseover === 'resetAutoHide') {
+				this.stopAutoHideTimer();
+			}
 		}
+
 	}
 
 	/**
 	 * Handle mouseout from notification area
+	 * Don't Perform any action if hideOnlyAction
+	 * is true
 	 */
 	public onNotificationMouseout(): void {
-		if ( this.config.behaviour.onMouseover === 'pauseAutoHide' ) {
-			this.continueAutoHideTimer();
-		} else if ( this.config.behaviour.onMouseover === 'resetAutoHide' ) {
-			this.startAutoHideTimer();
+		if (this.notification.hideOnlyOnAction !== true) {
+			if (this.config.behaviour.onMouseover === 'pauseAutoHide') {
+				this.continueAutoHideTimer();
+			} else if (this.config.behaviour.onMouseover === 'resetAutoHide') {
+				this.startAutoHideTimer();
+			}
 		}
 	}
 
