@@ -137,6 +137,25 @@ describe( 'Notifier Service', () => {
 
 	} );
 
+	it( 'should not hide a notification', () => {
+
+		const testNotificationOptions: NotifierNotificationOptions = {
+			id: 'ID_FAKE',
+			message: 'Lorem ipsum dolor sit amet.',
+			type: 'SUCCESS',
+			hideOnlyOnAction: true
+		};
+		const expectedAction: NotifierAction = {
+			payload: testNotificationOptions,
+			type: 'SHOW'
+		};
+		service.notify( testNotificationOptions.type, testNotificationOptions.message, testNotificationOptions.id,
+			testNotificationOptions.hideOnlyOnAction );
+
+		expect( queueService.lastAction ).toEqual( expectedAction );
+
+	} );
+
 	it( 'should hide a specific notification', () => {
 
 		const testNotificationId: string = 'ID_FAKE';
