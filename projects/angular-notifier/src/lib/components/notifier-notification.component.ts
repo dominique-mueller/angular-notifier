@@ -333,7 +333,7 @@ export class NotifierNotificationComponent implements AfterViewInit {
 	/**
 	 * Start the auto hide timer (if enabled)
 	 */
-	private startAutoHideTimer(): void {
+	public startAutoHideTimer(): void {
 		if ( this.config.behaviour.autoHide !== false && this.config.behaviour.autoHide > 0 ) {
 			this.timerService.start( this.config.behaviour.autoHide ).then( () => {
 				this.onClickDismiss();
@@ -344,7 +344,7 @@ export class NotifierNotificationComponent implements AfterViewInit {
 	/**
 	 * Pause the auto hide timer (if enabled)
 	 */
-	private pauseAutoHideTimer(): void {
+	public  pauseAutoHideTimer(): void {
 		if ( this.config.behaviour.autoHide !== false && this.config.behaviour.autoHide > 0 ) {
 			this.timerService.pause();
 		}
@@ -353,7 +353,7 @@ export class NotifierNotificationComponent implements AfterViewInit {
 	/**
 	 * Continue the auto hide timer (if enabled)
 	 */
-	private continueAutoHideTimer(): void {
+	public continueAutoHideTimer(): void {
 		if ( this.config.behaviour.autoHide !== false && this.config.behaviour.autoHide > 0 ) {
 			this.timerService.continue();
 		}
@@ -362,7 +362,7 @@ export class NotifierNotificationComponent implements AfterViewInit {
 	/**
 	 * Stop the auto hide timer (if enabled)
 	 */
-	private stopAutoHideTimer(): void {
+	public stopAutoHideTimer(): void {
 		if ( this.config.behaviour.autoHide !== false && this.config.behaviour.autoHide > 0 ) {
 			this.timerService.stop();
 		}

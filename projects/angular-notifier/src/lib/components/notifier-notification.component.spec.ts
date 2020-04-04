@@ -820,13 +820,13 @@ describe( 'Notifier Notification Component', () => {
 			componentInstance.notification = testNotificationHideOnlyOnActionTrue;
 			componentFixture.detectChanges();
 
-			jest.spyOn( timerService, 'pause' );
+			jest.spyOn( componentInstance, 'pauseAutoHideTimer' );
 
 			componentInstance.show();
 
 			tick();
 
-			expect( timerService.pause).toHaveBeenCalled();
+			expect( componentInstance.pauseAutoHideTimer).toHaveBeenCalled();
 
 		} ) );
 
@@ -945,6 +945,43 @@ describe( 'Notifier Notification Component', () => {
 
 		} ) );
 
+
+		it( 'should not pause the autoHide timer on mouseover, and resume again on mouseout', fakeAsync( () => {
+
+			// Setup test module
+			beforeEachWithConfig( new NotifierConfig( {
+				animations: {
+					enabled: false
+				},
+				behaviour: {
+					autoHide: 5000,
+					onMouseover: 'pauseAutoHide'
+				}
+			} ) );
+
+			componentInstance.notification = testNotificationHideOnlyOnActionTrue;
+			componentFixture.detectChanges();
+
+			componentInstance.show();
+			jest.spyOn( componentInstance, 'onClickDismiss' );
+			jest.spyOn( timerService, 'pause' );
+			jest.spyOn( timerService, 'continue' );
+
+			componentInstance.onNotificationMouseover();
+
+			expect( timerService.pause ).not.toHaveBeenCalled();
+
+			componentInstance.onNotificationMouseout();
+
+			expect( timerService.continue ).not.toHaveBeenCalled();
+
+			timerService.finishManually();
+			tick();
+
+			expect( componentInstance.onClickDismiss ).toHaveBeenCalled();
+
+		} ) );
+
 		it( 'should restart the autoHide timer on mouseover', fakeAsync( () => {
 
 			// Setup test module
@@ -973,6 +1010,42 @@ describe( 'Notifier Notification Component', () => {
 			componentInstance.onNotificationMouseout();
 
 			expect( timerService.start ).toHaveBeenCalled();
+
+			timerService.finishManually();
+			tick();
+
+			expect( componentInstance.onClickDismiss ).toHaveBeenCalled();
+
+		} ) );
+
+		it( 'should not restart the autoHide timer on mouseover', fakeAsync( () => {
+
+			// Setup test module
+			beforeEachWithConfig( new NotifierConfig( {
+				animations: {
+					enabled: false
+				},
+				behaviour: {
+					autoHide: 5000,
+					onMouseover: 'resetAutoHide'
+				}
+			} ) );
+
+			componentInstance.notification = testNotificationHideOnlyOnActionTrue;
+			componentFixture.detectChanges();
+
+			componentInstance.show();
+			jest.spyOn( componentInstance, 'onClickDismiss' );
+			jest.spyOn( timerService, 'stop' );
+			jest.spyOn( timerService, 'start' );
+
+			componentInstance.onNotificationMouseover();
+
+			expect( timerService.stop ).not.toHaveBeenCalled();
+
+			componentInstance.onNotificationMouseout();
+
+			expect( timerService.start ).not.toHaveBeenCalled();
 
 			timerService.finishManually();
 			tick();
