@@ -75,7 +75,7 @@
 		"rxjs": "6.5.x",
 		"ts-node": "8.4.x",
 		"tsickle": "0.37.x",
-		"typescript": "3.5.x",
+		"typescript": "3.9.x",
 		"web-animations-js": "2.3.x",
 		"zone.js": "0.9.x"
 	}
