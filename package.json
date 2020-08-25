@@ -52,7 +52,7 @@
 		"rxjs": ">= 6.0.0 < 7.0.0"
 	},
 	"devDependencies": {
-		"@angular-builders/jest": "8.2.x",
+		"@angular-builders/jest": "10.0.x",
 		"@angular-devkit/build-angular": "0.803.x",
 		"@angular-devkit/build-ng-packagr": "0.803.x",
 		"@angular/cli": "8.3.x",
