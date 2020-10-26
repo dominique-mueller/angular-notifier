@@ -69,7 +69,7 @@
 		"automatic-release": "1.1.x",
 		"codecov": "3.6.x",
 		"copyfiles": "2.1.x",
-		"jest": "24.9.x",
+		"jest": "26.6.x",
 		"ng-packagr": "5.7.x",
 		"node-sass": "4.13.x",
 		"rxjs": "6.5.x",
