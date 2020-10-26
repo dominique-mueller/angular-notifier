@@ -44,7 +44,7 @@
 		"test:library": "ng test angular-notifier"
 	},
 	"dependencies": {
-		"tslib": "1.10.x"
+		"tslib": "1.14.x"
 	},
 	"peerDependencies": {
 		"@angular/common": ">= 8.0.0 < 9.0.0",
