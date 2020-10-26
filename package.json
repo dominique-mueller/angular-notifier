@@ -64,7 +64,7 @@
 		"@angular/platform-browser-dynamic": "8.2.x",
 		"@angular/platform-browser": "8.2.x",
 		"@types/jest": "24.0.x",
-		"@types/node": "12.11.x",
+		"@types/node": "12.19.x",
 		"@types/web-animations-js": "2.2.x",
 		"automatic-release": "1.1.x",
 		"codecov": "3.6.x",
