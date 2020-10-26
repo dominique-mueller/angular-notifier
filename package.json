@@ -67,7 +67,7 @@
 		"@types/node": "12.11.x",
 		"@types/web-animations-js": "2.2.x",
 		"automatic-release": "1.1.x",
-		"codecov": "3.6.x",
+		"codecov": "3.8.x",
 		"copyfiles": "2.1.x",
 		"jest": "24.9.x",
 		"ng-packagr": "5.7.x",
