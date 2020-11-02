@@ -73,7 +73,7 @@
 		"i": "^0.3.x",
 		"jest": "^26.6.x",
 		"ng-packagr": "9.1.x",
-		"node-sass": "4.13.x",
+		"node-sass": "^5.0.0",
 		"rxjs": "6.5.x",
 		"ts-jest": "^26.4.x",
 		"ts-node": "9.0.x",
