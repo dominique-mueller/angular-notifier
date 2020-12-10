@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { InjectionToken, ModuleWithProviders, NgModule } from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 
 import { NotifierContainerComponent } from './components/notifier-container.component';
 import { NotifierNotificationComponent } from './components/notifier-notification.component';
@@ -69,7 +69,7 @@ export class NotifierModule {
 	 * @param   [options={}] - Custom notifier options
 	 * @returns - Notifier module with custom providers
 	 */
-	public static withConfig( options: NotifierOptions = {} ): ModuleWithProviders {
+	public static withConfig( options: NotifierOptions = {} ): ModuleWithProviders<NotifierModule> {
 		return {
 			ngModule: NotifierModule,
 			providers: [
