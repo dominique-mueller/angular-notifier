@@ -53,11 +53,11 @@ export class NotifierService {
 	 *
 	 * @param notificationOptions Notification options
 	 */
-	public show( notificationOptions: NotifierNotificationOptions ): void {
-		this.queueService.push( {
+	public show(notificationOptions: NotifierNotificationOptions): void {
+		this.queueService.push({
 			payload: notificationOptions,
 			type: 'SHOW'
-		} );
+		});
 	}
 
 	/**
@@ -65,38 +65,38 @@ export class NotifierService {
 	 *
 	 * @param notificationId ID of the notification to hide
 	 */
-	public hide( notificationId: string ): void {
-		this.queueService.push( {
+	public hide(notificationId: string): void {
+		this.queueService.push({
 			payload: notificationId,
 			type: 'HIDE'
-		} );
+		});
 	}
 
 	/**
 	 * API: Hide the newest notification
 	 */
 	public hideNewest(): void {
-		this.queueService.push( {
+		this.queueService.push({
 			type: 'HIDE_NEWEST'
-		} );
+		});
 	}
 
 	/**
 	 * API: Hide the oldest notification
 	 */
 	public hideOldest(): void {
-		this.queueService.push( {
+		this.queueService.push({
 			type: 'HIDE_OLDEST'
-		} );
+		});
 	}
 
 	/**
 	 * API: Hide all notifications at once
 	 */
 	public hideAll(): void {
-		this.queueService.push( {
+		this.queueService.push({
 			type: 'HIDE_ALL'
-		} );
+		});
 	}
 
 	/**
@@ -106,15 +106,16 @@ export class NotifierService {
 	 * @param message          Message of the notification
 	 * @param [notificationId] Unique ID for the notification (optional)
 	 */
-	public notify( type: string, message: string, notificationId?: string ): void {
+	public notify(type: string, title: string, message: string, notificationId?: string): void {
 		let notificationOptions: NotifierNotificationOptions = {
 			message,
+			title,
 			type
 		};
-		if ( notificationId !== undefined ) {
+		if (notificationId !== undefined) {
 			notificationOptions.id = notificationId;
 		}
-		this.show( notificationOptions );
+		this.show(notificationOptions);
 	}
 
 }
