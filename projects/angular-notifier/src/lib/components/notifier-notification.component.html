@@ -2,6 +2,8 @@
 </ng-container>
 
 <ng-template #predefinedNotification>
+	<h2 class="notifier__notification-title">{{ notification.title }}</h2>
+	
 	<p class="notifier__notification-message">{{ notification.message }}</p>
 	<button class="notifier__notification-button" type="button" title="dismiss" *ngIf="config.behaviour.showDismissButton" (click)="onClickDismiss()">
 		<svg class="notifier__notification-button-icon" viewBox="0 0 24 24" width="20" height="20">

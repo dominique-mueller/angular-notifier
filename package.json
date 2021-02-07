@@ -41,7 +41,12 @@
 		"release": "automatic-release",
 		"start": "ng serve angular-notifier-demo",
 		"test:library:coverage": "codecov -f coverage/coverage-final.json",
-		"test:library": "ng test angular-notifier"
+		"test:library": "ng test angular-notifier",
+		"copy-files": "cp README.md dist/angular-notifier",
+		"pack-archive": "cd dist/angular-notifier && npm pack . && cp angular-notifier-1.*.tgz ../..",
+		"remove-archive": "rm dist/angular-notifier/angular-notifier-1.*.tgz && cd ../..",
+		"copy-styles": "cp -r projects/angular-notifier/src/styles dist/angular-notifier/styles && cp projects/angular-notifier/src/styles.scss dist/angular-notifier/",
+		"compile-lib": "npm run build:library:angular && npm run copy-styles && npm run copy-files && npm run pack-archive && npm run remove-archive"
 	},
 	"dependencies": {
 		"tslib": "1.10.x"
