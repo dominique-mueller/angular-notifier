@@ -21,7 +21,8 @@
   }
 
   &__notification {
-    display: block;
+    display: flex;
+    align-items: center;
     position: fixed; // Overlay
     visibility: hidden; // Notifications are hidden by default, and get shown (or animated in) dynamically by the Angular component
     z-index: 10000; // Pretty much random ...
