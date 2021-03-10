@@ -1,6 +1,6 @@
 # Changelog
 
-Also see the **[release page](https://github.com/dominique-mueller/angular-notifier.git/releases)**.
+Also see **[GitHub releases](https://github.com/dominique-mueller/angular-notifier/releases)**.
 
 <br>
 
@@ -163,10 +163,6 @@ Also see the **[release page](https://github.com/dominique-mueller/angular-notif
 
 * **config:** Fixed broken configuration merge ([9793773](https://github.com/dominique-mueller/angular-notifier/commit/9793773))
 
-### Tests
-
-* **library:** Added unit tests for the whole source code ([3624eef](https://github.com/dominique-mueller/angular-notifier/commit/3624eef))
-
 <br>
 
 ## [1.0.1](https://github.com/dominique-mueller/angular-notifier/releases/tag/1.0.1) (2016-12-05)
@@ -180,23 +176,4 @@ Also see the **[release page](https://github.com/dominique-mueller/angular-notif
 
 ## [1.0.0](https://github.com/dominique-mueller/angular-notifier/releases/tag/1.0.0) (2016-12-04)
 
-### Features
-
-* **config:** Added new options, docs improbement, refactoring ([745e47e](https://github.com/dominique-mueller/angular-notifier/commit/745e47e))
-* **library:** Added animations ([bdec4ab](https://github.com/dominique-mueller/angular-notifier/commit/bdec4ab))
-* **library:** Added minimal feature implementation ([36aa4e3](https://github.com/dominique-mueller/angular-notifier/commit/36aa4e3))
-* **library:** Extended API ([4fcab3b](https://github.com/dominique-mueller/angular-notifier/commit/4fcab3b))
-
-### Bug Fixes
-
-* **gulp:** Fixed build process to make it work on Travis CI again ([0e21209](https://github.com/dominique-mueller/angular-notifier/commit/0e21209))
-
-### Documentation
-
-* **readme:** Added docs with image, updated demo ([1ee2ca2](https://github.com/dominique-mueller/angular-notifier/commit/1ee2ca2))
-
-<br>
-
----
-
-<sup>*Changelog generated automatically by [automatic-release](https://github.com/dominique-mueller/automatic-release).*</sup>
+Initial release!

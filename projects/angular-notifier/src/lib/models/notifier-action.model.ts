@@ -8,17 +8,13 @@
  * An action looks pretty similar to the ones within the Flux / Redux pattern.
  */
 export interface NotifierAction {
+  /**
+   * Action payload containing all information necessary to process the action (optional)
+   */
+  payload?: any;
 
-	// tslint:disable no-any
-	/**
-	 * Action payload containing all information necessary to process the action (optional)
-	 */
-	payload?: any;
-	// tslint:enable no-any
-
-	/**
-	 * Action type
-	 */
-	type: 'SHOW' | 'HIDE' | 'HIDE_ALL' | 'HIDE_NEWEST' | 'HIDE_OLDEST';
-
+  /**
+   * Action type
+   */
+  type: 'SHOW' | 'HIDE' | 'HIDE_ALL' | 'HIDE_NEWEST' | 'HIDE_OLDEST';
 }

@@ -1,15 +1,15 @@
 // NOTIFIER: ERROR TYPE STYLES
 
-$notifier-error-background-color: #D9534F !default;
-$notifier-error-font-color: #FFF !default;
-$notifier-error-icon-color: #FFF !default;
+$notifier-error-background-color: #d9534f !default;
+$notifier-error-font-color: #fff !default;
+$notifier-error-icon-color: #fff !default;
 
 .notifier__notification--error {
-	background-color: $notifier-error-background-color;
-	color: $notifier-error-font-color;
+  background-color: $notifier-error-background-color;
+  color: $notifier-error-font-color;
 
-	.notifier__notification-button-icon { // 16x16 fixed size
-		fill: $notifier-error-icon-color;
-	}
-
+  .notifier__notification-button-icon {
+    // 16x16 fixed size
+    fill: $notifier-error-icon-color;
+  }
 }

@@ -1,15 +1,15 @@
 // NOTIFIER: SUCCESS TYPE STYLES
 
-$notifier-success-background-color: #5CB85C !default;
-$notifier-success-font-color: #FFF !default;
-$notifier-success-icon-color: #FFF !default;
+$notifier-success-background-color: #5cb85c !default;
+$notifier-success-font-color: #fff !default;
+$notifier-success-icon-color: #fff !default;
 
 .notifier__notification--success {
-	background-color: $notifier-success-background-color;
-	color: $notifier-success-font-color;
+  background-color: $notifier-success-background-color;
+  color: $notifier-success-font-color;
 
-	.notifier__notification-button-icon { // 16x16 fixed size
-		fill: $notifier-success-icon-color;
-	}
-
+  .notifier__notification-button-icon {
+    // 16x16 fixed size
+    fill: $notifier-success-icon-color;
+  }
 }

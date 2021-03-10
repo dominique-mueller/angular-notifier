@@ -1,82 +1,81 @@
 {
-	"name": "angular-notifier",
-	"description": "A well designed, fully animated, highly customizable, and easy-to-use notification library for your Angular application.",
-	"version": "6.0.1",
-	"author": {
-		"name": "Dominique Müller",
-		"email": "dominique.m.mueller@gmail.com",
-		"url": "https://www.devdom.io/"
-	},
-	"license": "MIT",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/dominique-mueller/angular-notifier.git"
-	},
-	"homepage": "https://github.com/dominique-mueller/angular-notifier",
-	"bugs": {
-		"url": "https://github.com/dominique-mueller/angular-notifier/issues"
-	},
-	"keywords": [
-		"angular",
-		"angular2",
-		"ng",
-		"ng2",
-		"notifier",
-		"notification",
-		"notifications",
-		"toast",
-		"toasts",
-		"alert",
-		"library",
-		"module",
-		"js"
-	],
-	"scripts": {
-		"build:demo": "ng build angular-notifier-demo",
-		"build:library": "npm run build:library:angular && npm run build:library:sass && npm run build:library:css",
-		"build:library:angular": "ng build angular-notifier",
-		"build:library:css": "node-sass projects/angular-notifier/src --output dist/angular-notifier --output-style expanded",
-		"build:library:sass": "copyfiles \"projects/angular-notifier/src/**/*.scss\" \"dist/angular-notifier\" --up 3",
-		"release:complete": "node tools/update-package.js && copyfiles \"docs/**\" CHANGELOG.md MIGRATION-GUIDE.md LICENSE README.md dist/angular-notifier",
-		"release": "automatic-release",
-		"start": "ng serve angular-notifier-demo",
-		"test:library:coverage": "codecov -f coverage/coverage-final.json",
-		"test:library": "ng test angular-notifier"
-	},
-	"dependencies": {
-		"tslib": "1.10.x"
-	},
-	"peerDependencies": {
-		"@angular/common": ">= 8.0.0 < 9.0.0",
-		"@angular/core": ">= 8.0.0 < 9.0.0",
-		"rxjs": ">= 6.0.0 < 7.0.0"
-	},
-	"devDependencies": {
-		"@angular-builders/jest": "8.2.x",
-		"@angular-devkit/build-angular": "0.803.x",
-		"@angular-devkit/build-ng-packagr": "0.803.x",
-		"@angular/cli": "8.3.x",
-		"@angular/common": "8.2.x",
-		"@angular/compiler-cli": "8.2.x",
-		"@angular/compiler": "8.2.x",
-		"@angular/core": "8.2.x",
-		"@angular/language-service": "8.2.x",
-		"@angular/platform-browser-dynamic": "8.2.x",
-		"@angular/platform-browser": "8.2.x",
-		"@types/jest": "24.0.x",
-		"@types/node": "12.11.x",
-		"@types/web-animations-js": "2.2.x",
-		"automatic-release": "1.1.x",
-		"codecov": "3.6.x",
-		"copyfiles": "2.1.x",
-		"jest": "24.9.x",
-		"ng-packagr": "5.7.x",
-		"node-sass": "4.13.x",
-		"rxjs": "6.5.x",
-		"ts-node": "8.4.x",
-		"tsickle": "0.37.x",
-		"typescript": "3.5.x",
-		"web-animations-js": "2.3.x",
-		"zone.js": "0.9.x"
-	}
+  "name": "angular-notifier",
+  "description": "A well designed, fully animated, highly customizable, and easy-to-use notification library for your Angular application.",
+  "version": "6.0.1",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dominique-mueller/angular-notifier"
+  },
+  "keywords": [
+    "angular",
+    "angular2",
+    "ng",
+    "ng2",
+    "notifier",
+    "notification",
+    "notifications",
+    "toast",
+    "toasts",
+    "alert",
+    "library"
+  ],
+  "scripts": {
+    "build:demo": "ng build angular-notifier-demo",
+    "build:library": "rimraf -r dist && npm run build:library:angular && npm run build:library:sass && npm run build:library:css && npm run build:library:docs && npm run build:library:package",
+    "build:library:angular": "ng build angular-notifier",
+    "build:library:css": "node-sass projects/angular-notifier/src --output dist/angular-notifier --output-style expanded",
+    "build:library:docs": "copyfiles \"docs/**\" CHANGELOG.md MIGRATION-GUIDE.md LICENSE README.md \"dist/angular-notifier\"",
+    "build:library:package": "node tools/update-package.js",
+    "build:library:sass": "copyfiles \"projects/angular-notifier/src/**/*.scss\" \"dist/angular-notifier\" --up 3",
+    "lint:library": "eslint projects/angular-notifier/src/**/*.ts --max-warnings 0",
+    "lint:library:fix": "eslint projects/angular-notifier/src/**/*.ts --max-warnings 0 --fix",
+    "start": "ng serve angular-notifier-demo",
+    "test:library:upload-coverage": "codecov -f coverage/coverage-final.json",
+    "test:library": "ng test angular-notifier"
+  },
+  "dependencies": {
+    "tslib": "1.10.x"
+  },
+  "peerDependencies": {
+    "@angular/common": ">= 8.0.0 < 9.0.0",
+    "@angular/core": ">= 8.0.0 < 9.0.0",
+    "rxjs": ">= 6.0.0 < 7.0.0"
+  },
+  "devDependencies": {
+    "@angular-builders/jest": "8.3.x",
+    "@angular-devkit/build-angular": "0.803.x",
+    "@angular-devkit/build-ng-packagr": "0.803.x",
+    "@angular/cli": "8.3.x",
+    "@angular/common": "8.2.x",
+    "@angular/compiler-cli": "8.2.x",
+    "@angular/compiler": "8.2.x",
+    "@angular/core": "8.2.x",
+    "@angular/language-service": "8.2.x",
+    "@angular/platform-browser-dynamic": "8.2.x",
+    "@angular/platform-browser": "8.2.x",
+    "@typescript-eslint/eslint-plugin": "4.17.x",
+    "@typescript-eslint/parser": "4.17.x",
+    "@types/jest": "24.0.x",
+    "@types/node": "14.14.x",
+    "@types/web-animations-js": "2.2.x",
+    "codecov": "3.8.x",
+    "copyfiles": "2.4.x",
+    "eslint-config-prettier": "7.2.x",
+    "eslint-plugin-import": "2.22.x",
+    "eslint-plugin-prettier": "3.3.x",
+    "eslint-plugin-simple-import-sort": "7.0.x",
+    "eslint": "7.21.x",
+    "jest": "24.9.x",
+    "ng-packagr": "5.7.x",
+    "node-sass": "4.14.x",
+    "prettier": "2.2.x",
+    "rimraf": "3.0.x",
+    "rxjs": "6.6.x",
+    "ts-node": "9.1.x",
+    "tsickle": "0.37.x",
+    "typescript": "3.5.x",
+    "web-animations-js": "2.3.x",
+    "zone.js": "0.9.x"
+  }
 }

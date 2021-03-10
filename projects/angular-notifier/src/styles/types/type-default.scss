@@ -1,15 +1,15 @@
 // NOTIFIER: DEFAULT TYPE STYLES
 
 $notifier-default-background-color: #444 !default;
-$notifier-default-font-color: #FFF !default;
-$notifier-default-icon-color: #FFF !default;
+$notifier-default-font-color: #fff !default;
+$notifier-default-icon-color: #fff !default;
 
 .notifier__notification--default {
-	background-color: $notifier-default-background-color;
-	color: $notifier-default-font-color;
+  background-color: $notifier-default-background-color;
+  color: $notifier-default-font-color;
 
-	.notifier__notification-button-icon { // 16x16 fixed size
-		fill: $notifier-default-icon-color;
-	}
-
+  .notifier__notification-button-icon {
+    // 16x16 fixed size
+    fill: $notifier-default-icon-color;
+  }
 }
