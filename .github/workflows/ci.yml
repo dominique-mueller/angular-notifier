@@ -1,0 +1,59 @@
+name: CI
+
+on:
+  push:
+    branches: [develop]
+  pull_request:
+    branches: [develop]
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-20.04
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    - name: Setup NodeJS
+      uses: actions/setup-node@v2
+      with:
+        node-version: 14.15.x
+    - name: Install dependencies
+      run: npm ci
+    - name: Build library
+      run: npm run build:library
+    - name: Build demo
+      run: npm run build:demo
+
+  lint:
+    name: Lint
+    needs: build
+    runs-on: ubuntu-20.04
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    - name: Setup NodeJS
+      uses: actions/setup-node@v2
+      with:
+        node-version: 14.15.x
+    - name: Install dependencies
+      run: npm ci
+    - name: Lint library
+      run: npm run lint:library
+
+  test:
+    name: Test
+    needs: build
+    runs-on: ubuntu-20.04
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    - name: Setup NodeJS
+      uses: actions/setup-node@v2
+      with:
+        node-version: 14.15.x
+    - name: Install dependencies
+      run: npm ci
+    - name: Test library
+      run: npm run test:library
+    - name: Upload test coverage
+      run: npm run test:library:upload-coverage

@@ -28,8 +28,8 @@
     "build:library:docs": "copyfiles \"docs/**\" CHANGELOG.md MIGRATION-GUIDE.md LICENSE README.md \"dist/angular-notifier\"",
     "build:library:package": "node tools/update-package.js",
     "build:library:sass": "copyfiles \"projects/angular-notifier/src/**/*.scss\" \"dist/angular-notifier\" --up 3",
-    "lint": "eslint projects/angular-notifier/src/**/*.ts --max-warnings 0",
-    "lint:fix": "eslint projects/angular-notifier/src/**/*.ts --max-warnings 0 --fix",
+    "lint:library": "eslint projects/angular-notifier/src/**/*.ts --max-warnings 0",
+    "lint:library:fix": "eslint projects/angular-notifier/src/**/*.ts --max-warnings 0 --fix",
     "start": "ng serve angular-notifier-demo",
     "test:library:upload-coverage": "codecov -f coverage/coverage-final.json",
     "test:library": "ng test angular-notifier"
