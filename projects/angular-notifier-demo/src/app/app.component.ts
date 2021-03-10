@@ -1,5 +1,4 @@
 import { Component, ViewChild } from '@angular/core';
-
 import { NotifierService } from 'angular-notifier';
 
 /**

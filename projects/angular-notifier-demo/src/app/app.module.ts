@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { NotifierModule, NotifierOptions } from 'angular-notifier';
 
 import { AppComponent } from './app.component';
