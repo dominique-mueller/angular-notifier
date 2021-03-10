@@ -1,15 +1,15 @@
 // NOTIFIER: INFO TYPE STYLES
 
-$notifier-info-background-color: #5BC0DE !default;
-$notifier-info-font-color: #FFF !default;
-$notifier-info-icon-color: #FFF !default;
+$notifier-info-background-color: #5bc0de !default;
+$notifier-info-font-color: #fff !default;
+$notifier-info-icon-color: #fff !default;
 
 .notifier__notification--info {
-	background-color: $notifier-info-background-color;
-	color: $notifier-info-font-color;
+  background-color: $notifier-info-background-color;
+  color: $notifier-info-font-color;
 
-	.notifier__notification-button-icon { // 16x16 fixed size
-		fill: $notifier-info-icon-color;
-	}
-
+  .notifier__notification-button-icon {
+    // 16x16 fixed size
+    fill: $notifier-info-icon-color;
+  }
 }

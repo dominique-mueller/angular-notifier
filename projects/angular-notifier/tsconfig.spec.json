@@ -1,15 +1,10 @@
 {
-	"extends": "../../tsconfig.json",
-	"compilerOptions": {
-		"emitDecoratorMetadata": true,
-		"outDir": "../../out-tsc/spec",
-		"types": [
-			"jest",
-			"node"
-		]
-	},
-	"include": [
-		"**/*.spec.ts",
-		"**/*.d.ts"
-	]
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "emitDecoratorMetadata": true,
+    "esModuleInterop": true,
+    "outDir": "../../out-tsc/spec",
+    "types": ["jest", "node"]
+  },
+  "include": ["**/*.spec.ts", "**/*.d.ts"]
 }
