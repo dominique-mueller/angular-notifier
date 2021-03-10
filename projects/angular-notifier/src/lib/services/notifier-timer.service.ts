@@ -8,85 +8,81 @@ import { Injectable } from '@angular/core';
  */
 @Injectable()
 export class NotifierTimerService {
+  /**
+   * Timestamp (in ms), created in the moment the timer starts
+   */
+  private now: number;
 
-	/**
-	 * Timestamp (in ms), created in the moment the timer starts
-	 */
-	private now: number;
+  /**
+   * Remaining time (in ms)
+   */
+  private remaining: number;
 
-	/**
-	 * Remaining time (in ms)
-	 */
-	private remaining: number;
+  /**
+   * Timeout ID, used for clearing the timeout later on
+   */
+  private timerId: number;
 
-	/**
-	 * Timeout ID, used for clearing the timeout later on
-	 */
-	private timerId: number;
+  /**
+   * Promise resolve function, eventually getting called once the timer finishes
+   */
+  private finishPromiseResolver: () => void;
 
-	/**
-	 * Promise resolve function, eventually getting called once the timer finishes
-	 */
-	private finishPromiseResolver: () => void;
+  /**
+   * Constructor
+   */
+  public constructor() {
+    this.now = 0;
+    this.remaining = 0;
+  }
 
-	/**
-	 * Constructor
-	 */
-	public constructor() {
-		this.now = 0;
-		this.remaining = 0;
-	}
+  /**
+   * Start (or resume) the timer
+   *
+   * @param   duration Timer duration, in ms
+   * @returns          Promise, resolved once the timer finishes
+   */
+  public start(duration: number): Promise<void> {
+    return new Promise<void>((resolve: () => void) => {
+      // For the first run ...
+      this.remaining = duration;
 
-	/**
-	 * Start (or resume) the timer
-	 *
-	 * @param   duration Timer duration, in ms
-	 * @returns          Promise, resolved once the timer finishes
-	 */
-	public start( duration: number ): Promise<undefined> {
-		return new Promise<undefined>( ( resolve: () => void, reject: () => void ) => {
+      // Setup, then start the timer
+      this.finishPromiseResolver = resolve;
+      this.continue();
+    });
+  }
 
-			// For the first run ...
-			this.remaining = duration;
+  /**
+   * Pause the timer
+   */
+  public pause(): void {
+    clearTimeout(this.timerId);
+    this.remaining -= new Date().getTime() - this.now;
+  }
 
-			// Setup, then start the timer
-			this.finishPromiseResolver = resolve;
-			this.continue();
+  /**
+   * Continue the timer
+   */
+  public continue(): void {
+    this.now = new Date().getTime();
+    this.timerId = window.setTimeout(() => {
+      this.finish();
+    }, this.remaining);
+  }
 
-		} );
-	}
+  /**
+   * Stop the timer
+   */
+  public stop(): void {
+    clearTimeout(this.timerId);
+    this.remaining = 0;
+  }
 
-	/**
-	 * Pause the timer
-	 */
-	public pause(): void {
-		clearTimeout( this.timerId );
-		this.remaining -= new Date().getTime() - this.now;
-	}
-
-	/**
-	 * Continue the timer
-	 */
-	public continue(): void {
-		this.now = new Date().getTime();
-		this.timerId = window.setTimeout( () => {
-			this.finish();
-		}, this.remaining );
-	}
-
-	/**
-	 * Stop the timer
-	 */
-	public stop(): void {
-		clearTimeout( this.timerId );
-		this.remaining = 0;
-	}
-
-	/**
-	 * Finish up the timeout by resolving the timer promise
-	 */
-	private finish(): void {
-		this.finishPromiseResolver();
-	}
-
+  /**
+   * Finish up the timeout by resolving the timer promise
+   */
+  private finish(): void {
+    this.finishPromiseResolver();
+  }
 }

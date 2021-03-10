@@ -1,15 +1,15 @@
 // NOTIFIER: WARNING TYPE STYLES
 
-$notifier-warning-background-color: #F0AD4E !default;
-$notifier-warning-font-color: #FFF !default;
-$notifier-warning-icon-color: #FFF !default;
+$notifier-warning-background-color: #f0ad4e !default;
+$notifier-warning-font-color: #fff !default;
+$notifier-warning-icon-color: #fff !default;
 
 .notifier__notification--warning {
-	background-color: $notifier-warning-background-color;
-	color: $notifier-warning-font-color;
+  background-color: $notifier-warning-background-color;
+  color: $notifier-warning-font-color;
 
-	.notifier__notification-button-icon { // 16x16 fixed size
-		fill: $notifier-warning-icon-color;
-	}
-
+  .notifier__notification-button-icon {
+    // 16x16 fixed size
+    fill: $notifier-warning-icon-color;
+  }
 }

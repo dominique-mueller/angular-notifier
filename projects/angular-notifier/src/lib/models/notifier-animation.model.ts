@@ -11,36 +11,32 @@ import { NotifierNotification } from './notifier-notification.model';
  * Nope, it's not a coincidence - the structure looks similar to the Web Animation API syntax.
  */
 export interface NotifierAnimationData {
+  /**
+   * Animation keyframes; the first index ctonaining changes for animate-in, the second index those for animate-out
+   */
+  keyframes: Array<{
+    [animatablePropertyName: string]: string;
+  }>;
 
-	/**
-	 * Animation keyframes; the first index ctonaining changes for animate-in, the second index those for animate-out
-	 */
-	keyframes: Array<{
-		[ animatablePropertyName: string ]: string;
-	}>;
+  /**
+   * Futher animation options
+   */
+  options: {
+    /**
+     * Animation duration, in ms
+     */
+    duration: number;
 
-	/**
-	 * Futher animation options
-	 */
-	options: {
+    /**
+     * Animation easing function (comp. CSS easing functions)
+     */
+    easing?: 'linear' | 'ease' | 'ease-in' | 'ease-out' | 'ease-in-out' | string;
 
-		/**
-		 * Animation duration, in ms
-		 */
-		duration: number;
-
-		/**
-		 * Animation easing function (comp. CSS easing functions)
-		 */
-		easing?: 'linear' | 'ease' | 'ease-in' | 'ease-out' | 'ease-in-out' | string;
-
-		/**
-		 * Animation fill mode
-		 */
-		fill: 'none' | 'forwards' | 'backwards';
-
-	};
-
+    /**
+     * Animation fill mode
+     */
+    fill: 'none' | 'forwards' | 'backwards';
+  };
 }
 
 /**
@@ -50,17 +46,15 @@ export interface NotifierAnimationData {
  * presets are always defined outside the animation service, and therefore one day may become part of some new API.
  */
 export interface NotifierAnimationPreset {
+  /**
+   * Function generating the keyframes for animating-out
+   */
+  hide: (notification: NotifierNotification) => NotifierAnimationPresetKeyframes;
 
-	/**
-	 * Function generating the keyframes for animating-out
-	 */
-	hide: ( notification: NotifierNotification ) => NotifierAnimationPresetKeyframes;
-
-	/**
-	 * Function generating the keyframes for animating-in
-	 */
-	show: ( notification: NotifierNotification ) => NotifierAnimationPresetKeyframes;
-
+  /**
+   * Function generating the keyframes for animating-in
+   */
+  show: (notification: NotifierNotification) => NotifierAnimationPresetKeyframes;
 }
 
 /**
@@ -69,19 +63,17 @@ export interface NotifierAnimationPreset {
  * This interface describes the data, in particular all the keyframes animation presets return.
  */
 export interface NotifierAnimationPresetKeyframes {
+  /**
+   * CSS attributes before the animation starts
+   */
+  from: {
+    [animatablePropertyName: string]: string;
+  };
 
-	/**
-	 * CSS attributes before the animation starts
-	 */
-	from: {
-		[ animatablePropertyName: string ]: string;
-	};
-
-	/**
-	 * CSS attributes after the animation ends
-	 */
-	to: {
-		[ animatablePropertyName: string ]: string;
-	};
-
+  /**
+   * CSS attributes after the animation ends
+   */
+  to: {
+    [animatablePropertyName: string]: string;
+  };
 }

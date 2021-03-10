@@ -1,48 +1,32 @@
 <h1>"angular-notifier" demo</h1>
 
 <h2>Show notifications</h2>
-<button class="button button--primary" (click)="showNotification( 'default', 'Good evening, you lovely person!' )">
-	Default me!
+<button class="button button--primary" (click)="showNotification('default', 'Good evening, you lovely person!')">Default me!</button>
+<button class="button button--primary" (click)="showNotification('info', 'This library is built on top of Angular 2.')">Info me!</button>
+<button class="button button--primary" (click)="showNotification('success', 'Notification successfully opened.')">Success me!</button>
+<button class="button button--primary" (click)="showNotification('warning', 'Warning! But not an error! Just a warning!')">
+  Warning me!
 </button>
-<button class="button button--primary" (click)="showNotification( 'info', 'This library is built on top of Angular 2.' )">
-	Info me!
-</button>
-<button class="button button--primary" (click)="showNotification( 'success', 'Notification successfully opened.' )">
-	Success me!
-</button>
-<button class="button button--primary" (click)="showNotification( 'warning', 'Warning! But not an error! Just a warning!' )">
-	Warning me!
-</button>
-<button class="button button--primary" (click)="showNotification( 'error', 'Whoops, something went wrong. Probably.' )">
-	Error me!
-</button>
-<button class="button button--primary" (click)="showCustomNotificationTemplate( 'info', 'This is a custom notification template' )">
-	Custom notification
+<button class="button button--primary" (click)="showNotification('error', 'Whoops, something went wrong. Probably.')">Error me!</button>
+<button class="button button--primary" (click)="showCustomNotificationTemplate('info', 'This is a custom notification template')">
+  Custom notification
 </button>
 
 <h2>Hide notifications</h2>
-<button class="button button--secondary" (click)="hideAllNotifications()">
-	Hide all notifications!
-</button>
-<button class="button button--secondary" (click)="hideOldestNotification()">
-	Hide oldest notification!
-</button>
-<button class="button button--secondary" (click)="hideNewestNotification()">
-	Hide newest notification!
-</button>
+<button class="button button--secondary" (click)="hideAllNotifications()">Hide all notifications!</button>
+<button class="button button--secondary" (click)="hideOldestNotification()">Hide oldest notification!</button>
+<button class="button button--secondary" (click)="hideNewestNotification()">Hide newest notification!</button>
 
 <h2>Show & hide a specific notification</h2>
-<button class="button button--primary" (click)="showSpecificNotification( 'default', 'Hello, you lovely person!', 'ID_TEST' )">
-	Show notification with ID named 'ID_TEST'
+<button class="button button--primary" (click)="showSpecificNotification('default', 'Hello, you lovely person!', 'ID_TEST')">
+  Show notification with ID named 'ID_TEST'
 </button>
-<button class="button button--secondary" (click)="hideSpecificNotification( 'ID_TEST' )">
-	Hide notification with ID named 'ID_TEST'
-</button>
+<button class="button button--secondary" (click)="hideSpecificNotification('ID_TEST')">Hide notification with ID named 'ID_TEST'</button>
 
 <notifier-container></notifier-container>
 
 <ng-template #customTemplate let-notification="notification">
-	<div>
-		<strong>{{ notification.type}}:</strong> {{ notification.message }}
-	</div>
+  <div>
+    <strong>{{ notification.type }}:</strong> {{ notification.message }}
+  </div>
 </ng-template>

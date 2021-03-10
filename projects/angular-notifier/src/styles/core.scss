@@ -3,39 +3,34 @@
 // Container
 
 .notifier {
+  &__container {
+    * {
+      box-sizing: border-box;
+    }
 
-	&__container {
+    &-list {
+      margin: {
+        top: 0;
+        bottom: 0;
+      }
+      padding: {
+        left: 0;
+      }
+      list-style-type: none;
+    }
+  }
 
-		* {
-			box-sizing: border-box;
-		}
+  &__notification {
+    display: block;
+    position: fixed; // Overlay
+    visibility: hidden; // Notifications are hidden by default, and get shown (or animated in) dynamically by the Angular component
+    z-index: 10000; // Pretty much random ...
 
-		&-list {
-			margin: {
-				top: 0;
-				bottom: 0;
-			}
-			padding: {
-				left: 0;
-			}
-			list-style-type: none;
-		}
+    // This attribute forces this element to be rendered on a new layer, by the GPU, in order to improve its performance (#perfmatters)
+    will-change: transform;
 
-	}
-
-	&__notification {
-		display: block;
-		position: fixed; // Overlay
-		visibility: hidden; // Notifications are hidden by default, and get shown (or animated in) dynamically by the Angular component
-		z-index: 10000; // Pretty much random ...
-
-		// This attribute forces this element to be rendered on a new layer, by the GPU, in order to improve its performance (#perfmatters)
-		will-change: transform;
-
-		// This attribute improves the overall scrolling performance for fixed position elements, such as this one (#perfmatters)
-		// See <https://benfrain.com/improving-css-performance-fixed-position-elements/>
-		backface-visibility: hidden;
-
-	}
-
+    // This attribute improves the overall scrolling performance for fixed position elements, such as this one (#perfmatters)
+    // See <https://benfrain.com/improving-css-performance-fixed-position-elements/>
+    backface-visibility: hidden;
+  }
 }

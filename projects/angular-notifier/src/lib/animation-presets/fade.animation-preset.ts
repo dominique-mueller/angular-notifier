@@ -4,24 +4,24 @@ import { NotifierAnimationPreset, NotifierAnimationPresetKeyframes } from '../mo
  * Fade animation preset
  */
 export const fade: NotifierAnimationPreset = {
-	hide: (): NotifierAnimationPresetKeyframes => {
-		return {
-			from: {
-				opacity: '1'
-			},
-			to: {
-				opacity: '0'
-			}
-		};
-	},
-	show: (): NotifierAnimationPresetKeyframes => {
-		return {
-			from: {
-				opacity: '0'
-			},
-			to: {
-				opacity: '1'
-			}
-		};
-	}
+  hide: (): NotifierAnimationPresetKeyframes => {
+    return {
+      from: {
+        opacity: '1',
+      },
+      to: {
+        opacity: '0',
+      },
+    };
+  },
+  show: (): NotifierAnimationPresetKeyframes => {
+    return {
+      from: {
+        opacity: '0',
+      },
+      to: {
+        opacity: '1',
+      },
+    };
+  },
 };

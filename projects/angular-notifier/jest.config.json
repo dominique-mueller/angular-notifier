@@ -1,7 +1,5 @@
 {
-	"collectCoverage": true,
-	"setupFilesAfterEnv": [
-		"./projects/angular-notifier/jest.setup.ts"
-	],
-	"verbose": true
+  "collectCoverage": true,
+  "setupFilesAfterEnv": ["./projects/angular-notifier/jest.setup.ts"],
+  "verbose": true
 }
