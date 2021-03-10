@@ -1,3 +1,7 @@
 {
-  "name": "angular-notifier"
+  "name": "angular-notifier",
+  "sideEffects": [
+    "*.scss",
+    "*.css"
+  ]
 }
