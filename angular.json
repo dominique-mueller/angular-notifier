@@ -1,84 +1,83 @@
 {
-	"$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-	"version": 1,
-	"newProjectRoot": "projects",
-	"projects": {
-		"angular-notifier": {
-			"projectType": "library",
-			"root": "projects/angular-notifier",
-			"sourceRoot": "projects/angular-notifier/src",
-			"architect": {
-				"build": {
-					"builder": "@angular-devkit/build-ng-packagr:build",
-					"options": {
-						"tsConfig": "projects/angular-notifier/tsconfig.lib.json",
-						"project": "projects/angular-notifier/ng-package.json"
-					}
-				},
-				"test": {
-					"builder": "@angular-builders/jest:run",
-					"options": {
-						"configPath": "jest.config.json"
-					}
-				}
-			}
-		},
-		"angular-notifier-demo": {
-			"projectType": "application",
-			"root": "projects/angular-notifier-demo/",
-			"sourceRoot": "projects/angular-notifier-demo/src",
-			"architect": {
-				"build": {
-					"builder": "@angular-devkit/build-angular:browser",
-					"options": {
-						"outputPath": "dist/angular-notifier-demo",
-						"index": "projects/angular-notifier-demo/src/index.html",
-						"main": "projects/angular-notifier-demo/src/main.ts",
-						"polyfills": "projects/angular-notifier-demo/src/polyfills.ts",
-						"tsConfig": "projects/angular-notifier-demo/tsconfig.app.json",
-						"aot": false,
-						"assets": [
-							"projects/angular-notifier-demo/src/favicon.ico",
-							"projects/angular-notifier-demo/src/assets"
-						],
-						"styles": [
-							"projects/angular-notifier-demo/src/styles.scss"
-						],
-						"scripts": []
-					},
-					"configurations": {
-						"production": {
-							"fileReplacements": [
-								{
-									"replace": "projects/angular-notifier-demo/src/environments/environment.ts",
-									"with": "projects/angular-notifier-demo/src/environments/environment.prod.ts"
-								}
-							],
-							"optimization": true,
-							"outputHashing": "all",
-							"sourceMap": false,
-							"extractCss": true,
-							"namedChunks": false,
-							"aot": true,
-							"extractLicenses": false,
-							"vendorChunk": false,
-							"buildOptimizer": true
-						}
-					}
-				},
-				"serve": {
-					"builder": "@angular-devkit/build-angular:dev-server",
-					"options": {
-						"browserTarget": "angular-notifier-demo:build"
-					},
-					"configurations": {
-						"production": {
-							"browserTarget": "angular-notifier-demo:build:production"
-						}
-					}
-				}
-			}
-		}
-	},
-	"defaultProject": "angular-notifier"
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "angular-notifier": {
+      "projectType": "library",
+      "root": "projects/angular-notifier",
+      "sourceRoot": "projects/angular-notifier/src",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/angular-notifier/tsconfig.lib.json",
+            "project": "projects/angular-notifier/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/angular-notifier/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-builders/jest:run",
+          "options": {
+            "configPath": "jest.config.json"
+          }
+        }
+      }
+    },
+    "angular-notifier-demo": {
+      "projectType": "application",
+      "root": "projects/angular-notifier-demo/",
+      "sourceRoot": "projects/angular-notifier-demo/src",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/angular-notifier-demo",
+            "index": "projects/angular-notifier-demo/src/index.html",
+            "main": "projects/angular-notifier-demo/src/main.ts",
+            "polyfills": "projects/angular-notifier-demo/src/polyfills.ts",
+            "tsConfig": "projects/angular-notifier-demo/tsconfig.app.json",
+            "aot": true,
+            "assets": ["projects/angular-notifier-demo/src/favicon.ico", "projects/angular-notifier-demo/src/assets"],
+            "styles": ["projects/angular-notifier-demo/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/angular-notifier-demo/src/environments/environment.ts",
+                  "with": "projects/angular-notifier-demo/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": false,
+              "vendorChunk": false,
+              "buildOptimizer": true
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "angular-notifier-demo:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "angular-notifier-demo:build:production"
+            }
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "angular-notifier"
 }

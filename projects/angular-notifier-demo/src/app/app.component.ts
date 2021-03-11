@@ -59,9 +59,14 @@ export class AppComponent {
     this.notifier.hideAll();
   }
 
-  public showCustomNotificationTemplate(type: string, message: string, id: string): void {
+  /**
+   * Show custom notification using template
+   *
+   * @param {string} type    Notification type
+   * @param {string} message Notification message
+   */
+  public showCustomNotificationTemplate(type: string, message: string): void {
     this.notifier.show({
-      id,
       message,
       type,
       template: this.customNotificationTmpl,
