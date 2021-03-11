@@ -4,6 +4,14 @@ Also see **[GitHub releases](https://github.com/dominique-mueller/angular-notifi
 
 <br>
 
+## [9.0.1](https://github.com/dominique-mueller/angular-notifier/releases/tag/9.0.1) (2021-03-12)
+
+### Styles
+
+- Remove unnecessary white space around `notifier-container` ([#204](https://github.com/dominique-mueller/angular-notifier/pull/204))
+
+<br>
+
 ## [9.0.0](https://github.com/dominique-mueller/angular-notifier/releases/tag/9.0.0) (2021-03-12)
 
 ### Features
