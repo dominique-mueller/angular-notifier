@@ -938,7 +938,7 @@ describe('Notifier Container Component', () => {
     componentFixture = TestBed.createComponent(NotifierContainerComponent);
     componentInstance = componentFixture.componentInstance;
 
-    queueService = TestBed.get(NotifierQueueService);
+    queueService = TestBed.inject(NotifierQueueService);
   }
 });
 

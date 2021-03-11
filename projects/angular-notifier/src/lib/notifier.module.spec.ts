@@ -12,7 +12,7 @@ describe('Notifier Module', () => {
     TestBed.configureTestingModule({
       imports: [NotifierModule],
     });
-    const service: NotifierService = TestBed.get(NotifierService);
+    const service: NotifierService = TestBed.inject(NotifierService);
 
     expect(service).toBeDefined();
   });
@@ -21,7 +21,7 @@ describe('Notifier Module', () => {
     TestBed.configureTestingModule({
       imports: [NotifierModule],
     });
-    const service: NotifierService = TestBed.get(NotifierService);
+    const service: NotifierService = TestBed.inject(NotifierService);
 
     expect(service.getConfig()).toEqual(new NotifierConfig());
   });
@@ -92,7 +92,7 @@ describe('Notifier Module', () => {
     TestBed.configureTestingModule({
       imports: [NotifierModule.withConfig(testNotifierOptions)],
     });
-    const service: NotifierService = TestBed.get(NotifierService);
+    const service: NotifierService = TestBed.inject(NotifierService);
 
     expect(service.getConfig()).toEqual(expectedNotifierConfig);
   });

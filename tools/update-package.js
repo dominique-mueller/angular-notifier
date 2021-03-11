@@ -7,7 +7,7 @@ const rootPackageJson = JSON.parse(fs.readFileSync('./package.json').toString())
 const distPackageJson = JSON.parse(fs.readFileSync('./dist/angular-notifier/package.json').toString());
 
 // Update dist package.json file with some info from root package.json file
-const keys = ['description', 'version', 'license', 'repository', 'keywords', 'peerDependencies'];
+const keys = ['description', 'version', 'license', 'repository', 'keywords', 'peerDependencies', 'dependencies'];
 keys.forEach((key) => {
   distPackageJson[key] = rootPackageJson[key];
 });
