@@ -1,24 +1,5 @@
-import 'jest-preset-angular';
+import 'jest-preset-angular/setup-jest';
 
-// This file contains global mocks
-
-global['CSS'] = null;
-
-const mock = () => {
-  let storage = {};
-  return {
-    getItem: (key: string) => (key in storage ? storage[key] : null),
-    setItem: (key: string, value: any) => (storage[key] = value || ''),
-    removeItem: (key: string) => delete storage[key],
-    clear: () => (storage = {}),
-  };
-};
-
-Object.defineProperty(window, 'localStorage', { value: mock() });
-Object.defineProperty(window, 'sessionStorage', { value: mock() });
-Object.defineProperty(document, 'doctype', {
-  value: '<!DOCTYPE html>',
-});
 Object.defineProperty(window, 'getComputedStyle', {
   value: () => {
     return {
@@ -27,6 +8,7 @@ Object.defineProperty(window, 'getComputedStyle', {
     };
   },
 });
+
 /**
  * ISSUE: https://github.com/angular/material2/issues/7101
  * Workaround for JSDOM missing transform property
