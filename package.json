@@ -1,7 +1,7 @@
 {
   "name": "angular-notifier",
   "description": "A well designed, fully animated, highly customizable, and easy-to-use notification library for your Angular application.",
-  "version": "6.0.2",
+  "version": "7.0.0",
   "license": "MIT",
   "repository": {
     "type": "git",
