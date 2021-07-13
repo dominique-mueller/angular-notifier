@@ -1,5 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
+import { NotifierAction } from '../models/notifier-action.model';
 import { NotifierConfig } from '../models/notifier-config.model';
 import { NotifierNotificationOptions } from '../models/notifier-notification.model';
 import { NotifierConfigToken } from '../notifier.tokens';
@@ -42,6 +44,15 @@ export class NotifierService {
    */
   public getConfig(): NotifierConfig {
     return this.config;
+  }
+
+  /**
+   * Get the observable for handling actions
+   *
+   * @returns Observable of NotifierAction
+   */
+  public get actionStream(): Observable<NotifierAction> {
+    return this.queueService.actionStream.asObservable();
   }
 
   /**

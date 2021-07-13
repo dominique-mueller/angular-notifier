@@ -1,4 +1,5 @@
 import { inject, TestBed } from '@angular/core/testing';
+import { Subject } from 'rxjs';
 
 import { NotifierAction } from '../models/notifier-action.model';
 import { NotifierConfig } from '../models/notifier-config.model';
@@ -170,6 +171,16 @@ describe('Notifier Service', () => {
   it('should return the configuration', () => {
     expect(service.getConfig()).toEqual(testNotifierConfig);
   });
+
+  it('should return the notification action', () => {
+    const testNotificationId = 'ID_FAKE';
+    const expectedAction: NotifierAction = {
+      payload: testNotificationId,
+      type: 'HIDE',
+    };
+    service.actionStream.subscribe((action) => expect(action).toEqual(expectedAction));
+    service.hide(testNotificationId);
+  });
 });
 
 /**
@@ -180,6 +191,7 @@ class MockNotifierQueueService extends NotifierQueueService {
    * Last action
    */
   public lastAction: NotifierAction;
+  public actionStream = new Subject<NotifierAction>();
 
   /**
    * Push a new action to the queue
@@ -190,5 +202,6 @@ class MockNotifierQueueService extends NotifierQueueService {
    */
   public push(action: NotifierAction): void {
     this.lastAction = action;
+    this.actionStream.next(action);
   }
 }
