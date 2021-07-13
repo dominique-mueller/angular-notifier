@@ -4,6 +4,14 @@ Also see **[GitHub releases](https://github.com/dominique-mueller/angular-notifi
 
 <br>
 
+## [9.1.0](https://github.com/dominique-mueller/angular-notifier/releases/tag/9.1.0) (2021-07-13)
+
+### Features
+
+- Expose `actionStream` on `NotifierService` ([#214](https://github.com/dominique-mueller/angular-notifier/pull/214))
+
+<br>
+
 ## [9.0.1](https://github.com/dominique-mueller/angular-notifier/releases/tag/9.0.1) (2021-03-12)
 
 ### Styles
