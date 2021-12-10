@@ -9,10 +9,11 @@
     "types": [],
     "lib": ["dom", "es2018"]
   },
-  "angularCompilerOptions": {
-    "skipTemplateCodegen": true,
-    "strictMetadataEmit": true,
-    "enableResourceInlining": true
+  "angularCompilerOptions": { 
+    "enableIvy": true,
+    "compilationMode": "partial",
+    "fullTemplateTypeCheck": true,
+    "strictTemplates": true
   },
   "exclude": ["src/test.ts", "**/*.spec.ts"]
 }
