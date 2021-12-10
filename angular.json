@@ -41,10 +41,15 @@
             "main": "projects/angular-notifier-demo/src/main.ts",
             "polyfills": "projects/angular-notifier-demo/src/polyfills.ts",
             "tsConfig": "projects/angular-notifier-demo/tsconfig.app.json",
-            "aot": true,
             "assets": ["projects/angular-notifier-demo/src/favicon.ico", "projects/angular-notifier-demo/src/assets"],
             "styles": ["projects/angular-notifier-demo/src/styles.scss"],
-            "scripts": []
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {
@@ -58,11 +63,11 @@
               "outputHashing": "all",
               "sourceMap": false,
               "namedChunks": false,
-              "extractLicenses": false,
               "vendorChunk": false,
               "buildOptimizer": true
             }
-          }
+          },
+          "defaultConfiguration": ""
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
