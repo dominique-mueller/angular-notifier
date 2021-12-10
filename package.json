@@ -38,7 +38,7 @@
     "tslib": "2.3.1"
   },
   "peerDependencies": {
-    "rxjs": ">= 6.0.0 < 7.0.0"
+    "rxjs": ">= 6.0.0 < 8.0.0"
   },
   "devDependencies": {
     "@angular-builders/jest": "11.1.x",
@@ -66,7 +66,7 @@
     "ng-packagr": "13.1.1",
     "prettier": "2.2.x",
     "rimraf": "3.0.x",
-    "rxjs": "6.6.x",
+    "rxjs": "^7.4.0",
     "sass": "1.32.x",
     "ts-node": "9.1.x",
     "typescript": "4.5.3",
