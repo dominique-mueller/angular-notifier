@@ -21,9 +21,9 @@
     "library"
   ],
   "scripts": {
-    "build:demo": "ng build angular-notifier-demo --prod",
+    "build:demo": "ng build angular-notifier-demo --configuration production",
     "build:library": "rimraf -r dist && npm run build:library:angular && npm run build:library:sass && npm run build:library:css && npm run build:library:docs && npm run build:library:package",
-    "build:library:angular": "ng build angular-notifier --prod",
+    "build:library:angular": "ng build angular-notifier --configuration production",
     "build:library:css": "sass projects/angular-notifier/src:dist/angular-notifier --style=expanded",
     "build:library:docs": "copyfiles \"docs/**\" CHANGELOG.md MIGRATION-GUIDE.md LICENSE README.md \"dist/angular-notifier\"",
     "build:library:package": "node tools/update-package.js",
@@ -35,44 +35,44 @@
     "test:library:upload-coverage": "codecov -f coverage/coverage-final.json"
   },
   "dependencies": {
-    "tslib": "2.0.x"
+    "tslib": "2.3.1"
   },
   "peerDependencies": {
-    "@angular/common": ">= 11.0.0 < 12.0.0",
-    "@angular/core": ">= 11.0.0 < 12.0.0",
+    "@angular/common": ">= 12.0.0 < 13.0.0",
+    "@angular/core": ">= 12.0.0 < 13.0.0",
     "rxjs": ">= 6.0.0 < 7.0.0"
   },
   "devDependencies": {
-    "@angular-builders/jest": "11.1.x",
-    "@angular-devkit/build-angular": "0.1102.x",
-    "@angular/cli": "11.2.x",
-    "@angular/common": "11.2.x",
-    "@angular/compiler-cli": "11.2.x",
-    "@angular/compiler": "11.2.x",
-    "@angular/core": "11.2.x",
-    "@angular/platform-browser-dynamic": "11.2.x",
-    "@angular/platform-browser": "11.2.x",
-    "@typescript-eslint/eslint-plugin": "4.17.x",
-    "@typescript-eslint/parser": "4.17.x",
+    "@angular-builders/jest": "^12.1.2",
+    "@angular-devkit/build-angular": "12.2.16",
+    "@angular/cli": "12.2.16",
+    "@angular/common": "12.2.16",
+    "@angular/compiler": "12.2.16",
+    "@angular/compiler-cli": "12.2.16",
+    "@angular/core": "12.2.16",
+    "@angular/platform-browser": "12.2.16",
+    "@angular/platform-browser-dynamic": "12.2.16",
     "@types/jest": "26.0.x",
     "@types/node": "12.11.x",
     "@types/web-animations-js": "2.2.x",
+    "@typescript-eslint/eslint-plugin": "4.17.x",
+    "@typescript-eslint/parser": "4.17.x",
     "codecov": "3.8.x",
     "copyfiles": "2.4.x",
+    "eslint": "7.21.x",
     "eslint-config-prettier": "7.2.x",
     "eslint-plugin-import": "2.22.x",
     "eslint-plugin-prettier": "3.3.x",
     "eslint-plugin-simple-import-sort": "7.0.x",
-    "eslint": "7.21.x",
     "jest": "26.6.x",
-    "ng-packagr": "11.2.x",
+    "ng-packagr": "12.2.7",
     "prettier": "2.2.x",
     "rimraf": "3.0.x",
     "rxjs": "6.6.x",
     "sass": "1.32.x",
     "ts-node": "9.1.x",
-    "typescript": "4.1.x",
+    "typescript": "4.3.5",
     "web-animations-js": "2.3.x",
-    "zone.js": "0.10.x"
+    "zone.js": "~0.11.4"
   }
 }

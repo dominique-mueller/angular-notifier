@@ -22,7 +22,7 @@ You can get **angular-notifier** via **npm** by either adding it as a new _depen
 or running the following command:
 
 ```bash
-npm install angular-notifier
+npm install @itzrabbs/angular-notifier
 ```
 
 <br>
@@ -42,6 +42,7 @@ The following list describes the compatibility with Angular:
 | `7.x`            | `9.x`   |
 | `8.x`            | `10.x`  |
 | `9.x`            | `11.x`  |
+| `10.x`           | `12.x`  |
 
 <br>
 
