@@ -24,7 +24,7 @@ describe('Notifier Queue Service', () => {
 
   it('should instantiate', () => {
     expect(queueService).toBeDefined();
-    expect(queueService.actionStream).toEqual(jasmine.any(Subject));
+    expect(queueService.actionStream).toEqual(expect.any(Subject));
   });
 
   it('should pass through one action', () => {
