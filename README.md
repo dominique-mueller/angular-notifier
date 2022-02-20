@@ -31,19 +31,19 @@ npm install angular-notifier
 
 The following list describes the compatibility with Angular:
 
-| Angular Notifier | Angular |
-| ---------------- | ------- |
-| `1.x`            | `2.x`   |
-| `2.x`            | `4.x`   |
-| `3.x`            | `5.x`   |
-| `4.x`            | `6.x`   |
-| `5.x`            | `7.x`   |
-| `6.x`            | `8.x`   |
-| `7.x`            | `9.x`   |
-| `8.x`            | `10.x`  |
-| `9.x`            | `11.x`  |
-| `10.x`           | `12.x`  |
-| `11.x`           | `13.x`  |
+| Angular Notifier | Angular | Compilation        |
+| ---------------- | ------- | ------------------ |
+| `1.x`            | `2.x`   | View Engine        |
+| `2.x`            | `4.x`   | View Engine        |
+| `3.x`            | `5.x`   | View Engine        |
+| `4.x`            | `6.x`   | View Engine        |
+| `5.x`            | `7.x`   | View Engine        |
+| `6.x`            | `8.x`   | View Engine        |
+| `7.x`            | `9.x`   | View Engine        |
+| `8.x`            | `10.x`  | View Engine        |
+| `9.x`            | `11.x`  | View Engine        |
+| `10.x`           | `12.x`  | View Engine        |
+| `11.x`           | `13.x`  | Ivy (partial mode) |
 
 <br><br><br>
 
