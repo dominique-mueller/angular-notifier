@@ -1,4 +1,4 @@
-import { Component, DebugElement, NO_ERRORS_SCHEMA, TemplateRef, ViewChild } from '@angular/core';
+import { Component, DebugElement, Injectable, NO_ERRORS_SCHEMA, TemplateRef, ViewChild } from '@angular/core';
 import { async, ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
@@ -968,6 +968,7 @@ describe('Notifier Notification Component', () => {
 /**
  * Mock notifier animation service, always returning the animation
  */
+@Injectable()
 class MockNotifierAnimationService extends NotifierAnimationService {
   /**
    * Get animation data
@@ -1017,6 +1018,7 @@ class MockNotifierAnimationService extends NotifierAnimationService {
 /**
  * Mock Notifier Timer Service
  */
+@Injectable()
 class MockNotifierTimerService extends NotifierTimerService {
   /**
    * Temp resolve function

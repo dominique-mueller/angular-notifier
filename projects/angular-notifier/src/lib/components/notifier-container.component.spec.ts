@@ -1,4 +1,4 @@
-import { DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
+import { DebugElement, Injectable, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
@@ -945,6 +945,7 @@ describe('Notifier Container Component', () => {
 /**
  * Mock Notifier Queue Service
  */
+@Injectable()
 class MockNotifierQueueService extends NotifierQueueService {
   /**
    * Push a new action to the queue, and try to run it
