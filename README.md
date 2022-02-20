@@ -43,24 +43,7 @@ The following list describes the compatibility with Angular:
 | `8.x`            | `10.x`  |
 | `9.x`            | `11.x`  |
 | `10.x`           | `12.x`  |
-
-<br>
-
-### Browser support & polyfills
-
-By default, meaning without any polyfills, **angular-notifier** is compatible with **the latest versions of Chrome, Firefox, and Opera**.
-Bringing in the following polyfills will improve browser support:
-
-- To be able to use the latest and greatest JavaScript features in older browsers (e.g. older version of IE & Safari), you might want to
-  add **[core-js](https://github.com/zloirock/core-js)** to your polyfills.
-- For animation support (in particular, for better
-  **[Web Animations API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API)** support), you might want to use the **[web-animations-js](https://github.com/web-animations/web-animations-js)** polyfill. For details, see the corresponding
-  **[CanIUse page](http://caniuse.com/#feat=web-animation)**.
-
-> For detailed information about the Angular browser support read the
-> **[official Angular browser support documentation](https://angular.io/docs/ts/latest/guide/browser-support.html)**. If you generated your
-> Angular project with the **[Angular CLI](https://github.com/angular/angular-cli)**, all the polyfills mentioned above do already exist in
-> your `polyfills.ts` file - waiting for you to enable and install them.
+| `11.x`           | `13.x`  |
 
 <br><br><br>
 
