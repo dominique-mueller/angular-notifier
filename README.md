@@ -31,36 +31,19 @@ npm install angular-notifier
 
 The following list describes the compatibility with Angular:
 
-| Angular Notifier | Angular |
-| ---------------- | ------- |
-| `1.x`            | `2.x`   |
-| `2.x`            | `4.x`   |
-| `3.x`            | `5.x`   |
-| `4.x`            | `6.x`   |
-| `5.x`            | `7.x`   |
-| `6.x`            | `8.x`   |
-| `7.x`            | `9.x`   |
-| `8.x`            | `10.x`  |
-| `9.x`            | `11.x`  |
-| `10.x`           | `12.x`  |
-
-<br>
-
-### Browser support & polyfills
-
-By default, meaning without any polyfills, **angular-notifier** is compatible with **the latest versions of Chrome, Firefox, and Opera**.
-Bringing in the following polyfills will improve browser support:
-
-- To be able to use the latest and greatest JavaScript features in older browsers (e.g. older version of IE & Safari), you might want to
-  add **[core-js](https://github.com/zloirock/core-js)** to your polyfills.
-- For animation support (in particular, for better
-  **[Web Animations API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API)** support), you might want to use the **[web-animations-js](https://github.com/web-animations/web-animations-js)** polyfill. For details, see the corresponding
-  **[CanIUse page](http://caniuse.com/#feat=web-animation)**.
-
-> For detailed information about the Angular browser support read the
-> **[official Angular browser support documentation](https://angular.io/docs/ts/latest/guide/browser-support.html)**. If you generated your
-> Angular project with the **[Angular CLI](https://github.com/angular/angular-cli)**, all the polyfills mentioned above do already exist in
-> your `polyfills.ts` file - waiting for you to enable and install them.
+| Angular Notifier | Angular | Compilation        |
+| ---------------- | ------- | ------------------ |
+| `1.x`            | `2.x`   | View Engine        |
+| `2.x`            | `4.x`   | View Engine        |
+| `3.x`            | `5.x`   | View Engine        |
+| `4.x`            | `6.x`   | View Engine        |
+| `5.x`            | `7.x`   | View Engine        |
+| `6.x`            | `8.x`   | View Engine        |
+| `7.x`            | `9.x`   | View Engine        |
+| `8.x`            | `10.x`  | View Engine        |
+| `9.x`            | `11.x`  | View Engine        |
+| `10.x`           | `12.x`  | View Engine        |
+| `11.x`           | `13.x`  | Ivy (partial mode) |
 
 <br><br><br>
 

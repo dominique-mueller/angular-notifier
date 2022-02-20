@@ -1,3 +1,4 @@
+import { Injectable } from '@angular/core';
 import { inject, TestBed } from '@angular/core/testing';
 import { Subject } from 'rxjs';
 
@@ -186,6 +187,7 @@ describe('Notifier Service', () => {
 /**
  * Mock Notifier Queue Service
  */
+@Injectable()
 class MockNotifierQueueService extends NotifierQueueService {
   /**
    * Last action

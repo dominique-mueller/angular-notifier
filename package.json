@@ -38,19 +38,19 @@
     "tslib": "2.3.x"
   },
   "peerDependencies": {
-    "@angular/common": ">= 12.0.0 < 13.0.0",
-    "@angular/core": ">= 12.0.0 < 13.0.0"
+    "@angular/common": ">= 13.0.0 < 14.0.0",
+    "@angular/core": ">= 13.0.0 < 14.0.0"
   },
   "devDependencies": {
-    "@angular-builders/jest": "12.1.x",
-    "@angular-devkit/build-angular": "12.2.x",
-    "@angular/cli": "12.2.x",
-    "@angular/common": "12.2.x",
-    "@angular/compiler-cli": "12.2.x",
-    "@angular/compiler": "12.2.x",
-    "@angular/core": "12.2.x",
-    "@angular/platform-browser-dynamic": "12.2.x",
-    "@angular/platform-browser": "12.2.x",
+    "@angular-builders/jest": "13.0.x",
+    "@angular-devkit/build-angular": "13.2.x",
+    "@angular/cli": "13.2.x",
+    "@angular/common": "13.2.x",
+    "@angular/compiler-cli": "13.2.x",
+    "@angular/compiler": "13.2.x",
+    "@angular/core": "13.2.x",
+    "@angular/platform-browser-dynamic": "13.2.x",
+    "@angular/platform-browser": "13.2.x",
     "@typescript-eslint/eslint-plugin": "5.12.x",
     "@typescript-eslint/parser": "5.12.x",
     "@types/jest": "27.4.x",
@@ -64,14 +64,13 @@
     "eslint-plugin-simple-import-sort": "7.0.x",
     "eslint": "8.9.x",
     "jest": "27.5.x",
-    "ng-packagr": "12.2.x",
+    "ng-packagr": "13.2.x",
     "prettier": "2.5.x",
     "rimraf": "3.0.x",
-    "rxjs": "6.6.x",
+    "rxjs": "7.5.x",
     "sass": "1.49.x",
     "ts-node": "10.5.x",
-    "typescript": "4.3.x",
-    "web-animations-js": "2.3.x",
+    "typescript": "4.5.x",
     "zone.js": "0.11.x"
   }
 }
