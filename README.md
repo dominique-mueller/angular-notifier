@@ -44,6 +44,7 @@ The following list describes the compatibility with Angular:
 | `9.x`            | `11.x`  | View Engine        |
 | `10.x`           | `12.x`  | View Engine        |
 | `11.x`           | `13.x`  | Ivy (partial mode) |
+| `12.x`           | `14.x`  | Ivy (partial mode) |
 
 <br><br><br>
 
