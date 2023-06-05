@@ -85,6 +85,5 @@
         }
       }
     }
-  },
-  "defaultProject": "angular-notifier"
+  }
 }

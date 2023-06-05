@@ -10,11 +10,17 @@
     "module": "es2020",
     "moduleResolution": "node",
     "importHelpers": true,
-    "target": "es2020",
-    "lib": ["es2018", "dom"],
+    "target": "ES2022",
+    "lib": [
+      "es2018",
+      "dom"
+    ],
     "paths": {
-      "angular-notifier": ["dist/angular-notifier"]
-    }
+      "angular-notifier": [
+        "dist/angular-notifier"
+      ]
+    },
+    "useDefineForClassFields": false
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
