@@ -4,18 +4,6 @@ Also see **[GitHub releases](https://github.com/dominique-mueller/angular-notifi
 
 <br>
 
-## [13.0.0](https://github.com/dominique-mueller/angular-notifier/releases/tag/13.0.0)
-
-### Features
-
-- Upgrade to Angular 15
-
-### BREAKING CHANGES
-
-- The upgrade to Angular 15 breaks compatibility with Angular 14 (because of peer dependency updates).
-
-<br>
-
 ## [12.0.0](https://github.com/dominique-mueller/angular-notifier/releases/tag/12.0.0) (2022-09-13)
 
 ### Features
