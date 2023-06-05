@@ -1,7 +1,7 @@
 {
   "name": "angular-notifier",
   "description": "A well designed, fully animated, highly customizable, and easy-to-use notification library for your Angular application.",
-  "version": "13.0.0",
+  "version": "12.0.0",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -52,13 +52,13 @@
     "@angular/platform-browser": "15.2.x",
     "@angular/platform-browser-dynamic": "15.2.x",
     "@types/jest": "28.1.x",
-    "@types/node": "14.18.x",
+    "@types/node": "16.x",
     "@types/web-animations-js": "2.2.x",
-    "@typescript-eslint/eslint-plugin": "5.37.x",
-    "@typescript-eslint/parser": "5.37.x",
+    "@typescript-eslint/eslint-plugin": "5.59.x",
+    "@typescript-eslint/parser": "5.59.x",
     "codecov": "3.8.x",
     "copyfiles": "2.4.x",
-    "eslint": "8.23.x",
+    "eslint": "8.42.x",
     "eslint-config-prettier": "8.5.x",
     "eslint-plugin-import": "2.26.x",
     "eslint-plugin-prettier": "4.2.x",
@@ -71,6 +71,6 @@
     "sass": "1.54.x",
     "ts-node": "10.9.x",
     "typescript": "4.9.x",
-    "zone.js": "0.12.x"
+    "zone.js": "0.11.x"
   }
 }
