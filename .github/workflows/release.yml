@@ -7,14 +7,14 @@ on:
 jobs:
   publish-to-npm:
     name: Publish to npm
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
     - name: Setup NodeJS
-      uses: actions/setup-node@v2
+      uses: actions/setup-node@v4
       with:
-        node-version: 16.20.x
+        node-version-file: .nvmrc
         registry-url: 'https://registry.npmjs.org'
     - name: Install dependencies
       run: npm ci

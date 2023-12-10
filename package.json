@@ -35,42 +35,42 @@
     "test:library:upload-coverage": "codecov -f coverage/coverage-final.json"
   },
   "dependencies": {
-    "tslib": "2.4.x"
+    "tslib": "2.6.x"
   },
   "peerDependencies": {
-    "@angular/common": ">= 16.0.0 < 17.0.0",
-    "@angular/core": ">= 16.0.0 < 17.0.0"
+    "@angular/common": ">= 17.0.0 < 18.0.0",
+    "@angular/core": ">= 17.0.0 < 18.0.0"
   },
   "devDependencies": {
-    "@angular-builders/jest": "16.0.x",
-    "@angular-devkit/build-angular": "16.0.x",
-    "@angular/cli": "16.0.x",
-    "@angular/common": "16.0.x",
-    "@angular/compiler": "16.0.x",
-    "@angular/compiler-cli": "16.0.x",
-    "@angular/core": "16.0.x",
-    "@angular/platform-browser": "16.0.x",
-    "@angular/platform-browser-dynamic": "16.0.x",
+    "@angular-builders/jest": "17.0.x",
+    "@angular-devkit/build-angular": "17.0.x",
+    "@angular/cli": "17.0.x",
+    "@angular/common": "17.0.x",
+    "@angular/compiler": "17.0.x",
+    "@angular/compiler-cli": "17.0.x",
+    "@angular/core": "17.0.x",
+    "@angular/platform-browser": "17.0.x",
+    "@angular/platform-browser-dynamic": "17.0.x",
     "@types/jest": "29.5.x",
-    "@types/node": "16.x",
+    "@types/node": "20.x",
     "@types/web-animations-js": "2.2.x",
-    "@typescript-eslint/eslint-plugin": "5.59.x",
-    "@typescript-eslint/parser": "5.59.x",
+    "@typescript-eslint/eslint-plugin": "6.13.x",
+    "@typescript-eslint/parser": "6.13.x",
     "codecov": "3.8.x",
     "copyfiles": "2.4.x",
     "eslint": "8.42.x",
-    "eslint-config-prettier": "8.5.x",
-    "eslint-plugin-import": "2.26.x",
-    "eslint-plugin-prettier": "4.2.x",
-    "eslint-plugin-simple-import-sort": "8.0.x",
-    "jest": "29.5.x",
-    "ng-packagr": "16.0.x",
-    "prettier": "2.7.x",
+    "eslint-config-prettier": "9.1.x",
+    "eslint-plugin-import": "2.29.x",
+    "eslint-plugin-prettier": "5.0.x",
+    "eslint-plugin-simple-import-sort": "10.0.x",
+    "jest": "29.7.x",
+    "ng-packagr": "17.0.x",
+    "prettier": "3.1.y",
     "rimraf": "3.0.x",
-    "rxjs": "7.5.x",
-    "sass": "1.54.x",
+    "rxjs": "7.8.x",
+    "sass": "1.69.x",
     "ts-node": "10.9.x",
-    "typescript": "4.9.x",
-    "zone.js": "0.13.x"
+    "typescript": "5.2.x",
+    "zone.js": "0.14.x"
   }
 }
