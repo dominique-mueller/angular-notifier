@@ -205,9 +205,12 @@ export class NotifierContainerComponent implements OnDestroy {
               setTimeout(() => {
                 stepPromises.push(this.shiftNotifications(oldNotifications, notification.component.getHeight(), true));
               }, this.config.animations.hide.speed - this.config.animations.overlap);
-              setTimeout(() => {
-                stepPromises.push(notification.component.show());
-              }, this.config.animations.hide.speed + this.config.animations.shift.speed - this.config.animations.overlap);
+              setTimeout(
+                () => {
+                  stepPromises.push(notification.component.show());
+                },
+                this.config.animations.hide.speed + this.config.animations.shift.speed - this.config.animations.overlap,
+              );
             } else {
               stepPromises.push(
                 new Promise<void>((resolve: () => void) => {
@@ -251,7 +254,7 @@ export class NotifierContainerComponent implements OnDestroy {
         }
 
         Promise.all(stepPromises).then(() => {
-          if (numberOfNotifications > this.config.behaviour.stacking) {
+          if (typeof this.config.behaviour.stacking == 'number' && numberOfNotifications > this.config.behaviour.stacking) {
             this.removeNotificationFromList(this.notifications[0]);
           }
           this.tempPromiseResolver();
